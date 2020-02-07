@@ -32,7 +32,7 @@ class SetPassword extends StatelessWidget {
               RaisedButton(onPressed: () {
                 password =controllerPassword.text;
 
-//                Navigator.pushNamed(context, routeName, arguments: DashboardPage(password: password,));
+             //   Navigator.pushNamed(context, routeName, arguments: DashboardPage(password: password,));
                 Navigator.pushNamed(
                     context,
                     DashboardPage.routeName,

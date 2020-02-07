@@ -15,10 +15,10 @@ class FillApp extends StatelessWidget {
     return MaterialApp(
         routes: <String, WidgetBuilder> {
 
-    // '/homepage': (BuildContext context) => DashboardPage(),
-    //       '/landingpage': (BuildContext context) => RegisterPage(),
-    //       '/setupPassword': (BuildContext context) => SetPassword(),
-    //       DashboardPage.routeName: (context) => DashboardPage(), // tu treba fino slati
+    '/homepage': (BuildContext context) => DashboardPage(),
+          '/landingpage': (BuildContext context) => RegisterPage(),
+          '/setupPassword': (BuildContext context) => SetPassword(),
+          DashboardPage.routeName: (context) => DashboardPage(), // tu treba fino slati
         },
       home: Scaffold(
           body: SignUp()
