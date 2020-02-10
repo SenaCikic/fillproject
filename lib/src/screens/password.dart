@@ -1,49 +1,71 @@
-import 'package:fillproject/src/screens/homepage.dart';
+import 'dart:async';
+
+import 'package:fillproject/reusable/colors.dart';
+import 'package:fillproject/reusable/firebaseMethods/firebaseCrud.dart';
+import 'package:fillproject/reusable/text.dart';
+import 'package:fillproject/reusable/textFormField.dart';
+import 'package:fillproject/reusable/validation.dart';
+import 'package:fillproject/routes/arguments.dart';
 import 'package:flutter/material.dart';
- 
 
 class SetPassword extends StatelessWidget {
-  static const routeName = '/extractArguments';
-
+  final RegisterArguments arguments;
+  SetPassword({this.arguments});
   String password;
-  SetPassword({this.password});
+  TextEditingController passwordC = new TextEditingController();
+  int _btnCounter = 0;
 
-  TextEditingController controllerPassword = new TextEditingController();
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-        body: Center(
+      backgroundColor: ColorsStyle().black,
+      body: Builder(
+        builder: (context) => Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                child: TextFormField(
-                  controller: controllerPassword,
-                  decoration: InputDecoration(labelText: 'Password'),
+                margin: EdgeInsets.only(bottom: 20),
+                child: Container(
+                  width: 250.0,
+                  margin: EdgeInsets.only(top: 50.0),
+                  child: TextFormF(
+                    controller: passwordC,
+                    label: Texts().labelPassword,
+                    obscureText: true,
+                  ),
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 10, top: 10),
                 padding: EdgeInsets.only(bottom: 10, top: 10),
-                child: Text('By tapping Sing Up & Accept, you acknoledge that you have read the Privacy Policy and agree to the Terms of Services')
+                width: 320.0,
+                child: Text(Texts().passwordSubtitle,
+                    style: TextStyle(color: ColorsStyle().white)),
               ),
-              RaisedButton(onPressed: () {
-                password =controllerPassword.text;
-
-             //   Navigator.pushNamed(context, routeName, arguments: DashboardPage(password: password,));
-                Navigator.pushNamed(
-                    context,
-                    DashboardPage.routeName,
-                    arguments: password,
-                );
-              },
-              child: Text('Sign Up & Accept'),
+              RaisedButton(
+                onPressed: () => onPressed(context),
+                child: Text(Texts().btnPassword),
               )
             ],
           ),
+        ),
       ),
     );
+  }
+
+  onPressed(BuildContext context) {
+    if (_btnCounter == 0) {
+      password = passwordC.text;
+      ValidateFields().passwordVal(password, context, arguments.email,
+          arguments.phoneNo, arguments.username);
+      FirebaseCrud().createUsers(arguments.email, arguments.phoneNo,
+          arguments.username, UniqueKey().toString(), password);
+      _btnCounter = 1;
+      Timer(Duration(seconds: 2), () {
+        _btnCounter = 0;
+      });
+    }
   }
 }

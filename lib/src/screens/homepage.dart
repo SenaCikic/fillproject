@@ -1,46 +1,51 @@
-
+import 'package:fillproject/reusable/colors.dart';
+import 'package:fillproject/reusable/localStorage.dart';
+import 'package:fillproject/reusable/text.dart';
+import 'package:fillproject/routes/arguments.dart';
+import 'package:fillproject/routes/route_constants.dart';
 import 'package:flutter/material.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 class DashboardPage extends StatefulWidget {
-  static const routeName = '/homepage';
+  final PasswordArguments arguments;
 
-   String password;
-   DashboardPage({this.password});
+  DashboardPage({this.arguments});
 
   @override
-  _DashboardPageState createState() => _DashboardPageState(password: password);
+  _DashboardPageState createState() =>
+      _DashboardPageState(arguments: arguments);
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  final PasswordArguments arguments;
+  bool isLoggedIn = false;
+  String name = '';
 
-  String password;
-  _DashboardPageState({this.password});
+  _DashboardPageState({this.arguments});
 
-  String uid = '';
+  //String uid = '';
 
-  getUid() {}
+  //getUid() {}
 
   @override
   void initState() {
-
-    this.uid = '';
-    FirebaseAuth.instance.currentUser().then((val) {
-      setState(() {
-        this.uid = val.uid;
-      });
-    }).catchError((e) {
-      print(e);
-    });
+    //this.uid = '';
+    // FirebaseAuth.instance.currentUser().then((val) {
+    //   setState(() {
+    //     this.uid = val.uid;
+    //   });
+    // }).catchError((e) {
+    //   print(e);
+    // });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        backgroundColor: ColorsStyle().black,
         appBar: new AppBar(
-          title: new Text('Dashboard'),
+          title: new Text(Texts().appBarDash),
           centerTitle: true,
         ),
         body: Center(
@@ -48,32 +53,40 @@ class _DashboardPageState extends State<DashboardPage> {
             child: new Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new Text('Set up a password and start getting!'),
+                new Text(Texts().dashHeadline,
+                    style: TextStyle(color: ColorsStyle().white)),
                 SizedBox(
                   height: 15.0,
                 ),
-                new Text('Moj email je: ______ i moj password je $password'),
+                Text(
+                    Texts().dashSub +
+                        arguments.email +
+                        arguments.username +
+                        Texts().dashSub1 +
+                        arguments.password,
+                    style: TextStyle(color: ColorsStyle().white)),
                 SizedBox(
                   height: 15.0,
                 ),
                 new OutlineButton(
                   borderSide: BorderSide(
                       color: Colors.red, style: BorderStyle.solid, width: 3.0),
-                  child: Text('Logout'),
-                  onPressed: () {
-                    print("OVO JE MOJ PASSWORD: " + password);
-                    FirebaseAuth.instance.signOut().then((action) {
-                      Navigator
-                          .of(context)
-                          .pushReplacementNamed('/landingpage');
-                    }).catchError((e) {
-                      print(e);
-                    });
-                  },
+                  child: Text(Texts().btnLogout,
+                      style: TextStyle(color: ColorsStyle().white)),
+                  onPressed: () => onPressed(context),
                 ),
               ],
             ),
           ),
         ));
+  }
+
+  onPressed(BuildContext context) {
+    FirebaseAuth.instance.signOut().then((action) {
+      Navigator.of(context).pushNamed(LoginAndSignUp);
+    }).catchError((e) {
+      print(e);
+    });
+    LoginStorage().logout(name, isLoggedIn);
   }
 }
