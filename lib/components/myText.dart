@@ -1,7 +1,6 @@
 class MyText {
   final String headline = "fill";
-  final String subtitle = "Register and get";
-  final String fiveSar = "5 SAR";
+  final String subtitle = "Register and get \n5 SAR";
   final String btnSU = 'SIGN UP';
   final String btnSI = 'SIGN IN';
   final String registerHeadline = 'Register and start making money';
@@ -11,7 +10,10 @@ class MyText {
   final String verifyCode = 'Enter sms code';
   final String btnVerify = 'Verify pin';
   final String labelPassword = 'Password';
-  final String passwordSubtitle = 'By tapping Sing Up & Accept, you acknoledge that you have read the Privacy Policy and agree to the Terms of Services';
+  final String passwordSubtitle1  = 'By tapping Sing Up & Accept, you acknowledge that you have read the ';
+  final String privacy = 'Privacy Policy ';
+  final String passwordSubtitle2 = 'and agree to the ';
+  final String termsOfService = 'Terms of Services';
   final String btnPassword = 'Sign Up & Accept';
   final String appBarDash = 'Dashboard';
   final String dashHeadline = 'Congrats you are logged in bitch!';
@@ -22,7 +24,8 @@ class MyText {
   final String labelUsername = 'Username';
   final String loginHeadline = 'Enter username & password to login';
   final String skipThisStep = 'skip';
-
+  final String passwordHeadline = "Set up a password \nand start getting \n";
+  final String fiveSar= '5 \nSAR';
 
   /// snackbar texts
   final String snackUndo = 'Undo';
