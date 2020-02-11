@@ -1,6 +1,6 @@
 class MyText {
   final String headline = "fill";
-  final String subtitle = "Register and get 5 SAR";
+  final String subtitle = "Register and get\n5 SAR";
   final String registerHeadline = 'Register and start \n making money';
   final String registerSubtitle = '3\nSAR';
   final String btnSU = 'SIGN UP';
@@ -21,8 +21,6 @@ class MyText {
   final String btnLogin = 'Login';
   final String labelUsername = 'Username';
   final String loginHeadline = 'Enter username & password to login';
-
-  final String skipThisStep = 'skip this step';
   final String verifyPageHeadline1 = 'Verify your';
   final String verifyPageHeadline2 = 'number';
   final String verifyMoney1 = '2';

@@ -40,8 +40,8 @@ class _SignUpState extends State<SignUp> {
                     child: Text(
                       MyText().subtitle,
                       style: TextStyle(fontSize: 20, color: MyColor().white),
+                      textAlign: TextAlign.center,
                     )),
-                    Text(MyText().registerHeadline, style: TextStyle(fontSize: 20, color: MyColor().white)),
                 Container(
                   width: 320.0,
                   height: 60,
