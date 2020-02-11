@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'package:fillproject/components/myPinCode.dart';
 import 'package:fillproject/components/myText.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+// import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/routes/routeArguments.dart';
@@ -66,7 +67,7 @@ class VerifyPinPage extends StatelessWidget {
               child: Container(
                 width: 310.0,
                 child:
-                PinCodeTextField(
+                MyPinCodeTextField(
                   length: 6,
                   animationType: AnimationType.fade,
                   shape: PinCodeFieldShape.circle,
