@@ -1,8 +1,9 @@
 class MyText {
   final String headline = "fill";
-  final String subtitle = "Register and get 5 SAR";
-  final String btnSU = 'Sign up';
-  final String btnSI = 'Sign in';
+  final String subtitle = "Register and get";
+  final String fiveSar = "5 SAR";
+  final String btnSU = 'SIGN UP';
+  final String btnSI = 'SIGN IN';
   final String registerHeadline = 'Register and start making money';
   final String registerSubtitle = '3 SAR';
   final String labelEmail = 'Email';
@@ -20,7 +21,7 @@ class MyText {
   final String btnLogin = 'Login';
   final String labelUsername = 'Username';
   final String loginHeadline = 'Enter username & password to login';
-  final String skipThisStep = 'skip this step';
+  final String skipThisStep = 'skip';
 
 
   /// snackbar texts
