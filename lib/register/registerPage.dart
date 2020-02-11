@@ -72,6 +72,7 @@ class RegisterPage extends StatelessWidget {
     }
 
     return Scaffold(
+     
       appBar: new AppBar(
         title: new Text(""),
         backgroundColor: MyColor().black,
@@ -95,7 +96,7 @@ class RegisterPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   )),
                   Padding(
-                    padding: EdgeInsets.only(top: 50.0),
+                    padding: EdgeInsets.only(top: 10.0),
                   ),
                   Center(
                       child: Text(
@@ -106,19 +107,19 @@ class RegisterPage extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   )),
+                  // Container(
+                  //   width: 280.0,
+                  //   height: 60,
+                  //   margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
+                  //   child: MyTextFormField(
+                  //       controller: emailController,
+                  //       label: MyText().labelEmail,
+                  //       obscureText: false),
+                  // ),
                   Container(
                     width: 280.0,
                     height: 60,
-                    margin: EdgeInsets.only(top: 50.0, bottom: 10.0),
-                    child: MyTextFormField(
-                        controller: emailController,
-                        label: MyText().labelEmail,
-                        obscureText: false),
-                  ),
-                  Container(
-                    width: 280.0,
-                    height: 60,
-                    margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
                     child: MyTextFormField(
                         controller: usernameController,
                         label: MyText().labelUsername,
