@@ -15,26 +15,8 @@ class MyValidation {
   ///
   /// email, username and phone validacija
   registerValidation(
-      String email, String username, String phone, BuildContext context) {
-    if (email == '') {
-      if (snackCounter == 0) {
-        MySnackbar()
-            .showSnackbar(MyText().regEmailSnack, context, MyText().snackUndo);
-        snackCounter = 1;
-        Timer(Duration(seconds: 2), () {
-          snackCounter = 0;
-        });
-      }
-    } else if (!EmailValidator.validate(email, true)) {
-      if (snackCounter == 0) {
-        MySnackbar()
-            .showSnackbar(MyText().validEmail, context, MyText().snackUndo);
-        snackCounter = 1;
-        Timer(Duration(seconds: 2), () {
-          snackCounter = 0;
-        });
-      }
-    } else if (username == '' || username == null) {
+      String username, String phone, BuildContext context) {
+     if (username == '' || username == null) {
       if (snackCounter == 0) {
         MySnackbar()
             .showSnackbar(MyText().regUserSnack, context, MyText().snackUndo);
@@ -55,7 +37,7 @@ class MyValidation {
     } else {
       Navigator.of(context).pushNamed(VerifyPin,
           arguments: RegisterArguments(
-              email: email, phone: phone, username: username));
+               phone: phone, username: username));
     }
   }
 
@@ -158,6 +140,29 @@ class MyValidation {
               phone: phone,
               username: username,
               password: password));
+    }
+  }
+
+
+  emailValidation(String email, String username, String phone, BuildContext context){
+    if (email == '') {
+      if (snackCounter == 0) {
+        MySnackbar()
+            .showSnackbar(MyText().regEmailSnack, context, MyText().snackUndo);
+        snackCounter = 1;
+        Timer(Duration(seconds: 2), () {
+          snackCounter = 0;
+        });
+      }
+    } else if (!EmailValidator.validate(email, true)) {
+      if (snackCounter == 0) {
+        MySnackbar()
+            .showSnackbar(MyText().validEmail, context, MyText().snackUndo);
+        snackCounter = 1;
+        Timer(Duration(seconds: 2), () {
+          snackCounter = 0;
+        });
+      }
     }
   }
 }

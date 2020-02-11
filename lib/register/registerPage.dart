@@ -67,7 +67,7 @@ class RegisterPage extends StatelessWidget {
       LoginStorage().loginUser(usernameController, name, isLoggedIn);
 
       /// validacija
-      MyValidation().registerValidation(email, username, phone, context);
+      MyValidation().registerValidation(username, phone, context);
       verifyPhone();
     }
 
