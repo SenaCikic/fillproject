@@ -6,19 +6,22 @@ import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
-
-import '../components/myColor.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatelessWidget {
-  String email, phone, smsCode, verificationId, username, name;
+  String phone, smsCode, verificationId, username, name;
   bool isLoggedIn = false;
 
-  TextEditingController emailController = new TextEditingController();
   TextEditingController phoneController = new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
+
+  void dispose() {
+    phoneController.dispose();
+    usernameController.dispose();
+    dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class RegisterPage extends StatelessWidget {
 
     Future<bool> smsCodeDialog(BuildContext context) {
       Navigator.of(context).pushNamed(VerifyPin,
-          arguments: RegisterArguments(email: email, phone: phone));
+          arguments: RegisterArguments(phone: phone));
     }
 
     Future<void> verifyPhone() async {
@@ -65,12 +68,11 @@ class RegisterPage extends StatelessWidget {
 
     onFieldSubmitted(BuildContext context) {
       phone = phoneController.text;
-      email = emailController.text;
       username = usernameController.text;
       LoginStorage().loginUser(usernameController, name, isLoggedIn);
 
       /// validacija
-      MyValidation().registerValidation(email, username, phone, context);
+      MyValidation().registerValidation(username, phone, context);
       verifyPhone();
     }
 
@@ -82,20 +84,25 @@ class RegisterPage extends StatelessWidget {
       ),
       backgroundColor: MyColor().black,
       body: Builder(
-        builder: (context) => SingleChildScrollView(
-                  child: Center(
-            child: Container(
-              child: Column(
-                children: <Widget>[
+        builder: (context) => new GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: SingleChildScrollView(
+            child: Center(
+              child: Container(
+                child: Column(children: <Widget>[
                   Center(
-                        child: Text(
-                      MyText().registerHeadline,
-                      style: TextStyle(fontSize: 20, color: MyColor().white, ),
-                      textAlign: TextAlign.center,
-                    )
-                  ),
+                      child: Text(
+                    MyText().registerHeadline,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: MyColor().white,
+                    ),
+                    textAlign: TextAlign.center,
+                  )),
                   Padding(
-                    padding: EdgeInsets.only(top: 50.0),
+                    padding: EdgeInsets.only(top: 10.0),
                   ),
                   Center(
                       child: Text(
@@ -104,21 +111,21 @@ class RegisterPage extends StatelessWidget {
                         color: MyColor().white,
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,
                   )),
+                  // Container(
+                  //   width: 280.0,
+                  //   height: 60,
+                  //   margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
+                  //   child: MyTextFormField(
+                  //       controller: emailController,
+                  //       label: MyText().labelEmail,
+                  //       obscureText: false),
+                  // ),
                   Container(
                     width: 280.0,
                     height: 60,
-                    margin: EdgeInsets.only(top: 50.0, bottom: 10.0),
-                    child: MyTextFormField(
-                        controller: emailController,
-                        label: MyText().labelEmail,
-                        obscureText: false),
-                  ),
-                  Container(
-                    width: 280.0,
-                    height: 60,
-                    margin: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
                     child: MyTextFormField(
                         controller: usernameController,
                         label: MyText().labelUsername,
@@ -151,7 +158,7 @@ class RegisterPage extends StatelessWidget {
                       style: TextStyle(color: MyColor().white),
                     ),
                   ),
-                ],
+                ]),
               ),
             ),
           ),
