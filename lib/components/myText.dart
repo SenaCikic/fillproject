@@ -22,7 +22,6 @@ class MyText {
   final String labelUsername = 'Username';
   final String loginHeadline = 'Enter username & password to login';
 
-  final String skipThisStep = 'skip this step';
   final String verifyPageHeadline1 = 'Verify your';
   final String verifyPageHeadline2 = 'number';
   final String verifyMoney1 = '2';
