@@ -8,7 +8,7 @@ class MyText {
   final String labelEmail = 'Email';
   final String labelPhone = ' +966 Phone number';
   final String verifyCode = 'Enter sms code';
-  final String btnVerify = 'Verify pin';
+  final String btnVerify = 'Verify PIN';
   final String labelPassword = 'Password';
   final String passwordSubtitle1  = 'By tapping Sing Up & Accept, you acknowledge that you have read the ';
   final String privacy = 'Privacy Policy ';
