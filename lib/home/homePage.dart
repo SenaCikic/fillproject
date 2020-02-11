@@ -24,7 +24,6 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColor().black,
-
       body: SingleChildScrollView(
               child: Center(
           child: Container(

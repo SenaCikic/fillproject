@@ -9,7 +9,7 @@ class MyText {
   final String labelEmail = 'Email';
   final String labelPhone = ' +966 Phone number';
   final String verifyCode = 'Enter sms code';
-  final String btnVerify = 'Verify pin';
+  final String btnVerify = 'Verify PIN';
   final String labelPassword = 'Password';
   final String passwordSubtitle = 'By tapping Sing Up & Accept, you acknoledge that you have read the Privacy Policy and agree to the Terms of Services';
   final String btnPassword = 'Sign Up & Accept';
