@@ -34,23 +34,33 @@ class _SignUpState extends State<SignUp> {
                 MyText().headline,
                 style: TextStyle(fontSize: 60, color: MyColor().white),
               )),
-              Center(
+              Padding(
+                  padding: EdgeInsets.only(top: 250),
                   child: Text(
-                MyText().subtitle,
-                style: TextStyle(fontSize: 20, color: MyColor().white),
-              )),
+                    MyText().subtitle,
+                    style: TextStyle(fontSize: 20, color: MyColor().white),
+                  )),
+                  Text(MyText().fiveSar, style: TextStyle(fontSize: 20, color: MyColor().white)),
               Container(
-                width: 255.0,
-                margin: EdgeInsets.only(top: 130.0),
+                width: 320.0,
+                height: 60,
+                margin: EdgeInsets.only(top: 30.0, bottom: 15),
                 child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pushNamed(Register);
                     },
                     child: Text(MyText().btnSU)),
               ),
               Container(
-                width: 255.0,
+                width: 320.0,
+                height: 60,
                 child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pushNamed(Login);
                     },
@@ -58,7 +68,7 @@ class _SignUpState extends State<SignUp> {
               ),
               Container(
                   width: 255.0,
-                  margin: EdgeInsets.only(top: 10.0),
+                  margin: EdgeInsets.only(top: 20.0),
                   child: Center(
                       child: FlatButton(
                           onPressed: () => Navigator.of(context).pushNamed(
