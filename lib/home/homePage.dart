@@ -40,7 +40,7 @@ class _SignUpState extends State<SignUp> {
                     MyText().subtitle,
                     style: TextStyle(fontSize: 20, color: MyColor().white),
                   )),
-                  Text(MyText().fiveSar, style: TextStyle(fontSize: 20, color: MyColor().white)),
+                  Text('5 SAR', style: TextStyle(fontSize: 20, color: MyColor().white)),
               Container(
                 width: 320.0,
                 height: 60,

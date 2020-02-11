@@ -85,7 +85,6 @@ class RegisterPage extends StatelessWidget {
         builder: (context) => SingleChildScrollView(
                   child: Center(
             child: Container(
-              // margin: EdgeInsets.only(top: 10.0),
               child: Column(
                 children: <Widget>[
                   Center(

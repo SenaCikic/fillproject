@@ -15,7 +15,7 @@ class VerifyPinPage extends StatelessWidget {
   VerifyPinPage({this.arguments});
 
   String code;
-  TextEditingController codeC = new TextEditingController();
+  TextEditingController codeController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,27 +33,27 @@ class VerifyPinPage extends StatelessWidget {
                   MyText().verifyPageHeadline1,
                   style: TextStyle(
                     color: MyColor().white,
-                    fontSize: 23,
+                    fontSize: 20,
                   ),
                 ),
               ),
               Container(
                 child: Text(MyText().verifyPageHeadline2,
-                    style: TextStyle(color: MyColor().white, fontSize: 23)),
+                    style: TextStyle(color: MyColor().white, fontSize: 20,)),
               ),
               Container(
                 margin: EdgeInsets.only(top: 70),
                 child: Text(MyText().verifyMoney1,
                     style: TextStyle(
                         color: MyColor().white,
-                        fontSize: 50,
+                        fontSize: 40.0,
                         fontWeight: FontWeight.bold)),
               ),
               Container(
                 child: Text(MyText().verifyMoney2,
                     style: TextStyle(
                         color: MyColor().white,
-                        fontSize: 50,
+                        fontSize: 40.0,
                         fontWeight: FontWeight.bold)),
               ),
               Container(
@@ -81,6 +81,7 @@ class VerifyPinPage extends StatelessWidget {
                       selectedColor: MyColor().white,
                       backgroundColor: MyColor().black,
                       borderWidth: 1.0,
+                      controller: codeController,
                       onChanged: (value) {},
                     ),
                     ),
@@ -113,7 +114,7 @@ class VerifyPinPage extends StatelessWidget {
 
   onPressed(BuildContext context) {
     if (_btnCounter == 0) {
-      code = codeC.text;
+      code = codeController.text;
       MyValidation().smsCodeValidation(
           code, context, arguments.email, arguments.phone, arguments.username);
       _btnCounter = 1;
