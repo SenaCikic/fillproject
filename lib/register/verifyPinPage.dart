@@ -33,27 +33,27 @@ class VerifyPinPage extends StatelessWidget {
                   MyText().verifyPageHeadline1,
                   style: TextStyle(
                     color: MyColor().white,
-                    fontSize: 23,
+                    fontSize: 20,
                   ),
                 ),
               ),
               Container(
                 child: Text(MyText().verifyPageHeadline2,
-                    style: TextStyle(color: MyColor().white, fontSize: 23)),
+                    style: TextStyle(color: MyColor().white, fontSize: 20)),
               ),
               Container(
                 margin: EdgeInsets.only(top: 70),
                 child: Text(MyText().verifyMoney1,
                     style: TextStyle(
                         color: MyColor().white,
-                        fontSize: 50,
+                        fontSize: 40,
                         fontWeight: FontWeight.bold)),
               ),
               Container(
                 child: Text(MyText().verifyMoney2,
                     style: TextStyle(
                         color: MyColor().white,
-                        fontSize: 50,
+                        fontSize: 40,
                         fontWeight: FontWeight.bold)),
               ),
               Container(
