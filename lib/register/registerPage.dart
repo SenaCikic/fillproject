@@ -6,10 +6,7 @@ import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
-
-import '../components/myColor.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -83,18 +80,20 @@ class RegisterPage extends StatelessWidget {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => SingleChildScrollView(
-                  child: Center(
+          child: Center(
             child: Container(
               // margin: EdgeInsets.only(top: 10.0),
               child: Column(
                 children: <Widget>[
                   Center(
-                        child: Text(
-                      MyText().registerHeadline,
-                      style: TextStyle(fontSize: 20, color: MyColor().white, ),
-                      textAlign: TextAlign.center,
-                    )
-                  ),
+                      child: Text(
+                    MyText().registerHeadline,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: MyColor().white,
+                    ),
+                    textAlign: TextAlign.center,
+                  )),
                   Padding(
                     padding: EdgeInsets.only(top: 50.0),
                   ),
@@ -105,7 +104,7 @@ class RegisterPage extends StatelessWidget {
                         color: MyColor().white,
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,
                   )),
                   Container(
                     width: 280.0,
