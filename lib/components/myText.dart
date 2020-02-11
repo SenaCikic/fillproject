@@ -1,13 +1,13 @@
 class MyText {
   final String headline = "fill";
-  final String subtitle = "Register and get";
-  final String fiveSar = "5 SAR";
+  final String subtitle = "Register and get 5 SAR";
+  final String registerHeadline = 'Register and start \n making money';
+  final String registerSubtitle = '3\nSAR';
   final String btnSU = 'SIGN UP';
   final String btnSI = 'SIGN IN';
-  final String registerHeadline = 'Register and start making money';
-  final String registerSubtitle = '3 SAR';
+
   final String labelEmail = 'Email';
-  final String labelPhone = 'Phone number';
+  final String labelPhone = ' +966 Phone number';
   final String verifyCode = 'Enter sms code';
   final String btnVerify = 'Verify pin';
   final String labelPassword = 'Password';
