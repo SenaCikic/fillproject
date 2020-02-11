@@ -6,14 +6,14 @@ class FirebaseCrud {
   /// create function
   ///
   /// upis u firestore collection
-  createUsers(String email, String phone, String username, String userID,
+  createUser(String email, String phone, String username, String userId,
       String password) async {
     await db.collection('users').add({
       'email': email,
       'username': username,
       'password': password,
       'phone': phone,
-      'user_id': userID
+      'user_id': userId
     });
   }
 }

@@ -1,6 +1,6 @@
-import 'package:fillproject/routes/route_constants.dart';
-import 'package:fillproject/routes/route_generator.dart';
-import 'package:fillproject/src/screens/loginSingUp.dart';
+import 'package:fillproject/home/homePage.dart';
+import 'package:fillproject/routes/routeConstants.dart';
+import 'package:fillproject/routes/routeGenerator.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(FillApp());
@@ -10,7 +10,7 @@ class FillApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: LoginAndSignUp,
+      initialRoute: Home,
       onGenerateRoute: RouteGenerator.generateRoute,
       home: Scaffold(body: SignUp()),
     );

@@ -1,8 +1,8 @@
-import 'package:fillproject/reusable/colors.dart';
-import 'package:fillproject/reusable/localStorage.dart';
-import 'package:fillproject/reusable/text.dart';
-import 'package:fillproject/routes/arguments.dart';
-import 'package:fillproject/routes/route_constants.dart';
+import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/localStorage/loginStorage.dart';
+import 'package:fillproject/routes/routeArguments.dart';
+import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -23,7 +23,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsStyle().black,
+      backgroundColor: MyColor().black,
       body: Center(
         child: Container(
           margin: EdgeInsets.only(top: 180.0),
@@ -31,13 +31,13 @@ class _SignUpState extends State<SignUp> {
             children: <Widget>[
               Center(
                   child: Text(
-                Texts().headline,
-                style: TextStyle(fontSize: 60, color: ColorsStyle().white),
+                MyText().headline,
+                style: TextStyle(fontSize: 60, color: MyColor().white),
               )),
               Center(
                   child: Text(
-                Texts().subtitle,
-                style: TextStyle(fontSize: 20, color: ColorsStyle().white),
+                MyText().subtitle,
+                style: TextStyle(fontSize: 20, color: MyColor().white),
               )),
               Container(
                 width: 255.0,
@@ -46,7 +46,7 @@ class _SignUpState extends State<SignUp> {
                     onPressed: () {
                       Navigator.of(context).pushNamed(Register);
                     },
-                    child: Text(Texts().btnSU)),
+                    child: Text(MyText().btnSU)),
               ),
               Container(
                 width: 255.0,
@@ -54,7 +54,7 @@ class _SignUpState extends State<SignUp> {
                     onPressed: () {
                       Navigator.of(context).pushNamed(Login);
                     },
-                    child: Text(Texts().btnSI)),
+                    child: Text(MyText().btnSI)),
               ),
               Container(
                   width: 255.0,
@@ -62,16 +62,16 @@ class _SignUpState extends State<SignUp> {
                   child: Center(
                       child: FlatButton(
                           onPressed: () => Navigator.of(context).pushNamed(
-                              Homepage,
+                              Dashboard,
                               arguments: PasswordArguments(
                                   email: '',
                                   password: '',
-                                  phoneNo: '',
+                                  phone: '',
                                   username: '')),
                           child: Text(
-                            Texts().skipThisStep,
+                            MyText().skipThisStep,
                             style: TextStyle(
-                                color: ColorsStyle().white, fontSize: 18.0),
+                                color: MyColor().white, fontSize: 18.0),
                           )))),
             ],
           ),

@@ -1,8 +1,8 @@
-import 'package:fillproject/reusable/colors.dart';
-import 'package:fillproject/reusable/localStorage.dart';
-import 'package:fillproject/reusable/text.dart';
-import 'package:fillproject/routes/arguments.dart';
-import 'package:fillproject/routes/route_constants.dart';
+import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/localStorage/loginStorage.dart';
+import 'package:fillproject/routes/routeArguments.dart';
+import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -43,9 +43,9 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        backgroundColor: ColorsStyle().black,
+        backgroundColor: MyColor().black,
         appBar: new AppBar(
-          title: new Text(Texts().appBarDash),
+          title: new Text(MyText().appBarDash),
           centerTitle: true,
         ),
         body: Center(
@@ -53,26 +53,26 @@ class _DashboardPageState extends State<DashboardPage> {
             child: new Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new Text(Texts().dashHeadline,
-                    style: TextStyle(color: ColorsStyle().white)),
+                new Text(MyText().dashHeadline,
+                    style: TextStyle(color: MyColor().white)),
                 SizedBox(
                   height: 15.0,
                 ),
                 Text(
-                    Texts().dashSub +
+                    MyText().dashSub +
                         arguments.email +
                         arguments.username +
-                        Texts().dashSub1 +
+                        MyText().dashSub1 +
                         arguments.password,
-                    style: TextStyle(color: ColorsStyle().white)),
+                    style: TextStyle(color: MyColor().white)),
                 SizedBox(
                   height: 15.0,
                 ),
                 new OutlineButton(
                   borderSide: BorderSide(
                       color: Colors.red, style: BorderStyle.solid, width: 3.0),
-                  child: Text(Texts().btnLogout,
-                      style: TextStyle(color: ColorsStyle().white)),
+                  child: Text(MyText().btnLogout,
+                      style: TextStyle(color: MyColor().white)),
                   onPressed: () => onPressed(context),
                 ),
               ],
@@ -83,7 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   onPressed(BuildContext context) {
     FirebaseAuth.instance.signOut().then((action) {
-      Navigator.of(context).pushNamed(LoginAndSignUp);
+      Navigator.of(context).pushNamed(Home);
     }).catchError((e) {
       print(e);
     });

@@ -1,4 +1,4 @@
-class Texts {
+class MyText {
   final String headline = "fill";
   final String subtitle = "Register and get 5 SAR";
   final String btnSU = 'Sign up';
@@ -32,8 +32,8 @@ class Texts {
   final String regPassLengthSnack = "Password can't be less than 8 characters!";
   final String smsEmptySnack = "Sms code can't be empty!";
   final String smsLengthSnack = "Sms code can't be less than 6 characters";
-  final String userExistsSnaxk = "This username doesn't exists";
-  final String passExistsSnaxk = "This password doesn't exists";
+  final String userExistsSnack = "This username doesn't exists";
+  final String passExistsSnack = "This password doesn't exists";
   final String validEmail = 'Email must be valid';
   
   

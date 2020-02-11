@@ -1,28 +1,25 @@
 import 'dart:async';
-
 import 'package:email_validator/email_validator.dart';
-import 'package:fillproject/reusable/snackbar.dart';
-import 'package:fillproject/reusable/text.dart';
-import 'package:fillproject/routes/arguments.dart';
-import 'package:fillproject/routes/route_constants.dart';
+import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/mySnackbar.dart';
+import 'package:fillproject/routes/routeArguments.dart';
+import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
-///counteri
-/// snackbar
-int snackCounter = 0;
 
-class ValidateFields {
+
+class MyValidation {
+  int snackCounter = 0;
   /// validacija za register screen
   ///
   /// email, username and phone validacija
-  registerVal(
+  registerValidation(
       String email, String username, String phone, BuildContext context) {
     if (email == '') {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().regEmailSnack, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().regEmailSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
@@ -30,8 +27,8 @@ class ValidateFields {
       }
     } else if (!EmailValidator.validate(email, true)) {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().validEmail, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().validEmail, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
@@ -39,8 +36,8 @@ class ValidateFields {
       }
     } else if (username == '' || username == null) {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().regUserSnack, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().regUserSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
@@ -48,17 +45,17 @@ class ValidateFields {
       }
     } else if (phone == '' || phone == null) {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().regPhoneSnack, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().regPhoneSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
         });
       }
     } else {
-      Navigator.of(context).pushNamed(Verify,
+      Navigator.of(context).pushNamed(VerifyPin,
           arguments: RegisterArguments(
-              email: email, phoneNo: phone, username: username));
+              email: email, phone: phone, username: username));
     }
   }
 
@@ -66,12 +63,12 @@ class ValidateFields {
   ///
   /// username prazan ili null
   /// password manji od 8, prazan ili null
-  loginVal(String username, String password, String userExists,
+  loginValidation(String username, String password, String userExists,
       String passExists, BuildContext context) {
     if (username == '' || username == null) {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().regUserSnack, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().regUserSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
@@ -79,8 +76,8 @@ class ValidateFields {
       }
     }else if (password == '' || password == null) {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().regPassSnack, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().regPassSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
@@ -88,28 +85,28 @@ class ValidateFields {
       }
     } else if (password.length < 8) {
       if (snackCounter == 0) {
-        Snackbars().showSnackbar(
-            Texts().regPassLengthSnack, context, Texts().snackUndo);
+        MySnackbar().showSnackbar(
+            MyText().regPassLengthSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
         });
       }
     } else {
-      Navigator.of(context).pushNamed(Homepage,
+      Navigator.of(context).pushNamed(Dashboard,
           arguments: PasswordArguments(
-              username: username, password: password, email: '', phoneNo: ''));
+              username: username, password: password, email: '', phone: ''));
     }
   }
   /// smsCode validacija
   ///
   /// code ne smije biti prazan, null ili manji od 6 karaktera
-  smsCodeVal(String code, BuildContext context, String email, String phone,
+  smsCodeValidation(String code, BuildContext context, String email, String phone,
       String username) {
     if (code == '' || code == null) {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().smsEmptySnack, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().smsEmptySnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
@@ -117,8 +114,8 @@ class ValidateFields {
       }
     } else if (code.length < 6) {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().smsLengthSnack, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().smsLengthSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
@@ -127,19 +124,19 @@ class ValidateFields {
     } else {
       Navigator.of(context).pushNamed(Password,
           arguments: RegisterArguments(
-              email: email, phoneNo: phone, username: username));
+              email: email, phone: phone, username: username));
     }
   }
 
   /// password validacija
   ///
   /// pass ne smije biti manji od 8 karaktera, prazan ili null
-  passwordVal(String password, BuildContext context, String email, String phone,
+  passwordValidation(String password, BuildContext context, String email, String phone,
       String username) {
     if (password == '' || password == null) {
       if (snackCounter == 0) {
-        Snackbars()
-            .showSnackbar(Texts().regPassSnack, context, Texts().snackUndo);
+        MySnackbar()
+            .showSnackbar(MyText().regPassSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
@@ -147,18 +144,18 @@ class ValidateFields {
       }
     } else if (password.length < 8) {
       if (snackCounter == 0) {
-        Snackbars().showSnackbar(
-            Texts().regPassLengthSnack, context, Texts().snackUndo);
+        MySnackbar().showSnackbar(
+            MyText().regPassLengthSnack, context, MyText().snackUndo);
         snackCounter = 1;
         Timer(Duration(seconds: 2), () {
           snackCounter = 0;
         });
       }
     } else {
-      Navigator.of(context).pushNamed(Homepage,
+      Navigator.of(context).pushNamed(Dashboard,
           arguments: PasswordArguments(
               email: email,
-              phoneNo: phone,
+              phone: phone,
               username: username,
               password: password));
     }

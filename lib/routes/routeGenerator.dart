@@ -1,13 +1,12 @@
-import 'package:fillproject/routes/route_constants.dart';
-import 'package:fillproject/src/screens/login.dart';
+import 'package:fillproject/dashboard.dart';
+import 'package:fillproject/home/homePage.dart';
+import 'package:fillproject/login/loginPage.dart';
+import 'package:fillproject/register/passwordPage.dart';
+import 'package:fillproject/register/registerPage.dart';
+import 'package:fillproject/register/verifyPinPage.dart';
+import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../src/screens/homepage.dart';
-import '../src/screens/loginSingUp.dart';
-import '../src/screens/password.dart';
-import '../src/screens/register.dart';
-import '../src/screens/verifyPin.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -15,15 +14,15 @@ class RouteGenerator {
     final args = settings.arguments;
 
     switch (settings.name) {
-      case LoginAndSignUp:
+      case Home:
         return MaterialPageRoute(builder: (_) => SignUp());
       case Register:
         return MaterialPageRoute(builder: (_) => RegisterPage());
-      case Verify:
-        return MaterialPageRoute(builder: (_) => VerifyPin(arguments: args));
+      case VerifyPin:
+        return MaterialPageRoute(builder: (_) => VerifyPinPage(arguments: args));
       case Password:
-        return MaterialPageRoute(builder: (_) => SetPassword(arguments: args));
-      case Homepage:
+        return MaterialPageRoute(builder: (_) => PasswordPage(registerArguments: args));
+      case Dashboard:
         return MaterialPageRoute(builder: (_) => DashboardPage(arguments: args));
       case Login:
         return MaterialPageRoute(builder: (_) => LoginPage());
