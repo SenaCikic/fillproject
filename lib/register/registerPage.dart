@@ -1,21 +1,21 @@
-import 'package:fillproject/reusable/colors.dart';
-import 'package:fillproject/reusable/localStorage.dart';
-import 'package:fillproject/reusable/text.dart';
-import 'package:fillproject/reusable/textFormField.dart';
-import 'package:fillproject/reusable/validation.dart';
-import 'package:fillproject/routes/arguments.dart';
-import 'package:fillproject/routes/route_constants.dart';
+import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/myTextFormField.dart';
+import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/localStorage/loginStorage.dart';
+import 'package:fillproject/routes/routeArguments.dart';
+import 'package:fillproject/routes/routeConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
-  String email, phoneNo, smsCode, verificationId, username, name;
+  String email, phone, smsCode, verificationId, username, name;
   bool isLoggedIn = false;
 
-  TextEditingController emailC = new TextEditingController();
-  TextEditingController phoneC = new TextEditingController();
-  TextEditingController usernameC = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController phoneController = new TextEditingController();
+  TextEditingController usernameController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +23,24 @@ class RegisterPage extends StatelessWidget {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: verificationId, smsCode: smsCode);
       FirebaseAuth.instance.signInWithCredential(credential).then((user) {
-        Navigator.of(context).pushReplacementNamed(Homepage);
+        Navigator.of(context).pushReplacementNamed(Dashboard);
       }).catchError((e) {
         print('Auth Credential Error : $e');
       });
     }
 
     Future<bool> smsCodeDialog(BuildContext context) {
-      Navigator.of(context).pushNamed(Verify,
-          arguments: RegisterArguments(email: email, phoneNo: phoneNo));
+      Navigator.of(context).pushNamed(VerifyPin,
+          arguments: RegisterArguments(email: email, phone: phone));
 
     }
 
     Future<void> verifyPhone() async {
-      final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
-        this.verificationId = verId;
+      final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verificationId) {
+        this.verificationId = verificationId;
       };
       final PhoneCodeSent smsCodeSent = (String verId, [int forceCodeResend]) {
-        this.verificationId = verId;
+        this.verificationId = verificationId;
         smsCodeDialog(context).then((value) {
           print('Signed in');
         });
@@ -52,16 +52,26 @@ class RegisterPage extends StatelessWidget {
         print('${exception.message}');
       };
       await FirebaseAuth.instance.verifyPhoneNumber(
-          phoneNumber: this.phoneNo,
+          phoneNumber: this.phone,
           codeAutoRetrievalTimeout: autoRetrieve,
           codeSent: smsCodeSent,
           timeout: const Duration(seconds: 5),
           verificationCompleted: verifiedSuccess,
           verificationFailed: veriFailed);
     }
+    
+  onFieldSubmitted(BuildContext context) {
+    phone = phoneController.text;
+    email = emailController.text;
+    username = usernameController.text;
+    LoginStorage().loginUser(usernameController, name, isLoggedIn);
+    /// validacija
+    MyValidation().registerValidation(email, username, phone, context);
+    verifyPhone();
+  }
 
     return Scaffold(
-      backgroundColor: ColorsStyle().black,
+      backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => Center(
           child: Container(
@@ -70,49 +80,49 @@ class RegisterPage extends StatelessWidget {
               children: <Widget>[
                 Center(
                     child: Text(
-                  Texts().registerHeadline,
-                  style: TextStyle(fontSize: 20, color: ColorsStyle().white),
+                  MyText().registerHeadline,
+                  style: TextStyle(fontSize: 20, color: MyColor().white),
                 )),
                 Center(
                     child: Text(
-                  Texts().registerSubtitle,
-                  style: TextStyle(color: ColorsStyle().white),
+                  MyText().registerSubtitle,
+                  style: TextStyle(color: MyColor().white),
                 )),
                 Container(
                   width: 250.0,
                   margin: EdgeInsets.only(top: 50.0),
-                  child: TextFormF(
-                      controller: emailC,
-                      label: Texts().labelEmail,
+                  child: MyTextFormField(
+                      controller: emailController,
+                      label: MyText().labelEmail,
                       obscureText: false),
                 ),
                 Container(
                   width: 250.0,
                   margin: EdgeInsets.only(top: 10.0),
-                  child: TextFormF(
-                      controller: usernameC,
-                      label: Texts().labelUsername,
+                  child: MyTextFormField(
+                      controller: usernameController,
+                      label: MyText().labelUsername,
                       obscureText: false),
                 ),
                 Container(
                   width: 250.0,
                   margin: EdgeInsets.only(top: 10.0),
                   child: TextFormField(
-                    controller: phoneC,
+                    controller: phoneController,
                     decoration: InputDecoration(
-                      labelText: Texts().labelPhone,
-                      labelStyle: TextStyle(color: ColorsStyle().white),
+                      labelText: MyText().labelPhone,
+                      labelStyle: TextStyle(color: MyColor().white),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        borderSide: BorderSide(color: ColorsStyle().white),
+                        borderSide: BorderSide(color: MyColor().white),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        borderSide: BorderSide(color: ColorsStyle().white),
+                        borderSide: BorderSide(color: MyColor().white),
                       ),
                     ),
                     onFieldSubmitted: (value) => onFieldSubmitted(context),
-                    style: TextStyle(color: ColorsStyle().white),
+                    style: TextStyle(color: MyColor().white),
                   ),
                 ),
               ],
@@ -123,13 +133,4 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  onFieldSubmitted(BuildContext context) {
-    phoneNo = phoneC.text;
-    email = emailC.text;
-    username = usernameC.text;
-    LoginStorage().loginUser(usernameC, name, isLoggedIn);
-    /// validacija
-    ValidateFields().registerVal(email, username, phoneNo, context);
-    //verifyPhone();
-  }
 }

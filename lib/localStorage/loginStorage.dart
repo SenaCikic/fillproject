@@ -1,16 +1,16 @@
-import 'package:fillproject/routes/arguments.dart';
-import 'package:fillproject/routes/route_constants.dart';
+import 'package:fillproject/routes/routeArguments.dart';
+import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginStorage {
   Future<Null> loginUser(
-      TextEditingController usernameC, String name, bool isLoggedIn) async {
+      TextEditingController usernameController, String name, bool isLoggedIn) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('username', usernameC.text);
-    name = usernameC.text;
+    prefs.setString('username', usernameController.text);
+    name = usernameController.text;
     isLoggedIn = true;
-    usernameC.clear();
+    usernameController.clear();
   }
 
   void autoLogIn(BuildContext context, String name, bool isLoggedIn) async {
@@ -19,9 +19,9 @@ class LoginStorage {
     if (userId != null) {
       isLoggedIn = true;
       name = userId;
-      Navigator.of(context).pushNamed(Homepage,
+      Navigator.of(context).pushNamed(Dashboard,
           arguments: PasswordArguments(
-              email: '', password: '', phoneNo: '', username: ''));
+              email: '', password: '', phone: '', username: ''));
       return;
     }
   }

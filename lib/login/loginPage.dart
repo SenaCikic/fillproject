@@ -1,22 +1,26 @@
 import 'dart:async';
-
-import 'package:fillproject/reusable/colors.dart';
-import 'package:fillproject/reusable/text.dart';
-import 'package:fillproject/reusable/textFormField.dart';
-import 'package:fillproject/reusable/validation.dart';
+import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/myTextFormField.dart';
+import 'package:fillproject/components/myValidation.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  String username, password, usernameExists, passExists;
-  int _btnCounter = 0;
+ int _btnCounter = 0;
+ String username, password;
 
-  TextEditingController usernameC = new TextEditingController();
-  TextEditingController passwordC = new TextEditingController();
+class LoginPage extends StatelessWidget {
+  final String usernameExists, passwordExists;
+
+  final TextEditingController usernameController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
+  LoginPage({this.usernameExists, this.passwordExists});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsStyle().black,
+      backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => ListView(
           children: <Widget>[
@@ -26,10 +30,10 @@ class LoginPage extends StatelessWidget {
                   child: Container(
                     margin: EdgeInsets.only(top: 260.0),
                     child: Text(
-                      Texts().loginHeadline,
+                      MyText().loginHeadline,
                       style: TextStyle(
                         fontSize: 22,
-                        color: ColorsStyle().white,
+                        color: MyColor().white,
                       ),
                     ),
                   ),
@@ -37,17 +41,17 @@ class LoginPage extends StatelessWidget {
                 Container(
                   width: 250.0,
                   margin: EdgeInsets.only(top: 50.0),
-                  child: TextFormF(
-                      controller: usernameC,
-                      label: Texts().labelUsername,
+                  child: MyTextFormField(
+                      controller: usernameController,
+                      label: MyText().labelUsername,
                       obscureText: false),
                 ),
                 Container(
                   width: 250.0,
                   margin: EdgeInsets.only(top: 10.0),
-                  child: TextFormF(
-                      controller: passwordC,
-                      label: Texts().labelPassword,
+                  child: MyTextFormField(
+                      controller: passwordController,
+                      label: MyText().labelPassword,
                       obscureText: true),
                 ),
                 Column(
@@ -57,7 +61,7 @@ class LoginPage extends StatelessWidget {
                   width: 255.0,
                   margin: EdgeInsets.only(top: 70.0),
                   child: RaisedButton(
-                      onPressed: () => onPressed(context), child: Text(Texts().btnLogin)),
+                      onPressed: () => onPressed(context), child: Text(MyText().btnLogin)),
                 ),
               ],
             ),
@@ -69,11 +73,11 @@ class LoginPage extends StatelessWidget {
 
   onPressed(BuildContext context) {
     if (_btnCounter == 0) {
-      username = usernameC.text;
-      password = passwordC.text;
+      username = usernameController.text;
+      password = passwordController.text;
       /// validacija
-      ValidateFields()
-          .loginVal(username, password, usernameExists, passExists, context);
+      MyValidation()
+          .loginValidation(username, password, usernameExists, passwordExists, context);
       _btnCounter = 1;
       Timer(Duration(seconds: 2), () {
         _btnCounter = 0;
