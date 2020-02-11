@@ -1,6 +1,7 @@
 import 'package:fillproject/dashboard.dart';
 import 'package:fillproject/home/homePage.dart';
 import 'package:fillproject/login/loginPage.dart';
+import 'package:fillproject/register/EmailPage.dart';
 import 'package:fillproject/register/passwordPage.dart';
 import 'package:fillproject/register/registerPage.dart';
 import 'package:fillproject/register/verifyPinPage.dart';
@@ -26,6 +27,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => DashboardPage(arguments: args));
       case Login:
         return MaterialPageRoute(builder: (_) => LoginPage());
+      case Email: 
+        return MaterialPageRoute(builder: (_) => EmailPage());
       default:
         return _errorRoute();
     }
