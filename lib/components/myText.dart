@@ -5,13 +5,15 @@ class MyText {
   final String registerSubtitle = '3\nSAR';
   final String btnSU = 'SIGN UP';
   final String btnSI = 'SIGN IN';
-
   final String labelEmail = 'Email';
   final String labelPhone = ' +966 Phone number';
   final String verifyCode = 'Enter sms code';
   final String btnVerify = 'Verify pin';
   final String labelPassword = 'Password';
-  final String passwordSubtitle = 'By tapping Sing Up & Accept, you acknoledge that you have read the Privacy Policy and agree to the Terms of Services';
+  final String passwordSubtitle1  = 'By tapping Sing Up & Accept, you acknowledge that you have read the ';
+  final String privacy = 'Privacy Policy ';
+  final String passwordSubtitle2 = 'and agree to the ';
+  final String termsOfService = 'Terms of Services';
   final String btnPassword = 'Sign Up & Accept';
   final String appBarDash = 'Dashboard';
   final String dashHeadline = 'Congrats you are logged in bitch!';
@@ -28,7 +30,8 @@ class MyText {
   final String verifyEnterPin = 'Enter the pin';
   final String verifyRecieve = "didn't recieve the pin";
   final String skipThisStep = 'skip';
-
+  final String passwordHeadline = "Set up a password \nand start getting \n";
+  final String fiveSar= '5 \nSAR';
 
 
   /// snackbar texts
