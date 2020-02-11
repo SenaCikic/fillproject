@@ -18,10 +18,15 @@ class PasswordPage extends StatelessWidget {
 
   PasswordPage({this.registerArguments});
 
+  void dispose() {
+    passwordController.dispose();
+    dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: new AppBar(
+      appBar: new AppBar(
         title: new Text(""),
         backgroundColor: MyColor().black,
         centerTitle: true,
@@ -34,18 +39,18 @@ class PasswordPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-                 Text(MyText().passwordHeadline,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: MyColor().white,
-                    )),
-          Text(MyText().fiveSar,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 40,
-                      color: MyColor().white,
-                    )),
+              Text(MyText().passwordHeadline,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: MyColor().white,
+                  )),
+              Text(MyText().fiveSar,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 40,
+                    color: MyColor().white,
+                  )),
               Container(
                 margin: EdgeInsets.only(bottom: 20, top: 20),
                 child: Container(
@@ -70,7 +75,8 @@ class PasswordPage extends StatelessWidget {
                     ),
                     new TextSpan(
                         text: MyText().privacy,
-                        style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: new TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                         recognizer: new TapGestureRecognizer()
                           ..onTap = () {
                             launch('https://google.com');
@@ -81,7 +87,8 @@ class PasswordPage extends StatelessWidget {
                     ),
                     new TextSpan(
                         text: MyText().termsOfService,
-                        style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: new TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                         recognizer: new TapGestureRecognizer()
                           ..onTap = () {
                             launch('https://google.com');

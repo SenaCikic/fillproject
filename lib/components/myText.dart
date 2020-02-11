@@ -32,6 +32,7 @@ class MyText {
   final String skipThisStep = 'skip';
   final String passwordHeadline = "Set up a password \nand start getting \n";
   final String fiveSar= '5 \nSAR';
+  final String emailHeadline = "Set up an email \nand start getting \n";
 
 
   /// snackbar texts

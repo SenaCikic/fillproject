@@ -17,6 +17,11 @@ class VerifyPinPage extends StatelessWidget {
   String code;
   TextEditingController codeController = new TextEditingController();
 
+  void dispose() {
+    codeController.dispose();
+    dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

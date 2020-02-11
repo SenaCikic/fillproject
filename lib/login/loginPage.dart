@@ -16,6 +16,12 @@ class LoginPage extends StatelessWidget {
 
   LoginPage({this.usernameExists, this.passwordExists});
 
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

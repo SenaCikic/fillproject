@@ -17,6 +17,12 @@ class RegisterPage extends StatelessWidget {
   TextEditingController phoneController = new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
 
+  void dispose() {
+    phoneController.dispose();
+    usernameController.dispose();
+    dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     signIn() {
