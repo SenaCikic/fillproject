@@ -7,6 +7,7 @@ import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -83,7 +84,6 @@ class RegisterPage extends StatelessWidget {
         builder: (context) => SingleChildScrollView(
           child: Center(
             child: Container(
-              // margin: EdgeInsets.only(top: 10.0),
               child: Column(
                 children: <Widget>[
                   Center(
@@ -117,7 +117,7 @@ class RegisterPage extends StatelessWidget {
                   //       obscureText: false),
                   // ),
                   Container(
-                    width: 280.0,
+                    width: ScreenUtil.instance.setWidth(280.0),
                     height: 60,
                     margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
                     child: MyTextFormField(
@@ -126,7 +126,7 @@ class RegisterPage extends StatelessWidget {
                         obscureText: false),
                   ),
                   Container(
-                    width: 280.0,
+                    width: ScreenUtil.instance.setWidth(280.0),
                     height: 60,
                     margin: EdgeInsets.only(top: 10.0),
                     child: TextFormField(
