@@ -1,12 +1,12 @@
 class MyText {
   final String headline = "fill";
-  final String subtitle = "Register and get \n5 SAR";
+  final String subtitle = "Register and get\n5 SAR";
+  final String registerHeadline = 'Register and start \n making money';
+  final String registerSubtitle = '3\nSAR';
   final String btnSU = 'SIGN UP';
   final String btnSI = 'SIGN IN';
-  final String registerHeadline = 'Register and start making money';
-  final String registerSubtitle = '3 SAR';
   final String labelEmail = 'Email';
-  final String labelPhone = 'Phone number';
+  final String labelPhone = ' +966 Phone number';
   final String verifyCode = 'Enter sms code';
   final String btnVerify = 'Verify pin';
   final String labelPassword = 'Password';
@@ -23,9 +23,16 @@ class MyText {
   final String btnLogin = 'Login';
   final String labelUsername = 'Username';
   final String loginHeadline = 'Enter username & password to login';
+  final String verifyPageHeadline1 = 'Verify your';
+  final String verifyPageHeadline2 = 'number';
+  final String verifyMoney1 = '2';
+  final String verifyMoney2 = 'SAR';
+  final String verifyEnterPin = 'Enter the pin';
+  final String verifyRecieve = "didn't recieve the pin";
   final String skipThisStep = 'skip';
   final String passwordHeadline = "Set up a password \nand start getting \n";
   final String fiveSar= '5 \nSAR';
+
 
   /// snackbar texts
   final String snackUndo = 'Undo';
