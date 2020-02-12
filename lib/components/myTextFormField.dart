@@ -16,6 +16,7 @@ class MyTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences,
       controller: controller,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(20.0),
