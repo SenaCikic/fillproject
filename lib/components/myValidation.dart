@@ -40,7 +40,7 @@ class MyValidation {
     } else {
       Navigator.of(context).pushNamed(VerifyPin,
           arguments: RegisterArguments(
-               phone: phone, username: username));
+               phone: phone, username: username,));
     }
   }
 
@@ -86,8 +86,13 @@ class MyValidation {
   /// smsCode validacija
   ///
   /// code ne smije biti prazan, null ili manji od 6 karaktera
-  smsCodeValidation(String code, BuildContext context, String email, String phone,
-      String username){
+
+  
+  
+  smsCodeValidation(String code, BuildContext context,  String phone,
+      String username) {
+
+  
     if (code == '' || code == null) {
       if (snackCounter == 0) {
         MySnackbar()
@@ -108,11 +113,12 @@ class MyValidation {
       }
     } else {
 
-      //TODO: Check if smsCode is valid! 
-    
-      // Navigator.of(context).pushNamed(Password,
-      //     arguments: RegisterArguments(
-      //         email: email, phone: phone, username: username));
+      
+      Navigator.of(context).pushNamed(Email,
+          arguments: RegisterArguments(
+               phone: phone, username: username, email: ''));
+
+      
     }
   }
 
@@ -158,8 +164,9 @@ class MyValidation {
 
 
 
+  emailValidation(String email, String username, String phone, BuildContext context,)
+  {
 
-  emailValidation(String email, String username, String phone, BuildContext context){
     if (email == '') {
       if (snackCounter == 0) {
         MySnackbar()
@@ -179,7 +186,16 @@ class MyValidation {
         });
       }
     }
+     else {
+       Navigator.of(context).pushNamed(Password,
+          arguments: RegisterArguments(
+              email: email,
+              phone: phone,
+               username: username,
+           ));
+    }
+     }
   }
-}
+
 
 

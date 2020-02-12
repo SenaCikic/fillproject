@@ -22,13 +22,13 @@ class RouteGenerator {
       case VerifyPin:
         return MaterialPageRoute(builder: (_) => VerifyPinPage(arguments: args));
       case Password:
-        return MaterialPageRoute(builder: (_) => PasswordPage(registerArguments: args));
+        return MaterialPageRoute(builder: (_) => PasswordPage(arguments: args));
       case Dashboard:
         return MaterialPageRoute(builder: (_) => DashboardPage(arguments: args));
       case Login:
         return MaterialPageRoute(builder: (_) => LoginPage());
       case Email: 
-        return MaterialPageRoute(builder: (_) => EmailPage());
+        return MaterialPageRoute(builder: (_) => EmailPage(arguments: args));
       default:
         return _errorRoute();
     }
