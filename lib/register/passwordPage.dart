@@ -7,16 +7,16 @@ import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 String password;
 int _btnCounter = 0;
 
 class PasswordPage extends StatelessWidget {
-  final RegisterArguments registerArguments;
+  final RegisterArguments arguments;
   final TextEditingController passwordController = new TextEditingController();
 
-  PasswordPage({this.registerArguments});
+  PasswordPage({this.arguments});
 
   void dispose() {
     passwordController.dispose();
@@ -79,7 +79,7 @@ class PasswordPage extends StatelessWidget {
                             color: Colors.white, fontWeight: FontWeight.bold),
                         recognizer: new TapGestureRecognizer()
                           ..onTap = () {
-                            launch('https://google.com');
+                            // launch('https://google.com');
                           }),
                     new TextSpan(
                       text: MyText().passwordSubtitle2,
@@ -91,7 +91,7 @@ class PasswordPage extends StatelessWidget {
                             color: Colors.white, fontWeight: FontWeight.bold),
                         recognizer: new TapGestureRecognizer()
                           ..onTap = () {
-                            launch('https://google.com');
+                            // launch('https://google.com');
                           })
                   ]),
                 ),
@@ -121,13 +121,13 @@ class PasswordPage extends StatelessWidget {
       MyValidation().passwordValidation(
           password,
           context,
-          registerArguments.email,
-          registerArguments.phone,
-          registerArguments.username);
+          arguments.email,
+          arguments.phone,
+          arguments.username);
       FirebaseCrud().createUser(
-          registerArguments.email,
-          registerArguments.phone,
-          registerArguments.username,
+          arguments.email,
+          arguments.phone,
+          arguments.username,
           UniqueKey().toString(),
           password);
       _btnCounter = 1;
