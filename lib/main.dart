@@ -1,4 +1,4 @@
-import 'package:fillproject/home/homePage.dart';
+import 'package:fillproject/home/mySplashScreen.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/routes/routeGenerator.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,10 @@ class FillApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: Home,
       onGenerateRoute: RouteGenerator.generateRoute,
-      home: Scaffold(body: SignUp()),
+      home: Scaffold(body: MySplashScreen()),
     );
   }
 }
+
+
+

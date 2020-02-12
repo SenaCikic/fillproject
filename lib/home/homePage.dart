@@ -27,19 +27,19 @@ class _SignUpState extends State<SignUp> {
       body: SingleChildScrollView(
               child: Center(
           child: Container(
-            margin: EdgeInsets.only(top: 130.0),
+            margin: EdgeInsets.only(top: 245.0),
             child: Column(
               children: <Widget>[
                 Center(
                     child: Text(
                   MyText().headline,
-                  style: TextStyle(fontSize: 60, color: MyColor().white),
+                  style: TextStyle(fontSize: 70, color: MyColor().white, fontFamily: 'RobotoMono'),
                 )),
                 Padding(
-                    padding: EdgeInsets.only(top: 250),
+                    padding: EdgeInsets.only(top: 140 ,bottom: 31),
                     child: Text(
                       MyText().subtitle,
-                      style: TextStyle(fontSize: 20, color: MyColor().white),
+                      style: TextStyle(fontSize: 23, color: MyColor().white),
                       textAlign: TextAlign.center,
                     )),
                 Container(
