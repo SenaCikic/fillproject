@@ -17,11 +17,11 @@ After some time, the application will be built on the device/emulator connected 
 
 # Changes
 **•	V1 – Sprint 1<br/>**
-   *o	User story 1 - planning project, we have planned 
+  	User story 1 - planning project, we have planned 
    planning of project architecture and structure.
    Arranging naming convention, code refactoring, class names, and class        architectures.<br/>*
-   *o	User Story 2 – Create a registry screen, which consists of multiple sub-screens. On this screen, we need to pick up a set of information that is relevant to the user’s use of the application itself.
+   	User Story 2 – Create a registry screen, which consists of multiple sub-screens. On this screen, we need to pick up a set of information that is relevant to the user’s use of the application itself.
 Creating user registration using sms code and verifying the code itself.
 If all the prerequisites and / or all fields are filled in, the user can successfully use the application and earn money.<br/>*
-   *o	User Story 3 - Creating an login screen, which checks and validates user credentials. If everything is valid the user can successfully use the application.
+   	User Story 3 - Creating an login screen, which checks and validates user credentials. If everything is valid the user can successfully use the application.
 The user has the forget password option, which sends him a mail request to reset the password.
