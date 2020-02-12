@@ -19,52 +19,14 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // signIn() {
-    //   final AuthCredential credential = PhoneAuthProvider.getCredential(
-    //       verificationId: verificationId, smsCode: smsCode);
-    //   FirebaseAuth.instance.signInWithCredential(credential).then((user) {
-    //     // Navigator.of(context).pushReplacementNamed(Dashboard, arguments: \);
-    //   }).catchError((e) {
-    //     print('Auth Credential Error : $e');
-    //   });
-    // }
-
-    Widget  smsCodeDialog(BuildContext context) {
-      return  VerifyPinPage(arguments:RegisterArguments(verId: verificationId, username: usernameController.text, phone: phoneController.text),);
-      
-      // showDialog(
-      //     context: context,
-      //     barrierDismissible: false,
-      //     builder: (BuildContext context) {
-      //       return new AlertDialog(
-      //         title: Text("Enter SMS Code"),
-      //         content: TextField(
-      //           onChanged: (value) {
-      //             this.smsCode = value;
-      //           },
-      //         ),
-      //         contentPadding: EdgeInsets.all(10.0),
-      //         actions: <Widget>[
-      //           new FlatButton(
-      //               onPressed: () {
-      //                 FirebaseAuth.instance.currentUser().then((user) {
-      //                   if (user != null) {
-      //                     print('TU SAM 1');
-      //                     Navigator.of(context).pop();
-      //                     Navigator.of(context).pushReplacementNamed(Dashboard);
-      //                   } else {
-      //                     Navigator.of(context).pop();
-      //                     signIn();
-      //                   }
-      //                 });
-      //               },
-      //               child: Text("DONE!"))
-      //         ],
-      //       );
-      //     });
+    Widget smsCodeDialog(BuildContext context) {
+      return VerifyPinPage(
+        arguments: RegisterArguments(
+            verId: verificationId,
+            username: usernameController.text,
+            phone: phoneController.text),
+      );
     }
-
-    
 
     Future<void> verifyPhone() async {
       final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
@@ -73,16 +35,15 @@ class RegisterPage extends StatelessWidget {
 
       final PhoneCodeSent smsCodeSent = (String verId, [int forceCodeResend]) {
         this.verificationId = verId;
-        Navigator.of(context).pushNamed(VerifyPin,arguments: RegisterArguments(verId: verificationId));
-        // smsCodeDialog(context).then((value) {
-        //   print("Signed IN!");
-        // });
+        Navigator.of(context).pushNamed(VerifyPin,
+            arguments: RegisterArguments(
+                verId: verificationId,
+                username: username,
+                phone: phoneController.text));
       };
 
       final PhoneVerificationCompleted verificationSuccess =
-          (AuthCredential user) {
-        print("DOBRO JE");
-      };
+          (AuthCredential user) {};
 
       final PhoneVerificationFailed verificationFailed =
           (AuthException exception) {
@@ -98,20 +59,14 @@ class RegisterPage extends StatelessWidget {
           codeAutoRetrievalTimeout: autoRetrieve);
     }
 
-
     onFieldSubmitted(BuildContext context) {
-    phoneNo = "+" +
-        phoneController
-            .text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    username = usernameController.text;
-    LoginStorage().loginUser(usernameController, name, isLoggedIn);
-    print(phoneNo + "     OVO JE MOJ PHONE");
-    print(username + "   OVO JE MOJ USERNAME");
-    // MyValidation().registerValidation(username, phoneNo, context);
-        verifyPhone();
-
-  }
-
+      phoneNo = "+" +
+          phoneController
+              .text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      username = usernameController.text;
+      LoginStorage().loginUser(usernameController, name, isLoggedIn);
+      verifyPhone();
+    }
 
     return Scaffold(
       appBar: new AppBar(
@@ -193,12 +148,5 @@ class RegisterPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  
-  void dispose() {
-    phoneController.dispose();
-    usernameController.dispose();
-    dispose();
   }
 }
