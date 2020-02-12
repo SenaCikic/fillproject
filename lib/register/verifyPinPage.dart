@@ -1,31 +1,35 @@
-import 'dart:async';
 import 'package:fillproject/components/myPinCode.dart';
 import 'package:fillproject/components/myText.dart';
-// import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:fillproject/components/myColor.dart';
-import 'package:fillproject/components/myValidation.dart';
-import 'package:fillproject/register/emailPage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
+import 'package:fillproject/routes/routeConstants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 String verificationCode;
 int _btnCounter = 0;
 
 class VerifyPinPage extends StatelessWidget {
-  
   final RegisterArguments arguments;
   VerifyPinPage({this.arguments});
-
-  String code;
+  String  smsCode ;
   TextEditingController codeController = new TextEditingController();
 
-  void dispose() {
-    codeController.dispose();
-    dispose();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
+
+
+   signIn(String smsCode) {
+      final AuthCredential credential = PhoneAuthProvider.getCredential(
+          verificationId: arguments.verId, smsCode: smsCode);
+      FirebaseAuth.instance.signInWithCredential(credential).then((user) {
+        Navigator.of(context).pushNamed(Email, arguments: RegisterArguments(username: arguments.username, phone: arguments.phone));
+      }).catchError((e) {
+        print('Auth Credential Error : $e');
+      });
+    }
+
     return Scaffold(
       backgroundColor: MyColor().black,
       body: Builder(
@@ -73,23 +77,23 @@ class VerifyPinPage extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 20),
               child: Container(
                 width: 310.0,
-                child:
-                MyPinCodeTextField(
+                child: MyPinCodeTextField(
                   length: 6,
                   animationType: AnimationType.fade,
                   shape: PinCodeFieldShape.circle,
                   animationDuration: Duration(milliseconds: 300),
                   fieldHeight: 60,
                   fieldWidth: 50,
-                  textStyle:
-                      TextStyle(color: MyColor().white, fontSize: 28),
+                  textStyle: TextStyle(color: MyColor().white, fontSize: 28),
                   activeColor: MyColor().white,
                   inactiveColor: MyColor().white,
                   selectedColor: MyColor().white,
                   backgroundColor: MyColor().black,
                   borderWidth: 1.0,
                   controller: codeController,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                   
+                  },
                 ),
               ),
             ),
@@ -97,11 +101,23 @@ class VerifyPinPage extends StatelessWidget {
               width: 320.0,
               height: 60,
               child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0),
-                  ),
-                  onPressed: () => onPressed(context),
-                  child: Text(MyText().btnVerify, style: TextStyle(fontSize: 20)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0),
+                ),
+                onPressed: () {
+                       FirebaseAuth.instance.currentUser().then((user) {
+                        if (user != null) {
+                          print('TU SAM 1');
+                          // Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed(Email, arguments: RegisterArguments(username: arguments.username, phone: arguments.phone));
+                        } else {
+                          print("TU SAM2");
+                          // Navigator.of(context).pop();
+                          signIn(codeController.text);
+                        }
+                      });
+                },
+                child: Text(MyText().btnVerify, style: TextStyle(fontSize: 20)),
               ),
             ),
             Container(
@@ -118,15 +134,20 @@ class VerifyPinPage extends StatelessWidget {
     );
   }
 
-  onPressed(BuildContext context) {
-    if (_btnCounter == 0) {
-      code = codeController.text;
-      MyValidation().smsCodeValidation(
-          code, context, arguments.phone, arguments.username);
-      _btnCounter = 1;
-      Timer(Duration(seconds: 2), () {
-        _btnCounter = 0;
-      });
-    }
+  // onPressed(BuildContext context) {
+  //   if (_btnCounter == 0) {
+  //     code = codeController.text;
+  //     MyValidation().smsCodeValidation(
+  //         code, context, arguments.phone, arguments.username);
+  //     _btnCounter = 1;
+  //     Timer(Duration(seconds: 2), () {
+  //       _btnCounter = 0;
+  //     });
+  //   }
+  // }
+
+  void dispose() {
+    codeController.dispose();
+    dispose();
   }
 }

@@ -1,86 +1,117 @@
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
-import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
+import 'package:fillproject/register/verifyPinPage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatelessWidget {
-  String phone, smsCode, verificationId, username, name;
+  String phoneNo, smsCode, verificationId, username, name;
   bool isLoggedIn = false;
 
   TextEditingController phoneController = new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
 
-  void dispose() {
-    // phoneController.dispose();
-    // usernameController.dispose();
-    dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth _auth = FirebaseAuth.instance;    
-    signIn() {
-      final AuthCredential credential = PhoneAuthProvider.getCredential(
-          verificationId: verificationId, smsCode: smsCode);
-      FirebaseAuth.instance.signInWithCredential(credential).then((user) {
-        Navigator.of(context).pushReplacementNamed(Dashboard);
-      }).catchError((e) {
-        print('Auth Credential Error : $e');
-      });
+    // signIn() {
+    //   final AuthCredential credential = PhoneAuthProvider.getCredential(
+    //       verificationId: verificationId, smsCode: smsCode);
+    //   FirebaseAuth.instance.signInWithCredential(credential).then((user) {
+    //     // Navigator.of(context).pushReplacementNamed(Dashboard, arguments: \);
+    //   }).catchError((e) {
+    //     print('Auth Credential Error : $e');
+    //   });
+    // }
+
+    Widget  smsCodeDialog(BuildContext context) {
+      return  VerifyPinPage(arguments:RegisterArguments(verId: verificationId, username: usernameController.text, phone: phoneController.text),);
+      
+      // showDialog(
+      //     context: context,
+      //     barrierDismissible: false,
+      //     builder: (BuildContext context) {
+      //       return new AlertDialog(
+      //         title: Text("Enter SMS Code"),
+      //         content: TextField(
+      //           onChanged: (value) {
+      //             this.smsCode = value;
+      //           },
+      //         ),
+      //         contentPadding: EdgeInsets.all(10.0),
+      //         actions: <Widget>[
+      //           new FlatButton(
+      //               onPressed: () {
+      //                 FirebaseAuth.instance.currentUser().then((user) {
+      //                   if (user != null) {
+      //                     print('TU SAM 1');
+      //                     Navigator.of(context).pop();
+      //                     Navigator.of(context).pushReplacementNamed(Dashboard);
+      //                   } else {
+      //                     Navigator.of(context).pop();
+      //                     signIn();
+      //                   }
+      //                 });
+      //               },
+      //               child: Text("DONE!"))
+      //         ],
+      //       );
+      //     });
     }
 
-
-
-    Future<bool> smsCodeDialog(BuildContext context) {
-      Navigator.of(context).pushNamed(VerifyPin,
-          arguments: RegisterArguments(phone: phone));
-    }
+    
 
     Future<void> verifyPhone() async {
-      final PhoneCodeAutoRetrievalTimeout autoRetrieve =
-          (String verificationId) {
-        this.verificationId = verificationId;
+      final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
+        this.verificationId = verId;
       };
+
       final PhoneCodeSent smsCodeSent = (String verId, [int forceCodeResend]) {
-        this.verificationId = verificationId;
-        smsCodeDialog(context).then((value) {
-          print('Signed in');
-        });
+        this.verificationId = verId;
+        Navigator.of(context).pushNamed(VerifyPin,arguments: RegisterArguments(verId: verificationId));
+        // smsCodeDialog(context).then((value) {
+        //   print("Signed IN!");
+        // });
       };
-      final PhoneVerificationCompleted verifiedSuccess = (AuthCredential user) {
-        print('verified');
+
+      final PhoneVerificationCompleted verificationSuccess =
+          (AuthCredential user) {
+        print("DOBRO JE");
       };
-      final PhoneVerificationFailed veriFailed = (AuthException exception) {
-        print("ne RADI!!!!!");
+
+      final PhoneVerificationFailed verificationFailed =
+          (AuthException exception) {
         print('${exception.message}');
       };
+
       await FirebaseAuth.instance.verifyPhoneNumber(
-          phoneNumber: this.phone,
-          codeAutoRetrievalTimeout: autoRetrieve,
-          codeSent: smsCodeSent,
+          phoneNumber: this.phoneNo,
           timeout: const Duration(seconds: 5),
-          verificationCompleted: verifiedSuccess,
-          verificationFailed: veriFailed);
+          verificationCompleted: verificationSuccess,
+          verificationFailed: verificationFailed,
+          codeSent: smsCodeSent,
+          codeAutoRetrievalTimeout: autoRetrieve);
     }
+
 
     onFieldSubmitted(BuildContext context) {
-      phone = "+"+phoneController.text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      username = usernameController.text;
-      LoginStorage().loginUser(usernameController, name, isLoggedIn);
-      verifyPhone();
-      print(phone + "     OVO JE MOJ PHONE");
-      print(username + "   OVO JE MOJ USERNAME");
-      MyValidation().registerValidation(username, phone, context);
+    phoneNo = "+" +
+        phoneController
+            .text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    username = usernameController.text;
+    LoginStorage().loginUser(usernameController, name, isLoggedIn);
+    print(phoneNo + "     OVO JE MOJ PHONE");
+    print(username + "   OVO JE MOJ USERNAME");
+    // MyValidation().registerValidation(username, phoneNo, context);
+        verifyPhone();
 
-    }
+  }
+
 
     return Scaffold(
       appBar: new AppBar(
@@ -162,5 +193,12 @@ class RegisterPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  
+  void dispose() {
+    phoneController.dispose();
+    usernameController.dispose();
+    dispose();
   }
 }

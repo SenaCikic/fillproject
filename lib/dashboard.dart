@@ -23,22 +23,22 @@ class _DashboardPageState extends State<DashboardPage> {
 
   _DashboardPageState({this.arguments});
 
-  //String uid = '';
+  // String uid = '';
 
-  //getUid() {}
+  // getUid() {}
 
-  @override
-  void initState() {
-    //this.uid = '';
-    // FirebaseAuth.instance.currentUser().then((val) {
-    //   setState(() {
-    //     this.uid = val.uid;
-    //   });
-    // }).catchError((e) {
-    //   print(e);
-    // });
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   this.uid = '';
+  //   FirebaseAuth.instance.currentUser().then((val) {
+  //     setState(() {
+  //       this.uid = val.uid;
+  //     });
+  //   }).catchError((e) {
+  //     print(e);
+  //   });
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
