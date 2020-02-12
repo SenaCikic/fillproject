@@ -47,6 +47,7 @@ class MyText {
   final String userExistsSnack = "This username doesn't exists";
   final String passExistsSnack = "This password doesn't exists";
   final String validEmail = 'Email must be valid';
+  final String regexPasswordSnack = 'Password must contain at least one number character and at least one capital letter';
   
   
 }

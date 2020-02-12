@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 
 class MyValidation {
   int snackCounter = 0;
+  RegExp regexPassword = new RegExp(r'^(?=.*?[A-Z])(?=.*[0-9])(?=.{8,})');
   /// validacija za register screen
   ///
   /// email, username and phone validacija
@@ -133,6 +134,13 @@ class MyValidation {
           snackCounter = 0;
         });
       }
+    } else if(regexPassword.hasMatch(password) == false ){
+      MySnackbar().showSnackbar(
+            MyText().regexPasswordSnack, context, MyText().snackUndo);
+        snackCounter = 1;
+        Timer(Duration(seconds: 2), () {
+          snackCounter = 0;
+        });
     } else {
       Navigator.of(context).pushNamed(Dashboard,
           arguments: PasswordArguments(
@@ -142,6 +150,8 @@ class MyValidation {
               password: password));
     }
   }
+
+
 
 
   emailValidation(String email, String username, String phone, BuildContext context){
