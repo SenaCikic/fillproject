@@ -4,6 +4,7 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 String verificationCode;
@@ -121,12 +122,18 @@ class VerifyPinPage extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 10.0),
-              child: Text(MyText().verifyRecieve,
-                  style: TextStyle(
+              margin: EdgeInsets.only(top: 20.0),
+              child: RichText(
+                  text: new TextSpan(children: [new TextSpan(
+                        text: MyText().verifyRecieve,
+                        style: TextStyle(
                       color: MyColor().white,
                       fontSize: 15,
-                      fontWeight: FontWeight.w300)),
+                      fontWeight: FontWeight.w300),
+                        recognizer: new TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.of(context).pushNamed(Register);
+                          })]))
             ),
           ],
         )),

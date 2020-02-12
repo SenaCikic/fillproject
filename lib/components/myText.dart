@@ -17,8 +17,8 @@ class MyText {
   final String btnPassword = 'Sign Up & Accept';
   final String appBarDash = 'Dashboard';
   final String dashHeadline = 'Congrats you are logged in bitch!';
-  final String dashSub = 'Moj email je: ';
-  final String dashSub1 = ' i moj password je: ';
+  final String dashSub = 'My Email is: ';
+  final String dashSub1 = ' And my Password is: ';
   final String btnLogout = 'Logout';
   final String btnLogin = 'Login';
   final String labelUsername = 'Username';
@@ -28,7 +28,7 @@ class MyText {
   final String verifyMoney1 = '2';
   final String verifyMoney2 = 'SAR';
   final String verifyEnterPin = 'Enter the pin';
-  final String verifyRecieve = "didn't recieve the pin";
+  final String verifyRecieve = "didn't recieve the PIN";
   final String skipThisStep = 'skip';
   final String passwordHeadline = "Set up a password \nand start getting \n";
   final String fiveSar= '5 \nSAR';
