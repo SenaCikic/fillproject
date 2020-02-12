@@ -4,6 +4,7 @@ import 'package:fillproject/components/myText.dart';
 // import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/register/emailPage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ String verificationCode;
 int _btnCounter = 0;
 
 class VerifyPinPage extends StatelessWidget {
+  
   final RegisterArguments arguments;
   VerifyPinPage({this.arguments});
 
@@ -120,7 +122,7 @@ class VerifyPinPage extends StatelessWidget {
     if (_btnCounter == 0) {
       code = codeController.text;
       MyValidation().smsCodeValidation(
-          code, context, arguments.email, arguments.phone, arguments.username);
+          code, context, arguments.phone, arguments.username);
       _btnCounter = 1;
       Timer(Duration(seconds: 2), () {
         _btnCounter = 0;

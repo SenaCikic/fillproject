@@ -19,8 +19,8 @@ class RegisterPage extends StatelessWidget {
   TextEditingController usernameController = new TextEditingController();
 
   void dispose() {
-    phoneController.dispose();
-    usernameController.dispose();
+    // phoneController.dispose();
+    // usernameController.dispose();
     dispose();
   }
 
@@ -119,15 +119,6 @@ class RegisterPage extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   )),
-                  // Container(
-                  //   width: 280.0,
-                  //   height: 60,
-                  //   margin: EdgeInsets.only(top: 10.0, bottom: 5.0),
-                  //   child: MyTextFormField(
-                  //       controller: emailController,
-                  //       label: MyText().labelEmail,
-                  //       obscureText: false),
-                  // ),
                   Container(
                     width: 280.0,
                     height: 60,

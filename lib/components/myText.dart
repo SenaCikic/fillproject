@@ -33,7 +33,7 @@ class MyText {
   final String passwordHeadline = "Set up a password \nand start getting \n";
   final String fiveSar= '5 \nSAR';
   final String emailHeadline = "Set up an email \nand start getting \n";
-
+  final String btnEmail = 'Next';
 
   /// snackbar texts
   final String snackUndo = 'Undo';

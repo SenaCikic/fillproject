@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
+import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +11,12 @@ String email;
 int _btnCounter = 0;
 
 class EmailPage extends StatelessWidget {
-  final RegisterArguments emailArguments;
+  final RegisterArguments arguments;
   final TextEditingController emailController = new TextEditingController();
 
-  EmailPage({this.emailArguments});
+  EmailPage({this.arguments});
 
-  void dispose() { 
+  void dispose() {
     emailController.dispose();
   }
 
@@ -54,7 +57,7 @@ class EmailPage extends StatelessWidget {
                   child: MyTextFormField(
                     controller: emailController,
                     label: MyText().labelEmail,
-                    obscureText: true,
+                    obscureText: false,
                   ),
                 ),
               ),
@@ -65,15 +68,25 @@ class EmailPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0),
                     ),
-                    onPressed: () {
-                     // onPressed(context);
-                    },
-                    child: Text(MyText().btnPassword)),
+                    onPressed: () => onPressed(context),
+                    child: Text(MyText().btnEmail)),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  onPressed(BuildContext context) {
+    if (_btnCounter == 0) {
+      email = emailController.text;
+      MyValidation()
+          .emailValidation(email, arguments.username, arguments.phone, context);
+      _btnCounter = 1;
+      Timer(Duration(seconds: 2), () {
+        _btnCounter = 0;
+      });
+    }
   }
 }
