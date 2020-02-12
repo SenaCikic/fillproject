@@ -48,6 +48,6 @@ class MyText {
   final String passExistsSnack = "This password doesn't exists";
   final String validEmail = 'Email must be valid';
   final String regexPasswordSnack = 'Password must contain at least one number character and at least one capital letter';
-  
+  final String checkConnection = 'There is no internet connection.';
   
 }
