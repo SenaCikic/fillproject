@@ -13,6 +13,7 @@ import '../components/myColor.dart';
 class RegisterPage extends StatelessWidget {
   String phoneNo, smsCode, verificationId, username, name;
   bool isLoggedIn = false;
+  RegExp regexUsername = new RegExp(r' /^\S*$/');  //OVO DANISE DODATI
 
   TextEditingController phoneController = new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
@@ -64,6 +65,10 @@ class RegisterPage extends StatelessWidget {
           phoneController
               .text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       username = usernameController.text;
+      if(regexUsername.hasMatch(username) == false  ){    ///ovo dodati DANISE
+        print('NE smije');   ///ovo dodati DANISE
+      } ///ovo dodati DANISE
+        
       LoginStorage().loginUser(usernameController, name, isLoggedIn);
       verifyPhone();
     }
