@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:fillproject/components/myPinCode.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myColor.dart';
@@ -12,22 +13,42 @@ int _btnCounter = 0;
 class VerifyPinPage extends StatelessWidget {
   final RegisterArguments arguments;
   VerifyPinPage({this.arguments});
-  String  smsCode ;
+  String smsCode;
   TextEditingController codeController = new TextEditingController();
 
-  
+
   @override
   Widget build(BuildContext context) {
 
 
-   signIn(String smsCode) {
+    signIn(String smsCode) {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: arguments.verId, smsCode: smsCode);
       FirebaseAuth.instance.signInWithCredential(credential).then((user) {
-        Navigator.of(context).pushNamed(Email, arguments: RegisterArguments(username: arguments.username, phone: arguments.phone));
+        Navigator.of(context).pushNamed(Email,
+            arguments: RegisterArguments(
+                username: arguments.username, phone: arguments.phone));
       }).catchError((e) {
         print('Auth Credential Error : $e');
       });
+    }
+
+    onPressed(BuildContext context) {
+      if (_btnCounter == 0) {
+        FirebaseAuth.instance.currentUser().then((user) {
+          if (user != null) {
+            Navigator.of(context).pushNamed(Email,
+                arguments: RegisterArguments(
+                    username: arguments.username, phone: arguments.phone ));
+          } else {
+            signIn(codeController.text);
+          }
+        });
+        _btnCounter = 1;
+        Timer(Duration(seconds: 2), () {
+          _btnCounter = 0;
+        });
+      }
     }
 
     return Scaffold(
@@ -91,9 +112,7 @@ class VerifyPinPage extends StatelessWidget {
                   backgroundColor: MyColor().black,
                   borderWidth: 1.0,
                   controller: codeController,
-                  onChanged: (value) {
-                   
-                  },
+                  onChanged: (value) {},
                 ),
               ),
             ),
@@ -104,19 +123,7 @@ class VerifyPinPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(30.0),
                 ),
-                onPressed: () {
-                       FirebaseAuth.instance.currentUser().then((user) {
-                        if (user != null) {
-                          print('TU SAM 1');
-                          // Navigator.of(context).pop();
-                          Navigator.of(context).pushNamed(Email, arguments: RegisterArguments(username: arguments.username, phone: arguments.phone));
-                        } else {
-                          print("TU SAM2");
-                          // Navigator.of(context).pop();
-                          signIn(codeController.text);
-                        }
-                      });
-                },
+                onPressed: () => onPressed(context),
                 child: Text(MyText().btnVerify, style: TextStyle(fontSize: 20)),
               ),
             ),
@@ -132,22 +139,5 @@ class VerifyPinPage extends StatelessWidget {
         )),
       ),
     );
-  }
-
-  // onPressed(BuildContext context) {
-  //   if (_btnCounter == 0) {
-  //     code = codeController.text;
-  //     MyValidation().smsCodeValidation(
-  //         code, context, arguments.phone, arguments.username);
-  //     _btnCounter = 1;
-  //     Timer(Duration(seconds: 2), () {
-  //       _btnCounter = 0;
-  //     });
-  //   }
-  // }
-
-  void dispose() {
-    codeController.dispose();
-    dispose();
   }
 }
