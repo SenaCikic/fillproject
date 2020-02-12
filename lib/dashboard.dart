@@ -59,11 +59,12 @@ class _DashboardPageState extends State<DashboardPage> {
                   height: 15.0,
                 ),
                 Text(
-                    MyText().dashSub +
-                        arguments.email +
-                        arguments.username +
-                        MyText().dashSub1 +
-                        arguments.password,
+                    MyText().dashSub + " ${arguments.email}"  +
+                        
+                        MyText().dashSub1  + "${arguments.password}" + 
+                        " Moj telefon je ${arguments.phone}" + 
+                        "MOJ USERNAME JE: " + "${arguments.username}",
+                    
                     style: TextStyle(color: MyColor().white)),
                 SizedBox(
                   height: 15.0,
