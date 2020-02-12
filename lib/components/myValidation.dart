@@ -11,10 +11,12 @@ import 'package:flutter/material.dart';
 
 class MyValidation {
   int snackCounter = 0;
+
   RegExp regexPassword = new RegExp(r'^(?=.*?[A-Z])(?=.*[0-9])(?=.{8,})');
   /// validacija za register screen
   ///
   /// email, username and phone validacija
+
   registerValidation(
       String username, String phone, BuildContext context) {
      if (username == '' || username == null) {
@@ -85,7 +87,7 @@ class MyValidation {
   ///
   /// code ne smije biti prazan, null ili manji od 6 karaktera
   smsCodeValidation(String code, BuildContext context, String email, String phone,
-      String username) {
+      String username){
     if (code == '' || code == null) {
       if (snackCounter == 0) {
         MySnackbar()
@@ -105,9 +107,12 @@ class MyValidation {
         });
       }
     } else {
-      Navigator.of(context).pushNamed(Password,
-          arguments: RegisterArguments(
-              email: email, phone: phone, username: username));
+
+      //TODO: Check if smsCode is valid! 
+    
+      // Navigator.of(context).pushNamed(Password,
+      //     arguments: RegisterArguments(
+      //         email: email, phone: phone, username: username));
     }
   }
 

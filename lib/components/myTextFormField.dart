@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class MyTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String label;
-  final bool obscureText;
-  final int maxTextLength;
+  final bool obscureText; // to see what user is typing 
+  final int maxTextLength; // max charachters in field 
   MyTextFormField({
     this.controller,
     this.label,

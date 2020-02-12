@@ -17,7 +17,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    LoginStorage().autoLogIn(context, name, isLoggedIn);
+    LoginStorage().autoLogIn(context, name, isLoggedIn); //auto login on app kill and close
   }
 
   @override
@@ -63,7 +63,7 @@ class _SignUpState extends State<SignUp> {
                         borderRadius: new BorderRadius.circular(30.0),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamed(Login);
+                        Navigator.of(context).pushNamed(Login); // go to Login Page
                       },
                       child: Text(MyText().btnSI)),
                 ),

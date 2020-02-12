@@ -7,6 +7,7 @@ import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
@@ -25,6 +26,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth _auth = FirebaseAuth.instance;    
     signIn() {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: verificationId, smsCode: smsCode);
@@ -34,6 +36,8 @@ class RegisterPage extends StatelessWidget {
         print('Auth Credential Error : $e');
       });
     }
+
+
 
     Future<bool> smsCodeDialog(BuildContext context) {
       Navigator.of(context).pushNamed(VerifyPin,
@@ -55,6 +59,7 @@ class RegisterPage extends StatelessWidget {
         print('verified');
       };
       final PhoneVerificationFailed veriFailed = (AuthException exception) {
+        print("ne RADI!!!!!");
         print('${exception.message}');
       };
       await FirebaseAuth.instance.verifyPhoneNumber(
@@ -67,13 +72,14 @@ class RegisterPage extends StatelessWidget {
     }
 
     onFieldSubmitted(BuildContext context) {
-      phone = phoneController.text;
+      phone = "+"+phoneController.text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       username = usernameController.text;
       LoginStorage().loginUser(usernameController, name, isLoggedIn);
-
-      /// validacija
-      MyValidation().registerValidation(username, phone, context);
       verifyPhone();
+      print(phone + "     OVO JE MOJ PHONE");
+      print(username + "   OVO JE MOJ USERNAME");
+      MyValidation().registerValidation(username, phone, context);
+
     }
 
     return Scaffold(
