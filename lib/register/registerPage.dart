@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
-import 'package:fillproject/register/verifyPinPage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
@@ -18,7 +16,6 @@ class RegisterPage extends StatelessWidget {
   String phoneNo, smsCode, verificationId, username, name;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isLoggedIn = false;
-  RegExp regexUsername = new RegExp(r' /^\S*$/'); //OVO DANISE DODATI
 
   TextEditingController phoneController = new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
@@ -26,15 +23,6 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Constant().responsive(context);
-
-    Widget smsCodeDialog(BuildContext context) {
-      return VerifyPinPage(
-        arguments: RegisterArguments(
-            verId: verificationId,
-            username: usernameController.text,
-            phone: phoneController.text),
-      );
-    }
 
     Future<void> verifyPhone() async {
       final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
@@ -46,7 +34,7 @@ class RegisterPage extends StatelessWidget {
         Navigator.of(context).pushNamed(VerifyPin,
             arguments: RegisterArguments(
                 verId: verificationId,
-                username: username,
+                username: usernameController.text,
                 phone: phoneController.text));
       };
 
