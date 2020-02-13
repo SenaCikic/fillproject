@@ -100,7 +100,7 @@ class VerifyPinPage extends StatelessWidget {
             ),
             Container(
               child: Container(
-                height: 83,
+                height: ScreenUtil.instance.setHeight(83.0),
                 width: ScreenUtil.instance.setWidth(350.0),
                 child: MyPinCodeTextField(
                   length: 6,

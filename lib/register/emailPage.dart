@@ -4,7 +4,9 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
+import 'package:fillproject/utils/screenUtils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 String email;
 int _btnCounter = 0;
@@ -18,6 +20,7 @@ class EmailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Constant().responsive(context);
     return Scaffold(
      appBar: new AppBar(
         title: new Text(""),
@@ -44,21 +47,21 @@ class EmailPage extends StatelessWidget {
                 child: Text(MyText().emailHeadline,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 23,
+                      fontSize: ScreenUtil.instance.setSp(23.0),
                       color: MyColor().white,
                     )),
               ),
               Text(MyText().fiveSar,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: ScreenUtil.instance.setSp(40.0),
                     color: MyColor().white,
                   )),
               Container(
                   margin: EdgeInsets.only(bottom: 20, top: 20),
                   child: Container(
-                    width: 316.0,
-                    height: 92,
+                    width: ScreenUtil.instance.setWidth(316.0),
+                    height:ScreenUtil.instance.setHeight(92.0),
                     margin: EdgeInsets.only(top: 20.0),
                     child: Form(
                       key: _formKey,
@@ -101,8 +104,8 @@ class EmailPage extends StatelessWidget {
                     ),
                   )),
               Container(
-                  width: 316.0,
-                  height: 67,
+                    width: ScreenUtil.instance.setWidth(316.0),
+                    height:ScreenUtil.instance.setHeight(67.0),
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(33.5),
