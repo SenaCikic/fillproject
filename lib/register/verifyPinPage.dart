@@ -111,6 +111,15 @@ class VerifyPinPage extends StatelessWidget {
               ),
             ),
             Container(
+              margin: EdgeInsets.only(bottom: 40),
+              child: fieldColor
+                  ? Text(
+                      MyText().smsLengthSnack,
+                      style: TextStyle(color: MyColor().error),
+                    )
+                  : Text(''),
+            ),
+            Container(
               width: ScreenUtil.instance.setWidth(316.0),
               height: ScreenUtil.instance.setHeight(67.0),
               child: RaisedButton(

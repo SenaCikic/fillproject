@@ -34,20 +34,21 @@ class MyText {
   final String btnEmail = 'Next';
 
   /// VALIDATION
-  final String validateSpaceUsername = 'Username must not containe space';
+  final String validateSpaceUsername = '             Username must not containe space';
+  final String validateSpacePassword = '             Password must not containe space';
+  final String numberExists = '                         Number already exists';
 
-  /// snackbar texts
   final String snackUndo = 'Undo';
-  final String regEmailSnack = "Email can't be empty!";
-  final String regUserSnack = "Username can't be empty";
-  final String regPhoneSnack = "   Phone can't be empty!";
-  final String regPassSnack = "Password can't be empty!";
-  final String regPassLengthSnack = "Password can't be less than 8 characters!";
+  final String regEmailSnack = "                          Email can't be empty";
+  final String regUserSnack = "                     Username can't be empty";
+  final String regPhoneSnack = "                       Phone can't be empty";
+  final String regPassSnack = "                       Password can't be empty";
+  final String regPassLengthSnack = "        Password can't be less than 8 characters!";
   final String smsEmptySnack = "Sms code can't be empty!";
   final String smsLengthSnack = "Sms code can't be less than 6 characters";
   final String userExistsSnack = "This username doesn't exists";
   final String passExistsSnack = "This password doesn't exists";
-  final String validEmail = 'Email must be valid';
+  final String validEmail = '                           Email must be valid';
   final String regexPasswordSnack = 'Password must contain at least one number \nand at least one capital letter';
   final String checkConnection = 'There is no internet connection.';
   
