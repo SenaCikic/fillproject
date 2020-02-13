@@ -219,8 +219,8 @@ class RegisterPage extends StatelessWidget {
                           }
                         },
                         style: TextStyle(color: MyColor().white),
-                        validator: (phone) =>
-                            MyValidation().validatePhone(phone, brPostoji),
+                        // validator: (phone) =>
+                        //     MyValidation().validatePhone(phone, brPostoji),
                       ),
                     ),
                     /// PROVJERA
@@ -231,12 +231,13 @@ class RegisterPage extends StatelessWidget {
                     future: FirebaseCheck().doesNumberAlreadyExist(phoneController.text),
                     builder: (context, AsyncSnapshot<bool> result) {
                       if (!result.hasData) {
-
+                         brPostoji = 'NE Postoji';
                         return Container(
                           width: 0,
                           height: 0,
                         );
-                      } // future still needs to be finished (loading)
+                      }
+                     // future still needs to be finished (loading)
 
                       if (result.data) {
                          brPostoji = 'Postoji';
@@ -245,7 +246,6 @@ class RegisterPage extends StatelessWidget {
                           height: 0,
                         );
                       } // result.data is the returned bool from doesNameAlreadyExists
-
                       else {
                          brPostoji = 'NE Postoji';
                         return Container(

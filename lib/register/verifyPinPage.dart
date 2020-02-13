@@ -36,25 +36,25 @@ class VerifyPinPage extends StatelessWidget {
     }
 
     onPressed(BuildContext context) {
-if(smsCode.length < 6) {
-  fieldColor = true;
-} else {
- if (_btnCounter == 0) {
-        FirebaseAuth.instance.currentUser().then((user) {
-          if (user != null) {
-            Navigator.of(context).pushNamed(Email,
-                arguments: RegisterArguments(
-                    username: arguments.username, phone: arguments.phone));
-          } else {
-            signIn(codeController.text);
-          }
-        });
-        _btnCounter = 1;
-        Timer(Duration(seconds: 2), () {
-          _btnCounter = 0;
-        });
-      }
-}
+     // if (smsCode.length < 6) {
+    //    fieldColor = true;
+    //  } else {
+        if (_btnCounter == 0) {
+          FirebaseAuth.instance.currentUser().then((user) {
+            if (user != null) {
+              Navigator.of(context).pushNamed(Email,
+                  arguments: RegisterArguments(
+                      username: arguments.username, phone: arguments.phone));
+            } else {
+              signIn(codeController.text);
+            }
+          });
+          _btnCounter = 1;
+          Timer(Duration(seconds: 2), () {
+            _btnCounter = 0;
+          });
+        }
+     // }
     }
 
     return Scaffold(
@@ -93,7 +93,6 @@ if(smsCode.length < 6) {
                       fontWeight: FontWeight.w300)),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 40),
               child: Container(
                 height: 83,
                 width: ScreenUtil.instance.setWidth(350.0),
@@ -105,9 +104,9 @@ if(smsCode.length < 6) {
                   fieldHeight: 60,
                   fieldWidth: 50,
                   textStyle: TextStyle(color: MyColor().white, fontSize: 28),
-                  activeColor: fieldColor ?  MyColor().error : MyColor().white,
-                  inactiveColor: fieldColor ?  MyColor().error : MyColor().white,
-                  selectedColor: fieldColor ?  MyColor().error : MyColor().white,
+                  activeColor: fieldColor ? MyColor().error : MyColor().white,
+                  inactiveColor: fieldColor ? MyColor().error : MyColor().white,
+                  selectedColor: fieldColor ? MyColor().error : MyColor().white,
                   backgroundColor: MyColor().black,
                   borderWidth: 1.0,
                   controller: codeController,
@@ -116,7 +115,6 @@ if(smsCode.length < 6) {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 40),
               child: fieldColor
                   ? Text(
                       MyText().smsLengthSnack,

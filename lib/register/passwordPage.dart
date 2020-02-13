@@ -7,7 +7,7 @@ import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 String password;
 int _btnCounter = 0;
@@ -115,7 +115,7 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: 12),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                //  launch('https://google.com');
+                                  launch('https://google.com');
                               }),
                         new TextSpan(
                           text: MyText().passwordSubtitle2,
@@ -129,7 +129,7 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: 12),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                //  launch('https://google.com');
+                                  launch('https://google.com');
                               })
                       ]),
                     ),
