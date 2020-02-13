@@ -34,81 +34,88 @@ class PasswordPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: MyColor().black,
       body: Builder(
-        builder: (context) => Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(MyText().passwordHeadline,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: MyColor().white,
-                  )),
-              Text(MyText().fiveSar,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: MyColor().white,
-                  )),
-              Container(
-                margin: EdgeInsets.only(bottom: 20, top: 20),
-                child: Container(
-                  width: 320.0,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 20.0),
-                  child: MyTextFormField(
-                    controller: passwordController,
-                    label: MyText().labelPassword,
-                    obscureText: true,
+        builder: (context) => SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 28, bottom: 35),
+                  child: Text(MyText().passwordHeadline,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: MyColor().white,
+                      )),
+                ),
+                Text(MyText().fiveSar,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: MyColor().white,
+                    )),
+                Container(
+                  margin: EdgeInsets.only(bottom: 19, top: 28),
+                  child: Container(
+                    width: 316.0,
+                    height: 83,
+                    margin: EdgeInsets.only(top: 19.0),
+                    child: MyTextFormField(
+                      controller: passwordController,
+                      label: MyText().labelPassword,
+                      obscureText: true,
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 25, top: 10),
-                width: 320.0,
-                child: RichText(
-                  text: new TextSpan(children: [
-                    new TextSpan(
-                      text: MyText().passwordSubtitle1,
-                      style: new TextStyle(color: Colors.white),
-                    ),
-                    new TextSpan(
-                        text: MyText().privacy,
-                        style: new TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                        recognizer: new TapGestureRecognizer()
-                          ..onTap = () {
-                            // launch('https://google.com');
-                          }),
-                    new TextSpan(
-                      text: MyText().passwordSubtitle2,
-                      style: new TextStyle(color: Colors.white),
-                    ),
-                    new TextSpan(
-                        text: MyText().termsOfService,
-                        style: new TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                        recognizer: new TapGestureRecognizer()
-                          ..onTap = () {
-                            // launch('https://google.com');
-                          })
-                  ]),
+                Container(
+                  margin: EdgeInsets.only(bottom: 21, left: 43, right: 43),
+                  width: 316.0,
+                  child: RichText(
+                    text: new TextSpan(children: [
+                      new TextSpan(
+                        text: MyText().passwordSubtitle1,
+                        style: new TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                      new TextSpan(
+                          text: MyText().privacy,
+                          style: new TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              // launch('https://google.com');
+                            }),
+                      new TextSpan(
+                        text: MyText().passwordSubtitle2,
+                        style: new TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                      new TextSpan(
+                          text: MyText().termsOfService,
+                          style: new TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              // launch('https://google.com');
+                            })
+                    ]),
+                  ),
                 ),
-              ),
-              Container(
-                width: 320.0,
-                height: 60,
-                child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0),
-                    ),
-                    onPressed: () {
-                      onPressed(context);
-                    },
-                    child: Text(MyText().btnPassword)),
-              ),
-            ],
+                Container(
+                  width: 316.0,
+                  height: 67,
+                  child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(33.5),
+                      ),
+                      onPressed: () {
+                        onPressed(context);
+                      },
+                      child: Text(MyText().btnPassword)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -118,18 +125,10 @@ class PasswordPage extends StatelessWidget {
   onPressed(BuildContext context) {
     if (_btnCounter == 0) {
       password = passwordController.text;
-      MyValidation().passwordValidation(
-          password,
-          context,
-          arguments.email,
-          arguments.phone,
-          arguments.username);
-      FirebaseCrud().createUser(
-          arguments.email,
-          arguments.phone,
-          arguments.username,
-          UniqueKey().toString(),
-          password);
+      MyValidation().passwordValidation(password, context, arguments.email,
+          arguments.phone, arguments.username);
+      FirebaseCrud().createUser(arguments.email, arguments.phone,
+          arguments.username, UniqueKey().toString(), password);
       _btnCounter = 1;
       Timer(Duration(seconds: 2), () {
         _btnCounter = 0;

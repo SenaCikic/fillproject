@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
@@ -32,12 +31,15 @@ class EmailPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(MyText().emailHeadline,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: MyColor().white,
-                  )),
+              Padding(
+                padding: const EdgeInsets.only(top: 28, bottom: 35),
+                child: Text(MyText().emailHeadline,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 23,
+                      color: MyColor().white,
+                    )),
+              ),
               Text(MyText().fiveSar,
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -45,24 +47,21 @@ class EmailPage extends StatelessWidget {
                     color: MyColor().white,
                   )),
               Container(
-                margin: EdgeInsets.only(bottom: 20, top: 20),
-                child: Container(
-                  width: 320.0,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 20.0),
+                margin: EdgeInsets.only(bottom: 19, top: 28),
+                  width: 316.0,
+                  height: 83,
                   child: MyTextFormField(
                     controller: emailController,
                     label: MyText().labelEmail,
                     obscureText: false,
                   ),
-                ),
               ),
               Container(
-                width: 320.0,
-                height: 60,
+                width: 316.0,
+                height: 67,
                 child: RaisedButton(
                     shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0),
+                      borderRadius: new BorderRadius.circular(33.5),
                     ),
                     onPressed: () => onPressed(context),
                     child: Text(MyText().btnEmail)),
