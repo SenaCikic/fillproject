@@ -5,6 +5,7 @@ import 'package:fillproject/components/myTextFormField.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/routes/routeArguments.dart';
+import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 // import 'package:url_launcher/url_launcher.dart';
@@ -14,6 +15,7 @@ int _btnCounter = 0;
 
 class PasswordPage extends StatelessWidget {
   final RegisterArguments arguments;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController passwordController = new TextEditingController();
 
   PasswordPage({this.arguments});
@@ -55,12 +57,41 @@ class PasswordPage extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 20, top: 20),
                 child: Container(
                   width: 320.0,
-                  height: 60,
+                  height: 100,
                   margin: EdgeInsets.only(top: 20.0),
-                  child: MyTextFormField(
-                    controller: passwordController,
-                    label: MyText().labelPassword,
-                    obscureText: true,
+                  child: Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(20.0),
+                        labelText: MyText().labelPassword,
+                        labelStyle: TextStyle(color: MyColor().white),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(color: MyColor().white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(color: MyColor().white),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(
+                            color: MyColor().error,
+                          ),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(
+                            color: MyColor().error,
+                          ),
+                        ),
+                      ),
+                      style: TextStyle(color: MyColor().white),
+                      obscureText: false,
+                      validator: (password) => MyValidation().validatePassword(password),
+                    ),
                   ),
                 ),
               ),
@@ -115,25 +146,26 @@ class PasswordPage extends StatelessWidget {
     );
   }
 
+ 
+
   onPressed(BuildContext context) {
-    if (_btnCounter == 0) {
-      password = passwordController.text;
-      MyValidation().passwordValidation(
-          password,
-          context,
-          arguments.email,
-          arguments.phone,
-          arguments.username);
-      FirebaseCrud().createUser(
-          arguments.email,
-          arguments.phone,
-          arguments.username,
-          UniqueKey().toString(),
-          password);
-      _btnCounter = 1;
-      Timer(Duration(seconds: 2), () {
-        _btnCounter = 0;
-      });
+    password = passwordController.text;
+    final _formState = _formKey.currentState;
+    if (_formState.validate()) {
+      if (_btnCounter == 0) {
+        FirebaseCrud().createUser(arguments.email, arguments.phone,
+            arguments.username, UniqueKey().toString(), password);
+        Navigator.of(context).pushNamed(Dashboard,
+            arguments: PasswordArguments(
+                email: arguments.email,
+                phone: arguments.phone,
+                username: arguments.username,
+                password: password));
+        _btnCounter = 1;
+        Timer(Duration(seconds: 2), () {
+          _btnCounter = 0;
+        });
+      }
     }
   }
 }

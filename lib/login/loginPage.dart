@@ -81,8 +81,8 @@ class LoginPage extends StatelessWidget {
       password = passwordController.text;
 
       /// validacija
-      MyValidation().loginValidation(
-          username, password, usernameExists, passwordExists, context);
+      // MyValidation().loginValidation(
+      //     username, password, usernameExists, passwordExists, context);
       _btnCounter = 1;
       Timer(Duration(seconds: 2), () {
         _btnCounter = 0;
