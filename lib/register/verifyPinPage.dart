@@ -118,11 +118,11 @@ class VerifyPinPage extends StatelessWidget {
               ),
             ),
             Container(
-              width: 320.0,
-              height: 60,
+             width: 316.0,
+              height: 67,
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0),
+                  borderRadius: new BorderRadius.circular(33.5),
                 ),
                 onPressed: () => onPressed(context),
                 child: Text(MyText().btnVerify, style: TextStyle(fontSize: 20)),
