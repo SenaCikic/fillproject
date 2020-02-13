@@ -10,7 +10,6 @@ class LoginStorage {
     prefs.setString('username', usernameController.text);
     name = usernameController.text;
     isLoggedIn = true;
-    usernameController.clear();
   }
 
   void autoLogIn(BuildContext context, String name, bool isLoggedIn) async {
