@@ -72,8 +72,7 @@ class VerifyPinPage extends StatelessWidget {
                 MyText().verifyMoney,
                 style: TextStyle(
                     color: MyColor().white,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold),
+                    fontSize: 40),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -82,8 +81,7 @@ class VerifyPinPage extends StatelessWidget {
               child: Text(MyText().verifyEnterPin,
                   style: TextStyle(
                       color: MyColor().white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300)),
+                      fontSize: 18,)),
             ),
             Container(
               margin: EdgeInsets.only(bottom: 45),
@@ -127,8 +125,7 @@ class VerifyPinPage extends StatelessWidget {
                       text: MyText().verifyRecieve,
                       style: TextStyle(
                           color: MyColor().white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300),
+                          fontSize: 18,),
                       recognizer: new TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.of(context).pushNamed(Register);
