@@ -111,7 +111,7 @@ class RegisterPage extends StatelessWidget {
                     )),
                     Container(
                       width: 316.0,
-                      height: 83,
+                      height: 92,
                       margin: EdgeInsets.only(bottom: 19, left: 49, right: 49),
                       child: TextFormField(
                         textCapitalization: TextCapitalization.sentences,
@@ -149,11 +149,24 @@ class RegisterPage extends StatelessWidget {
                         style: TextStyle(color: MyColor().white),
                         validator: (username) =>
                             MyValidation().validateUsername(username),
+                            onFieldSubmitted: (value) async {
+                          try {
+                            final result =
+                                await InternetAddress.lookup('google.com');
+                            if (result.isNotEmpty &&
+                                result[0].rawAddress.isNotEmpty) {
+                              onFieldSubmitted(context);
+                            }
+                          } on SocketException catch (_) {
+                            MySnackbar().showSnackbar(MyText().checkConnection,
+                                context, MyText().snackUndo);
+                          }
+                        },
                       ),
                     ),
                     Container(
                       width: 316.0,
-                      height: 83,
+                      height: 92,
                       margin: EdgeInsets.only(left: 49, right: 49),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
