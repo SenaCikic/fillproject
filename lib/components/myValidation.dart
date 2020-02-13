@@ -14,14 +14,17 @@ class MyValidation {
     else if (brPostoji) {
       return MyText().numberExists;
     }
+    
     return null;
   }
 
-  String validateUsername(String username) {
+  String validateUsername(String username, bool usernamePostoji) {
     if (username == '') {
       return MyText().regUserSnack;
     } else if (regexSpace.hasMatch(username) == true) {
       return MyText().validateSpaceUsername;
+    } else if (usernamePostoji) {
+      return MyText().usernameExist;
     }
     return null;
   }
