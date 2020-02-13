@@ -36,19 +36,20 @@ class _SignUpState extends State<SignUp> {
                   style: TextStyle(fontSize: 70, color: MyColor().white, fontFamily: 'RobotoMono'),
                 )),
                 Padding(
-                    padding: EdgeInsets.only(top: 140 ,bottom: 31),
+                    padding: EdgeInsets.only(top: 120),
                     child: Text(
                       MyText().subtitle,
                       style: TextStyle(fontSize: 23, color: MyColor().white),
                       textAlign: TextAlign.center,
                     )),
                 Container(
-                  width: 320.0,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 30.0, bottom: 15),
+                  width: 316.0,
+                  height: 67,
+                  margin: EdgeInsets.only(top: 19.0, bottom: 15, left: 49, right: 49),
                   child: RaisedButton(
+                    
                       shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
+                        borderRadius: new BorderRadius.circular(33.5),
                       ),
                       onPressed: () {
                         Navigator.of(context).pushNamed(Register);
@@ -56,11 +57,12 @@ class _SignUpState extends State<SignUp> {
                       child: Text(MyText().btnSU)),
                 ),
                 Container(
-                  width: 320.0,
-                  height: 60,
+                  width: 316.0,
+                  height: 67,
+                  margin: EdgeInsets.only(bottom: 33, left: 49, right: 49),
                   child: RaisedButton(
                       shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
+                        borderRadius: new BorderRadius.circular(33.5),
                       ),
                       onPressed: () {
                         Navigator.of(context).pushNamed(Login); // go to Login Page
@@ -69,7 +71,6 @@ class _SignUpState extends State<SignUp> {
                 ),
                 Container(
                     width: 255.0,
-                    margin: EdgeInsets.only(top: 20.0),
                     child: Center(
                         child: FlatButton(
                             onPressed: () => Navigator.of(context).pushNamed(
@@ -82,7 +83,7 @@ class _SignUpState extends State<SignUp> {
                             child: Text(
                               MyText().skipThisStep,
                               style: TextStyle(
-                                  color: MyColor().white, fontSize: 18.0),
+                                  color: MyColor().white, fontSize: 23.0),
                             )))),
               ],
             ),

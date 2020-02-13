@@ -13,7 +13,7 @@ import '../components/myColor.dart';
 class RegisterPage extends StatelessWidget {
   String phoneNo, smsCode, verificationId, username, name;
   bool isLoggedIn = false;
-  RegExp regexUsername = new RegExp(r' /^\S*$/');  //OVO DANISE DODATI
+  RegExp regexUsername = new RegExp(r' /^\S*$/'); //OVO DANISE DODATI
 
   TextEditingController phoneController = new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
@@ -65,10 +65,15 @@ class RegisterPage extends StatelessWidget {
           phoneController
               .text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       username = usernameController.text;
-      if(regexUsername.hasMatch(username) == false  ){    ///ovo dodati DANISE
-        print('NE smije');   ///ovo dodati DANISE
-      } ///ovo dodati DANISE
-        
+      if (regexUsername.hasMatch(username) == false) {
+        ///ovo dodati DANISE
+        print('NE smije');
+
+        ///ovo dodati DANISE
+      }
+
+      ///ovo dodati DANISE
+
       LoginStorage().loginUser(usernameController, name, isLoggedIn);
       verifyPhone();
     }
@@ -90,43 +95,47 @@ class RegisterPage extends StatelessWidget {
               child: Container(
                 child: Column(children: <Widget>[
                   Center(
-                      child: Text(
-                    MyText().registerHeadline,
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: MyColor().white,
+                      child: Padding(
+                    padding: EdgeInsets.only(top: 28.0),
+                    child: Text(
+                      MyText().registerHeadline,
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: MyColor().white,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   )),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                  ),
                   Center(
-                      child: Text(
-                    MyText().registerSubtitle,
-                    style: TextStyle(
+                      child: Padding(
+                    padding: EdgeInsets.only(top: 61.0, bottom: 59),
+                    child: Text(
+                      MyText().registerSubtitle,
+                      style: TextStyle(
                         color: MyColor().white,
                         fontSize: 40.0,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   )),
                   Container(
-                    width: 280.0,
-                    height: 60,
-                    margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
+                    width: 316.0,
+                    height: 83,
+                    margin: EdgeInsets.only(bottom: 19, left: 49, right: 49),
                     child: MyTextFormField(
                         controller: usernameController,
                         label: MyText().labelUsername,
                         obscureText: false),
                   ),
                   Container(
-                    width: 280.0,
-                    height: 60,
-                    margin: EdgeInsets.only(top: 10.0),
+                    width: 316.0,
+                    height: 83,
+                    margin: EdgeInsets.only(left: 49, right: 49),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: phoneController,
                       decoration: InputDecoration(
+                        contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
                         prefix: Text(
                           "+966",
                           style: TextStyle(color: MyColor().white),

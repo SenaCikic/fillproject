@@ -19,15 +19,15 @@ class MyTextFormField extends StatelessWidget {
       textCapitalization: TextCapitalization.sentences,
       controller: controller,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.all(20.0),
+        contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
         labelText: label,
         labelStyle: TextStyle(color: MyColor().white),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          borderRadius: BorderRadius.all(Radius.circular(33.5)),
           borderSide: BorderSide(color: MyColor().white),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          borderRadius: BorderRadius.all(Radius.circular(33.5)),
           borderSide: BorderSide(color: MyColor().white),
         ),
       ),
