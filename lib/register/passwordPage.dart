@@ -27,10 +27,17 @@ class PasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
+          appBar: new AppBar(
         title: new Text(""),
         backgroundColor: MyColor().black,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.of(context).pushNamed(Email);
+          },
+        ),
       ),
       backgroundColor: MyColor().black,
       body: Builder(

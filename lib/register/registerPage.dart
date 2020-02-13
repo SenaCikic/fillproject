@@ -72,6 +72,13 @@ class RegisterPage extends StatelessWidget {
         title: new Text(""),
         backgroundColor: MyColor().black,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       backgroundColor: MyColor().black,
       body: Builder(
