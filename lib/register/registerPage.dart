@@ -1,5 +1,8 @@
-import 'package:fillproject/components/MyText.dart';
+import 'dart:io';
+
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/mySnackbar.dart';
+import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myTextFormField.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/register/verifyPinPage.dart';
@@ -66,9 +69,6 @@ class RegisterPage extends StatelessWidget {
               .text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       username = usernameController.text;
       if (regexUsername.hasMatch(username) == false) {
-        ///ovo dodati DANISE
-        print('NE smije');
-
         ///ovo dodati DANISE
       }
 
@@ -151,7 +151,19 @@ class RegisterPage extends StatelessWidget {
                           borderSide: BorderSide(color: MyColor().white),
                         ),
                       ),
-                      onFieldSubmitted: (value) => onFieldSubmitted(context),
+                      onFieldSubmitted: (value) async {
+                        try {
+                          final result =
+                              await InternetAddress.lookup('google.com');
+                          if (result.isNotEmpty &&
+                              result[0].rawAddress.isNotEmpty) {
+                            onFieldSubmitted(context);
+                          }
+                        } on SocketException catch (_) {
+                          MySnackbar().showSnackbar(MyText().checkConnection,
+                              context, MyText().snackUndo);
+                        }
+                      },
                       style: TextStyle(color: MyColor().white),
                     ),
                   ),
