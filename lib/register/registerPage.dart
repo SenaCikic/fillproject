@@ -165,7 +165,7 @@ class RegisterPage extends StatelessWidget {
                           contentPadding: new EdgeInsets.symmetric(
                               vertical: 25.0, horizontal: 40.0),
                           prefix: Text(
-                            "+966 ",
+                            "+966",
                             style: TextStyle(color: MyColor().white),
                           ),
                           labelText: MyText().labelPhone,

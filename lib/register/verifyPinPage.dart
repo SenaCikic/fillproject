@@ -15,6 +15,7 @@ int _btnCounter = 0;
 
 class VerifyPinPage extends StatelessWidget {
   final RegisterArguments arguments;
+  bool fieldColor = false;
   VerifyPinPage({this.arguments});
   String smsCode;
   TextEditingController codeController = new TextEditingController();
@@ -35,7 +36,10 @@ class VerifyPinPage extends StatelessWidget {
     }
 
     onPressed(BuildContext context) {
-      if (_btnCounter == 0) {
+if(smsCode.length < 6) {
+  fieldColor = true;
+} else {
+ if (_btnCounter == 0) {
         FirebaseAuth.instance.currentUser().then((user) {
           if (user != null) {
             Navigator.of(context).pushNamed(Email,
@@ -50,6 +54,7 @@ class VerifyPinPage extends StatelessWidget {
           _btnCounter = 0;
         });
       }
+}
     }
 
     return Scaffold(
@@ -100,9 +105,9 @@ class VerifyPinPage extends StatelessWidget {
                   fieldHeight: 60,
                   fieldWidth: 50,
                   textStyle: TextStyle(color: MyColor().white, fontSize: 28),
-                  activeColor: MyColor().white,
-                  inactiveColor: MyColor().white,
-                  selectedColor: MyColor().white,
+                  activeColor: fieldColor ?  MyColor().error : MyColor().white,
+                  inactiveColor: fieldColor ?  MyColor().error : MyColor().white,
+                  selectedColor: fieldColor ?  MyColor().error : MyColor().white,
                   backgroundColor: MyColor().black,
                   borderWidth: 1.0,
                   controller: codeController,

@@ -19,11 +19,6 @@ class PasswordPage extends StatelessWidget {
 
   PasswordPage({this.arguments});
 
-  void dispose() {
-    passwordController.dispose();
-    dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
