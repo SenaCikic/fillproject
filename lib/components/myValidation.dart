@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:fillproject/components/MyText.dart';
 
 class MyValidation {
@@ -6,6 +5,7 @@ class MyValidation {
 
   RegExp regexPassword = new RegExp(r'^(?=.*?[A-Z])(?=.*[0-9])(?=.{8,})');
   RegExp regexSpace = new RegExp(r'\s');
+  RegExp regexEmail = new RegExp(r'^(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$)');
 
   String validatePhone(String phone, String brPostoji) {
     if (phone == '') {
@@ -43,10 +43,10 @@ class MyValidation {
     if (input == '') {
       counter = 0;
       return MyText().regEmailSnack;
-    } else if (!EmailValidator.validate(input, true)) {
-      counter = 0;
-      return MyText().validEmail;
-    } 
+    } else if(regexEmail.hasMatch(input) == false) {
+      counter =0 ;
+            return MyText().validEmail;
+    }
     return null;
   }
 }
