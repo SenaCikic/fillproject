@@ -4,6 +4,7 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/register/verifyPinPage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
@@ -14,13 +15,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../components/myColor.dart';
 
-class RegisterPage extends StatelessWidget {
-  String phoneNo, smsCode, verificationId, username, name;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool isLoggedIn = false;
-  RegExp regexUsername = new RegExp(r' /^\S*$/'); //OVO DANISE DODATI
 
+class RegisterPage extends StatelessWidget {
+  String phoneNo, smsCode, verificationId, username, name, brPostoji;
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  bool isLoggedIn = false;
+  
+
+
+  RegExp regexUsername = new RegExp(r' /^\S*$/'); 
   TextEditingController phoneController = new TextEditingController();
+
   TextEditingController usernameController = new TextEditingController();
 
   @override
@@ -204,6 +211,9 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                         ),
+                        onChanged: (input) {
+                          phoneNo = input;
+                        },
                         onFieldSubmitted: (value) async {
                           try {
                             final result =
@@ -219,10 +229,45 @@ class RegisterPage extends StatelessWidget {
                         },
                         style: TextStyle(color: MyColor().white),
                         validator: (phone) =>
-                            MyValidation().validatePhone(phone),
+                            MyValidation().validatePhone(phone, brPostoji),
                       ),
                     ),
-                  ]),
+                    /// PROVJERA
+
+                    Column(
+                children: <Widget>[
+                  FutureBuilder(
+                    future: FirebaseCheck().doesNumberAlreadyExist(phoneController.text),
+                    builder: (context, AsyncSnapshot<bool> result) {
+                      if (!result.hasData) {
+
+                        return Container(
+                          width: 0,
+                          height: 0,
+                        );
+                      } // future still needs to be finished (loading)
+
+                      if (result.data) {
+                         brPostoji = 'Postoji';
+                        return Container(
+                          width: 0,
+                          height: 0,
+                        );
+                      } // result.data is the returned bool from doesNameAlreadyExists
+
+                      else {
+                         brPostoji = 'NE Postoji';
+                        return Container(
+                          width: 0,
+                          height: 0,
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
+                  ],
+                  ),
                 ),
               ),
             ),

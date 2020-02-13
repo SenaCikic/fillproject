@@ -34,9 +34,10 @@ class MyText {
   final String btnEmail = 'Next';
 
   /// VALIDATION
-  final String validateSpaceUsername = 'Username must not containe space';
+  final String validateSpaceUsername = '             Username must not containe space';
+  final String validateSpacePassword = '             Password must not containe space';
+  final String numberExists = '                         Number already exists';
 
-  /// snackbar texts
   final String snackUndo = 'Undo';
   final String regEmailSnack = "                          Email can't be empty";
   final String regUserSnack = "                     Username can't be empty";
