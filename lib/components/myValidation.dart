@@ -7,11 +7,11 @@ class MyValidation {
   RegExp regexSpace = new RegExp(r'\s');
   RegExp regexEmail = new RegExp(r'^(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$)');
 
-  String validatePhone(String phone, String brPostoji) {
+  String validatePhone(String phone, bool brPostoji) {
     if (phone == '') {
       return MyText().regPhoneSnack;
     } 
-    else if (brPostoji != 'Postoji') {
+    else if (brPostoji) {
       return MyText().numberExists;
     }
     return null;

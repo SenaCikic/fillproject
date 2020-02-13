@@ -35,6 +35,12 @@ class VerifyPinPage extends StatelessWidget {
         print('Auth Credential Error : $e');
         wrongCodeError = e.toString();
         print(wrongCodeError);
+       if(wrongCodeError == MyText().wrongCodeError) {
+        codeError = true;
+        Timer(Duration(seconds: 2), () {
+            codeError = false;
+          });
+       } 
       });
     }
 
@@ -42,8 +48,9 @@ class VerifyPinPage extends StatelessWidget {
       smsCode = codeController.text;
      if (smsCode.length < 6) {
        fieldColor = true;
-    } else if(wrongCodeError == MyText().wrongCodeError) {
-        codeError = true;
+       Timer(Duration(seconds: 2), () {
+            fieldColor = false;
+          });
     } else {
         if (_btnCounter == 0) {
           FirebaseAuth.instance.currentUser().then((user) {
