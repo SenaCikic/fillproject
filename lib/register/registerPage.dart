@@ -4,6 +4,7 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myTextFormField.dart';
+import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/register/verifyPinPage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
@@ -17,6 +18,7 @@ import '../components/myColor.dart';
 
 class RegisterPage extends StatelessWidget {
   String phoneNo, smsCode, verificationId, username, name;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool isLoggedIn = false;
   RegExp regexUsername = new RegExp(r' /^\S*$/'); //OVO DANISE DODATI
 
@@ -74,14 +76,11 @@ class RegisterPage extends StatelessWidget {
           phoneController
               .text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       username = usernameController.text;
-      if (regexUsername.hasMatch(username) == false) {
-        ///ovo dodati DANISE
+      final _formState = _formKey.currentState;
+      if (_formState.validate()) {
+        LoginStorage().loginUser(usernameController, name, isLoggedIn);
+        verifyPhone();
       }
-
-      ///ovo dodati DANISE
-
-      LoginStorage().loginUser(usernameController, name, isLoggedIn);
-      verifyPhone();
     }
 
     return Scaffold(
@@ -99,81 +98,130 @@ class RegisterPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Center(
               child: Container(
-                child: Column(children: <Widget>[
-                  Center(
-                      child: Padding(
-                    padding: EdgeInsets.only(top: 28.0),
-                    child: Text(
+                child: Form(
+                  key: _formKey,
+                  child: Column(children: <Widget>[
+                    Center(
+                        child: Text(
                       MyText().registerHeadline,
                       style: TextStyle(
-                        fontSize: ScreenUtil.instance.setSp(23.0),
+                        fontSize: 23,
                         color: MyColor().white,
                       ),
                       textAlign: TextAlign.center,
+                    )),
+                    Padding(
+                      padding: EdgeInsets.only(top: 10.0),
                     ),
-                  )),
-                  Center(
-                      child: Padding(
-                    padding: EdgeInsets.only(top: 61.0, bottom: 59),
-                    child: Text(
+                    Center(
+                        child: Text(
                       MyText().registerSubtitle,
                       style: TextStyle(
-                        color: MyColor().white,
-                        fontSize: ScreenUtil.instance.setSp(40.0),
-                      ),
+                          color: MyColor().white,
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
-                    ),
-                  )),
-                  Container(
-                    width:ScreenUtil.instance.setWidth(316.0),
-                    height: ScreenUtil.instance.setHeight(83.0),
-                    margin: EdgeInsets.only(bottom: 19, left: 49, right: 49),
-                    child: MyTextFormField(
+                    )),
+                    Container(
+                      width: 316.0,
+                      height: 83,
+                      margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
+                      child: TextFormField(
+                        textCapitalization: TextCapitalization.sentences,
                         controller: usernameController,
-                        label: MyText().labelUsername,
-                        obscureText: false),
-                  ),
-                  Container(
-                    width:ScreenUtil.instance.setWidth(316.0),
-                    height: ScreenUtil.instance.setHeight(83.0),
-                    margin: EdgeInsets.only(left: 49, right: 49),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      controller: phoneController,
-                      decoration: InputDecoration(
-                        contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
-                        prefix: Text(
-                          "+966",
-                          style: TextStyle(color: MyColor().white),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.all(20.0),
+                          labelText: MyText().labelUsername,
+                          labelStyle: TextStyle(color: MyColor().white),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            borderSide: BorderSide(color: MyColor().white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            borderSide: BorderSide(color: MyColor().white),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            borderSide: BorderSide(
+                              color: MyColor().error,
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            borderSide: BorderSide(
+                              color: MyColor().error,
+                            ),
+                          ),
                         ),
-                        labelText: MyText().labelPhone,
-                        labelStyle: TextStyle(color: MyColor().white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                          borderSide: BorderSide(color: MyColor().white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                          borderSide: BorderSide(color: MyColor().white),
-                        ),
+                        style: TextStyle(color: MyColor().white),
+                        validator: (username) =>
+                            MyValidation().validateUsername(username),
                       ),
-                      onFieldSubmitted: (value) async {
-                        try {
-                          final result =
-                              await InternetAddress.lookup('google.com');
-                          if (result.isNotEmpty &&
-                              result[0].rawAddress.isNotEmpty) {
-                            onFieldSubmitted(context);
-                          }
-                        } on SocketException catch (_) {
-                          MySnackbar().showSnackbar(MyText().checkConnection,
-                              context, MyText().snackUndo);
-                        }
-                      },
-                      style: TextStyle(color: MyColor().white),
                     ),
-                  ),
-                ]),
+                    Container(
+                      width: 280.0,
+                      height: 83,
+                      margin: EdgeInsets.only(top: 10.0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: phoneController,
+                        decoration: InputDecoration(
+                          prefix: Text(
+                            "+966",
+                            style: TextStyle(color: MyColor().white),
+                          ),
+                          labelText: MyText().labelPhone,
+                          labelStyle: TextStyle(color: MyColor().white),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50.0)),
+                            borderSide: BorderSide(color: MyColor().white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50.0)),
+                            borderSide: BorderSide(color: MyColor().white),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            borderSide: BorderSide(
+                              color: MyColor().error,
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            borderSide: BorderSide(
+                              color: MyColor().error,
+                            ),
+                          ),
+                        ),
+                        onFieldSubmitted: (value) async {
+                          try {
+                            final result =
+                                await InternetAddress.lookup('google.com');
+                            if (result.isNotEmpty &&
+                                result[0].rawAddress.isNotEmpty) {
+                              onFieldSubmitted(context);
+                            }
+                          } on SocketException catch (_) {
+                            MySnackbar().showSnackbar(MyText().checkConnection,
+                                context, MyText().snackUndo);
+                          }
+                        },
+                        style: TextStyle(color: MyColor().white),
+                        validator: (phone) =>
+                            MyValidation().validatePhone(phone),
+                      ),
+                    ),
+                  ]),
+                ),
               ),
             ),
           ),

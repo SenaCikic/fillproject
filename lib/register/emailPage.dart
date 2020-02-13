@@ -4,12 +4,14 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/routes/routeArguments.dart';
+import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/material.dart';
 
 String email;
 int _btnCounter = 0;
 
 class EmailPage extends StatelessWidget {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final RegisterArguments arguments;
   final TextEditingController emailController = new TextEditingController();
 
@@ -47,13 +49,43 @@ class EmailPage extends StatelessWidget {
                     color: MyColor().white,
                   )),
               Container(
-                margin: EdgeInsets.only(bottom: 19, top: 28),
+                margin: EdgeInsets.only(bottom: 20, top: 20),
+                child: Container(
                   width: 316.0,
                   height: 83,
-                  child: MyTextFormField(
-                    controller: emailController,
-                    label: MyText().labelEmail,
-                    obscureText: false,
+                  margin: EdgeInsets.only(top: 20.0),
+                  child: Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(20.0),
+                        labelText: MyText().labelEmail,
+                        labelStyle: TextStyle(color: MyColor().white),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(color: MyColor().white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(color: MyColor().white),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(
+                            color: MyColor().error,
+                          ),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          borderSide: BorderSide(
+                            color: MyColor().error,
+                          ),
+                        ),
+                      ),
+                      style: TextStyle(color: MyColor().white),
+                      validator: (email) => MyValidation().validateEmail(email, _btnCounter),
+                    ),
                   ),
               ),
               Container(
@@ -72,16 +104,22 @@ class EmailPage extends StatelessWidget {
       ),
     );
   }
-
   onPressed(BuildContext context) {
-    if (_btnCounter == 0) {
-      email = emailController.text;
-      MyValidation()
-          .emailValidation(email, arguments.username, arguments.phone, context);
-      _btnCounter = 1;
-      Timer(Duration(seconds: 2), () {
-        _btnCounter = 0;
-      });
+    email = emailController.text;
+    final _formState = _formKey.currentState;
+    if (_formState.validate()) {
+      if (_btnCounter == 0) {
+        Navigator.of(context).pushNamed(Password,
+            arguments: RegisterArguments(
+              email: email,
+              phone: arguments.phone,
+              username: arguments.username,
+            ));
+        _btnCounter = 1;
+        Timer(Duration(seconds: 2), () {
+          _btnCounter = 0;
+        });
+      }
     }
   }
 }
