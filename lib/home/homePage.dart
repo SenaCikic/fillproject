@@ -43,7 +43,7 @@ class _SignUpState extends State<SignUp> {
                     padding: EdgeInsets.only(top: 120),
                     child: Text(
                       MyText().subtitle,
-                      style: TextStyle(fontSize: 23, color: MyColor().white),
+                      style: TextStyle(fontSize: ScreenUtil.instance.setSp(23.0), color: MyColor().white),
                       textAlign: TextAlign.center,
                     )),
                 Container(
