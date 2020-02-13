@@ -4,9 +4,11 @@ import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
+import 'package:fillproject/utils/screenUtils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 String verificationCode;
 int _btnCounter = 0;
@@ -19,6 +21,7 @@ class VerifyPinPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Constant().responsive(context);
     signIn(String smsCode) {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: arguments.verId, smsCode: smsCode);
@@ -53,6 +56,7 @@ class VerifyPinPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: MyColor().black,
       body: Builder(
+
         builder: (context) => Center(
             child: Column(
           children: <Widget>[
@@ -62,77 +66,88 @@ class VerifyPinPage extends StatelessWidget {
                 MyText().verifyPageHeadline,
                 style: TextStyle(
                   color: MyColor().white,
-                  fontSize: 23,
+                  fontSize: ScreenUtil.instance.setSp(23.0),
                 ),
                 textAlign: TextAlign.center,
               ),
-            ),
-            Container(
-              child: Text(
-                MyText().verifyMoney,
-                style: TextStyle(
-                    color: MyColor().white,
-                    fontSize: 40),
-                textAlign: TextAlign.center,
+
+              Container(
+                child: Text(MyText().verifyPageHeadline2,
+                    style: TextStyle(color: MyColor().white, fontSize: 20)),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 23),
-              child: Text(MyText().verifyEnterPin,
-                  style: TextStyle(
-                      color: MyColor().white,
-                      fontSize: 18,)),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 45),
-              child: Container(
-                width: 316.0,
-                height: 83,
-                child: MyPinCodeTextField(
-                  length: 6,
-                  animationType: AnimationType.fade,
-                  shape: PinCodeFieldShape.circle,
-                  animationDuration: Duration(milliseconds: 300),
-                  fieldHeight: 60,
-                  fieldWidth: 50,
-                  textStyle: TextStyle(color: MyColor().white, fontSize: 25),
-                  activeColor: MyColor().white,
-                  inactiveColor: MyColor().white,
-                  selectedColor: MyColor().white,
-                  backgroundColor: MyColor().black,
-                  borderWidth: 1.0,
-                  controller: codeController,
-                  onChanged: (value) {},
+              Container(
+                margin: EdgeInsets.only(top: 60),
+                child: Text(MyText().verifyMoney1,
+                    style: TextStyle(
+                        color: MyColor().white,
+                        fontSize: ScreenUtil.instance.setSp(40.0),
+                        fontWeight: FontWeight.bold)),
+              ),
+              Container(
+                child: Text(MyText().verifyMoney2,
+                    style: TextStyle(
+                        color: MyColor().white,
+                        fontSize: ScreenUtil.instance.setSp(40.0),
+                        fontWeight: FontWeight.bold)),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 40),
+                child: Text(MyText().verifyEnterPin,
+                    style: TextStyle(
+                        color: MyColor().white,
+                        fontSize: ScreenUtil.instance.setSp(17.0),
+                        fontWeight: FontWeight.w300)),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 20),
+                child: Container(
+                  width: ScreenUtil.instance.setWidth(350.0),
+                  child: MyPinCodeTextField(
+                    length: 6,
+                    animationType: AnimationType.fade,
+                    shape: PinCodeFieldShape.circle,
+                    animationDuration: Duration(milliseconds: 300),
+                    fieldHeight: 60,
+                    fieldWidth: 50,
+                    textStyle: TextStyle(color: MyColor().white, fontSize: 28),
+                    activeColor: MyColor().white,
+                    inactiveColor: MyColor().white,
+                    selectedColor: MyColor().white,
+                    backgroundColor: MyColor().black,
+                    borderWidth: 1.0,
+                    controller: codeController,
+                    onChanged: (value) {},
+                  ),
                 ),
               ),
-            ),
-            Container(
-              width: 316.0,
-              height: 67,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(33.5),
+              Container(
+                    width:  ScreenUtil.instance.setWidth(316.0),
+                    height:  ScreenUtil.instance.setHeight(67.0),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(33.5),
+                  ),
+                  onPressed: () => onPressed(context),
+                  child: Text(MyText().btnVerify, style: TextStyle(fontSize: 20)),
                 ),
-                onPressed: () => onPressed(context),
-                child: Text(MyText().btnVerify, style: TextStyle(fontSize: 18)),
               ),
-            ),
-            Container(
-                margin: EdgeInsets.only(top: 17.0),
+              Container(
+                margin: EdgeInsets.only(top: 20.0),
                 child: RichText(
-                    text: new TextSpan(children: [
-                  new TextSpan(
-                      text: MyText().verifyRecieve,
-                      style: TextStyle(
-                          color: MyColor().white,
-                          fontSize: 18,),
-                      recognizer: new TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.of(context).pushNamed(Register);
-                        })
-                ]))),
-          ],
-        )),
+                    text: new TextSpan(children: [new TextSpan(
+                          text: MyText().verifyRecieve,
+                          style: TextStyle(
+                        color: MyColor().white,
+                        fontSize: ScreenUtil.instance.setSp(15.0),
+                        fontWeight: FontWeight.w300),
+                          recognizer: new TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.of(context).pushNamed(Register);
+                            })]))
+              ),
+            ],
+          )),
+        ),
       ),
     );
   }
