@@ -16,10 +16,6 @@ class EmailPage extends StatelessWidget {
 
   EmailPage({this.arguments});
 
-  void dispose() {
-    emailController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
