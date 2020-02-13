@@ -91,7 +91,7 @@ class PasswordPage extends StatelessWidget {
                         ),
                       ),
                       style: TextStyle(color: MyColor().white),
-                      obscureText: false,
+                      obscureText: true,
                       validator: (password) =>
                           MyValidation().validatePassword(password),
                     ),
