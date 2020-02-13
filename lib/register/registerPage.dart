@@ -128,19 +128,19 @@ class RegisterPage extends StatelessWidget {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(color: MyColor().white),
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(
                               color: MyColor().error,
                             ),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(
                               color: MyColor().error,
                             ),
@@ -182,24 +182,24 @@ class RegisterPage extends StatelessWidget {
                           labelStyle: TextStyle(color: MyColor().white),
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(color: MyColor().white),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(color: MyColor().white),
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(
                               color: MyColor().error,
                             ),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(
                               color: MyColor().error,
                             ),

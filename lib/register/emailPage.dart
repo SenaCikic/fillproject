@@ -78,14 +78,14 @@ class EmailPage extends StatelessWidget {
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(30.0)),
+                                    BorderRadius.all(Radius.circular(33.5)),
                                 borderSide: BorderSide(
                                   color: MyColor().error,
                                 ),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(30.0)),
+                                    BorderRadius.all(Radius.circular(33.5)),
                                 borderSide: BorderSide(
                                   color: MyColor().error,
                                 ),
