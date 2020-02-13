@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
-import 'package:fillproject/components/myTextFormField.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -49,45 +48,51 @@ class EmailPage extends StatelessWidget {
                     color: MyColor().white,
                   )),
               Container(
-                margin: EdgeInsets.only(bottom: 20, top: 20),
-                child: Container(
-                  width: 316.0,
-                  height: 83,
-                  margin: EdgeInsets.only(top: 20.0),
-                  child: Form(
-                    key: _formKey,
-                    child: TextFormField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.all(20.0),
-                        labelText: MyText().labelEmail,
-                        labelStyle: TextStyle(color: MyColor().white),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                          borderSide: BorderSide(color: MyColor().white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                          borderSide: BorderSide(color: MyColor().white),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                          borderSide: BorderSide(
-                            color: MyColor().error,
+                  margin: EdgeInsets.only(bottom: 20, top: 20),
+                  child: Container(
+                    width: 316.0,
+                    height: 83,
+                    margin: EdgeInsets.only(top: 20.0),
+                    child: Form(
+                      key: _formKey,
+                      child: TextFormField(
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+
+                          labelText: MyText().labelEmail,
+                          labelStyle: TextStyle(color: MyColor().white),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(33.5)),
+                            borderSide: BorderSide(color: MyColor().white),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(33.5)),
+                            borderSide: BorderSide(color: MyColor().white),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            borderSide: BorderSide(
+                              color: MyColor().error,
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(30.0)),
+                            borderSide: BorderSide(
+                              color: MyColor().error,
+                            ),
                           ),
                         ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                          borderSide: BorderSide(
-                            color: MyColor().error,
-                          ),
-                        ),
+                        style: TextStyle(color: MyColor().white),
+                        validator: (email) =>
+                            MyValidation().validateEmail(email, _btnCounter),
                       ),
-                      style: TextStyle(color: MyColor().white),
-                      validator: (email) => MyValidation().validateEmail(email, _btnCounter),
                     ),
-                  ),
-              ),
+                  )),
               Container(
                 width: 316.0,
                 height: 67,
@@ -96,7 +101,8 @@ class EmailPage extends StatelessWidget {
                       borderRadius: new BorderRadius.circular(33.5),
                     ),
                     onPressed: () => onPressed(context),
-                    child: Text(MyText().btnEmail)),
+                    child: Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
+                )
               ),
             ],
           ),
@@ -104,6 +110,7 @@ class EmailPage extends StatelessWidget {
       ),
     );
   }
+
   onPressed(BuildContext context) {
     email = emailController.text;
     final _formState = _formKey.currentState;

@@ -41,12 +41,15 @@ class PasswordPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Text(MyText().passwordHeadline,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 23,
-                    color: MyColor().white,
-                  )),
+              Padding(
+                padding: const EdgeInsets.only(top: 28, bottom: 35),
+                child: Text(MyText().passwordHeadline,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 23,
+                      color: MyColor().white,
+                    )),
+              ),
               Text(MyText().fiveSar,
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -54,18 +57,16 @@ class PasswordPage extends StatelessWidget {
                     color: MyColor().white,
                   )),
               Container(
-                margin: EdgeInsets.only(bottom: 20, top: 20),
-                child: Container(
-                  width: 320.0,
-                  height: 100,
-                  margin: EdgeInsets.only(top: 28.0, , bottom: 35),
+                  height: 83,
+                  width: 316,
+                  margin: EdgeInsets.only(bottom: 19, top: 28),
                   child: Form(
                     key: _formKey,
                     child: TextFormField(
                       controller: passwordController,
                       decoration: InputDecoration(
-                        
-                        contentPadding: const EdgeInsets.all(20.0),
+                        contentPadding: new EdgeInsets.symmetric(
+                            vertical: 25.0, horizontal: 10.0),
                         labelText: MyText().labelPassword,
                         labelStyle: TextStyle(color: MyColor().white),
                         enabledBorder: OutlineInputBorder(
@@ -91,86 +92,64 @@ class PasswordPage extends StatelessWidget {
                       ),
                       style: TextStyle(color: MyColor().white),
                       obscureText: false,
-                      validator: (password) => MyValidation().validatePassword(password),
+                      validator: (password) =>
+                          MyValidation().validatePassword(password),
                     ),
-                  ),
-                ),
-                Text(MyText().fiveSar,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 40,
-                      color: MyColor().white,
-                    )),
-                Container(
-                  margin: EdgeInsets.only(bottom: 19, top: 28),
-                  child: Container(
-                    width: 316.0,
-                    height: 83,
-                    margin: EdgeInsets.only(top: 19.0),
-                    child: MyTextFormField(
-                      controller: passwordController,
-                      label: MyText().labelPassword,
-                      obscureText: true,
+                  )),
+              Container(
+                margin: EdgeInsets.only(bottom: 21, left: 43, right: 43),
+                width: 316.0,
+                child: RichText(
+                  text: new TextSpan(children: [
+                    new TextSpan(
+                      text: MyText().passwordSubtitle1,
+                      style: new TextStyle(color: Colors.white, fontSize: 12),
                     ),
-                  ),
+                    new TextSpan(
+                        text: MyText().privacy,
+                        style: new TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12),
+                        recognizer: new TapGestureRecognizer()
+                          ..onTap = () {
+                            // launch('https://google.com');
+                          }),
+                    new TextSpan(
+                      text: MyText().passwordSubtitle2,
+                      style: new TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                    new TextSpan(
+                        text: MyText().termsOfService,
+                        style: new TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12),
+                        recognizer: new TapGestureRecognizer()
+                          ..onTap = () {
+                            // launch('https://google.com');
+                          })
+                  ]),
                 ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 21, left: 43, right: 43),
-                  width: 316.0,
-                  child: RichText(
-                    text: new TextSpan(children: [
-                      new TextSpan(
-                        text: MyText().passwordSubtitle1,
-                        style: new TextStyle(color: Colors.white, fontSize: 12),
-                      ),
-                      new TextSpan(
-                          text: MyText().privacy,
-                          style: new TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () {
-                              // launch('https://google.com');
-                            }),
-                      new TextSpan(
-                        text: MyText().passwordSubtitle2,
-                        style: new TextStyle(color: Colors.white, fontSize: 12),
-                      ),
-                      new TextSpan(
-                          text: MyText().termsOfService,
-                          style: new TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () {
-                              // launch('https://google.com');
-                            })
-                    ]),
-                  ),
-                ),
-                Container(
-                  width: 316.0,
-                  height: 67,
-                  child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(33.5),
-                      ),
-                      onPressed: () {
-                        onPressed(context);
-                      },
-                      child: Text(MyText().btnPassword)),
-                ),
-              ],
-            ),
+              ),
+              Container(
+                width: 316.0,
+                height: 67,
+                child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(33.5),
+                    ),
+                    onPressed: () {
+                      onPressed(context);
+                    },
+                    child: Text(MyText().btnPassword, style: TextStyle(fontSize: 18)))
+              ),
+            ],
           ),
         ),
       ),
     );
   }
-
- 
 
   onPressed(BuildContext context) {
     password = passwordController.text;
@@ -190,7 +169,6 @@ class PasswordPage extends StatelessWidget {
           _btnCounter = 0;
         });
       }
-
     }
   }
 }

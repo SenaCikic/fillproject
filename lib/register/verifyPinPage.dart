@@ -56,7 +56,6 @@ class VerifyPinPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: MyColor().black,
       body: Builder(
-
         builder: (context) => Center(
             child: Column(
           children: <Widget>[
@@ -70,84 +69,75 @@ class VerifyPinPage extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-
-              Container(
-                child: Text(MyText().verifyPageHeadline2,
-                    style: TextStyle(color: MyColor().white, fontSize: 20)),
+            ),
+            Container(
+              child: Text(
+                MyText().verifyMoney,
+                style: TextStyle(
+                    color: MyColor().white,
+                    fontSize: ScreenUtil.instance.setSp(40.0)),
+                textAlign: TextAlign.center,
               ),
-              Container(
-                margin: EdgeInsets.only(top: 60),
-                child: Text(MyText().verifyMoney1,
-                    style: TextStyle(
-                        color: MyColor().white,
-                        fontSize: ScreenUtil.instance.setSp(40.0),
-                        fontWeight: FontWeight.bold)),
-              ),
-              Container(
-                child: Text(MyText().verifyMoney2,
-                    style: TextStyle(
-                        color: MyColor().white,
-                        fontSize: ScreenUtil.instance.setSp(40.0),
-                        fontWeight: FontWeight.bold)),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 40),
-                child: Text(MyText().verifyEnterPin,
-                    style: TextStyle(
-                        color: MyColor().white,
-                        fontSize: ScreenUtil.instance.setSp(17.0),
-                        fontWeight: FontWeight.w300)),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 20),
-                child: Container(
-                  width: ScreenUtil.instance.setWidth(350.0),
-                  child: MyPinCodeTextField(
-                    length: 6,
-                    animationType: AnimationType.fade,
-                    shape: PinCodeFieldShape.circle,
-                    animationDuration: Duration(milliseconds: 300),
-                    fieldHeight: 60,
-                    fieldWidth: 50,
-                    textStyle: TextStyle(color: MyColor().white, fontSize: 28),
-                    activeColor: MyColor().white,
-                    inactiveColor: MyColor().white,
-                    selectedColor: MyColor().white,
-                    backgroundColor: MyColor().black,
-                    borderWidth: 1.0,
-                    controller: codeController,
-                    onChanged: (value) {},
-                  ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 23),
+              child: Text(MyText().verifyEnterPin,
+                  style: TextStyle(
+                      color: MyColor().white,
+                      fontSize: ScreenUtil.instance.setSp(17.0),
+                      fontWeight: FontWeight.w300)),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 40),
+              child: Container(
+                height: 83,
+                width: ScreenUtil.instance.setWidth(350.0),
+                child: MyPinCodeTextField(
+                  length: 6,
+                  animationType: AnimationType.fade,
+                  shape: PinCodeFieldShape.circle,
+                  animationDuration: Duration(milliseconds: 300),
+                  fieldHeight: 60,
+                  fieldWidth: 50,
+                  textStyle: TextStyle(color: MyColor().white, fontSize: 28),
+                  activeColor: MyColor().white,
+                  inactiveColor: MyColor().white,
+                  selectedColor: MyColor().white,
+                  backgroundColor: MyColor().black,
+                  borderWidth: 1.0,
+                  controller: codeController,
+                  onChanged: (value) {},
                 ),
               ),
-              Container(
-                    width:  ScreenUtil.instance.setWidth(316.0),
-                    height:  ScreenUtil.instance.setHeight(67.0),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(33.5),
-                  ),
-                  onPressed: () => onPressed(context),
-                  child: Text(MyText().btnVerify, style: TextStyle(fontSize: 20)),
+            ),
+            Container(
+              width: ScreenUtil.instance.setWidth(316.0),
+              height: ScreenUtil.instance.setHeight(67.0),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(33.5),
                 ),
+                onPressed: () => onPressed(context),
+                child: Text(MyText().btnVerify, style: TextStyle(fontSize: 18)),
               ),
-              Container(
+            ),
+            Container(
                 margin: EdgeInsets.only(top: 20.0),
                 child: RichText(
-                    text: new TextSpan(children: [new TextSpan(
-                          text: MyText().verifyRecieve,
-                          style: TextStyle(
-                        color: MyColor().white,
-                        fontSize: ScreenUtil.instance.setSp(15.0),
-                        fontWeight: FontWeight.w300),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.of(context).pushNamed(Register);
-                            })]))
-              ),
-            ],
-          )),
-        ),
+                    text: new TextSpan(children: [
+                  new TextSpan(
+                      text: MyText().verifyRecieve,
+                      style: TextStyle(
+                          color: MyColor().white,
+                          fontSize: ScreenUtil.instance.setSp(15.0),
+                          fontWeight: FontWeight.w300),
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.of(context).pushNamed(Register);
+                        })
+                ]))),
+          ],
+        )),
       ),
     );
   }

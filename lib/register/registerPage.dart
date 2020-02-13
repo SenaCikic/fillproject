@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
-import 'package:fillproject/components/myTextFormField.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/register/verifyPinPage.dart';
@@ -13,7 +12,6 @@ import 'package:fillproject/utils/screenUtils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -27,9 +25,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-        Constant().responsive(context);
-
+    Constant().responsive(context);
 
     Widget smsCodeDialog(BuildContext context) {
       return VerifyPinPage(
@@ -102,40 +98,44 @@ class RegisterPage extends StatelessWidget {
                   key: _formKey,
                   child: Column(children: <Widget>[
                     Center(
-                        child: Text(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 28),
+                          child: Text(
                       MyText().registerHeadline,
                       style: TextStyle(
-                        fontSize: 23,
-                        color: MyColor().white,
+                          fontSize: 23,
+                          color: MyColor().white,
                       ),
                       textAlign: TextAlign.center,
-                    )),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10.0),
                     ),
+                        )),
                     Center(
-                        child: Text(
-                      MyText().registerSubtitle,
-                      style: TextStyle(
-                          color: MyColor().white,
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
+                        child: Padding(
+                      padding: EdgeInsets.only(top: 61.0, bottom: 59),
+                      child: Text(
+                        MyText().registerSubtitle,
+                        style: TextStyle(
+                            color: MyColor().white,
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
                     )),
                     Container(
                       width: 316.0,
                       height: 83,
-                      margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
+                      margin: EdgeInsets.only(bottom: 19, left: 49, right: 49),
                       child: TextFormField(
                         textCapitalization: TextCapitalization.sentences,
                         controller: usernameController,
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.all(20.0),
+                          contentPadding: new EdgeInsets.symmetric(
+                              vertical: 25.0, horizontal: 10.0),
                           labelText: MyText().labelUsername,
                           labelStyle: TextStyle(color: MyColor().white),
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(color: MyColor().white),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -164,13 +164,15 @@ class RegisterPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 280.0,
+                      width: 316.0,
                       height: 83,
-                      margin: EdgeInsets.only(top: 10.0),
+                      margin: EdgeInsets.only(left: 49, right: 49),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
                         controller: phoneController,
                         decoration: InputDecoration(
+                          contentPadding: new EdgeInsets.symmetric(
+                              vertical: 25.0, horizontal: 10.0),
                           prefix: Text(
                             "+966",
                             style: TextStyle(color: MyColor().white),
