@@ -19,12 +19,9 @@ class VerifyPinPage extends StatelessWidget {
   String smsCode;
   TextEditingController codeController = new TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
-
     Constant().responsive(context);
-
     signIn(String smsCode) {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: arguments.verId, smsCode: smsCode);
@@ -43,7 +40,7 @@ class VerifyPinPage extends StatelessWidget {
           if (user != null) {
             Navigator.of(context).pushNamed(Email,
                 arguments: RegisterArguments(
-                    username: arguments.username, phone: arguments.phone ));
+                    username: arguments.username, phone: arguments.phone));
           } else {
             signIn(codeController.text);
           }
@@ -59,23 +56,21 @@ class VerifyPinPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: MyColor().black,
       body: Builder(
-        builder: (context) => GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(new FocusNode());
-          },
-                  child: Center(
-              child: Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 60),
-                child: Text(
-                  MyText().verifyPageHeadline1,
-                  style: TextStyle(
-                    color: MyColor().white,
-                    fontSize: ScreenUtil.instance.setSp(20.0),
-                  ),
+
+        builder: (context) => Center(
+            child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 105, bottom: 35),
+              child: Text(
+                MyText().verifyPageHeadline,
+                style: TextStyle(
+                  color: MyColor().white,
+                  fontSize: ScreenUtil.instance.setSp(23.0),
                 ),
+                textAlign: TextAlign.center,
               ),
+
               Container(
                 child: Text(MyText().verifyPageHeadline2,
                     style: TextStyle(color: MyColor().white, fontSize: 20)),
