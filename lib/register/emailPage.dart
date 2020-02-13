@@ -24,6 +24,7 @@ class EmailPage extends StatelessWidget {
         backgroundColor: MyColor().black,
         centerTitle: true,
       ),
+      resizeToAvoidBottomInset: false,
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => GestureDetector(
@@ -91,26 +92,37 @@ class EmailPage extends StatelessWidget {
                                 ),
                               ),
                             ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(33.5)),
+                            borderSide: BorderSide(
+                              color: MyColor().error,
+>>>>>>>>> Temporary merge branch 2
+                            ),
                             style: TextStyle(color: MyColor().white),
                             validator: (email) => MyValidation()
                                 .validateEmail(email, _btnCounter),
                           ),
                         ),
-                      )),
-                  Container(
-                      width: 316.0,
-                      height: 67,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(33.5),
-                        ),
-                        onPressed: () => onPressed(context),
-                        child: Text(MyText().btnEmail,
-                            style: TextStyle(fontSize: 18)),
-                      )),
-                ],
+                        style: TextStyle(color: MyColor().white),
+                        validator: (email) =>
+                            MyValidation().validateEmail(email, _btnCounter),
+                      ),
+                    ),
+                  )),
+              Container(
+                width: 316.0,
+                height: 67,
+                child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(33.5),
+                    ),
+                    onPressed: () => onPressed(context),
+                    child: Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
+                )
               ),
-            ),
+            ],
           ),
         ),
       ),

@@ -48,8 +48,6 @@ class MyPinCodeTextField extends StatefulWidget {
 
   /// Color of the input field which is currently selected. Default is [Colors.blue]
   final Color selectedColor;
-  /// Color of the input field which is errored. Default is [Colors.red]
-  final Color errorColor;
 
   /// Colors of the input fields which don't have inputs. Default is [Colors.red]
   final Color inactiveColor;
@@ -115,7 +113,6 @@ class MyPinCodeTextField extends StatefulWidget {
     this.activeColor = Colors.green,
     this.selectedColor = Colors.blue,
     this.inactiveColor = Colors.red,
-    this.errorColor = Colors.red,
     this.disabledColor = Colors.grey,
     this.borderWidth = 2,
     this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
@@ -179,7 +176,6 @@ class _PinCodeTextFieldState extends State<MyPinCodeTextField> {
     assert(widget.fieldWidth != null && widget.fieldWidth > 0);
     assert(widget.activeColor != null);
     assert(widget.inactiveColor != null);
-    assert(widget.errorColor != null);
     assert(widget.backgroundColor != null &&
         widget.backgroundColor != Colors.transparent);
     assert(widget.borderWidth != null && widget.borderWidth >= 0);
@@ -251,7 +247,7 @@ class _PinCodeTextFieldState extends State<MyPinCodeTextField> {
       return widget.selectedColor;
     } else if (_selectedIndex > index) {
       return widget.activeColor;
-    } 
+    }
     return widget.inactiveColor;
   }
 
@@ -365,15 +361,15 @@ class _PinCodeTextFieldState extends State<MyPinCodeTextField> {
           ),
         ),
         GestureDetector(
-           onTap: _onFocus,
-          // onLongPress: widget.enabled
-          //     ? () async {
-          //         var data = await Clipboard.getData("text/plain");
-          //         if (data.text.isNotEmpty) {
-          //           _showPasteDialog(data.text);
-          //         }
-          //       }
-          //     : null,
+          onTap: _onFocus,
+          onLongPress: widget.enabled
+              ? () async {
+                  var data = await Clipboard.getData("text/plain");
+                  if (data.text.isNotEmpty) {
+                    _showPasteDialog(data.text);
+                  }
+                }
+              : null,
           child: Container(
             color: widget.backgroundColor,
             constraints: const BoxConstraints(minHeight: 30),

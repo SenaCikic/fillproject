@@ -17,8 +17,6 @@ class VerifyPinPage extends StatelessWidget {
   final RegisterArguments arguments;
   VerifyPinPage({this.arguments});
   String smsCode;
-  bool fieldColor = false;
-  
   TextEditingController codeController = new TextEditingController();
 
   @override
@@ -37,26 +35,20 @@ class VerifyPinPage extends StatelessWidget {
     }
 
     onPressed(BuildContext context) {
-      smsCode = codeController.text;
-      if (smsCode.length < 6) {
-        fieldColor = true;
-        print('sasasas');
-      } else {
-        if (_btnCounter == 0) {
-          FirebaseAuth.instance.currentUser().then((user) {
-            if (user != null) {
-              Navigator.of(context).pushNamed(Email,
-                  arguments: RegisterArguments(
-                      username: arguments.username, phone: arguments.phone));
-            } else {
-              signIn(codeController.text);
-            }
-          });
-          _btnCounter = 1;
-          Timer(Duration(seconds: 2), () {
-            _btnCounter = 0;
-          });
-        }
+      if (_btnCounter == 0) {
+        FirebaseAuth.instance.currentUser().then((user) {
+          if (user != null) {
+            Navigator.of(context).pushNamed(Email,
+                arguments: RegisterArguments(
+                    username: arguments.username, phone: arguments.phone));
+          } else {
+            signIn(codeController.text);
+          }
+        });
+        _btnCounter = 1;
+        Timer(Duration(seconds: 2), () {
+          _btnCounter = 0;
+        });
       }
     }
 
@@ -96,35 +88,27 @@ class VerifyPinPage extends StatelessWidget {
                       fontWeight: FontWeight.w300)),
             ),
             Container(
+              margin: EdgeInsets.only(bottom: 40),
               child: Container(
                 height: 83,
                 width: ScreenUtil.instance.setWidth(350.0),
                 child: MyPinCodeTextField(
-                    length: 6,
-                    animationType: AnimationType.fade,
-                    shape: PinCodeFieldShape.circle,
-                    animationDuration: Duration(milliseconds: 300),
-                    fieldHeight: 60,
-                    fieldWidth: 50,
-                    textStyle: TextStyle(color: MyColor().white, fontSize: 28),
-                    activeColor: fieldColor   ? MyColor().error : MyColor().white,
-                    inactiveColor: fieldColor ? MyColor().error : MyColor().white,
-                    selectedColor: fieldColor ? MyColor().error : MyColor().white,
-                    backgroundColor: MyColor().black,
-                    borderWidth: 1.0,
-                    controller: codeController,
-                    onChanged: (value) {},
-                  ),
+                  length: 6,
+                  animationType: AnimationType.fade,
+                  shape: PinCodeFieldShape.circle,
+                  animationDuration: Duration(milliseconds: 300),
+                  fieldHeight: 60,
+                  fieldWidth: 50,
+                  textStyle: TextStyle(color: MyColor().white, fontSize: 28),
+                  activeColor: MyColor().white,
+                  inactiveColor: MyColor().white,
+                  selectedColor: MyColor().white,
+                  backgroundColor: MyColor().black,
+                  borderWidth: 1.0,
+                  controller: codeController,
+                  onChanged: (value) {},
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 40),
-              child: fieldColor
-                  ? Text(
-                      "SMSCode can't be less then 6 characters",
-                      style: TextStyle(color: MyColor().error),
-                    )
-                  : Text(''),
             ),
             Container(
               width: ScreenUtil.instance.setWidth(316.0),
