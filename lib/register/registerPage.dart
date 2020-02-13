@@ -123,7 +123,7 @@ class RegisterPage extends StatelessWidget {
                     )),
                     Container(
                       width: 316.0,
-                      height: 83,
+                      height: 92,
                       margin: EdgeInsets.only(bottom: 19, left: 49, right: 49),
                       child: TextFormField(
                         textCapitalization: TextCapitalization.sentences,
@@ -165,7 +165,7 @@ class RegisterPage extends StatelessWidget {
                     ),
                     Container(
                       width: 316.0,
-                      height: 83,
+                      height: 92,
                       margin: EdgeInsets.only(left: 49, right: 49),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -191,14 +191,14 @@ class RegisterPage extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(50.0)),
                             borderSide: BorderSide(
                               color: MyColor().error,
                             ),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(50.0)),
                             borderSide: BorderSide(
                               color: MyColor().error,
                             ),
