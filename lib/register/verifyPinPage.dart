@@ -121,7 +121,7 @@ class VerifyPinPage extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 40),
               child: fieldColor
                   ? Text(
-                      "SMSCode can't be less then 6 characters",
+                      MyText().smsLengthSnack,
                       style: TextStyle(color: MyColor().error),
                     )
                   : Text(''),

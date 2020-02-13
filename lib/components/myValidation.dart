@@ -20,7 +20,10 @@ class MyValidation {
   String validateUsername(String username) {
     if (username == '') {
       return MyText().regUserSnack;
-    } 
+     }
+    //  else if(regexSpace.hasMatch(username) == true) {
+    //   return 'Space';
+    // }
     return null;
   }
 
