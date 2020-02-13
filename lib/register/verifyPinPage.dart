@@ -16,8 +16,9 @@ int _btnCounter = 0;
 class VerifyPinPage extends StatelessWidget {
   final RegisterArguments arguments;
   bool fieldColor = false;
+  bool codeError = false;
   VerifyPinPage({this.arguments});
-  String smsCode;
+  String smsCode, wrongCodeError;
   TextEditingController codeController = new TextEditingController();
 
   @override
@@ -32,13 +33,18 @@ class VerifyPinPage extends StatelessWidget {
                 username: arguments.username, phone: arguments.phone));
       }).catchError((e) {
         print('Auth Credential Error : $e');
+        wrongCodeError = e.toString();
+        print(wrongCodeError);
       });
     }
 
     onPressed(BuildContext context) {
-     // if (smsCode.length < 6) {
-    //    fieldColor = true;
-    //  } else {
+      smsCode = codeController.text;
+     if (smsCode.length < 6) {
+       fieldColor = true;
+    } else if(wrongCodeError == MyText().wrongCodeError) {
+        codeError = true;
+    } else {
         if (_btnCounter == 0) {
           FirebaseAuth.instance.currentUser().then((user) {
             if (user != null) {
@@ -54,7 +60,7 @@ class VerifyPinPage extends StatelessWidget {
             _btnCounter = 0;
           });
         }
-     // }
+     }
     }
 
     return Scaffold(
@@ -104,7 +110,7 @@ class VerifyPinPage extends StatelessWidget {
                   fieldHeight: 60,
                   fieldWidth: 50,
                   textStyle: TextStyle(color: MyColor().white, fontSize: 28),
-                  activeColor: fieldColor ? MyColor().error : MyColor().white,
+                  activeColor: fieldColor   ? MyColor().error : MyColor().white,
                   inactiveColor: fieldColor ? MyColor().error : MyColor().white,
                   selectedColor: fieldColor ? MyColor().error : MyColor().white,
                   backgroundColor: MyColor().black,
@@ -120,9 +126,11 @@ class VerifyPinPage extends StatelessWidget {
                       MyText().smsLengthSnack,
                       style: TextStyle(color: MyColor().error),
                     )
-                  : Text(''),
+                  : codeError ? Text(MyText().wrongCode, style: TextStyle(color: MyColor().error) ) : 
+                  Text(''),
             ),
             Container(
+              margin: EdgeInsets.only(top: 20.0),
               width: ScreenUtil.instance.setWidth(316.0),
               height: ScreenUtil.instance.setHeight(67.0),
               child: RaisedButton(
