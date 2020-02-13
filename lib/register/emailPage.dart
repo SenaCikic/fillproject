@@ -27,55 +27,70 @@ class EmailPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: MyColor().black,
       body: Builder(
-        builder: (context) => Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 28, bottom: 35),
-                child: Text(MyText().emailHeadline,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: MyColor().white,
-                    )),
-              ),
-              Text(MyText().fiveSar,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: MyColor().white,
-                  )),
-              Container(
-                  margin: EdgeInsets.only(bottom: 20, top: 20),
-                  child: Container(
-                    width: 316.0,
-                    height: 92,
-                    margin: EdgeInsets.only(top: 20.0),
-                    child: Form(
-                      key: _formKey,
-                      child: TextFormField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 40.0),
-                          labelText: MyText().labelEmail,
-                          labelStyle: TextStyle(color: MyColor().white),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(33.5)),
-                            borderSide: BorderSide(color: MyColor().white),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(33.5)),
-                            borderSide: BorderSide(color: MyColor().white),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(33.5)),
-                            borderSide: BorderSide(
-                              color: MyColor().error,
+        builder: (context) => GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 28, bottom: 35),
+                    child: Text(MyText().emailHeadline,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 23,
+                          color: MyColor().white,
+                        )),
+                  ),
+                  Text(MyText().fiveSar,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 40,
+                        color: MyColor().white,
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(bottom: 20, top: 20),
+                      child: Container(
+                        width: 316.0,
+                        height: 92,
+                        margin: EdgeInsets.only(top: 20.0),
+                        child: Form(
+                          key: _formKey,
+                          child: TextFormField(
+                            controller: emailController,
+                            decoration: InputDecoration(
+                              contentPadding: new EdgeInsets.symmetric(
+                                  vertical: 25.0, horizontal: 10.0),
+                              labelText: MyText().labelEmail,
+                              labelStyle: TextStyle(color: MyColor().white),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(33.5)),
+                                borderSide: BorderSide(color: MyColor().white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(33.5)),
+                                borderSide: BorderSide(color: MyColor().white),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(33.5)),
+                                borderSide: BorderSide(
+                                  color: MyColor().error,
+                                ),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(33.5)),
+                                borderSide: BorderSide(
+                                  color: MyColor().error,
+                                ),
+                              ),
                             ),
                           ),
                           errorBorder: OutlineInputBorder(
@@ -83,7 +98,11 @@ class EmailPage extends StatelessWidget {
                                 BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(
                               color: MyColor().error,
+>>>>>>>>> Temporary merge branch 2
                             ),
+                            style: TextStyle(color: MyColor().white),
+                            validator: (email) => MyValidation()
+                                .validateEmail(email, _btnCounter),
                           ),
                         ),
                         style: TextStyle(color: MyColor().white),
