@@ -55,7 +55,7 @@ class EmailPage extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 20, top: 20),
                       child: Container(
                         width: 316.0,
-                        height: 83,
+                        height: 92,
                         margin: EdgeInsets.only(top: 20.0),
                         child: Form(
                           key: _formKey,

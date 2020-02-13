@@ -57,7 +57,7 @@ class PasswordPage extends StatelessWidget {
                         color: MyColor().white,
                       )),
                   Container(
-                      height: 83,
+                      height: 94,
                       width: 316,
                       margin: EdgeInsets.only(bottom: 19, top: 28),
                       child: Form(
