@@ -7,7 +7,7 @@ import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 String password;
 int _btnCounter = 0;
@@ -18,11 +18,6 @@ class PasswordPage extends StatelessWidget {
   final TextEditingController passwordController = new TextEditingController();
 
   PasswordPage({this.arguments});
-
-  void dispose() {
-    passwordController.dispose();
-    dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +59,7 @@ class PasswordPage extends StatelessWidget {
                         color: MyColor().white,
                       )),
                   Container(
-                      height: 94,
+                      height: 92,
                       width: 316,
                       margin: EdgeInsets.only(bottom: 19, top: 28),
                       child: Form(
@@ -73,25 +68,25 @@ class PasswordPage extends StatelessWidget {
                           controller: passwordController,
                           decoration: InputDecoration(
                             contentPadding: new EdgeInsets.symmetric(
-                                vertical: 25.0, horizontal: 10.0),
+                                vertical: 25.0, horizontal: 40.0),
                             labelText: MyText().labelPassword,
                             labelStyle: TextStyle(color: MyColor().white),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(color: MyColor().white),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(color: MyColor().white),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(
                                 color: MyColor().error,
                               ),
                             ),
                             errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(
                                 color: MyColor().error,
                               ),
@@ -120,7 +115,7 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: 12),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                 launch('https://google.com');
+                                //  launch('https://google.com');
                               }),
                         new TextSpan(
                           text: MyText().passwordSubtitle2,
@@ -134,7 +129,7 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: 12),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                 launch('https://google.com');
+                                //  launch('https://google.com');
                               })
                       ]),
                     ),

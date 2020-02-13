@@ -8,7 +8,7 @@ class FirebaseCrud {
   /// upis u firestore collection
   createUser(String email, String phone, String username, String userId,
       String password) async {
-    await db.collection('users').add({
+    await db.collection('Users').add({
       'email': email,
       'username': username,
       'password': password,

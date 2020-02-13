@@ -19,7 +19,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    LoginStorage().autoLogIn(context, name, isLoggedIn); //auto login on app kill and close
+    // LoginStorage().autoLogIn(context, name, isLoggedIn); //auto login on app kill and close
   }
 
   @override
@@ -49,9 +49,8 @@ class _SignUpState extends State<SignUp> {
                 Container(
                   width:  ScreenUtil.instance.setWidth(316.0),
                   height:  ScreenUtil.instance.setHeight(67.0),
-                  margin: EdgeInsets.only(top: 19.0, bottom: 15, left: 49, right: 49),
+                  margin: EdgeInsets.only(top: 27.0, bottom: 15, left: 49, right: 49),
                   child: RaisedButton(
-                    
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(33.5),
                       ),

@@ -5,7 +5,7 @@ class FirebaseCheck {
   ///
   Future<bool> doesNameAlreadyExist(String username) async {
     final QuerySnapshot result = await Firestore.instance
-        .collection('users')
+        .collection('Users')
         .where('username', isEqualTo: username)
         .limit(1)
         .getDocuments();
@@ -17,8 +17,19 @@ class FirebaseCheck {
   ///
   Future<bool> doesPassAlreadyExist(String password) async {
     final QuerySnapshot result = await Firestore.instance
-        .collection('users')
+        .collection('Users')
         .where('password', isEqualTo: password)
+        .limit(1)
+        .getDocuments();
+    final List<DocumentSnapshot> documents = result.documents;
+    return documents.length == 1;
+  }
+  /// provjera da li password postoji u bazi
+  ///
+  Future<bool> doesNumberAlreadyExist(String phone) async {
+    final QuerySnapshot result = await Firestore.instance
+        .collection('Users')
+        .where('phone', isEqualTo: phone)
         .limit(1)
         .getDocuments();
     final List<DocumentSnapshot> documents = result.documents;
