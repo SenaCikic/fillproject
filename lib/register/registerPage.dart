@@ -20,15 +20,8 @@ class RegisterPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool isLoggedIn = false;
-<<<<<<< HEAD
   
-=======
->>>>>>> 36cc0e8075e4c0798bba08880eeaa7432054c4e5
-
-
-  RegExp regexUsername = new RegExp(r' /^\S*$/'); 
   TextEditingController phoneController = new TextEditingController();
-
   TextEditingController usernameController = new TextEditingController();
 
   @override
