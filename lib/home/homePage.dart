@@ -3,7 +3,9 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
+import 'package:fillproject/utils/screenUtils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -22,6 +24,8 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+
+        Constant().responsive(context);
     return Scaffold(
       backgroundColor: MyColor().black,
       body: SingleChildScrollView(
@@ -33,7 +37,7 @@ class _SignUpState extends State<SignUp> {
                 Center(
                     child: Text(
                   MyText().headline,
-                  style: TextStyle(fontSize: 70, color: MyColor().white, fontFamily: 'RobotoMono'),
+                  style: TextStyle(fontSize:ScreenUtil.instance.setSp(70.0), color: MyColor().white, fontFamily: 'RobotoMono'),
                 )),
                 Padding(
                     padding: EdgeInsets.only(top: 120),
@@ -43,8 +47,8 @@ class _SignUpState extends State<SignUp> {
                       textAlign: TextAlign.center,
                     )),
                 Container(
-                  width: 316.0,
-                  height: 67,
+                  width:  ScreenUtil.instance.setWidth(316.0),
+                  height:  ScreenUtil.instance.setHeight(67.0),
                   margin: EdgeInsets.only(top: 19.0, bottom: 15, left: 49, right: 49),
                   child: RaisedButton(
                     
@@ -57,8 +61,8 @@ class _SignUpState extends State<SignUp> {
                       child: Text(MyText().btnSU)),
                 ),
                 Container(
-                  width: 316.0,
-                  height: 67,
+                  width:  ScreenUtil.instance.setWidth(316.0),
+                  height:  ScreenUtil.instance.setHeight(67.0),
                   margin: EdgeInsets.only(bottom: 33, left: 49, right: 49),
                   child: RaisedButton(
                       shape: RoundedRectangleBorder(
@@ -70,7 +74,7 @@ class _SignUpState extends State<SignUp> {
                       child: Text(MyText().btnSI)),
                 ),
                 Container(
-                    width: 255.0,
+                  width:  ScreenUtil.instance.setWidth(255.0),
                     child: Center(
                         child: FlatButton(
                             onPressed: () => Navigator.of(context).pushNamed(
