@@ -9,9 +9,11 @@ import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/register/verifyPinPage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
+import 'package:fillproject/utils/screenUtils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -25,6 +27,10 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+        Constant().responsive(context);
+
+
     Widget smsCodeDialog(BuildContext context) {
       return VerifyPinPage(
         arguments: RegisterArguments(
@@ -99,7 +105,7 @@ class RegisterPage extends StatelessWidget {
                         child: Text(
                       MyText().registerHeadline,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 23,
                         color: MyColor().white,
                       ),
                       textAlign: TextAlign.center,
@@ -117,7 +123,7 @@ class RegisterPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     )),
                     Container(
-                      width: 280.0,
+                      width: 316.0,
                       height: 83,
                       margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
                       child: TextFormField(

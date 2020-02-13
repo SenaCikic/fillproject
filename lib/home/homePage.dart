@@ -3,7 +3,9 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
+import 'package:fillproject/utils/screenUtils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -22,6 +24,8 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+
+        Constant().responsive(context);
     return Scaffold(
       backgroundColor: MyColor().black,
       body: SingleChildScrollView(
@@ -33,22 +37,23 @@ class _SignUpState extends State<SignUp> {
                 Center(
                     child: Text(
                   MyText().headline,
-                  style: TextStyle(fontSize: 70, color: MyColor().white, fontFamily: 'RobotoMono'),
+                  style: TextStyle(fontSize:ScreenUtil.instance.setSp(70.0), color: MyColor().white, fontFamily: 'RobotoMono'),
                 )),
                 Padding(
-                    padding: EdgeInsets.only(top: 140 ,bottom: 31),
+                    padding: EdgeInsets.only(top: 120),
                     child: Text(
                       MyText().subtitle,
-                      style: TextStyle(fontSize: 23, color: MyColor().white),
+                      style: TextStyle(fontSize: ScreenUtil.instance.setSp(23.0), color: MyColor().white),
                       textAlign: TextAlign.center,
                     )),
                 Container(
-                  width: 320.0,
-                  height: 60,
-                  margin: EdgeInsets.only(top: 30.0, bottom: 15),
+                  width:  ScreenUtil.instance.setWidth(316.0),
+                  height:  ScreenUtil.instance.setHeight(67.0),
+                  margin: EdgeInsets.only(top: 19.0, bottom: 15, left: 49, right: 49),
                   child: RaisedButton(
+                    
                       shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
+                        borderRadius: new BorderRadius.circular(33.5),
                       ),
                       onPressed: () {
                         Navigator.of(context).pushNamed(Register);
@@ -56,11 +61,12 @@ class _SignUpState extends State<SignUp> {
                       child: Text(MyText().btnSU)),
                 ),
                 Container(
-                  width: 320.0,
-                  height: 60,
+                  width:  ScreenUtil.instance.setWidth(316.0),
+                  height:  ScreenUtil.instance.setHeight(67.0),
+                  margin: EdgeInsets.only(bottom: 33, left: 49, right: 49),
                   child: RaisedButton(
                       shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0),
+                        borderRadius: new BorderRadius.circular(33.5),
                       ),
                       onPressed: () {
                         Navigator.of(context).pushNamed(Login); // go to Login Page
@@ -68,8 +74,7 @@ class _SignUpState extends State<SignUp> {
                       child: Text(MyText().btnSI)),
                 ),
                 Container(
-                    width: 255.0,
-                    margin: EdgeInsets.only(top: 20.0),
+                  width:  ScreenUtil.instance.setWidth(255.0),
                     child: Center(
                         child: FlatButton(
                             onPressed: () => Navigator.of(context).pushNamed(
@@ -82,7 +87,7 @@ class _SignUpState extends State<SignUp> {
                             child: Text(
                               MyText().skipThisStep,
                               style: TextStyle(
-                                  color: MyColor().white, fontSize: 18.0),
+                                  color: MyColor().white, fontSize: 23.0),
                             )))),
               ],
             ),

@@ -23,10 +23,8 @@ class MyText {
   final String btnLogin = 'Login';
   final String labelUsername = 'Username';
   final String loginHeadline = 'Enter username & password to login';
-  final String verifyPageHeadline1 = 'Verify your';
-  final String verifyPageHeadline2 = 'number';
-  final String verifyMoney1 = '2';
-  final String verifyMoney2 = 'SAR';
+  final String verifyPageHeadline = 'Verify your \nnumber';
+  final String verifyMoney = '2 \nSAR';
   final String verifyEnterPin = 'Enter the pin';
   final String verifyRecieve = "didn't recieve the PIN";
   final String skipThisStep = 'skip';
