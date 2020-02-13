@@ -149,6 +149,19 @@ class RegisterPage extends StatelessWidget {
                         style: TextStyle(color: MyColor().white),
                         validator: (username) =>
                             MyValidation().validateUsername(username),
+                            onFieldSubmitted: (value) async {
+                          try {
+                            final result =
+                                await InternetAddress.lookup('google.com');
+                            if (result.isNotEmpty &&
+                                result[0].rawAddress.isNotEmpty) {
+                              onFieldSubmitted(context);
+                            }
+                          } on SocketException catch (_) {
+                            MySnackbar().showSnackbar(MyText().checkConnection,
+                                context, MyText().snackUndo);
+                          }
+                        },
                       ),
                     ),
                     Container(
