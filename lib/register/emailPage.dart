@@ -51,7 +51,7 @@ class EmailPage extends StatelessWidget {
                   margin: EdgeInsets.only(bottom: 20, top: 20),
                   child: Container(
                     width: 316.0,
-                    height: 83,
+                    height: 92,
                     margin: EdgeInsets.only(top: 20.0),
                     child: Form(
                       key: _formKey,
@@ -59,7 +59,6 @@ class EmailPage extends StatelessWidget {
                         controller: emailController,
                         decoration: InputDecoration(
                           contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
-
                           labelText: MyText().labelEmail,
                           labelStyle: TextStyle(color: MyColor().white),
                           enabledBorder: OutlineInputBorder(
@@ -74,14 +73,14 @@ class EmailPage extends StatelessWidget {
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(
                               color: MyColor().error,
                             ),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(30.0)),
+                                BorderRadius.all(Radius.circular(33.5)),
                             borderSide: BorderSide(
                               color: MyColor().error,
                             ),
