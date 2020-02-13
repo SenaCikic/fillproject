@@ -8,9 +8,11 @@ import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/register/verifyPinPage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
+import 'package:fillproject/utils/screenUtils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -23,6 +25,10 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+        Constant().responsive(context);
+
+
     Widget smsCodeDialog(BuildContext context) {
       return VerifyPinPage(
         arguments: RegisterArguments(
@@ -100,7 +106,7 @@ class RegisterPage extends StatelessWidget {
                     child: Text(
                       MyText().registerHeadline,
                       style: TextStyle(
-                        fontSize: 23,
+                        fontSize: ScreenUtil.instance.setSp(23.0),
                         color: MyColor().white,
                       ),
                       textAlign: TextAlign.center,
@@ -113,14 +119,14 @@ class RegisterPage extends StatelessWidget {
                       MyText().registerSubtitle,
                       style: TextStyle(
                         color: MyColor().white,
-                        fontSize: 40.0,
+                        fontSize: ScreenUtil.instance.setSp(40.0),
                       ),
                       textAlign: TextAlign.center,
                     ),
                   )),
                   Container(
-                    width: 316.0,
-                    height: 83,
+                    width:ScreenUtil.instance.setWidth(316.0),
+                    height: ScreenUtil.instance.setHeight(83.0),
                     margin: EdgeInsets.only(bottom: 19, left: 49, right: 49),
                     child: MyTextFormField(
                         controller: usernameController,
@@ -128,8 +134,8 @@ class RegisterPage extends StatelessWidget {
                         obscureText: false),
                   ),
                   Container(
-                    width: 316.0,
-                    height: 83,
+                    width:ScreenUtil.instance.setWidth(316.0),
+                    height: ScreenUtil.instance.setHeight(83.0),
                     margin: EdgeInsets.only(left: 49, right: 49),
                     child: TextFormField(
                       keyboardType: TextInputType.number,

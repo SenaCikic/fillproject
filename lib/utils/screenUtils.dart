@@ -7,7 +7,23 @@ double defaultScreenHeight = 810.0;
 double screenWidth = defaultScreenWidth;
 double screenHeight = defaultScreenHeight;
 
+
+
+
+
 class Constant {
+
+
+void responsive(BuildContext context){
+double defaultScreenWidth = 400.0;
+double defaultScreenHeight = 810.0;
+    ScreenUtil.instance = ScreenUtil(
+      width: defaultScreenWidth,
+      height: defaultScreenHeight,
+      allowFontScaling: true,
+    )..init(context);
+
+}
   ///Padding & Margin Constants
   static double sizeExtraSmall = 5.0;
   static double sizeDefault = 8.0;
@@ -140,6 +156,8 @@ class FontSize {
   static double s29 = 29.0;
   static double s30 = 30.0;
   static double s36 = 36.0;
+  static double s40 = 40.0;
+  static double s70 = 70.0;
 
   static setDefaultFontSize() {
     s7 = 7.0;
@@ -167,6 +185,8 @@ class FontSize {
     s29 = 29.0;
     s30 = 30.0;
     s36 = 36.0;
+    s40 = 40.0;
+    s70 = 70.0;
   }
 
   static setScreenAwareFontSize() {
@@ -195,5 +215,7 @@ class FontSize {
     s29 = ScreenUtil.instance.setSp(29.0);
     s30 = ScreenUtil.instance.setSp(30.0);
     s36 = ScreenUtil.instance.setSp(36.0);
+    s40 = ScreenUtil.instance.setSp(40.0);
+    s70 = ScreenUtil.instance.setSp(70.0);
   }
 }
