@@ -37,6 +37,7 @@ class MyText {
   final String validateSpaceUsername = 'Username must not containe space';
   final String validateSpacePassword = 'Password must not containe space';
   final String numberExists = 'Number already exists';
+  final String usernameExist = 'Username already exists';
   final String wrongCodeError = 'PlatformException(ERROR_INVALID_VERIFICATION_CODE, The sms verification code used to create the phone auth credential is invalid. Please resend the verification code sms and be sure use the verification code provided by the user., null)';
   final String wrongCode = 'You entered invalid code';
 

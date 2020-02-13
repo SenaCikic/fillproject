@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
@@ -15,13 +17,20 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
+  @override
+  _RegisterPageState createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   String phoneNo, smsCode, verificationId, username, name;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool isLoggedIn = false;
+
   bool brPostoji = false;
+  bool usernamePostoji = false;
 
   TextEditingController phoneController = new TextEditingController();
 
@@ -29,6 +38,8 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+
     Constant().responsive(context);
 
     Future<void> verifyPhone() async {
@@ -63,10 +74,6 @@ class RegisterPage extends StatelessWidget {
     }
 
     onFieldSubmitted(BuildContext context) {
-      phoneNo = "+" +
-          phoneController
-              .text; //must change !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      username = usernameController.text;
       final _formState = _formKey.currentState;
       if (_formState.validate()) {
         LoginStorage().loginUser(usernameController, name, isLoggedIn);
@@ -164,7 +171,12 @@ class RegisterPage extends StatelessWidget {
                           ),
                           style: TextStyle(color: MyColor().white),
                           validator: (username) =>
-                              MyValidation().validateUsername(username),
+                              MyValidation().validateUsername(username, usernamePostoji),
+                                onChanged: (input) {
+                            setState(() {
+                              username = input;
+                            });
+                            }
                         ),
                       ),
                       Container(
@@ -209,7 +221,10 @@ class RegisterPage extends StatelessWidget {
                             ),
                           ),
                           onChanged: (input) {
-                            phoneNo = input;
+                            setState(() {
+                              phoneNo = input;
+                            });
+                            
                           },
                           onFieldSubmitted: (value) async {
                             try {
@@ -231,43 +246,48 @@ class RegisterPage extends StatelessWidget {
                               MyValidation().validatePhone(phone, brPostoji),
                         ),
                       ),
-
-                      /// PROVJERA
-
+                      /// PROVJERA DA LI POSTOJI USERNAME ILI NUMBER
                       Column(
                         children: <Widget>[
                           FutureBuilder(
                             future: FirebaseCheck()
-                                .doesNumberAlreadyExist(phoneController.text),
+                                .doesNumberAlreadyExist(phoneNo),
                             builder: (context, AsyncSnapshot<bool> result) {
                               if (!result.hasData) {
-                                return Container(
-                                  width: 0,
-                                  height: 0,
-                                );
+                                return EmptyContainer();
                               }
-                              // future still needs to be finished (loading)
                               if (result.data) {
-                                print('Postoji');
+                                print('postoji');
                                 brPostoji = true;
-                                Timer(Duration(seconds: 1), () {
-                                  brPostoji = false;
-                                });
-                                return Container(
-                                  width: 0,
-                                  height: 0,
-                                );
-                              } // result.data is the returned bool from doesNameAlreadyExists
+                                return EmptyContainer();
+                              } 
                               else {
-                                print('Ne postoji');
+                                 print('NEpostoji');
                                 brPostoji = false;
-                                Timer(Duration(seconds: 1), () {
-                                  brPostoji = true;
-                                });
-                                return Container(
-                                  width: 0,
-                                  height: 0,
-                                );
+                                return EmptyContainer();
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          FutureBuilder(
+                            future: FirebaseCheck()
+                                .doesNameAlreadyExist(username),
+                            builder: (context, AsyncSnapshot<bool> result) {
+                              if (!result.hasData) {
+                                return EmptyContainer();
+                              }
+                              if (result.data) {
+                                print('postoji');
+                                 usernamePostoji = true;
+                                return EmptyContainer();
+                              } 
+                              else {
+                                 print('NEpostoji');
+                              usernamePostoji = false;
+                                return EmptyContainer();
                               }
                             },
                           ),
