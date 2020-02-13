@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
-import 'package:fillproject/components/myValidation.dart';
 import 'package:flutter/material.dart';
 
 int _btnCounter = 0;
