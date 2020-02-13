@@ -17,11 +17,8 @@ class VerifyPinPage extends StatelessWidget {
   String smsCode;
   TextEditingController codeController = new TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
-
-
     signIn(String smsCode) {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: arguments.verId, smsCode: smsCode);
@@ -40,7 +37,7 @@ class VerifyPinPage extends StatelessWidget {
           if (user != null) {
             Navigator.of(context).pushNamed(Email,
                 arguments: RegisterArguments(
-                    username: arguments.username, phone: arguments.phone ));
+                    username: arguments.username, phone: arguments.phone));
           } else {
             signIn(codeController.text);
           }
@@ -53,52 +50,46 @@ class VerifyPinPage extends StatelessWidget {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => Center(
             child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 60),
+              margin: EdgeInsets.only(top: 105, bottom: 35),
               child: Text(
-                MyText().verifyPageHeadline1,
+                MyText().verifyPageHeadline,
                 style: TextStyle(
                   color: MyColor().white,
-                  fontSize: 20,
+                  fontSize: 23,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
             Container(
-              child: Text(MyText().verifyPageHeadline2,
-                  style: TextStyle(color: MyColor().white, fontSize: 20)),
+              child: Text(
+                MyText().verifyMoney,
+                style: TextStyle(
+                    color: MyColor().white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 60),
-              child: Text(MyText().verifyMoney1,
-                  style: TextStyle(
-                      color: MyColor().white,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold)),
-            ),
-            Container(
-              child: Text(MyText().verifyMoney2,
-                  style: TextStyle(
-                      color: MyColor().white,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold)),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 40),
+              margin: EdgeInsets.only(top: 23),
               child: Text(MyText().verifyEnterPin,
                   style: TextStyle(
                       color: MyColor().white,
-                      fontSize: 17,
+                      fontSize: 18,
                       fontWeight: FontWeight.w300)),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 20),
+              margin: EdgeInsets.only(bottom: 45),
               child: Container(
-                width: 310.0,
+                width: 316.0,
+                height: 83,
                 child: MyPinCodeTextField(
                   length: 6,
                   animationType: AnimationType.fade,
@@ -106,7 +97,7 @@ class VerifyPinPage extends StatelessWidget {
                   animationDuration: Duration(milliseconds: 300),
                   fieldHeight: 60,
                   fieldWidth: 50,
-                  textStyle: TextStyle(color: MyColor().white, fontSize: 28),
+                  textStyle: TextStyle(color: MyColor().white, fontSize: 25),
                   activeColor: MyColor().white,
                   inactiveColor: MyColor().white,
                   selectedColor: MyColor().white,
@@ -118,30 +109,31 @@ class VerifyPinPage extends StatelessWidget {
               ),
             ),
             Container(
-             width: 316.0,
+              width: 316.0,
               height: 67,
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(33.5),
                 ),
                 onPressed: () => onPressed(context),
-                child: Text(MyText().btnVerify, style: TextStyle(fontSize: 20)),
+                child: Text(MyText().btnVerify, style: TextStyle(fontSize: 18)),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20.0),
-              child: RichText(
-                  text: new TextSpan(children: [new TextSpan(
-                        text: MyText().verifyRecieve,
-                        style: TextStyle(
-                      color: MyColor().white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w300),
-                        recognizer: new TapGestureRecognizer()
-                          ..onTap = () {
-                            Navigator.of(context).pushNamed(Register);
-                          })]))
-            ),
+                margin: EdgeInsets.only(top: 17.0),
+                child: RichText(
+                    text: new TextSpan(children: [
+                  new TextSpan(
+                      text: MyText().verifyRecieve,
+                      style: TextStyle(
+                          color: MyColor().white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300),
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.of(context).pushNamed(Register);
+                        })
+                ]))),
           ],
         )),
       ),
