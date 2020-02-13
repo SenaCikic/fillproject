@@ -57,7 +57,7 @@ class PasswordPage extends StatelessWidget {
                         color: MyColor().white,
                       )),
                   Container(
-                      height: 94,
+                      height: 92,
                       width: 316,
                       margin: EdgeInsets.only(bottom: 19, top: 28),
                       child: Form(
@@ -66,25 +66,25 @@ class PasswordPage extends StatelessWidget {
                           controller: passwordController,
                           decoration: InputDecoration(
                             contentPadding: new EdgeInsets.symmetric(
-                                vertical: 25.0, horizontal: 10.0),
+                                vertical: 25.0, horizontal: 40.0),
                             labelText: MyText().labelPassword,
                             labelStyle: TextStyle(color: MyColor().white),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(color: MyColor().white),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(color: MyColor().white),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(
                                 color: MyColor().error,
                               ),
                             ),
                             errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(
                                 color: MyColor().error,
                               ),
