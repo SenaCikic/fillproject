@@ -58,7 +58,7 @@ class EmailPage extends StatelessWidget {
                       child: TextFormField(
                         controller: emailController,
                         decoration: InputDecoration(
-                          contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+                          contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 40.0),
                           labelText: MyText().labelEmail,
                           labelStyle: TextStyle(color: MyColor().white),
                           enabledBorder: OutlineInputBorder(

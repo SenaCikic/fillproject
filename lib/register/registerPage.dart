@@ -87,16 +87,16 @@ class RegisterPage extends StatelessWidget {
                   child: Column(children: <Widget>[
                     Center(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 28),
-                          child: Text(
-                      MyText().registerHeadline,
-                      style: TextStyle(
+                      padding: const EdgeInsets.only(top: 28),
+                      child: Text(
+                        MyText().registerHeadline,
+                        style: TextStyle(
                           fontSize: 23,
                           color: MyColor().white,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                        )),
+                    )),
                     Center(
                         child: Padding(
                       padding: EdgeInsets.only(top: 61.0, bottom: 59),
@@ -104,9 +104,9 @@ class RegisterPage extends StatelessWidget {
                         MyText().registerSubtitle,
                         style: TextStyle(
                             color: MyColor().white,
-                            fontSize: 40.0,
-                            fontWeight: FontWeight.bold),
+                            fontSize: 40.0),
                         textAlign: TextAlign.center,
+
                       ),
                     )),
                     Container(
@@ -117,10 +117,9 @@ class RegisterPage extends StatelessWidget {
                         textCapitalization: TextCapitalization.sentences,
                         controller: usernameController,
                         decoration: InputDecoration(
-                          contentPadding: new EdgeInsets.symmetric(
-                              vertical: 25.0, horizontal: 10.0),
+                         contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 40.0),
                           labelText: MyText().labelUsername,
-                          labelStyle: TextStyle(color: MyColor().white),
+                          labelStyle: TextStyle(color: MyColor().white, fontSize: 18 ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(33.5)),
@@ -160,9 +159,9 @@ class RegisterPage extends StatelessWidget {
                         controller: phoneController,
                         decoration: InputDecoration(
                           contentPadding: new EdgeInsets.symmetric(
-                              vertical: 25.0, horizontal: 10.0),
+                              vertical: 25.0, horizontal: 40.0),
                           prefix: Text(
-                            "+966",
+                            "+966 ",
                             style: TextStyle(color: MyColor().white),
                           ),
                           labelText: MyText().labelPhone,

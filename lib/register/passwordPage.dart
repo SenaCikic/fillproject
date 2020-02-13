@@ -66,7 +66,7 @@ class PasswordPage extends StatelessWidget {
                           controller: passwordController,
                           decoration: InputDecoration(
                             contentPadding: new EdgeInsets.symmetric(
-                                vertical: 25.0, horizontal: 10.0),
+                                vertical: 25.0, horizontal: 40.0),
                             labelText: MyText().labelPassword,
                             labelStyle: TextStyle(color: MyColor().white),
                             enabledBorder: OutlineInputBorder(
