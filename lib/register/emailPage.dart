@@ -69,7 +69,7 @@ class EmailPage extends StatelessWidget {
                           child: TextFormField(
                             controller: emailController,
                             decoration: InputDecoration(
-                              hasFloatingPlaceholder: false,
+                              floatingLabelBehavior: FloatingLabelBehavior.never,
                               contentPadding: new EdgeInsets.symmetric(
                                   vertical: 25.0, horizontal: 35.0),
                               labelText: MyText().labelEmail,

@@ -30,7 +30,7 @@ class FirebaseCheck {
     return documents.length == 1;
   }
 
-  /// provjera da li password postoji u bazi
+  /// provjera da li broj postoji u bazi
   ///
   Future<bool> doesNumberAlreadyExist(String phone) async {
     final QuerySnapshot result = await Firestore.instance

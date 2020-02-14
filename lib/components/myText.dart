@@ -23,7 +23,7 @@ class MyText {
   final String btnLogout = 'Logout';
   final String btnLogin = 'Login';
   final String labelUsername = 'Username';
-  final String loginHeadline = 'Enter username & password to login';
+  final String loginHeadline = "Login and start generating money";
   final String verifyPageHeadline = 'Verify your \nnumber';
   final String verifyMoney = '2 \nSAR';
   final String verifyEnterPin = 'Enter the pin';
@@ -45,6 +45,8 @@ class MyText {
   final String validateSpacePassword = 'Password must not containe space';
   final String numberExists = 'Number already exists';
   final String usernameExist = 'Username already exists';
+  final String usernameDontExist = "Username doesn't exists";
+  final String passDontExist = "Wrong password";
   final String wrongCodeError =
       'PlatformException(ERROR_INVALID_VERIFICATION_CODE, The sms verification code used to create the phone auth credential is invalid. Please resend the verification code sms and be sure use the verification code provided by the user., null)';
   final String wrongCode = 'You entered invalid code';
