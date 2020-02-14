@@ -37,8 +37,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     Constant().responsive(context);
 
     Future<void> verifyPhone() async {
@@ -73,10 +71,8 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     onFieldSubmitted(BuildContext context) {
-      phoneNo = "+" +
-          phoneController
-              .text;
-      
+      phoneNo = "+" + phoneController.text;
+
       final _formState = _formKey.currentState;
       if (_formState.validate()) {
         LoginStorage().loginUser(usernameController, name, isLoggedIn);
@@ -142,9 +138,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           textCapitalization: TextCapitalization.sentences,
                           controller: usernameController,
                           decoration: InputDecoration(
-                            errorStyle: TextStyle(inherit: true, textBaseline: TextBaseline.ideographic ),
+                            hasFloatingPlaceholder: false,
+                            errorStyle: TextStyle(
+                                inherit: true,
+                                textBaseline: TextBaseline.ideographic),
                             contentPadding: new EdgeInsets.symmetric(
-                                vertical: 25.0, horizontal: 40.0),
+                                vertical: 25.0, horizontal: 35.0),
                             labelText: MyText().labelUsername,
                             labelStyle:
                                 TextStyle(color: MyColor().white, fontSize: 18),
@@ -174,14 +173,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           style: TextStyle(color: MyColor().white),
-                          validator: (username) =>
-                              MyValidation().validateUsername(username, usernamePostoji),
-                                onChanged: (input) {
+                          validator: (username) => MyValidation()
+                              .validateUsername(username, usernamePostoji),
+                          onChanged: (input) {
                             setState(() {
                               username = input;
                             });
-                            },
-                             onFieldSubmitted: (value) async {
+                          },
+                          onFieldSubmitted: (value) async {
                             try {
                               final result =
                                   await InternetAddress.lookup('google.com');
@@ -206,8 +205,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           keyboardType: TextInputType.number,
                           controller: phoneController,
                           decoration: InputDecoration(
+                            hasFloatingPlaceholder: false,
                             contentPadding: new EdgeInsets.symmetric(
-                                vertical: 25.0, horizontal: 40.0),
+                                vertical: 25.0, horizontal: 35.0),
                             prefix: Text(
                               "+966",
                               style: TextStyle(color: MyColor().white),
@@ -244,7 +244,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               phoneNo = input;
                             });
                           },
-                            validator: (phone) =>
+                          validator: (phone) =>
                               MyValidation().validatePhone(phone, brPostoji),
                           onFieldSubmitted: (value) async {
                             try {
@@ -262,15 +262,15 @@ class _RegisterPageState extends State<RegisterPage> {
                             }
                           },
                           style: TextStyle(color: MyColor().white),
-                        
                         ),
                       ),
+
                       /// PROVJERA DA LI POSTOJI USERNAME ILI NUMBER
                       Column(
                         children: <Widget>[
                           FutureBuilder(
-                            future: FirebaseCheck()
-                                .doesNumberAlreadyExist(phoneNo),
+                            future:
+                                FirebaseCheck().doesNumberAlreadyExist(phoneNo),
                             builder: (context, AsyncSnapshot<bool> result) {
                               if (!result.hasData) {
                                 return EmptyContainer();
@@ -278,8 +278,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               if (result.data) {
                                 brPostoji = true;
                                 return EmptyContainer();
-                              } 
-                              else {
+                              } else {
                                 brPostoji = false;
                                 return EmptyContainer();
                               }
@@ -290,18 +289,17 @@ class _RegisterPageState extends State<RegisterPage> {
                       Column(
                         children: <Widget>[
                           FutureBuilder(
-                            future: FirebaseCheck()
-                                .doesNameAlreadyExist(username),
+                            future:
+                                FirebaseCheck().doesNameAlreadyExist(username),
                             builder: (context, AsyncSnapshot<bool> result) {
                               if (!result.hasData) {
                                 return EmptyContainer();
                               }
                               if (result.data) {
-                                 usernamePostoji = true;
+                                usernamePostoji = true;
                                 return EmptyContainer();
-                              } 
-                              else {
-                              usernamePostoji = false;
+                              } else {
+                                usernamePostoji = false;
                                 return EmptyContainer();
                               }
                             },

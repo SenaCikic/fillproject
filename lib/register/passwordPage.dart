@@ -25,7 +25,7 @@ class PasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Constant().responsive(context);
     return Scaffold(
-          appBar: new AppBar(
+      appBar: new AppBar(
         title: new Text(""),
         backgroundColor: MyColor().black,
         centerTitle: true,
@@ -40,8 +40,8 @@ class PasswordPage extends StatelessWidget {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => new GestureDetector(
-                  child: SingleChildScrollView(
-                    child: Center(
+          child: SingleChildScrollView(
+            child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -51,7 +51,7 @@ class PasswordPage extends StatelessWidget {
                     child: Text(MyText().passwordHeadline,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize:ScreenUtil.instance.setSp(23),
+                          fontSize: ScreenUtil.instance.setSp(23),
                           color: MyColor().white,
                         )),
                   ),
@@ -62,34 +62,39 @@ class PasswordPage extends StatelessWidget {
                         color: MyColor().white,
                       )),
                   Container(
-                    width: ScreenUtil.instance.setWidth(316.0),
-                    height:ScreenUtil.instance.setHeight(92.0),
+                      width: ScreenUtil.instance.setWidth(316.0),
+                      height: ScreenUtil.instance.setHeight(92.0),
                       margin: EdgeInsets.only(bottom: 19, top: 28),
                       child: Form(
                         key: _formKey,
                         child: TextFormField(
                           controller: passwordController,
                           decoration: InputDecoration(
+                            hasFloatingPlaceholder: false,
                             contentPadding: new EdgeInsets.symmetric(
-                                vertical: 25.0, horizontal: 40.0),
+                                vertical: 25.0, horizontal: 35.0),
                             labelText: MyText().labelPassword,
                             labelStyle: TextStyle(color: MyColor().white),
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(color: MyColor().white),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(color: MyColor().white),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(
                                 color: MyColor().error,
                               ),
                             ),
                             errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(33.5)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(
                                 color: MyColor().error,
                               ),
@@ -108,7 +113,9 @@ class PasswordPage extends StatelessWidget {
                       text: new TextSpan(children: [
                         new TextSpan(
                           text: MyText().passwordSubtitle1,
-                          style: new TextStyle(color: Colors.white, fontSize: ScreenUtil.instance.setSp(12)),
+                          style: new TextStyle(
+                              color: Colors.white,
+                              fontSize: ScreenUtil.instance.setSp(12)),
                         ),
                         new TextSpan(
                             text: MyText().privacy,
@@ -118,11 +125,13 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: ScreenUtil.instance.setSp(12)),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                  launch('https://google.com');
+                                launch('https://google.com');
                               }),
                         new TextSpan(
                           text: MyText().passwordSubtitle2,
-                          style: new TextStyle(color: Colors.white, fontSize: ScreenUtil.instance.setSp(12)),
+                          style: new TextStyle(
+                              color: Colors.white,
+                              fontSize: ScreenUtil.instance.setSp(12)),
                         ),
                         new TextSpan(
                             text: MyText().termsOfService,
@@ -132,23 +141,24 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: ScreenUtil.instance.setSp(12)),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                  launch('https://google.com');
+                                launch('https://google.com');
                               })
                       ]),
                     ),
                   ),
                   Container(
-                    width: ScreenUtil.instance.setWidth(316.0),
-                    height:ScreenUtil.instance.setHeight(67.0),
-                    child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(33.5),
-                        ),
-                        onPressed: () {
-                          onPressed(context);
-                        },
-                        child: Text(MyText().btnPassword, style: TextStyle(fontSize: ScreenUtil.instance.setSp(18))))
-                  ),
+                      width: ScreenUtil.instance.setWidth(316.0),
+                      height: ScreenUtil.instance.setHeight(67.0),
+                      child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(33.5),
+                          ),
+                          onPressed: () {
+                            onPressed(context);
+                          },
+                          child: Text(MyText().btnPassword,
+                              style: TextStyle(
+                                  fontSize: ScreenUtil.instance.setSp(18))))),
                 ],
               ),
             ),

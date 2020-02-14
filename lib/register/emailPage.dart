@@ -22,7 +22,7 @@ class EmailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Constant().responsive(context);
     return Scaffold(
-     appBar: new AppBar(
+      appBar: new AppBar(
         title: new Text(""),
         backgroundColor: MyColor().black,
         centerTitle: true,
@@ -61,15 +61,16 @@ class EmailPage extends StatelessWidget {
                   margin: EdgeInsets.only(bottom: 20, top: 20),
                   child: Container(
                     width: ScreenUtil.instance.setWidth(316.0),
-                    height:ScreenUtil.instance.setHeight(92.0),
+                    height: ScreenUtil.instance.setHeight(92.0),
                     margin: EdgeInsets.only(top: 20.0),
                     child: Form(
                       key: _formKey,
                       child: TextFormField(
                         controller: emailController,
                         decoration: InputDecoration(
+                          hasFloatingPlaceholder: false,
                           contentPadding: new EdgeInsets.symmetric(
-                              vertical: 25.0, horizontal: 40.0),
+                              vertical: 25.0, horizontal: 35.0),
                           labelText: MyText().labelEmail,
                           labelStyle: TextStyle(color: MyColor().white),
                           enabledBorder: OutlineInputBorder(
@@ -104,8 +105,8 @@ class EmailPage extends StatelessWidget {
                     ),
                   )),
               Container(
-                    width: ScreenUtil.instance.setWidth(316.0),
-                    height:ScreenUtil.instance.setHeight(67.0),
+                  width: ScreenUtil.instance.setWidth(316.0),
+                  height: ScreenUtil.instance.setHeight(67.0),
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(33.5),
