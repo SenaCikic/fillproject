@@ -19,7 +19,7 @@ class MyTextFormField extends StatelessWidget {
       textCapitalization: TextCapitalization.sentences,
       controller: controller,
       decoration: InputDecoration(
-        contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 40.0),
+        contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 35.0),
         labelText: label,
         labelStyle: TextStyle(color: MyColor().white),
         enabledBorder: OutlineInputBorder(
