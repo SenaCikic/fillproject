@@ -73,6 +73,10 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     onFieldSubmitted(BuildContext context) {
+      phoneNo = "+" +
+          phoneController
+              .text;
+      
       final _formState = _formKey.currentState;
       if (_formState.validate()) {
         LoginStorage().loginUser(usernameController, name, isLoggedIn);
@@ -240,6 +244,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               phoneNo = input;
                             });
                           },
+                            validator: (phone) =>
+                              MyValidation().validatePhone(phone, brPostoji),
                           onFieldSubmitted: (value) async {
                             try {
                               final result =
@@ -256,8 +262,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             }
                           },
                           style: TextStyle(color: MyColor().white),
-                          validator: (phone) =>
-                              MyValidation().validatePhone(phone, brPostoji),
+                        
                         ),
                       ),
                       /// PROVJERA DA LI POSTOJI USERNAME ILI NUMBER
@@ -271,12 +276,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                 return EmptyContainer();
                               }
                               if (result.data) {
-                                print('postoji');
                                 brPostoji = true;
                                 return EmptyContainer();
                               } 
                               else {
-                                 print('NEpostoji');
                                 brPostoji = false;
                                 return EmptyContainer();
                               }
@@ -294,12 +297,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                 return EmptyContainer();
                               }
                               if (result.data) {
-                                print('postoji');
                                  usernamePostoji = true;
                                 return EmptyContainer();
                               } 
                               else {
-                                 print('NEpostoji');
                               usernamePostoji = false;
                                 return EmptyContainer();
                               }
