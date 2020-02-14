@@ -1,6 +1,7 @@
 import 'package:fillproject/dashboard.dart';
 import 'package:fillproject/home/homePage.dart';
 import 'package:fillproject/login/loginPage.dart';
+import 'package:fillproject/login/sendEmailPage.dart';
 import 'package:fillproject/register/EmailPage.dart';
 import 'package:fillproject/register/passwordPage.dart';
 import 'package:fillproject/register/registerPage.dart';
@@ -29,6 +30,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginPage());
       case Email: 
         return MaterialPageRoute(builder: (_) => EmailPage(arguments: args));
+      case EmailReset: 
+        return MaterialPageRoute(builder: (_) => EmailResetPage());
+      case PasswordReset: 
+        return MaterialPageRoute(builder: (_) => ResetPasswordPage());
       default:
         return _errorRoute();
     }
