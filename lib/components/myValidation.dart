@@ -52,4 +52,11 @@ class MyValidation {
     }
     return null;
   }
+
+  repeatPasswordValidation(newPassword, repeatPassword){
+    if(repeatPassword==newPassword){
+      return MyText().repeatPassSnack;
+       }
+    return null;
+  }
 }
