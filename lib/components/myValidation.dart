@@ -1,4 +1,5 @@
 import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/firebaseMethods/resetPassword.dart';
 
 class MyValidation {
   int snackCounter = 0;
@@ -53,10 +54,14 @@ class MyValidation {
     return null;
   }
 
-  repeatPasswordValidation(newPassword, repeatPassword){
-    if(repeatPassword==newPassword){
+  String resetPassword(String input, String compareWith){
+    if(input == ''){
+      return MyText().emptyFieldSnack;
+    } else if(input!=compareWith){
       return MyText().repeatPassSnack;
        }
     return null;
   }
+
+  
 }

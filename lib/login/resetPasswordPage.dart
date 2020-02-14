@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
-import 'package:fillproject/components/myTextFormField.dart';
-
 import 'package:fillproject/components/myValidation.dart';
-import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,6 +9,7 @@ int _btnCounter = 0;
 String oldPassword, newPassword, repeatPassword;
 
 class ResetPasswordPage extends StatelessWidget {
+  final String codeFromEmail = 'asdfgh';
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -21,7 +19,7 @@ class ResetPasswordPage extends StatelessWidget {
       new TextEditingController();
   final TextEditingController repeatPasswordController =
       new TextEditingController();
-
+  
   void dispose() {
     oldPasswordController.dispose();
     newPasswordController.dispose();
@@ -56,20 +54,56 @@ class ResetPasswordPage extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        margin: EdgeInsets.only(top: 20.0),
                         width: ScreenUtil.instance.setWidth(316.0),
-                        height: ScreenUtil.instance.setHeight(67.0),
+                        height: ScreenUtil.instance.setHeight(92.0),
+                        margin: EdgeInsets.only(
+                            bottom: 19, top: 105, left: 40, right: 40),
                         child: TextFormField(
-                            controller: oldPasswordController,
-                            decoration: InputDecoration(
-                              labelText: MyText().labelOldPassword,
+                          style: TextStyle(color: Colors.white),
+                          controller: oldPasswordController,
+                          decoration: InputDecoration(
+                            hasFloatingPlaceholder: false,
+                            contentPadding: new EdgeInsets.symmetric(
+                                vertical: 25.0, horizontal: 35.0),
+                            labelText: MyText().labelOldPassword,
+                            labelStyle: TextStyle(color: MyColor().white),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
                             ),
-                            obscureText: false),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+                              ),
+                            ),
+                          ),
+                          obscureText: false,
+                          validator: (codeInput) => MyValidation()
+                              .resetPassword(codeInput, codeFromEmail),
+                        ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 20.0),
                         width: ScreenUtil.instance.setWidth(316.0),
-                        height: ScreenUtil.instance.setHeight(67.0),
+                        height: ScreenUtil.instance.setHeight(92.0),
+                        margin: EdgeInsets.only(
+                          left: 40,
+                          right: 40,
+                        ),
                         child: TextFormField(
                           style: TextStyle(color: MyColor().white),
                           controller: newPasswordController,
@@ -110,9 +144,10 @@ class ResetPasswordPage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 20.0),
                         width: ScreenUtil.instance.setWidth(316.0),
-                        height: ScreenUtil.instance.setHeight(67.0),
+                        height: ScreenUtil.instance.setHeight(92.0),
+                        margin: EdgeInsets.only(
+                            bottom: 28, top: 19, left: 40, right: 40),
                         child: TextFormField(
                           style: TextStyle(color: Colors.white),
                           controller: repeatPasswordController,
@@ -148,15 +183,16 @@ class ResetPasswordPage extends StatelessWidget {
                             ),
                           ),
                           obscureText: true,
-                          validator: (password) => MyValidation()
-                              .repeatPasswordValidation(
-                                  password, repeatPasswordController.text),
+                          validator: (repeatPassword) => MyValidation()
+                              .resetPassword(
+                                  repeatPassword, newPasswordController.text),
                         ),
                       ),
                     ],
                   )),
               Container(
-                margin: EdgeInsets.only(top: 20.0),
+                margin: EdgeInsets.only(
+                    top: 18.0, left: 40, right: 40, bottom: 127),
                 width: ScreenUtil.instance.setWidth(316.0),
                 height: ScreenUtil.instance.setHeight(67.0),
                 child: RaisedButton(
@@ -178,16 +214,13 @@ class ResetPasswordPage extends StatelessWidget {
     repeatPassword = repeatPasswordController.text;
     oldPassword = oldPasswordController.text;
     final _formState = _formKey.currentState;
-
     if (_formState.validate()) {
-     // if (_btnCounter == 0) {
-        print('BRAVOOOOOOOO');
+      if (_btnCounter == 0) {
         _btnCounter = 1;
-        // Timer(Duration(seconds: 2), () {
-        //   _btnCounter = 0;
-        // });
-    //  } 
-
+        Timer(Duration(seconds: 2), () {
+          _btnCounter = 0;
+        });
+      }
     }
   }
 }
