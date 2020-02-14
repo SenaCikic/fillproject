@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
@@ -11,12 +13,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 String email;
 int _btnCounter = 0;
 
-class EmailPage extends StatelessWidget {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+class EmailPage extends StatefulWidget {
   final RegisterArguments arguments;
-  final TextEditingController emailController = new TextEditingController();
 
   EmailPage({this.arguments});
+
+  @override
+  _EmailPageState createState() => _EmailPageState();
+}
+
+class _EmailPageState extends State<EmailPage> {
+  bool emailPostoji  = false;
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +112,12 @@ class EmailPage extends StatelessWidget {
                             ),
                             style: TextStyle(color: MyColor().white),
                             validator: (email) =>
-                                MyValidation().validateEmail(email, _btnCounter),
+                                MyValidation().validateEmail(email, _btnCounter, emailPostoji),
+                                 onChanged: (input) {
+                          setState(() {
+                            email = input;
+                          });
+                        },
                           ),
                         ),
                       )),
@@ -116,6 +132,25 @@ class EmailPage extends StatelessWidget {
                         child:
                             Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
                       )),
+                      Column(
+                  children: <Widget>[
+                    FutureBuilder(
+                      future: FirebaseCheck().doesEmailAlreadyExist(email),
+                      builder: (context, AsyncSnapshot<bool> result) {
+                        if (!result.hasData) {
+                          return EmptyContainer();
+                        }
+                        if (result.data) {
+                          emailPostoji = true;
+                          return EmptyContainer();
+                        } else {
+                          emailPostoji = false;
+                          return EmptyContainer();
+                        }
+                      },
+                    ),
+                  ],
+                ),
                 ],
               ),
             ),
@@ -133,8 +168,8 @@ class EmailPage extends StatelessWidget {
         Navigator.of(context).pushNamed(Password,
             arguments: RegisterArguments(
               email: email,
-              phone: arguments.phone,
-              username: arguments.username,
+              phone: widget.arguments.phone,
+              username: widget.arguments.username,
             ));
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {

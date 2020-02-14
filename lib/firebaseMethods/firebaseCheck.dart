@@ -42,6 +42,18 @@ class FirebaseCheck {
     return documents.length == 1;
   }
 
+  /// provjera da li email postoji u bazi
+  ///
+  Future<bool> doesEmailAlreadyExist(String email) async {
+    final QuerySnapshot result = await Firestore.instance
+        .collection('Users')
+        .where('email', isEqualTo: email)
+        .limit(1)
+        .getDocuments();
+    final List<DocumentSnapshot> documents = result.documents;
+    return documents.length == 1;
+  }
+
   
 
   
