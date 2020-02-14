@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
-import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -46,31 +45,36 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 250.0,
-                margin: EdgeInsets.only(top: 50.0),
+                 width: ScreenUtil.instance.setWidth(316.0),
+                height: ScreenUtil.instance.setHeight(92.0),
+                margin: EdgeInsets.only(top: 10.0, left: 54.0, right: 55.0),
                 child: MyTextFormField(
                     controller: usernameController,
                     label: MyText().labelUsername,
                     obscureText: false),
               ),
               Container(
-                width: 250.0,
-                margin: EdgeInsets.only(top: 10.0),
+                 width: ScreenUtil.instance.setWidth(316.0),
+                height: ScreenUtil.instance.setHeight(92.0),
+                margin: EdgeInsets.only(top: 10.0, left: 54.0, right: 55.0),
+
                 child: MyTextFormField(
                     controller: passwordController,
                     label: MyText().labelPassword,
                     obscureText: true),
               ),
-              Column(
-                children: <Widget>[], //<Widget>
-              ), //Column
+
               Container(
-                width: 255.0,
-                margin: EdgeInsets.only(top: 70.0),
-                child: RaisedButton(
-                    onPressed: () => onPressed(context),
-                    child: Text(MyText().btnLogin)),
-              ),
+              width: ScreenUtil.instance.setWidth(316.0),
+              height: ScreenUtil.instance.setHeight(67.0),
+              margin: EdgeInsets.only(left: 54.0, right: 55.0),
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(33.5),
+                ),
+                onPressed: () => onPressed(context),
+                child: Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
+              )),
                Container(
                 margin: EdgeInsets.only(top: 20.0),
                 child: RichText(
