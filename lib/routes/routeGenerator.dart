@@ -1,6 +1,7 @@
 import 'package:fillproject/dashboard.dart';
 import 'package:fillproject/home/homePage.dart';
 import 'package:fillproject/login/loginPage.dart';
+import 'package:fillproject/login/resetPasswordPage.dart';
 import 'package:fillproject/login/sendEmailPage.dart';
 import 'package:fillproject/register/EmailPage.dart';
 import 'package:fillproject/register/passwordPage.dart';

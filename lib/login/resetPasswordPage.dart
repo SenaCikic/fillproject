@@ -2,13 +2,18 @@ import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
+import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+void main() => runApp(ResetPasswordPage());
 
 int _btnCounter = 0;
 String oldPassword, newPassword, repeatPassword;
 
 class ResetPasswordPage extends StatelessWidget {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController oldPasswordController =
       new TextEditingController();
@@ -16,7 +21,6 @@ class ResetPasswordPage extends StatelessWidget {
       new TextEditingController();
   final TextEditingController repeatPasswordController =
       new TextEditingController();
-
 
   void dispose() {
     oldPasswordController.dispose();
@@ -47,36 +51,110 @@ class ResetPasswordPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 20.0),
-                width: ScreenUtil.instance.setWidth(316.0),
-                height: ScreenUtil.instance.setHeight(67.0),
-                child: MyTextFormField(
-                    controller: oldPasswordController,
-                    label: MyText().labelOldPassword,
-                    obscureText: false),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20.0),
-                width: ScreenUtil.instance.setWidth(316.0),
-                height: ScreenUtil.instance.setHeight(67.0),
-                child: MyTextFormField(
-                    controller: newPasswordController,
-                    label: MyText().labelNewPassword,
-                    obscureText: true),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20.0),
-                width: ScreenUtil.instance.setWidth(316.0),
-                height: ScreenUtil.instance.setHeight(67.0),
-                child: MyTextFormField(
-                    controller: repeatPasswordController,
-                    label: MyText().repeatNewPassword,
-                    obscureText: true),
-              ),
-              Column(
-                children: <Widget>[], //<Widget>
-              ), //Column
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(top: 20.0),
+                        width: ScreenUtil.instance.setWidth(316.0),
+                        height: ScreenUtil.instance.setHeight(67.0),
+                        child: TextFormField(
+                            controller: oldPasswordController,
+                            decoration: InputDecoration(
+                              labelText: MyText().labelOldPassword,
+                            ),
+                            obscureText: false),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 20.0),
+                        width: ScreenUtil.instance.setWidth(316.0),
+                        height: ScreenUtil.instance.setHeight(67.0),
+                        child: TextFormField(
+                          style: TextStyle(color: MyColor().white),
+                          controller: newPasswordController,
+                          decoration: InputDecoration(
+                            hasFloatingPlaceholder: false,
+                            contentPadding: new EdgeInsets.symmetric(
+                                vertical: 25.0, horizontal: 35.0),
+                            labelText: MyText().labelNewPassword,
+                            labelStyle: TextStyle(color: MyColor().white),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+                              ),
+                            ),
+                          ),
+                          obscureText: true,
+                          validator: (password) =>
+                              MyValidation().validatePassword(password),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 20.0),
+                        width: ScreenUtil.instance.setWidth(316.0),
+                        height: ScreenUtil.instance.setHeight(67.0),
+                        child: TextFormField(
+                          style: TextStyle(color: Colors.white),
+                          controller: repeatPasswordController,
+                          decoration: InputDecoration(
+                            hasFloatingPlaceholder: false,
+                            contentPadding: new EdgeInsets.symmetric(
+                                vertical: 25.0, horizontal: 35.0),
+                            labelText: MyText().repeatNewPassword,
+                            labelStyle: TextStyle(color: MyColor().white),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+                              ),
+                            ),
+                          ),
+                          obscureText: true,
+                          validator: (password) => MyValidation()
+                              .repeatPasswordValidation(
+                                  password, repeatPasswordController.text),
+                        ),
+                      ),
+                    ],
+                  )),
               Container(
                 margin: EdgeInsets.only(top: 20.0),
                 width: ScreenUtil.instance.setWidth(316.0),
@@ -96,17 +174,19 @@ class ResetPasswordPage extends StatelessWidget {
   }
 
   onPressed(BuildContext context) {
-    if (_btnCounter == 0) {
-       newPassword = newPasswordController.text;
-       repeatPassword = repeatPasswordController.text;
-       oldPassword = oldPasswordController.text;
-      /// validacija
-      // MyValidation().loginValidation(
-      //     username, password, usernameExists, passwordExists, context);
-      _btnCounter = 1;
-      Timer(Duration(seconds: 2), () {
-        _btnCounter = 0;
-      });
+    newPassword = newPasswordController.text;
+    repeatPassword = repeatPasswordController.text;
+    oldPassword = oldPasswordController.text;
+    final _formState = _formKey.currentState;
+
+    if (_formState.validate()) {
+     // if (_btnCounter == 0) {
+        print('BRAVOOOOOOOO');
+        _btnCounter = 1;
+        // Timer(Duration(seconds: 2), () {
+        //   _btnCounter = 0;
+        // });
+    //  } 
     }
   }
 }
