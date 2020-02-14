@@ -66,9 +66,10 @@ class MyText {
 
   //login
   final String resetHeadline = 'Reset your password';
-  final String labelOldPassword = 'Code from email';
+  final String labelOldPassword = 'Enter code from email';
   final String labelNewPassword = 'Enter new password';
   final String repeatNewPassword = 'Re-enter new password';
   final String btnReset = 'Reset Password';
-  final String repeatPassSnack = "'Password don't match";
+  final String repeatPassSnack = "Wrong input";
+  final String emptyFieldSnack = "This field can't be empty";
 }
