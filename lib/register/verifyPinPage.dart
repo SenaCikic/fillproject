@@ -13,12 +13,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 String verificationCode;
 int _btnCounter = 0;
 
-class VerifyPinPage extends StatelessWidget {
+class VerifyPinPage extends StatefulWidget {
   final RegisterArguments arguments;
-  bool fieldColor = false;
-  bool codeError = false;
+
   VerifyPinPage({this.arguments});
+
+  @override
+  _VerifyPinPageState createState() => _VerifyPinPageState();
+}
+
+class _VerifyPinPageState extends State<VerifyPinPage> {
+  bool fieldColor = false;
+
+  bool codeError = false;
+
   String smsCode, wrongCodeError;
+
   TextEditingController codeController = new TextEditingController();
 
   @override
@@ -26,48 +36,45 @@ class VerifyPinPage extends StatelessWidget {
     Constant().responsive(context);
     signIn(String smsCode) {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
-          verificationId: arguments.verId, smsCode: smsCode);
+          verificationId: widget.arguments.verId, smsCode: smsCode);
       FirebaseAuth.instance.signInWithCredential(credential).then((user) {
         Navigator.of(context).pushNamed(Email,
             arguments: RegisterArguments(
-                username: arguments.username, phone: arguments.phone));
+                username: widget.arguments.username,
+                phone: widget.arguments.phone));
+        print('PROSLI');
       }).catchError((e) {
         print('Auth Credential Error : $e');
+        print('catch eerrir');
         wrongCodeError = e.toString();
         print(wrongCodeError);
-       if(wrongCodeError == MyText().wrongCodeError) {
-        codeError = true;
-        Timer(Duration(seconds: 2), () {
+        if (wrongCodeError == MyText().wrongCodeError) {
+          codeError = true;
+          Timer(Duration(milliseconds: 200), () {
             codeError = false;
           });
-       } 
+        }
       });
     }
 
     onPressed(BuildContext context) {
-      smsCode = codeController.text;
-     if (smsCode.length < 6) {
-       fieldColor = true;
-       Timer(Duration(seconds: 2), () {
-            fieldColor = false;
-          });
-    } else {
+      if (smsCode.length < 6) {
+        fieldColor = true;
+        Timer(Duration(milliseconds: 100), () {
+          fieldColor = false;
+        });
+      } else {
         if (_btnCounter == 0) {
           FirebaseAuth.instance.currentUser().then((user) {
-            if (user != null) {
-              Navigator.of(context).pushNamed(Email,
-                  arguments: RegisterArguments(
-                      username: arguments.username, phone: arguments.phone));
-            } else {
-              signIn(codeController.text);
-            }
+            signIn(smsCode);
+            print('U elseu vece od 6');
           });
           _btnCounter = 1;
           Timer(Duration(seconds: 2), () {
             _btnCounter = 0;
           });
         }
-     }
+      }
     }
 
     return Scaffold(
@@ -113,17 +120,39 @@ class VerifyPinPage extends StatelessWidget {
                   length: 6,
                   animationType: AnimationType.fade,
                   shape: PinCodeFieldShape.circle,
-                  animationDuration: Duration(milliseconds: 300),
+                  animationDuration: Duration(milliseconds: 400),
                   fieldHeight: 60,
                   fieldWidth: 50,
                   textStyle: TextStyle(color: MyColor().white, fontSize: 28),
-                  activeColor: fieldColor   ? MyColor().error : MyColor().white,
-                  inactiveColor: fieldColor ? MyColor().error : MyColor().white,
-                  selectedColor: fieldColor ? MyColor().error : MyColor().white,
+                  activeColor: fieldColor || codeError
+                      ? MyColor().error
+                      : MyColor().white,
+                  inactiveColor: fieldColor || codeError
+                      ? MyColor().error
+                      : MyColor().white,
+                  selectedColor: fieldColor || codeError
+                      ? MyColor().error
+                      : MyColor().white,
                   backgroundColor: MyColor().black,
                   borderWidth: 1.0,
                   controller: codeController,
-                  onChanged: (value) {},
+                  onChanged: (value) => {
+                    // setState(() {
+                    //   smsCode = value;
+                    //   if (smsCode.length < 6) {
+                    //     fieldColor = true;
+                    //     Timer(Duration(milliseconds: 100), () {
+                    //       fieldColor = false;
+                    //     });
+                    //   } else if (wrongCodeError == MyText().wrongCodeError) {
+                    //     codeError = true;
+                    //     Timer(Duration(milliseconds: 200), () {
+                    //       codeError = false;
+                    //     });
+                    //   }
+                    //   signIn(smsCode);
+                    // }),
+                  },
                 ),
               ),
             ),
@@ -133,8 +162,10 @@ class VerifyPinPage extends StatelessWidget {
                       MyText().smsLengthSnack,
                       style: TextStyle(color: MyColor().error),
                     )
-                  : codeError ? Text(MyText().wrongCode, style: TextStyle(color: MyColor().error) ) : 
-                  Text(''),
+                  : codeError
+                      ? Text(MyText().wrongCode,
+                          style: TextStyle(color: MyColor().error))
+                      : Text(''),
             ),
             Container(
               margin: EdgeInsets.only(top: 20.0),
