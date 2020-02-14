@@ -96,24 +96,27 @@ class _RegisterPageState extends State<RegisterPage> {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => new GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(new FocusNode());
-          },
-          child: SingleChildScrollView(
-            child: Center(
-              child: Container(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      Center(
-                          child: Padding(
-                        padding: const EdgeInsets.only(top: 28),
-                        child: Text(
-                          MyText().registerHeadline,
-                          style: TextStyle(
-                            fontSize: ScreenUtil.instance.setSp(23),
-                            color: MyColor().white,
+
+            onTap: () {
+              FocusScope.of(context).requestFocus(new FocusNode());
+            },
+            child: WillPopScope(
+              onWillPop: _onWillPop,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Container(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          Center(
+                              child: Padding(
+                            padding: const EdgeInsets.only(top: 28),
+                            child: Text(
+                              MyText().registerHeadline,
+                              style: TextStyle(
+                                fontSize: ScreenUtil.instance.setSp(23),
+                                color: MyColor().white,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -162,14 +165,20 @@ class _RegisterPageState extends State<RegisterPage> {
                                   BorderRadius.all(Radius.circular(33.5)),
                               borderSide: BorderSide(
                                 color: MyColor().error,
+
                               ),
+                              textAlign: TextAlign.center,
                             ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(33.5)),
-                              borderSide: BorderSide(
-                                color: MyColor().error,
-                              ),
+                          )),
+                          Center(
+                              child: Padding(
+                            padding: EdgeInsets.only(top: 61.0, bottom: 59),
+                            child: Text(
+                              MyText().registerSubtitle,
+                              style: TextStyle(
+                                  color: MyColor().white,
+                                  fontSize: ScreenUtil.instance.setSp(40)),
+                              textAlign: TextAlign.center,
                             ),
                           ),
                           style: TextStyle(color: MyColor().white),
@@ -237,8 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderSide: BorderSide(
                                 color: MyColor().error,
                               ),
-                            ),
-                          ),
+                            
                           onChanged: (input) {
                             setState(() {
                               phoneNo = input;
@@ -306,14 +314,17 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-        ),
+            )),
       ),
     );
+  }
+
+  Future<bool> _onWillPop() async {
+    Navigator.of(context).pushNamed(Home);
+    return EmptyContainer() ?? true;
   }
 }
