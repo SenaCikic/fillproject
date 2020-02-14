@@ -30,6 +30,19 @@ class MyValidation {
     return null;
   }
 
+  /// Dodatna validacija na loginu skrinu
+  /// Error text je drugaciji, rijesit cemo prilikom refaktorisanja
+  String validateUsernameLogin(String username, bool usernamePostoji) {
+    if (username == '') {
+      return MyText().regUserSnack;
+    } else if (regexSpace.hasMatch(username) == true) {
+      return MyText().validateSpaceUsername;
+    } else if (usernamePostoji) {
+      return MyText().usernameDontExist;
+    }
+    return null;
+  }
+
   String validatePassword(String password) {
     if (password == '') {
       return MyText().regPassSnack;
@@ -39,6 +52,22 @@ class MyValidation {
       return MyText().regexPasswordSnack;
     } else if (regexSpace.hasMatch(password) == true) {
       return MyText().validateSpacePassword;
+    }
+    return null;
+  }
+ /// Dodatna validacija na loginu
+  /// Error text je drugaciji, rijesit cemo prilikom refaktorisanja
+  String validatePasswordLogin(String password, bool passwordPostoji) {
+    if (password == '') {
+      return MyText().regPassSnack;
+    } else if (password.length < 8) {
+      return MyText().regPassLengthSnack;
+    } else if (regexPassword.hasMatch(password) == false) {
+      return MyText().regexPasswordSnack;
+    } else if (regexSpace.hasMatch(password) == true) {
+      return MyText().validateSpacePassword;
+    } else if (passwordPostoji) {
+      return MyText().passDontExist;
     }
     return null;
   }
