@@ -59,4 +59,11 @@ class MyText {
   final String regexPasswordSnack = 'Password must contain at least one number \nand at least one capital letter';
   final String checkConnection = 'There is no internet connection.';
   
+  //login
+  final String resetHeadline = 'Reset your password';
+  final String labelOldPassword = 'Code from email';
+  final String labelNewPassword = 'Enter new password';
+  final String repeatNewPassword = 'Re-enter new password';
+  final String btnReset = 'Reset Password';
+
 }
