@@ -96,6 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => new GestureDetector(
+
             onTap: () {
               FocusScope.of(context).requestFocus(new FocusNode());
             },
@@ -116,6 +117,55 @@ class _RegisterPageState extends State<RegisterPage> {
                               style: TextStyle(
                                 fontSize: ScreenUtil.instance.setSp(23),
                                 color: MyColor().white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      )),
+                      Center(
+                          child: Padding(
+                        padding: EdgeInsets.only(top: 61.0, bottom: 59),
+                        child: Text(
+                          MyText().registerSubtitle,
+                          style: TextStyle(
+                              color: MyColor().white,
+                              fontSize: ScreenUtil.instance.setSp(40)),
+                          textAlign: TextAlign.center,
+                        ),
+                      )),
+                      Container(
+                        width: ScreenUtil.instance.setWidth(316.0),
+                        height: ScreenUtil.instance.setHeight(92.0),
+                        margin:
+                            EdgeInsets.only(bottom: 19, left: 49, right: 49),
+                        child: TextFormField(
+                          textCapitalization: TextCapitalization.sentences,
+                          controller: usernameController,
+                          decoration: InputDecoration(
+                            hasFloatingPlaceholder: false,
+                            errorStyle: TextStyle(
+                                inherit: true,
+                                textBaseline: TextBaseline.ideographic),
+                            contentPadding: new EdgeInsets.symmetric(
+                                vertical: 25.0, horizontal: 35.0),
+                            labelText: MyText().labelUsername,
+                            labelStyle:
+                                TextStyle(color: MyColor().white, fontSize: 18),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -130,168 +180,137 @@ class _RegisterPageState extends State<RegisterPage> {
                                   fontSize: ScreenUtil.instance.setSp(40)),
                               textAlign: TextAlign.center,
                             ),
-                          )),
-                          Container(
-                            width: ScreenUtil.instance.setWidth(316.0),
-                            height: ScreenUtil.instance.setHeight(83.0),
-                            margin: EdgeInsets.only(
-                                bottom: 19, left: 49, right: 49),
-                            child: TextFormField(
-                                textCapitalization:
-                                    TextCapitalization.sentences,
-                                controller: usernameController,
-                                decoration: InputDecoration(
-                                  contentPadding: new EdgeInsets.symmetric(
-                                      vertical: 25.0, horizontal: 40.0),
-                                  labelText: MyText().labelUsername,
-                                  labelStyle: TextStyle(
-                                      color: MyColor().white, fontSize: 18),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(33.5)),
-                                    borderSide:
-                                        BorderSide(color: MyColor().white),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(33.5)),
-                                    borderSide:
-                                        BorderSide(color: MyColor().white),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(33.5)),
-                                    borderSide: BorderSide(
-                                      color: MyColor().error,
-                                    ),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(33.5)),
-                                    borderSide: BorderSide(
-                                      color: MyColor().error,
-                                    ),
-                                  ),
-                                ),
-                                style: TextStyle(color: MyColor().white),
-                                validator: (username) => MyValidation()
-                                    .validateUsername(
-                                        username, usernamePostoji),
-                                onChanged: (input) {
-                                  setState(() {
-                                    username = input;
-                                  });
-                                }),
                           ),
-                          Container(
-                            width: ScreenUtil.instance.setWidth(316.0),
-                            height: ScreenUtil.instance.setHeight(83.0),
-                            margin: EdgeInsets.only(left: 49, right: 49),
-                            child: TextFormField(
-                              keyboardType: TextInputType.number,
-                              controller: phoneController,
-                              decoration: InputDecoration(
-                                contentPadding: new EdgeInsets.symmetric(
-                                    vertical: 25.0, horizontal: 40.0),
-                                prefix: Text(
-                                  "+966",
-                                  style: TextStyle(color: MyColor().white),
-                                ),
-                                labelText: MyText().labelPhone,
-                                labelStyle: TextStyle(color: MyColor().white),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(33.5)),
-                                  borderSide:
-                                      BorderSide(color: MyColor().white),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(33.5)),
-                                  borderSide:
-                                      BorderSide(color: MyColor().white),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(33.5)),
-                                  borderSide: BorderSide(
-                                    color: MyColor().error,
-                                  ),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(33.5)),
-                                  borderSide: BorderSide(
-                                    color: MyColor().error,
-                                  ),
-                                ),
-                              ),
-                              onChanged: (input) {
-                                setState(() {
-                                  phoneNo = input;
-                                });
-                              },
-                              // validator: (phone) =>
-                              //   MyValidation().validatePhone(phone, brPostoji),
-                              onFieldSubmitted: (value) async {
-                                try {
-                                  final result = await InternetAddress.lookup(
-                                      'google.com');
-                                  if (result.isNotEmpty &&
-                                      result[0].rawAddress.isNotEmpty) {
-                                    onFieldSubmitted(context);
-                                  }
-                                } on SocketException catch (_) {
-                                  MySnackbar().showSnackbar(
-                                      MyText().checkConnection,
-                                      context,
-                                      MyText().snackUndo);
-                                }
-                              },
+                          style: TextStyle(color: MyColor().white),
+                          validator: (username) => MyValidation()
+                              .validateUsername(username, usernamePostoji),
+                          onChanged: (input) {
+                            setState(() {
+                              username = input;
+                            });
+                          },
+                          onFieldSubmitted: (value) async {
+                            try {
+                              final result =
+                                  await InternetAddress.lookup('google.com');
+                              if (result.isNotEmpty &&
+                                  result[0].rawAddress.isNotEmpty) {
+                                onFieldSubmitted(context);
+                              }
+                            } on SocketException catch (_) {
+                              MySnackbar().showSnackbar(
+                                  MyText().checkConnection,
+                                  context,
+                                  MyText().snackUndo);
+                            }
+                          },
+                        ),
+                      ),
+                      Container(
+                        width: ScreenUtil.instance.setWidth(316.0),
+                        height: ScreenUtil.instance.setHeight(92.0),
+                        margin: EdgeInsets.only(left: 49, right: 49),
+                        child: TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: phoneController,
+                          decoration: InputDecoration(
+                            hasFloatingPlaceholder: false,
+                            contentPadding: new EdgeInsets.symmetric(
+                                vertical: 25.0, horizontal: 35.0),
+                            prefix: Text(
+                              "+966",
                               style: TextStyle(color: MyColor().white),
                             ),
-                          ),
+                            labelText: MyText().labelPhone,
+                            labelStyle: TextStyle(color: MyColor().white),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(color: MyColor().white),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(33.5)),
+                              borderSide: BorderSide(
+                                color: MyColor().error,
+                              ),
+                            
+                          onChanged: (input) {
+                            setState(() {
+                              phoneNo = input;
+                            });
+                          },
+                          validator: (phone) =>
+                              MyValidation().validatePhone(phone, brPostoji),
+                          onFieldSubmitted: (value) async {
+                            try {
+                              final result =
+                                  await InternetAddress.lookup('google.com');
+                              if (result.isNotEmpty &&
+                                  result[0].rawAddress.isNotEmpty) {
+                                onFieldSubmitted(context);
+                              }
+                            } on SocketException catch (_) {
+                              MySnackbar().showSnackbar(
+                                  MyText().checkConnection,
+                                  context,
+                                  MyText().snackUndo);
+                            }
+                          },
+                          style: TextStyle(color: MyColor().white),
+                        ),
+                      ),
 
-                          /// PROVJERA DA LI POSTOJI USERNAME ILI NUMBER
-                          Column(
-                            children: <Widget>[
-                              FutureBuilder(
-                                future: FirebaseCheck()
-                                    .doesNumberAlreadyExist(phoneNo),
-                                builder: (context, AsyncSnapshot<bool> result) {
-                                  if (!result.hasData) {
-                                    return EmptyContainer();
-                                  }
-                                  if (result.data) {
-                                    brPostoji = true;
-                                    return EmptyContainer();
-                                  } else {
-                                    brPostoji = false;
-                                    return EmptyContainer();
-                                  }
-                                },
-                              ),
-                            ],
+                      /// PROVJERA DA LI POSTOJI USERNAME ILI NUMBER
+                      Column(
+                        children: <Widget>[
+                          FutureBuilder(
+                            future:
+                                FirebaseCheck().doesNumberAlreadyExist(phoneNo),
+                            builder: (context, AsyncSnapshot<bool> result) {
+                              if (!result.hasData) {
+                                return EmptyContainer();
+                              }
+                              if (result.data) {
+                                brPostoji = true;
+                                return EmptyContainer();
+                              } else {
+                                brPostoji = false;
+                                return EmptyContainer();
+                              }
+                            },
                           ),
-                          Column(
-                            children: <Widget>[
-                              FutureBuilder(
-                                future: FirebaseCheck()
-                                    .doesNameAlreadyExist(username),
-                                builder: (context, AsyncSnapshot<bool> result) {
-                                  if (!result.hasData) {
-                                    return EmptyContainer();
-                                  }
-                                  if (result.data) {
-                                    usernamePostoji = true;
-                                    return EmptyContainer();
-                                  } else {
-                                    usernamePostoji = false;
-                                    return EmptyContainer();
-                                  }
-                                },
-                              ),
-                            ],
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          FutureBuilder(
+                            future:
+                                FirebaseCheck().doesNameAlreadyExist(username),
+                            builder: (context, AsyncSnapshot<bool> result) {
+                              if (!result.hasData) {
+                                return EmptyContainer();
+                              }
+                              if (result.data) {
+                                usernamePostoji = true;
+                                return EmptyContainer();
+                              } else {
+                                usernamePostoji = false;
+                                return EmptyContainer();
+                              }
+                            },
                           ),
                         ],
                       ),

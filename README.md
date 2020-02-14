@@ -1,5 +1,5 @@
 # fill
-fill is a mobile application that allows users to earn money by answering various questions from queries and surveys.
+Fill is a mobile application that allows users to earn money by answering various questions from queries and surveys.
 In order for a user to be able to make money and use the application properly, he must be registered in the database.
 There is a possibility that the user will skip registration, which allows him only to see questions and surveys. Without the ability to make money.
 
@@ -25,3 +25,6 @@ Creating user registration using sms code and verifying the code itself.
 If all the prerequisites and / or all fields are filled in, the user can successfully use the application and earn money.<br/>*
    	User Story 3 - Creating an login screen, which checks and validates user credentials. If everything is valid the user can successfully use the application.
 The user has the forget password option, which sends him a mail request to reset the password.
+
+Update(14.2)
+The team successfully coded user story 2. During this period we had some changes from the investor design-wise. We have successfully adjusted designs and we are moving on to user story 3.
