@@ -47,6 +47,7 @@ class MyText {
   final String usernameExist = 'Username already exists';
   final String usernameDontExist = "Username doesn't exists";
   final String passDontExist = "Wrong password";
+  final String emailExist = "Email already exist";
   final String wrongCodeError =
       'PlatformException(ERROR_INVALID_VERIFICATION_CODE, The sms verification code used to create the phone auth credential is invalid. Please resend the verification code sms and be sure use the verification code provided by the user., null)';
   final String wrongCode = 'You entered invalid code';

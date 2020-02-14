@@ -11,11 +11,10 @@ class MyValidation {
   String validatePhone(String phone, bool brPostoji) {
     if (phone == '') {
       return MyText().regPhoneSnack;
-    } 
-    else if (brPostoji) {
+    } else if (brPostoji) {
       return MyText().numberExists;
     }
-    
+
     return null;
   }
 
@@ -55,7 +54,8 @@ class MyValidation {
     }
     return null;
   }
- /// Dodatna validacija na loginu
+
+  /// Dodatna validacija na loginu
   /// Error text je drugaciji, rijesit cemo prilikom refaktorisanja
   String validatePasswordLogin(String password, bool passwordPostoji) {
     if (password == '') {
@@ -72,25 +72,38 @@ class MyValidation {
     return null;
   }
 
-  String validateEmail(String input, int counter) {
+  String validateEmailLogin(String input, int counter) {
     if (input == '') {
       counter = 0;
       return MyText().regEmailSnack;
-    } else if(regexEmail.hasMatch(input) == false) {
-      counter =0 ;
-            return MyText().validEmail;
+    } else if (regexEmail.hasMatch(input) == false) {
+      counter = 0;
+      return MyText().validEmail;
+    }
+    return null;
+  }
+  /// Dodatna validacija na [sendEmailPage] za email
+  /// Error text je drugaciji, rijesit cemo prilikom refaktorisanja
+  String validateEmail(String input, int counter, bool emailPostoji) {
+    if (input == '') {
+      counter = 0;
+      return MyText().regEmailSnack;
+    // } else if (regexEmail.hasMatch(input) == false) {
+    //   counter = 0;
+    //   return MyText().validEmail;
+    }
+     else if (emailPostoji) {
+      return MyText().emailExist;
     }
     return null;
   }
 
-  String resetPassword(String input, String compareWith){
-    if(input == ''){
+  String resetPassword(String input, String compareWith) {
+    if (input == '') {
       return MyText().emptyFieldSnack;
-    } else if(input!=compareWith){
+    } else if (input != compareWith) {
       return MyText().repeatPassSnack;
-       }
+    }
     return null;
   }
-
-  
 }

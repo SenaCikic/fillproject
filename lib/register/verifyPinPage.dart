@@ -42,10 +42,8 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
             arguments: RegisterArguments(
                 username: widget.arguments.username,
                 phone: widget.arguments.phone));
-        print('PROSLI');
       }).catchError((e) {
         print('Auth Credential Error : $e');
-        print('catch eerrir');
         wrongCodeError = e.toString();
         print(wrongCodeError);
         if (wrongCodeError == MyText().wrongCodeError) {
@@ -67,7 +65,6 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
         if (_btnCounter == 0) {
           FirebaseAuth.instance.currentUser().then((user) {
             signIn(smsCode);
-            print('U elseu vece od 6');
           });
           _btnCounter = 1;
           Timer(Duration(seconds: 2), () {

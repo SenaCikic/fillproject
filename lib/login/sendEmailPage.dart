@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myText.dart';
+import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,8 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class EmailResetPage extends StatelessWidget {
   String email;
   int _btnCounter = 0;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController emailController = new TextEditingController();
 
   @override
@@ -99,8 +102,8 @@ class EmailResetPage extends StatelessWidget {
                       ),
                     ),
                     style: TextStyle(color: MyColor().white),
-                    // validator: (email) =>
-                    //     MyValidation().validateEmail(email, _btnCounter),
+                    validator: (email) =>
+                        MyValidation().validateEmailLogin(email, _btnCounter),
                   ),
                 ),
               )),
@@ -121,12 +124,16 @@ class EmailResetPage extends StatelessWidget {
   }
 
   onPressed(BuildContext context) {
-    if (_btnCounter == 0) {
-      Navigator.of(context).pushNamed(PasswordReset);
-      _btnCounter = 1;
-      Timer(Duration(seconds: 2), () {
-        _btnCounter = 0;
-      });
+    email = emailController.text;
+    final _formState = _formKey.currentState;
+    if (_formState.validate()) {
+      if (_btnCounter == 0) {
+        Navigator.of(context).pushNamed(PasswordReset);
+        _btnCounter = 1;
+        Timer(Duration(seconds: 2), () {
+          _btnCounter = 0;
+        });
+      }
     }
   }
 }
