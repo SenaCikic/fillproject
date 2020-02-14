@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
@@ -136,13 +135,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       )),
                       Container(
                         width: ScreenUtil.instance.setWidth(316.0),
-                        height: ScreenUtil.instance.setHeight(83.0),
+                        height: ScreenUtil.instance.setHeight(92.0),
                         margin:
                             EdgeInsets.only(bottom: 19, left: 49, right: 49),
                         child: TextFormField(
                           textCapitalization: TextCapitalization.sentences,
                           controller: usernameController,
                           decoration: InputDecoration(
+                            errorStyle: TextStyle(inherit: true, textBaseline: TextBaseline.ideographic ),
                             contentPadding: new EdgeInsets.symmetric(
                                 vertical: 25.0, horizontal: 40.0),
                             labelText: MyText().labelUsername,
@@ -180,12 +180,27 @@ class _RegisterPageState extends State<RegisterPage> {
                             setState(() {
                               username = input;
                             });
+                            },
+                             onFieldSubmitted: (value) async {
+                            try {
+                              final result =
+                                  await InternetAddress.lookup('google.com');
+                              if (result.isNotEmpty &&
+                                  result[0].rawAddress.isNotEmpty) {
+                                onFieldSubmitted(context);
+                              }
+                            } on SocketException catch (_) {
+                              MySnackbar().showSnackbar(
+                                  MyText().checkConnection,
+                                  context,
+                                  MyText().snackUndo);
                             }
+                          },
                         ),
                       ),
                       Container(
                         width: ScreenUtil.instance.setWidth(316.0),
-                        height: ScreenUtil.instance.setHeight(83.0),
+                        height: ScreenUtil.instance.setHeight(92.0),
                         margin: EdgeInsets.only(left: 49, right: 49),
                         child: TextFormField(
                           keyboardType: TextInputType.number,
@@ -228,7 +243,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             setState(() {
                               phoneNo = input;
                             });
-                            
                           },
                             validator: (phone) =>
                               MyValidation().validatePhone(phone, brPostoji),
