@@ -26,5 +26,5 @@ If all the prerequisites and / or all fields are filled in, the user can success
    	User Story 3 - Creating an login screen, which checks and validates user credentials. If everything is valid the user can successfully use the application.
 The user has the forget password option, which sends him a mail request to reset the password.
 
-	#Update(14.2)
+	Update(14.2)
 	The team successfully coded user story 2. During this period we had some changes from the investor design-wise. We have 		successfully adjusted designs and we are moving on to user story 3.
