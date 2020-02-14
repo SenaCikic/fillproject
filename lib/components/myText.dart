@@ -32,7 +32,11 @@ class MyText {
   final String fiveSar= '5 \nSAR';
   final String emailHeadline = "Set up an email \nand start getting \n";
   final String btnEmail = 'Next';
-
+  final String resetPass = 'forget password'; 
+  final String ifYouDont = "If you do not know your current password, you may change it.";
+  final String btnSubmit = "Submit";
+  final String resetHead = "Reset password";
+  final String emailPlace = "Email";
   /// VALIDATION
   final String validateSpaceUsername = 'Username must not containe space';
   final String validateSpacePassword = 'Password must not containe space';

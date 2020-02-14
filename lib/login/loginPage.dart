@@ -3,7 +3,10 @@ import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
 import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/routes/routeConstants.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 int _btnCounter = 0;
 String username, password;
@@ -68,6 +71,21 @@ class LoginPage extends StatelessWidget {
                     onPressed: () => onPressed(context),
                     child: Text(MyText().btnLogin)),
               ),
+               Container(
+                margin: EdgeInsets.only(top: 20.0),
+                child: RichText(
+                    text: new TextSpan(children: [
+                  new TextSpan(
+                      text: MyText().resetPass,
+                      style: TextStyle(
+                          color: MyColor().white,
+                          fontSize: ScreenUtil.instance.setSp(15.0),
+                          fontWeight: FontWeight.w300),
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.of(context).pushNamed(EmailReset);
+                        })
+                ]))),
             ],
           ),
         ),
