@@ -2,17 +2,17 @@ import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextFormField.dart';
+
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(ResetPasswordPage());
-
 int _btnCounter = 0;
 String oldPassword, newPassword, repeatPassword;
 
 class ResetPasswordPage extends StatelessWidget {
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController oldPasswordController =
@@ -187,6 +187,7 @@ class ResetPasswordPage extends StatelessWidget {
         //   _btnCounter = 0;
         // });
     //  } 
+
     }
   }
 }
