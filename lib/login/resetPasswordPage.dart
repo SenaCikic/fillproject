@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
+import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -216,6 +218,7 @@ class ResetPasswordPage extends StatelessWidget {
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       if (_btnCounter == 0) {
+       // FirebaseCrud().updatePassword(snapshot.data['index'], context, newPassword);
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;
