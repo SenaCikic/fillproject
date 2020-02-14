@@ -72,7 +72,3 @@ class MyText {
   final String btnReset = 'Reset Password';
   final String repeatPassSnack = "'Password don't match";
 }
-
-
-}
-
