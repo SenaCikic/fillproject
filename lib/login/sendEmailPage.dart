@@ -5,6 +5,7 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
+import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +40,7 @@ class EmailResetPage extends StatelessWidget {
             child: SizedBox(
                 width: 184,
                 height: 28,
-                child: Text("Reset password",
+                child: Text(MyText().emailReset,
                     style: const TextStyle(
                         color: const Color(0xffffffff),
                         fontWeight: FontWeight.w700,
@@ -53,8 +54,7 @@ class EmailResetPage extends StatelessWidget {
             child: SizedBox(
                 width: 269,
                 height: 66,
-                child: Text(
-                    "If you do not know your current password, you may change it.",
+                child: Text(MyText().emailSub,
                     style: const TextStyle(
                         color: const Color(0xffffffff),
                         fontWeight: FontWeight.w500,
@@ -118,6 +118,28 @@ class EmailResetPage extends StatelessWidget {
                 onPressed: () => onPressed(context),
                 child: Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
               )),
+
+          /// Kupljenje podataka za usera sa unesenim emailom
+          
+          // Column(
+          //   children: <Widget>[
+          //     FutureBuilder(
+          //       future: FirebaseCheck().getUser(email),
+          //       builder: (context, AsyncSnapshot snapshot) {
+          //         if (snapshot.hasData) {
+          //           return ListView.builder(
+          //               shrinkWrap: true,
+          //               itemCount: snapshot.data.length,
+          //               itemBuilder: (context, index) {
+          //                 String password = snapshot.data[index].data['password'];
+          //                 print(password);
+          //                 return EmptyContainer();
+          //               });
+          //         }
+          //       },
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );
@@ -125,10 +147,12 @@ class EmailResetPage extends StatelessWidget {
 
   onPressed(BuildContext context) {
     email = emailController.text;
+    
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       if (_btnCounter == 0) {
-        Navigator.of(context).pushNamed(PasswordReset);
+        Navigator.of(context).pushNamed(PasswordReset,
+            arguments: UpdatePasswordArguments(email: emailController.text));
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;

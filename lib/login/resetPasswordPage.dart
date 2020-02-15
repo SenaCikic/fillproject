@@ -1,27 +1,52 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
+import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 int _btnCounter = 0;
 String oldPassword, newPassword, repeatPassword;
 
-class ResetPasswordPage extends StatelessWidget {
+class ResetPasswordPage extends StatefulWidget {
+  final UpdatePasswordArguments arguments;
+  ResetPasswordPage({this.arguments});
+
+  @override
+  _ResetPasswordPageState createState() =>
+      _ResetPasswordPageState(arguments: arguments);
+}
+
+class _ResetPasswordPageState extends State<ResetPasswordPage> {
+  final UpdatePasswordArguments arguments;
+  _ResetPasswordPageState({this.arguments});
+
+  DocumentSnapshot snap;
+
   final String codeFromEmail = 'asdfgh';
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController oldPasswordController =
       new TextEditingController();
+
   final TextEditingController newPasswordController =
       new TextEditingController();
+
   final TextEditingController repeatPasswordController =
       new TextEditingController();
-  
+
+  @override
+  void initState() {
+    FirebaseCheck().getUser(arguments.email);
+    super.initState();
+  }
+
   void dispose() {
     oldPasswordController.dispose();
     newPasswordController.dispose();
@@ -32,6 +57,18 @@ class ResetPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: new AppBar(
+        title: new Text(""),
+        backgroundColor: MyColor().black,
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => SingleChildScrollView(
@@ -40,13 +77,15 @@ class ResetPasswordPage extends StatelessWidget {
               Center(
                 child: Container(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 105, bottom: 35),
+                    padding: const EdgeInsets.only(bottom: 35),
                     child: Text(
                       MyText().resetHeadline,
-                      style: TextStyle(
-                        fontSize: 22,
-                        color: MyColor().white,
-                      ),
+                      style: const TextStyle(
+                          color: const Color(0xffffffff),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "LoewNextArabic",
+                          fontStyle: FontStyle.normal,
+                          fontSize: 18.0),
                     ),
                   ),
                 ),
@@ -64,7 +103,7 @@ class ResetPasswordPage extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                           controller: oldPasswordController,
                           decoration: InputDecoration(
-                            hasFloatingPlaceholder: false,
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
                             contentPadding: new EdgeInsets.symmetric(
                                 vertical: 25.0, horizontal: 35.0),
                             labelText: MyText().labelOldPassword,
@@ -95,8 +134,6 @@ class ResetPasswordPage extends StatelessWidget {
                             ),
                           ),
                           obscureText: false,
-                          validator: (codeInput) => MyValidation()
-                              .resetPassword(codeInput, codeFromEmail),
                         ),
                       ),
                       Container(
@@ -110,7 +147,7 @@ class ResetPasswordPage extends StatelessWidget {
                           style: TextStyle(color: MyColor().white),
                           controller: newPasswordController,
                           decoration: InputDecoration(
-                            hasFloatingPlaceholder: false,
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
                             contentPadding: new EdgeInsets.symmetric(
                                 vertical: 25.0, horizontal: 35.0),
                             labelText: MyText().labelNewPassword,
@@ -154,7 +191,7 @@ class ResetPasswordPage extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                           controller: repeatPasswordController,
                           decoration: InputDecoration(
-                            hasFloatingPlaceholder: false,
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
                             contentPadding: new EdgeInsets.symmetric(
                                 vertical: 25.0, horizontal: 35.0),
                             labelText: MyText().repeatNewPassword,
@@ -204,6 +241,26 @@ class ResetPasswordPage extends StatelessWidget {
                     onPressed: () => onPressed(context),
                     child: Text(MyText().btnReset)),
               ),
+
+              /// izvlaci podatke za tog usera na osnovu emaila koji smo pruzeli sa prethodnog screen-a
+              ///
+              /// poziva se metoda [getUser] iz FirebaseCheck klase
+              FutureBuilder(
+                future: FirebaseCheck().getUser(arguments.email),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          snap = snapshot.data[index];
+                          return EmptyContainer();
+                        });
+                  }
+                  return EmptyContainer();
+                },
+              ),
             ],
           ),
         ),
@@ -218,7 +275,7 @@ class ResetPasswordPage extends StatelessWidget {
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       if (_btnCounter == 0) {
-       // FirebaseCrud().updatePassword(snapshot.data['index'], context, newPassword);
+        FirebaseCrud().updatePassword(snap, context, newPassword);
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;

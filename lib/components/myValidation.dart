@@ -76,10 +76,11 @@ class MyValidation {
     if (input == '') {
       counter = 0;
       return MyText().regEmailSnack;
-    } else if (regexEmail.hasMatch(input) == false) {
-      counter = 0;
-      return MyText().validEmail;
-    }
+    } 
+    // else if (regexEmail.hasMatch(input) == false) {
+    //   counter = 0;
+    //   return MyText().validEmail;
+    // }
     return null;
   }
   /// Dodatna validacija na [sendEmailPage] za email

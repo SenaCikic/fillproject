@@ -3,8 +3,8 @@ class MyText {
   final String subtitle = "Register and get\n5 SAR";
   final String registerHeadline = 'Register and start \n making money';
   final String registerSubtitle = '3\nSAR';
-  final String btnSU = 'SIGN UP';
-  final String btnSI = 'SIGN IN';
+  final String btnSU = 'New Register';
+  final String btnSI = 'Sign In';
   final String labelEmail = 'Email';
   final String labelPhone = ' +966 Phone number';
   final String verifyCode = 'Enter sms code';
@@ -75,4 +75,7 @@ class MyText {
   final String btnReset = 'Reset Password';
   final String repeatPassSnack = "Wrong input";
   final String emptyFieldSnack = "This field can't be empty";
+  // login -> sendEmailPage
+  final String emailReset = "Reset password";
+  final String emailSub = "If you do not know your current password, you may change it.";
 }
