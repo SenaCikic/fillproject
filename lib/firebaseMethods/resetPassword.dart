@@ -10,9 +10,10 @@ class ResetPassword {
   String recipent;
   ResetPassword({this.recipent});
 
-  String emailCode = randomAlphaNumeric(10);
 
-  Future<void> sendEmail(String recipent) async {
+  
+
+  Future<void> sendEmail(String recipent, String emailCode) async {
     final smtpServer = gmail(email, password);
     // Creating the Gmail server
 
@@ -21,9 +22,9 @@ class ResetPassword {
       ..from = Address(email)
       ..recipients.add(recipent) //recipent email
       ..subject =
-          'Test Dart Mailer library :: 😀 :: ${DateTime.now()}' //subject of the email
+          'Reset Password' //subject of the email
       ..text =
-          'This is your code for reset password :.\n$emailCode'; //body of the email
+          'You are recieving this e-mail because you requested a password reset for your Fill account.\n \n This is your code for reset password:\n \n$emailCode'; //body of the email
 
     try {
       final sendReport = await send(message, smtpServer);
