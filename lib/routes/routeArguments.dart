@@ -18,6 +18,7 @@ class PasswordArguments {
 
 class UpdatePasswordArguments {
     final String email; 
-    UpdatePasswordArguments({this.email});
+    final String emailCode;
+    UpdatePasswordArguments({this.email, this.emailCode});
 }
 

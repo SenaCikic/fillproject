@@ -134,6 +134,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                             ),
                           ),
                           obscureText: false,
+                          validator: (code) => MyValidation().resetPassword(code, arguments.emailCode),
                         ),
                       ),
                       Container(

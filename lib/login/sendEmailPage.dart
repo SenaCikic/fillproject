@@ -5,10 +5,12 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
+import 'package:fillproject/firebaseMethods/resetPassword.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:random_string/random_string.dart';
 
 class EmailResetPage extends StatelessWidget {
   String email;
@@ -147,12 +149,14 @@ class EmailResetPage extends StatelessWidget {
 
   onPressed(BuildContext context) {
     email = emailController.text;
-    
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       if (_btnCounter == 0) {
+        String emailCode = randomAlphaNumeric(10);
+        print(emailCode);
+        ResetPassword().sendEmail(emailController.text, emailCode);
         Navigator.of(context).pushNamed(PasswordReset,
-            arguments: UpdatePasswordArguments(email: emailController.text));
+            arguments: UpdatePasswordArguments(email: emailController.text, emailCode: emailCode));
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;
