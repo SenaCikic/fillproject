@@ -34,7 +34,7 @@ class RouteGenerator {
       case EmailReset: 
         return MaterialPageRoute(builder: (_) => EmailResetPage());
       case PasswordReset: 
-        return MaterialPageRoute(builder: (_) => ResetPasswordPage());
+        return MaterialPageRoute(builder: (_) => ResetPasswordPage(arguments: args));
       default:
         return _errorRoute();
     }

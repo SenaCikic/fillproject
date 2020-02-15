@@ -54,7 +54,16 @@ class FirebaseCheck {
     return documents.length == 1;
   }
 
-  
+/// pomocu metode [getUser] na osnovu unesenog emaila u resetPassword kupimo usera
+/// i updatujemo password
+  Future getUser(String email) async {
+    var firestore = Firestore.instance;
+    QuerySnapshot qn = await firestore
+        .collection('Users')
+        .where('email', isEqualTo: email)
+        .getDocuments();
+    return qn.documents;
+  }
 
   
 }

@@ -26,7 +26,8 @@ class FirebaseCrud {
     await db.collection('Users').document(doc.documentID).updateData({
       'password': '$password'
     });
-       Navigator.of(context).pushNamed(Login); 
+    print('update je uspjesan hehehehhe');
+    Navigator.of(context).pushNamed(Login); 
   }
   
 }
