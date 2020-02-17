@@ -17,7 +17,7 @@ class MyText {
   final String termsOfService = 'Terms of Services';
   final String btnPassword = 'Sign Up & Accept';
   final String appBarDash = 'Dashboard';
-  final String dashHeadline = 'Congrats you are logged in bitch!';
+  final String dashHeadline = 'You are logged in. ';
   final String dashSub = 'My Email is: ';
   final String dashSub1 = ' And my Password is: ';
   final String btnLogout = 'Logout';
