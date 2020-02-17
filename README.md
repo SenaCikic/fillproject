@@ -28,3 +28,9 @@ The user has the forget password option, which sends him a mail request to reset
 
 Update(14.2)
 The team successfully coded user story 2. During this period we had some changes from the investor design-wise. We have successfully adjusted designs and we are moving on to user story 3.
+Only problem that we have was on verifyPin page validation-vise.
+
+Update(17.2)
+The team successfully coded user story 3. During this period we had some changes from the investor design-wise. We have successfully adjusted designs and we are moving on to the next sprint planning. We added our own reset password screen and figured out all that process with ur own solutions. 
+Very proud on team 2.
+
