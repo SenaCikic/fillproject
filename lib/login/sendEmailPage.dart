@@ -35,92 +35,95 @@ class EmailResetPage extends StatelessWidget {
           },
         ),
       ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(top: 25.0),
-            child: SizedBox(
-                width: 184,
-                height: 28,
-                child: Text(MyText().emailReset,
-                    style: const TextStyle(
-                        color: const Color(0xffffffff),
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "LoewNextArabic",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 23.0),
-                    textAlign: TextAlign.center)),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 22.0, right: 73.0, left: 72.0),
-            child: SizedBox(
-                width: 269,
-                height: 66,
-                child: Text(MyText().emailSub,
-                    style: const TextStyle(
-                        color: const Color(0xffffffff),
-                        fontWeight: FontWeight.w500,
-                        fontFamily: "LoewNextArabic",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 16.0),
-                    textAlign: TextAlign.center)),
-          ),
-          Container(
-              margin: EdgeInsets.only(
-                  bottom: 20, top: 163.0, left: 54.0, right: 44.0),
-              child: Container(
-                width: ScreenUtil.instance.setWidth(316.0),
-                height: ScreenUtil.instance.setHeight(92.0),
-                margin: EdgeInsets.only(top: 20.0),
-                child: Form(
-                  key: _formKey,
-                  child: TextFormField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      contentPadding: new EdgeInsets.symmetric(
-                          vertical: 25.0, horizontal: 35.0),
-                      labelText: MyText().labelEmail,
-                      labelStyle: TextStyle(color: MyColor().white),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(33.5)),
-                        borderSide: BorderSide(color: MyColor().white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(33.5)),
-                        borderSide: BorderSide(color: MyColor().white),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(33.5)),
-                        borderSide: BorderSide(
-                          color: MyColor().error,
-                        ),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(33.5)),
-                        borderSide: BorderSide(
-                          color: MyColor().error,
-                        ),
+      body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+              child: ListView(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 25.0),
+              child: SizedBox(
+                  width: 184,
+                  height: 28,
+                  child: Text(MyText().emailReset,
+                      style: const TextStyle(
+                          color: const Color(0xffffffff),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "LoewNextArabic",
+                          fontStyle: FontStyle.normal,
+                          fontSize: 23.0),
+                      textAlign: TextAlign.center)),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 28.0, right: 73.0, left: 72.0,bottom: 163),
+              child: SizedBox(
+                  width: ScreenUtil.instance.setWidth(269),
+                  height: ScreenUtil.instance.setWidth(66),
+                  child: Text(MyText().emailSub,
+                      style: const TextStyle(
+                          color: const Color(0xffffffff),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "LoewNextArabic",
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16),
+                      textAlign: TextAlign.center)),
+            ),
+            Container(
+              width: ScreenUtil.instance.setWidth(316.0),
+              height: ScreenUtil.instance.setHeight(92.0),
+              margin: EdgeInsets.only(left: 49.0, right: 49.0, bottom: 22),
+              child: Form(
+                key: _formKey,
+                child: TextFormField(
+                  controller: emailController,
+                  decoration: InputDecoration(
+                    // floatingLabelBehavior: FloatingLabelBehavior.never,
+                    hasFloatingPlaceholder: false,
+                    contentPadding: new EdgeInsets.symmetric(
+                        vertical: 25.0, horizontal: 35.0),
+                    labelText: MyText().labelEmail,
+                    labelStyle: TextStyle(color: MyColor().white),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(33.5)),
+                      borderSide: BorderSide(color: MyColor().white),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(33.5)),
+                      borderSide: BorderSide(color: MyColor().white),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(33.5)),
+                      borderSide: BorderSide(
+                        color: MyColor().error,
                       ),
                     ),
-                    style: TextStyle(color: MyColor().white),
-                    validator: (email) =>
-                        MyValidation().validateEmailLogin(email, _btnCounter),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(33.5)),
+                      borderSide: BorderSide(
+                        color: MyColor().error,
+                      ),
+                    ),
                   ),
+                  style: TextStyle(color: MyColor().white),
+                  validator: (email) =>
+                      MyValidation().validateEmailLogin(email, _btnCounter),
                 ),
-              )),
-          Container(
-              width: ScreenUtil.instance.setWidth(316.0),
-              height: ScreenUtil.instance.setHeight(67.0),
-              margin: EdgeInsets.only(left: 46.0, right: 52.0),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(33.5),
-                ),
-                onPressed: () => onPressed(context),
-                child: Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
-              )),
-        ],
+              ),
+            ),
+            Container(
+                width: ScreenUtil.instance.setWidth(316.0),
+                height: ScreenUtil.instance.setHeight(67.0),
+                margin: EdgeInsets.only(left: 49.0, right: 49.0,),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(33.5),
+                  ),
+                  onPressed: () => onPressed(context),
+                  child: Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
+                )),
+          ],
+        ),
       ),
     );
   }

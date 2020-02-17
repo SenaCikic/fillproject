@@ -142,7 +142,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             textCapitalization: TextCapitalization.sentences,
                             controller: usernameController,
                             decoration: InputDecoration(
-                               floatingLabelBehavior: FloatingLabelBehavior.never,
+                              //  floatingLabelBehavior: FloatingLabelBehavior.never,
+                              hasFloatingPlaceholder: false,
                               errorStyle: TextStyle(
                                   inherit: true,
                                   textBaseline: TextBaseline.ideographic),
