@@ -113,10 +113,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           padding: const EdgeInsets.only(top: 28),
                           child: Text(
                             MyText().registerHeadline,
-                            style: TextStyle(
-                              fontSize: ScreenUtil.instance.setSp(23),
-                              color: MyColor().white,
-                            ),
+                            style: const TextStyle(
+                        color: const Color(0xffffffff),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: "LoewNextArabic",
+                        fontStyle: FontStyle.normal,
+                         fontSize: 23, ),
                             textAlign: TextAlign.center,
                           ),
                         )),
