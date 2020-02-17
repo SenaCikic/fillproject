@@ -58,10 +58,13 @@ class _EmailPageState extends State<EmailPage> {
                     padding: const EdgeInsets.only(top: 28, bottom: 35),
                     child: Text(MyText().emailHeadline,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: ScreenUtil.instance.setSp(23.0),
-                          color: MyColor().white,
-                        )),
+                        style: const TextStyle(
+                        color: const Color(0xffffffff),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: "LoewNextArabic",
+                        fontStyle: FontStyle.normal,
+                         fontSize: 23, ),
+                        ),
                   ),
                   Text(MyText().fiveSar,
                       textAlign: TextAlign.center,

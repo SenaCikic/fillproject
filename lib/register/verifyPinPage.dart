@@ -86,10 +86,12 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
               margin: EdgeInsets.only(top: 105, bottom: 35),
               child: Text(
                 MyText().verifyPageHeadline,
-                style: TextStyle(
-                  color: MyColor().white,
-                  fontSize: ScreenUtil.instance.setSp(23.0),
-                ),
+                style: const TextStyle(
+                        color: const Color(0xffffffff),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: "LoewNextArabic",
+                        fontStyle: FontStyle.normal,
+                         fontSize: 23, ),
                 textAlign: TextAlign.center,
               ),
             ),

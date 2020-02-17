@@ -9,7 +9,7 @@ import 'package:fillproject/utils/screenUtils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 String password;
 int _btnCounter = 0;
@@ -50,10 +50,12 @@ class PasswordPage extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 28, bottom: 35),
                     child: Text(MyText().passwordHeadline,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: ScreenUtil.instance.setSp(23),
-                          color: MyColor().white,
-                        )),
+                        style: const TextStyle(
+                        color: const Color(0xffffffff),
+                        fontWeight: FontWeight.w700,
+                        fontFamily: "LoewNextArabic",
+                        fontStyle: FontStyle.normal,
+                         fontSize: 23, ),),
                   ),
                   Text(MyText().fiveSar,
                       textAlign: TextAlign.center,
@@ -125,7 +127,7 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: ScreenUtil.instance.setSp(12)),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                launch('https://google.com');
+                                // launch('https://google.com');
                               }),
                         new TextSpan(
                           text: MyText().passwordSubtitle2,
@@ -141,7 +143,7 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: ScreenUtil.instance.setSp(12)),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                launch('https://google.com');
+                                // launch('https://google.com');
                               })
                       ]),
                     ),

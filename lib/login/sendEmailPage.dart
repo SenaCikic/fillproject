@@ -120,28 +120,6 @@ class EmailResetPage extends StatelessWidget {
                 onPressed: () => onPressed(context),
                 child: Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
               )),
-
-          /// Kupljenje podataka za usera sa unesenim emailom
-          
-          // Column(
-          //   children: <Widget>[
-          //     FutureBuilder(
-          //       future: FirebaseCheck().getUser(email),
-          //       builder: (context, AsyncSnapshot snapshot) {
-          //         if (snapshot.hasData) {
-          //           return ListView.builder(
-          //               shrinkWrap: true,
-          //               itemCount: snapshot.data.length,
-          //               itemBuilder: (context, index) {
-          //                 String password = snapshot.data[index].data['password'];
-          //                 print(password);
-          //                 return EmptyContainer();
-          //               });
-          //         }
-          //       },
-          //     ),
-          //   ],
-          // ),
         ],
       ),
     );
