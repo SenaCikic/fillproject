@@ -51,7 +51,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     oldPasswordController.dispose();
     newPasswordController.dispose();
     repeatPasswordController.dispose();
-    dispose();
+    super.dispose();
   }
 
   @override

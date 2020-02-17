@@ -1,5 +1,4 @@
 import 'package:fillproject/components/MyText.dart';
-import 'package:fillproject/firebaseMethods/resetPassword.dart';
 
 class MyValidation {
   int snackCounter = 0;

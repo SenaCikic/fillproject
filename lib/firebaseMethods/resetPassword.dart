@@ -1,6 +1,5 @@
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
-import 'package:random_string/random_string.dart';
 
 String email = "fillproject966@gmail.com";
 String password = "kjpu8vk6";
