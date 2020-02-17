@@ -6,7 +6,8 @@ class MyValidation {
 
   RegExp regexPassword = new RegExp(r'^(?=.*?[A-Z])(?=.*[0-9])(?=.{8,})');
   RegExp regexSpace = new RegExp(r'\s');
-  RegExp regexEmail = new RegExp(r'^(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$)');
+  RegExp regexEmail = new RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   String validatePhone(String phone, bool brPostoji) {
     if (phone == '') {
@@ -76,24 +77,26 @@ class MyValidation {
     if (input == '') {
       counter = 0;
       return MyText().regEmailSnack;
-    } 
-    // else if (regexEmail.hasMatch(input) == false) {
-    //   counter = 0;
-    //   return MyText().validEmail;
-    // }
+    } else if (regexEmail.hasMatch(input) == false) {
+      counter = 0;
+      return MyText().validEmail;
+    } else if (regexSpace.hasMatch(input) == true) {
+      counter = 0;
+      return MyText().validEmail;
+    }
     return null;
   }
+
   /// Dodatna validacija na [sendEmailPage] za email
   /// Error text je drugaciji, rijesit cemo prilikom refaktorisanja
   String validateEmail(String input, int counter, bool emailPostoji) {
     if (input == '') {
       counter = 0;
       return MyText().regEmailSnack;
-    // } else if (regexEmail.hasMatch(input) == false) {
-    //   counter = 0;
-    //   return MyText().validEmail;
-    }
-     else if (emailPostoji) {
+      // } else if (regexEmail.hasMatch(input) == false) {
+      //   counter = 0;
+      //   return MyText().validEmail;
+    } else if (emailPostoji) {
       return MyText().emailExist;
     }
     return null;
