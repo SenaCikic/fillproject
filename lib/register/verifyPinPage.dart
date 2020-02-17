@@ -56,6 +56,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
     }
 
     onPressed(BuildContext context) {
+      smsCode = codeController.text;
       if (smsCode.length < 6) {
         fieldColor = true;
         Timer(Duration(milliseconds: 100), () {
