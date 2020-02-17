@@ -6,6 +6,7 @@ import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
+import 'package:fillproject/home/homePage.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -324,7 +325,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<bool> _onWillPop() async {
-        Navigator.of(context).pushNamed(Home);
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUp()));
         return EmptyContainer() ?? true;
 }
 }
