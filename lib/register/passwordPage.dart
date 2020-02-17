@@ -9,6 +9,7 @@ import 'package:fillproject/utils/screenUtils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 String password;
@@ -157,6 +158,7 @@ class PasswordPage extends StatelessWidget {
                           ),
                           onPressed: () {
                             onPressed(context);
+                                _save();
                           },
                           child: Text(MyText().btnPassword,
                               style: TextStyle(
@@ -190,4 +192,12 @@ class PasswordPage extends StatelessWidget {
       }
     }
   }
+
+      _save() async {
+        final prefs = await SharedPreferences.getInstance();
+        final key = 'user_password';
+        final value = password;
+        prefs.setString(key, value);
+        print('saved $value');
+      }
 }
