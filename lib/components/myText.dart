@@ -32,7 +32,7 @@ class MyText {
   final String passwordHeadline = "Set up a password \nand start getting \n";
   final String fiveSar = '5 \nSAR';
   final String emailHeadline = "Set up an email \nand start getting \n";
-  final String btnEmail = 'Next';
+  final String btnEmail = 'Submit';
   final String resetPass = 'forget password';
   final String ifYouDont =
       "If you do not know your current password, you may change it.";

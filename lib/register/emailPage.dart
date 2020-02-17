@@ -80,7 +80,8 @@ class _EmailPageState extends State<EmailPage> {
                           child: TextFormField(
                             controller: emailController,
                             decoration: InputDecoration(
-                              floatingLabelBehavior: FloatingLabelBehavior.never,
+                              // floatingLabelBehavior: FloatingLabelBehavior.never,
+                              hasFloatingPlaceholder: false,
                               contentPadding: new EdgeInsets.symmetric(
                                   vertical: 25.0, horizontal: 35.0),
                               labelText: MyText().labelEmail,
