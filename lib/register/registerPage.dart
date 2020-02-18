@@ -12,6 +12,7 @@ import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -307,8 +308,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Column(
                           children: <Widget>[
                             FutureBuilder(
-                              future: FirebaseCheck()
-                                  .doesNameAlreadyExist(username),
+                              future: FirebaseCheck().doesNameAlreadyExist(username),
                               builder: (context, AsyncSnapshot<bool> result) {
                                 if (!result.hasData) {
                                   return EmptyContainer();
@@ -340,5 +340,7 @@ class _RegisterPageState extends State<RegisterPage> {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUp()));
     return EmptyContainer() ?? true;
   }
+
+
 
 }
