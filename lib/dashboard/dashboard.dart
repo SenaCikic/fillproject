@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -43,63 +45,137 @@ class _DashboardPageState extends State<DashboardPage> {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          FutureBuilder(
-            future: FirebaseCheck().getQuestions(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    question = snapshot.data[index].data['title'];
-                    sar = snapshot.data[index].data['sar'];
-                   choices = snapshot.data[index].data['choices'];
-                   List<dynamic> choiseOne = [];
-                    for (int i = 0; i < choices.length; i++) {
-                      choiseOne.add(choices[i]['text']);
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                              child: SizedBox(
+                                height: 400,
+                                                              child: FutureBuilder(
+                  future: FirebaseCheck().getQuestions(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          question = snapshot.data[index].data['title'];
+                          sar = snapshot.data[index].data['sar'];
+                          choices = snapshot.data[index].data['choices'];
+                          List<dynamic> choiseOne = [];
+                          for (int i = 0; i < choices.length; i++) {
+                            choiseOne.add(choices[i]['text']);
+                          }
+                          return new Column(
+                            children: <Widget>[
+                                new Text('Sar $sar',
+                                    style: TextStyle(color: MyColor().white)),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                Text('Pitanje $question',
+                                    style: TextStyle(color: MyColor().white)),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                new Column(
+                                  children: choiseOne
+                                      .map((item) => Container(
+                                            child: Text(item,
+                                                style: TextStyle(
+                                                    color: MyColor().white)),
+                                          ))
+                                      .toList(),
+                                ),
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                new OutlineButton(
+                                  borderSide: BorderSide(
+                                      color: Colors.red,
+                                      style: BorderStyle.solid,
+                                      width: 3.0),
+                                  child: Text(MyText().btnLogout,
+                                      style: TextStyle(color: MyColor().white)),
+                                  onPressed: () => onPressed(context),
+                                ),
+                            ],
+                          );
+                        },
+                      );
                     }
-                    return Container(
-                      child: new Column(
-                        children: <Widget>[
-                          new Text('Sar $sar',
-                              style: TextStyle(color: MyColor().white)),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          Text('Pitanje $question',
-                              style: TextStyle(color: MyColor().white)),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          new Column(
-                              children: choiseOne.map((item) => Container(
-                                child: Text(item,style: TextStyle(color: MyColor().white)),
-                              )).toList(), 
-                          ),
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          new OutlineButton(
-                            borderSide: BorderSide(
-                                color: Colors.red,
-                                style: BorderStyle.solid,
-                                width: 3.0),
-                            child: Text(MyText().btnLogout,
-                                style: TextStyle(color: MyColor().white)),
-                            onPressed: () => onPressed(context),
-                          ),
-                        ],
-                      ),
-                    );
+                    return CircularProgressIndicator();
                   },
-                );
-              }
-              return SizedBox();
-            },
+                ),
+                              ),
+              ),
+            ],
+            ),
+            ],
           ),
-        ],
-      ),
+      //  Column(
+      //   children: <Widget>[
+      //     FutureBuilder(
+      //       future: FirebaseCheck().getQuestions(),
+      //       builder: (BuildContext context, AsyncSnapshot snapshot) {
+      //         if (snapshot.hasData) {
+      //           return ListView.builder(
+      //             shrinkWrap: true,
+      //             itemCount: snapshot.data.length,
+      //             itemBuilder: (context, index) {
+      //               question = snapshot.data[index].data['title'];
+      //               sar = snapshot.data[index].data['sar'];
+      //               choices = snapshot.data[index].data['choices'];
+      //               List<dynamic> choiseOne = [];
+      //               for (int i = 0; i < choices.length; i++) {
+      //                 choiseOne.add(choices[i]['text']);
+      //               }
+      //               return new Column(
+      //                 children: <Widget>[
+      //                   new Text('Sar $sar',
+      //                       style: TextStyle(color: MyColor().white)),
+      //                   SizedBox(
+      //                     height: 15.0,
+      //                   ),
+      //                   Text('Pitanje $question',
+      //                       style: TextStyle(color: MyColor().white)),
+      //                   SizedBox(
+      //                     height: 15.0,
+      //                   ),
+      //                   new Column(
+      //                     children: choiseOne
+      //                         .map((item) => Container(
+      //                               child: Text(item,
+      //                                   style:
+      //                                       TextStyle(color: MyColor().white)),
+      //                             ))
+      //                         .toList(),
+      //                   ),
+      //                   SizedBox(
+      //                     height: 15.0,
+      //                   ),
+      //                   new OutlineButton(
+      //                     borderSide: BorderSide(
+      //                         color: Colors.red,
+      //                         style: BorderStyle.solid,
+      //                         width: 3.0),
+      //                     child: Text(MyText().btnLogout,
+      //                         style: TextStyle(color: MyColor().white)),
+      //                     onPressed: () => onPressed(context),
+      //                   ),
+      //                 ],
+      //               );
+      //             },
+      //           );
+      //         }
+      //         return CircularProgressIndicator();
+      //       },
+      //     ),
+      //   ],
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // this will be set when a new tab is tapped
         items: [
@@ -118,8 +194,8 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  onPressed(BuildContext context) {
-    FirebaseAuth.instance.signOut().then((action) {
+  Future onPressed(BuildContext context) async {
+    await FirebaseAuth.instance.signOut().then((action) {
       Navigator.of(context).pushNamed(Home);
     }).catchError((e) {
       print(e);
