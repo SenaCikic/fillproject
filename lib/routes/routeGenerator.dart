@@ -1,4 +1,4 @@
-import 'package:fillproject/dashboard.dart';
+import 'package:fillproject/dashboard/dashboard.dart';
 import 'package:fillproject/home/homePage.dart';
 import 'package:fillproject/login/loginPage.dart';
 import 'package:fillproject/login/resetPasswordPage.dart';
