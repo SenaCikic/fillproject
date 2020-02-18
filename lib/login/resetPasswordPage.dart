@@ -285,7 +285,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       if (_btnCounter == 0) {
-        FirebaseCrud().updatePassword(snap, context, newPassword);
+        // FirebaseCrud().updatePassword(snap, context, newPassword);
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;
