@@ -45,33 +45,43 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
       }).catchError((e) {
         print('Auth Credential Error : $e');
         wrongCodeError = e.toString();
-        print(wrongCodeError);
-        if (wrongCodeError == MyText().wrongCodeError) {
+        setState(() {
           codeError = true;
-          Timer(Duration(milliseconds: 200), () {
+        });
+        Timer(Duration(seconds: 2), () {
+          setState(() {
             codeError = false;
           });
-        }
+        });
       });
     }
 
     onPressed(BuildContext context) {
       smsCode = codeController.text;
       if (smsCode.length < 6) {
-        fieldColor = true;
-        Timer(Duration(milliseconds: 100), () {
-          fieldColor = false;
+        setState(() {
+          fieldColor = true;
         });
-      } else {
-        if (_btnCounter == 0) {
-          FirebaseAuth.instance.currentUser().then((user) {
-            signIn(smsCode);
+        Timer(Duration(seconds: 2), () {
+          setState(() {
+            fieldColor = false;
           });
-          _btnCounter = 1;
-          Timer(Duration(seconds: 2), () {
-            _btnCounter = 0;
-          });
-        }
+        });
+      }
+      else {
+        setState(() {
+          fieldColor = false;
+          codeError = false;
+          if (_btnCounter == 0) {
+            FirebaseAuth.instance.currentUser().then((user) {
+              signIn(smsCode);
+            });
+            _btnCounter = 1;
+            Timer(Duration(seconds: 2), () {
+              _btnCounter = 0;
+            });
+          }
+        });
       }
     }
 
@@ -87,11 +97,12 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
               child: Text(
                 MyText().verifyPageHeadline,
                 style: const TextStyle(
-                        color: const Color(0xffffffff),
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "LoewNextArabic",
-                        fontStyle: FontStyle.normal,
-                         fontSize: 23, ),
+                  color: const Color(0xffffffff),
+                  fontWeight: FontWeight.w700,
+                  fontFamily: "LoewNextArabic",
+                  fontStyle: FontStyle.normal,
+                  fontSize: 23,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -137,21 +148,9 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                   borderWidth: 1.0,
                   controller: codeController,
                   onChanged: (value) => {
-                    // setState(() {
-                    //   smsCode = value;
-                    //   if (smsCode.length < 6) {
-                    //     fieldColor = true;
-                    //     Timer(Duration(milliseconds: 100), () {
-                    //       fieldColor = false;
-                    //     });
-                    //   } else if (wrongCodeError == MyText().wrongCodeError) {
-                    //     codeError = true;
-                    //     Timer(Duration(milliseconds: 200), () {
-                    //       codeError = false;
-                    //     });
-                    //   }
-                    //   signIn(smsCode);
-                    // }),
+                    setState(() {
+                      smsCode = value;
+                    }),
                   },
                 ),
               ),

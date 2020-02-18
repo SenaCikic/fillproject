@@ -339,12 +339,12 @@ class _PinCodeTextFieldState extends State<MyPinCodeTextField> {
               autofocus: widget.autoFocus,
               autocorrect: false,
               keyboardType: TextInputType.number,
-              // inputFormatters: [
-              //   ..widget.inputFormatters,
-              //   LengthLimitingTextInputFormatter(
-              //     widget.length,
-              //   ), // this limits the input length
-              // ],
+              inputFormatters: [
+                ...widget.inputFormatters,
+                LengthLimitingTextInputFormatter(
+                  widget.length,
+                ), // this limits the input length
+              ],
               enableInteractiveSelection: false,
               showCursor: true, // this cursor must remain hidden
               cursorColor: widget

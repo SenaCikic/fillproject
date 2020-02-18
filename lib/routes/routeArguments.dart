@@ -22,3 +22,9 @@ class UpdatePasswordArguments {
     UpdatePasswordArguments({this.email, this.emailCode});
 }
 
+class DidntRecievePinArguments {
+  final String username;
+  final String phone;
+  DidntRecievePinArguments({this.phone, this.username});
+}
+
