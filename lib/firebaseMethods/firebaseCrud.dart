@@ -1,9 +1,8 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/material.dart';
 
-final db = FirebaseDatabase.instance;
+final db = Firestore.instance;
 
 class FirebaseCrud {
   /// create function
@@ -11,7 +10,7 @@ class FirebaseCrud {
   /// upis u firestore collection
   createUser(String email, String phone, String username, String userId,
       String password) async {
-    await db.reference().child('1').set({
+    await db.collection('Users').add({
       'email': email,
       'username': username,
       'password': password,
@@ -20,15 +19,15 @@ class FirebaseCrud {
     });
   }
 
-  // updatePassword(
-  //   DocumentSnapshot doc,
-  //   BuildContext context,
-  //   String password) async {
-  //   await db.collection('Users').document(doc.documentID).updateData({
-  //     'password': '$password'
-  //   });
-  //   print('update je uspjesan hehehehhe');
-  //   Navigator.of(context).pushNamed(Login); 
-  // }
+  updatePassword(
+    DocumentSnapshot doc,
+    BuildContext context,
+    String password) async {
+    await db.collection('Users').document(doc.documentID).updateData({
+      'password': '$password'
+    });
+    print('update je uspjesan hehehehhe');
+    Navigator.of(context).pushNamed(Login); 
+  }
   
 }
