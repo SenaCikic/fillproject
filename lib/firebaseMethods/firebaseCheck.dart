@@ -3,9 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseCheck {
-
-
-
   /// provjera da li username postoji u bazi
   ///
   Future<bool> doesNameAlreadyExist(String username) async {
@@ -54,8 +51,8 @@ class FirebaseCheck {
     return documents.length == 1;
   }
 
-/// pomocu metode [getUser] na osnovu unesenog emaila u resetPassword kupimo usera
-/// i updatujemo password
+  /// pomocu metode [getUser] na osnovu unesenog emaila u resetPassword kupimo usera
+  /// i updatujemo password
   Future getUser(String email) async {
     var firestore = Firestore.instance;
     QuerySnapshot qn = await firestore
@@ -65,5 +62,9 @@ class FirebaseCheck {
     return qn.documents;
   }
 
-  
+  Future getQuestions() async {
+    var firestore = Firestore.instance;
+    QuerySnapshot qn = await firestore.collection('Questions').getDocuments();
+    return qn.documents;
+  }
 }
