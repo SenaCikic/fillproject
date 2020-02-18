@@ -50,6 +50,7 @@ class MyText {
   final String emailExist = "Email already exist";
   final String wrongCodeError =
       'PlatformException(ERROR_INVALID_VERIFICATION_CODE, The sms verification code used to create the phone auth credential is invalid. Please resend the verification code sms and be sure use the verification code provided by the user., null)';
+  final String otherError = 'PlatformException(ERROR_TOO_MANY_REQUESTS, The sms quota for this project has been exceeded. [ Exceeded quota for verifying phone numbers. ], null)';
   final String wrongCode = 'You entered invalid code';
 
   final String snackUndo = 'Undo';

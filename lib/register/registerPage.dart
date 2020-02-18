@@ -18,12 +18,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatefulWidget {
+
+  final DidntRecievePinArguments arguments;
+  RegisterPage({this.arguments});
+
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _RegisterPageState createState() => _RegisterPageState(arguments: arguments);
 }
 
 class _RegisterPageState extends State<RegisterPage> {
   String phoneNo, smsCode, verificationId, username, name;
+
+  final DidntRecievePinArguments arguments;
+  _RegisterPageState({this.arguments});
+  @override
+  void initState() { 
+    super.initState();
+  }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -102,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
           },
           child: WillPopScope(
             onWillPop: _onWillPop,
-                      child: SingleChildScrollView(
+            child: SingleChildScrollView(
               child: Center(
                 child: Container(
                   child: Form(
@@ -115,11 +126,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: Text(
                             MyText().registerHeadline,
                             style: const TextStyle(
-                        color: const Color(0xffffffff),
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "LoewNextArabic",
-                        fontStyle: FontStyle.normal,
-                         fontSize: 23, ),
+                              color: const Color(0xffffffff),
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "LoewNextArabic",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 23,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         )),
@@ -151,8 +163,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               contentPadding: new EdgeInsets.symmetric(
                                   vertical: 25.0, horizontal: 35.0),
                               labelText: MyText().labelUsername,
-                              labelStyle:
-                                  TextStyle(color: MyColor().white, fontSize: 18),
+                              labelStyle: TextStyle(
+                                  color: MyColor().white, fontSize: 18),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(33.5)),
@@ -275,8 +287,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Column(
                           children: <Widget>[
                             FutureBuilder(
-                              future:
-                                  FirebaseCheck().doesNumberAlreadyExist(phoneNo),
+                              future: FirebaseCheck()
+                                  .doesNumberAlreadyExist(phoneNo),
                               builder: (context, AsyncSnapshot<bool> result) {
                                 if (!result.hasData) {
                                   return EmptyContainer();
@@ -295,8 +307,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Column(
                           children: <Widget>[
                             FutureBuilder(
-                              future:
-                                  FirebaseCheck().doesNameAlreadyExist(username),
+                              future: FirebaseCheck()
+                                  .doesNameAlreadyExist(username),
                               builder: (context, AsyncSnapshot<bool> result) {
                                 if (!result.hasData) {
                                   return EmptyContainer();
@@ -325,7 +337,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<bool> _onWillPop() async {
-        Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUp()));
-        return EmptyContainer() ?? true;
-}
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUp()));
+    return EmptyContainer() ?? true;
+  }
+
 }

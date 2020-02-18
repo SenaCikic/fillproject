@@ -92,11 +92,11 @@ class MyValidation {
     if (input == '') {
       counter = 0;
       return MyText().regEmailSnack;
-      // } else if (regexEmail.hasMatch(input) == false) {
-      //   counter = 0;
-      //   return MyText().validEmail;
     } else if (emailPostoji) {
       return MyText().emailExist;
+    } else if (regexSpace.hasMatch(input) == true) {
+      counter = 0;
+      return MyText().validEmail;
     }
     return null;
   }
