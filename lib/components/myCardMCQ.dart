@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MyCardMCQ extends StatelessWidget {
   final String question;
   final int sar;
-  final List<String> choices = ['jedan', 'dva', 'tri'];
+  final List<String> choices = ['jedan', 'dva', 'dva', 'dva', 'dva'];
 
   MyCardMCQ({this.sar, this.question});
 
@@ -16,8 +16,7 @@ class MyCardMCQ extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: ScreenUtil.instance.setWidth(336.0),
-        height: ScreenUtil.instance.setHeight(490.0),
-        margin: EdgeInsets.only(bottom: 29.0, right: 15, left: 20),
+        margin: EdgeInsets.only(bottom: 29.0, right: 15, left: 20, top: 20 ),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
@@ -34,7 +33,7 @@ class MyCardMCQ extends StatelessWidget {
               top: 180,
               start: 41,
               child: Container(
-                height: ScreenUtil.instance.setHeight(200.0),
+                height: ScreenUtil.instance.setHeight(250.0),
                 width: ScreenUtil.instance.setWidth(260.0),
                                 child: ListView(
                     children: choices

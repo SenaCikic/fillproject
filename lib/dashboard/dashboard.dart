@@ -50,7 +50,7 @@ class _DashboardPageState extends State<DashboardPage> {
               children: <Widget>[
                 Expanded(
                   child: SizedBox(
-                    height: 400,
+                    height: 500,
                     child: FutureBuilder(
                       future: FirebaseCheck().getQuestions(),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -66,8 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               //choices = snapi[index].choices;
                               sar = snapi[index].sar;
                               question = snapi[index].title;
-                              print(sar);
-                              print(question);
+                              print('choices');
                               return new MyCardMCQ(
                                 
                                   sar: sar,
