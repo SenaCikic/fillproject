@@ -3,6 +3,7 @@ import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
+import 'package:fillproject/models/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/foundation.dart';
@@ -22,11 +23,13 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final PasswordArguments arguments;
   bool isLoggedIn = false;
+  bool visible = false;
   String name = '';
   int sar;
   String question;
   List<dynamic> choices;
   List<dynamic> choicesEnd;
+  List<dynamic> snapi = [];
 
   @override
   void initState() {
@@ -51,45 +54,50 @@ class _DashboardPageState extends State<DashboardPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                              child: SizedBox(
-                                height: 400,
-                                                              child: FutureBuilder(
-                  future: FirebaseCheck().getQuestions(),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData) {
-                      return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (context, index) {
-                          question = snapshot.data[index].data['title'];
-                          sar = snapshot.data[index].data['sar'];
-                          choices = snapshot.data[index].data['choices'];
-                          List<dynamic> choiseOne = [];
-                          for (int i = 0; i < choices.length; i++) {
-                            choiseOne.add(choices[i]['text']);
-                          }
-                          return new Column(
-                            children: <Widget>[
-                                new Text('Sar $sar',
+                child: SizedBox(
+                  height: 400,
+                  child: FutureBuilder(
+                    future: FirebaseCheck().getQuestions(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        snapi = snapshot.data
+                            .map((doc) => Question.fromDocument(doc))
+                            .toList();
+
+                        return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: snapi.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            // question = snapshot.data[index].data['title'];
+                            // sar = snapshot.data[index].data['sar'];
+                            //  choices = snapi[index].choices;
+                            // List<dynamic> choiseOne = [];
+                            // for (int i = 0; i < choices.length; i++) {
+                            //   choiseOne.add(choices[i]['text']);
+                            // }
+                            return new Column(
+                              key: UniqueKey(),
+                              children: <Widget>[
+                                new Text('Sar ' + snapi[index].sar.toString(),
                                     style: TextStyle(color: MyColor().white)),
                                 SizedBox(
                                   height: 15.0,
                                 ),
-                                Text('Pitanje $question',
+                                Text(snapi[index].title + " ",
                                     style: TextStyle(color: MyColor().white)),
                                 SizedBox(
                                   height: 15.0,
                                 ),
-                                new Column(
-                                  children: choiseOne
-                                      .map((item) => Container(
-                                            child: Text(item,
-                                                style: TextStyle(
-                                                    color: MyColor().white)),
-                                          ))
-                                      .toList(),
-                                ),
+                                // new Column(
+                                //   children: choiseOne
+                                //       .map((item) => Container(
+                                //             child: Text(item,
+                                //                 style: TextStyle(
+                                //                     color: MyColor().white)),
+                                //           ))
+                                //       .toList(),
+                                // ),
                                 SizedBox(
                                   height: 15.0,
                                 ),
@@ -100,82 +108,29 @@ class _DashboardPageState extends State<DashboardPage> {
                                       width: 3.0),
                                   child: Text(MyText().btnLogout,
                                       style: TextStyle(color: MyColor().white)),
-                                  onPressed: () => onPressed(context),
+                                  onPressed: () {
+                                    setState(() {
+                                      snapi.removeAt(index);
+                                    });
+
+                                    print(
+                                        'u deletu sam ali necu da obrisem hehe');
+                                  },
                                 ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                    return CircularProgressIndicator();
-                  },
+                              ],
+                            );
+                          },
+                        );
+                      }
+                      return CircularProgressIndicator();
+                    },
+                  ),
                 ),
-                              ),
               ),
             ],
-            ),
-            ],
           ),
-      //  Column(
-      //   children: <Widget>[
-      //     FutureBuilder(
-      //       future: FirebaseCheck().getQuestions(),
-      //       builder: (BuildContext context, AsyncSnapshot snapshot) {
-      //         if (snapshot.hasData) {
-      //           return ListView.builder(
-      //             shrinkWrap: true,
-      //             itemCount: snapshot.data.length,
-      //             itemBuilder: (context, index) {
-      //               question = snapshot.data[index].data['title'];
-      //               sar = snapshot.data[index].data['sar'];
-      //               choices = snapshot.data[index].data['choices'];
-      //               List<dynamic> choiseOne = [];
-      //               for (int i = 0; i < choices.length; i++) {
-      //                 choiseOne.add(choices[i]['text']);
-      //               }
-      //               return new Column(
-      //                 children: <Widget>[
-      //                   new Text('Sar $sar',
-      //                       style: TextStyle(color: MyColor().white)),
-      //                   SizedBox(
-      //                     height: 15.0,
-      //                   ),
-      //                   Text('Pitanje $question',
-      //                       style: TextStyle(color: MyColor().white)),
-      //                   SizedBox(
-      //                     height: 15.0,
-      //                   ),
-      //                   new Column(
-      //                     children: choiseOne
-      //                         .map((item) => Container(
-      //                               child: Text(item,
-      //                                   style:
-      //                                       TextStyle(color: MyColor().white)),
-      //                             ))
-      //                         .toList(),
-      //                   ),
-      //                   SizedBox(
-      //                     height: 15.0,
-      //                   ),
-      //                   new OutlineButton(
-      //                     borderSide: BorderSide(
-      //                         color: Colors.red,
-      //                         style: BorderStyle.solid,
-      //                         width: 3.0),
-      //                     child: Text(MyText().btnLogout,
-      //                         style: TextStyle(color: MyColor().white)),
-      //                     onPressed: () => onPressed(context),
-      //                   ),
-      //                 ],
-      //               );
-      //             },
-      //           );
-      //         }
-      //         return CircularProgressIndicator();
-      //       },
-      //     ),
-      //   ],
-      // ),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // this will be set when a new tab is tapped
         items: [
@@ -194,12 +149,9 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  Future onPressed(BuildContext context) async {
-    await FirebaseAuth.instance.signOut().then((action) {
-      Navigator.of(context).pushNamed(Home);
-    }).catchError((e) {
-      print(e);
+  onPressed(BuildContext context, int index) {
+    setState(() {
+      snapi.removeAt(index);
     });
-    LoginStorage().logout(name, isLoggedIn);
   }
 }
