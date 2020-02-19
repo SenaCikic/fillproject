@@ -62,9 +62,18 @@ class FirebaseCheck {
     return qn.documents;
   }
 
-  Future getQuestions() async {
+  Future getUserUsername(String username) async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection('Questions').getDocuments();
+    QuerySnapshot qn = await firestore
+        .collection('Users')
+        .where('username', isEqualTo: username)
+        .getDocuments();
+    return qn.documents;
+  }
+
+  Future getQuestions(int userlevel) async {
+    var firestore = Firestore.instance;
+    QuerySnapshot qn = await firestore.collection('Questions').where('level', isEqualTo: userlevel).getDocuments();
     return qn.documents;
   }
 
