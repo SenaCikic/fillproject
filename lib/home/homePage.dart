@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
-import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
