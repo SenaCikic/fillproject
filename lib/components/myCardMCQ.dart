@@ -8,13 +8,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MyCardMCQ extends StatelessWidget {
   final String question;
   final int sar;
-  final List<String> choices = ['jedan', 'dva', 'dva', 'dva', 'dva'];
+  final List<dynamic> choices;
+  final List<dynamic> choicesEnd = [];
   
 
-  MyCardMCQ({this.sar, this.question});
+  MyCardMCQ({this.sar, this.question, this.choices});
+
+  @override
+  void initState() { 
+    getChoices(choices);
+  }
+
+  dispose(){
+    getChoices(choices).dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    getChoices(choices);
     return Container(
       key: UniqueKey(),
     width: ScreenUtil.instance.setWidth(336.0),
@@ -38,10 +49,17 @@ class MyCardMCQ extends StatelessWidget {
             height: ScreenUtil.instance.setHeight(250.0),
             width: ScreenUtil.instance.setWidth(260.0),
                             child: ListView(
-                children: choices
+                children: choicesEnd
                     .map((item) => MyMCQChoice(choice: item))
                     .toList()),
           ))
     ]));
   }
+ 
+ getChoices(List<dynamic> choices){
+   for(int i=0; i<choices.length; i++){
+     choicesEnd.add(choices[i]['text']);
+   }
+ }
+
 }

@@ -28,7 +28,6 @@ class _DashboardPageState extends State<DashboardPage> {
   int sar;
   String question;
   List<dynamic> choices;
-  List<dynamic> choicesEnd;
   List<dynamic> snapi = [];
 
   @override
@@ -71,7 +70,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               choices = snapi[index].choices;
                               sar = snapi[index].sar;
                               question = snapi[index].title;
-                              print('choices');
+                              print('AAAAAAAAAAAAAAAA $choices');
                               return GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -79,7 +78,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   });
                                 },
                                 child:
-                                    new MyCardMCQ(sar: sar, question: question),
+                                    new MyCardMCQ(sar: sar, question: question, choices: choices),
                               );
                             },
                           );
