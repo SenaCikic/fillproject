@@ -1,7 +1,9 @@
-import 'package:fillproject/components/MyText.dart';
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myCardMCQ.dart';
 import 'package:fillproject/components/myCashBalance.dart';
-import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySAR.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/models/questionModel.dart';
@@ -9,6 +11,7 @@ import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 
 bool visible = false;
+DocumentSnapshot snap;
 
 class DashboardPage extends StatefulWidget {
   final PasswordArguments arguments;
@@ -25,72 +28,91 @@ class _DashboardPageState extends State<DashboardPage> {
   bool isLoggedIn = false;
 
   String name = '';
-  int sar;
-  String question;
+  int sar,userLevel;
+  String id, question;
   List<dynamic> choices;
   List<dynamic> snapi = [];
 
-  @override
-  void initState() {
-    super.initState();
-    FirebaseCheck().getQuestions();
-  }
 
   _DashboardPageState({this.arguments});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            MyCashBalance(text: 'Your cash\tbalance'),
-            MySAR(text: ' 5\tSAR'),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  child: SizedBox(
-                    height: 500,
-                    child: FutureBuilder(
-                      future: FirebaseCheck().getQuestions(),
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
-                        if (snapshot.hasData) {
-                          if (!visible) {
-                            snapi = snapshot.data
-                                .map((doc) => Question.fromDocument(doc))
-                                .toList();
-                            visible = true;
-                          }
-                          return ListView.builder(
-                            scrollDirection: Axis.horizontal,
+      body: WillPopScope(
+        onWillPop: _onWillPop,
+              child: Center(
+          child: Column(
+            children: <Widget>[
+               FutureBuilder(
+                    future: FirebaseCheck().getUserUsername(arguments.username),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
                             shrinkWrap: true,
-                            itemCount: snapi.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              choices = snapi[index].choices;
-                              sar = snapi[index].sar;
-                              question = snapi[index].title;
-                              print('AAAAAAAAAAAAAAAA $choices');
-                              return GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    snapi.removeAt(index);
-                                  });
-                                },
-                                child:
-                                    new MyCardMCQ(sar: sar, question: question, choices: choices),
-                              );
-                            },
-                          );
-                        }
-                        return CircularProgressIndicator();
-                      },
+                            physics: ClampingScrollPhysics(),
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, index) {
+                              snap = snapshot.data[index];
+                              id = snap.data['user_id'];
+                              userLevel = snap.data['level'];
+                              print('User je: ' + id + " , a level je = " + userLevel.toString());
+                              return EmptyContainer();
+                            });
+                      }
+                      return EmptyContainer();
+                    },
+                  ),
+              MyCashBalance(text: 'Your cash\tbalance'),
+              MySAR(text: ' 5\tSAR'),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: SizedBox(
+                      height: 500,
+                      child: FutureBuilder(
+                        future: FirebaseCheck().getQuestions(userLevel),
+                        builder: (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.hasData) {
+                            print(userLevel);
+                            if (!visible) {
+                              snapi = snapshot.data
+                                  .map((doc) => Question.fromDocument(doc))
+                                  .toList();
+                              visible = true;
+                            }
+                            return ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: snapi.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                choices = snapi[index].choices;
+                                sar = snapi[index].sar;
+                                question = snapi[index].title;
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      snapi.removeAt(index);
+                                    });
+                                  },
+                                  child: new MyCardMCQ(
+                                      sar: sar,
+                                      question: question,
+                                      choices: choices),
+                                );
+                              },
+                            );
+                          }
+                          return CircularProgressIndicator();
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -111,9 +133,23 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  onPressed(BuildContext context, int index) {
-    setState(() {
-      snapi.removeAt(index);
-    });
-  }
+  Future<bool> _onWillPop() async {
+         return showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Are you sure?'),
+        content: new Text('Do you want to exit the app?'),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('No'),
+          ),
+          new FlatButton(
+            onPressed: () => exit(0),
+            child: new Text('Yes'),
+          ),
+        ],
+      ),
+    ) ?? true;
+}
 }
