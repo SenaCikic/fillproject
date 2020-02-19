@@ -4,10 +4,9 @@ class Question {
   final String title;
   final int sar;
   final List<dynamic> choices;
-  final Function remove;
-  final int index;
 
-  Question({this.choices, this.sar, this.title, this.remove, this.index});
+
+  Question({this.choices, this.sar, this.title});
 
   factory Question.fromDocument(DocumentSnapshot doc) {
     return Question(
