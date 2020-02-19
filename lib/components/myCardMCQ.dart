@@ -34,6 +34,8 @@ class MyCardMCQ extends StatelessWidget {
               top: 180,
               start: 41,
               child: Container(
+                height: ScreenUtil.instance.setHeight(200.0),
+                width: ScreenUtil.instance.setWidth(260.0),
                                 child: ListView(
                     children: choices
                         .map((item) => MyMCQChoice(choice: item))
