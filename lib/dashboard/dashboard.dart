@@ -8,6 +8,8 @@ import 'package:fillproject/models/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 
+bool visible = false;
+
 class DashboardPage extends StatefulWidget {
   final PasswordArguments arguments;
 
@@ -21,7 +23,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final PasswordArguments arguments;
   bool isLoggedIn = false;
-  bool visible = false;
+
   String name = '';
   int sar;
   String question;
@@ -55,22 +57,30 @@ class _DashboardPageState extends State<DashboardPage> {
                       future: FirebaseCheck().getQuestions(),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         if (snapshot.hasData) {
-                          snapi = snapshot.data
-                              .map((doc) => Question.fromDocument(doc))
-                              .toList();
+                          if (!visible) {
+                            snapi = snapshot.data
+                                .map((doc) => Question.fromDocument(doc))
+                                .toList();
+                            visible = true;
+                          }
                           return ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
                             itemCount: snapi.length,
                             itemBuilder: (BuildContext context, int index) {
-                              //choices = snapi[index].choices;
+                              choices = snapi[index].choices;
                               sar = snapi[index].sar;
                               question = snapi[index].title;
                               print('choices');
-                              return new MyCardMCQ(
-                                
-                                  sar: sar,
-                                  question: question);
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    snapi.removeAt(index);
+                                  });
+                                },
+                                child:
+                                    new MyCardMCQ(sar: sar, question: question),
+                              );
                             },
                           );
                         }
