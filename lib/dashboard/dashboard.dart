@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 
 bool visible = false;
 DocumentSnapshot snap;
+String id;
+int userLevel;
 
 class DashboardPage extends StatefulWidget {
   final PasswordArguments arguments;
@@ -27,12 +29,10 @@ class _DashboardPageState extends State<DashboardPage> {
   final PasswordArguments arguments;
   bool isLoggedIn = false;
 
-  String name = '';
-  int sar,userLevel;
+  int sar, userLevel;
   String id, question;
   List<dynamic> choices;
   List<dynamic> snapi = [];
-
 
   _DashboardPageState({this.arguments});
 
@@ -41,28 +41,35 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       body: WillPopScope(
         onWillPop: _onWillPop,
-              child: Center(
+        child: Center(
           child: Column(
             children: <Widget>[
-               FutureBuilder(
-                    future: FirebaseCheck().getUserUsername(arguments.username),
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                            shrinkWrap: true,
-                            physics: ClampingScrollPhysics(),
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, index) {
-                              snap = snapshot.data[index];
-                              id = snap.data['user_id'];
-                              userLevel = snap.data['level'];
-                              print('User je: ' + id + " , a level je = " + userLevel.toString());
-                              return EmptyContainer();
-                            });
-                      }
-                      return EmptyContainer();
-                    },
-                  ),
+              /// [getUsername] - pomocu ove metode uzimamo sve itne odatke od usera
+              ///
+              /// userID [id] i userov level [userLevel]
+              FutureBuilder(
+                future: FirebaseCheck().getUserUsername(arguments.username),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          snap = snapshot.data[index];
+                          id = snap.data['user_id'];
+                          userLevel = snap.data['level'];
+                          print('User je: ' +
+                              id +
+                              " , a level je = " +
+                              userLevel.toString());
+                          return EmptyContainer();
+                        });
+                  }
+                  return EmptyContainer();
+                },
+              ),
+
               MyCashBalance(text: 'Your cash\tbalance'),
               MySAR(text: ' 5\tSAR'),
               Row(
@@ -72,10 +79,16 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: SizedBox(
                       height: 500,
                       child: FutureBuilder(
-                        future: FirebaseCheck().getQuestions(userLevel),
-                        builder: (BuildContext context, AsyncSnapshot snapshot) {
+                        future: Future.delayed(Duration(milliseconds: 500)).then((value) => FirebaseCheck().getQuestions(userLevel)),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
                           if (snapshot.hasData) {
                             print(userLevel);
+
+                            /// punjenje lokalnog niza
+                            ///
+                            /// nakon sto se jednom napuni nepuni se vise
+                            /// visible se seta na true
                             if (!visible) {
                               snapi = snapshot.data
                                   .map((doc) => Question.fromDocument(doc))
@@ -134,22 +147,23 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   Future<bool> _onWillPop() async {
-         return showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Are you sure?'),
-        content: new Text('Do you want to exit the app?'),
-        actions: <Widget>[
-          new FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('No'),
+    return showDialog(
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Are you sure?'),
+            content: new Text('Do you want to exit the app?'),
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('No'),
+              ),
+              new FlatButton(
+                onPressed: () => exit(0),
+                child: new Text('Yes'),
+              ),
+            ],
           ),
-          new FlatButton(
-            onPressed: () => exit(0),
-            child: new Text('Yes'),
-          ),
-        ],
-      ),
-    ) ?? true;
-}
+        ) ??
+        true;
+  }
 }
