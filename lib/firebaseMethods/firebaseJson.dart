@@ -4,17 +4,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 final db = Firestore.instance;
 
 class FirebaseJson {
-  importJson(){
+  importJson() {
     QuestionsLevel1().questionLevel1.forEach((element) {
-      db.collection('Questions')
-      .add({'name': element['name'], 'type': element['type'], 'title': element['title'], 'choices': element['choices'],
-      'target': element['target'], 'sar': element['sar']})
-      .then((value) => { print('unos uspjesan')})
-.catchError((err) {
-  print(err);
-});
+      db
+          .collection('Questions')
+          .add({
+            'name': element['name'],
+            'type': element['type'],
+            'title': element['title'],
+            'choices': element['choices'],
+            'target': element['target'],
+            'sar': element['sar'],
+            'level': 1
+          })
+          .then((value) => {print('unos uspjesan')})
+          .catchError((err) {
+            print(err);
+          });
     });
   }
 }
-
-
