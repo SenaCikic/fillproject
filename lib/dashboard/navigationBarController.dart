@@ -1,8 +1,11 @@
+import 'package:fillproject/components/myMCQChoice.dart';
 import 'package:fillproject/dashboard/dashboard.dart';
 import 'package:fillproject/dashboard/profile.dart';
 import 'package:fillproject/dashboard/survey.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
+
+import '../globals.dart';
 
 class BottomNavigationBarController extends StatefulWidget {
   final PasswordArguments arguments;
@@ -17,11 +20,8 @@ class _BottomNavigationBarControllerState
     extends State<BottomNavigationBarController> {
   final PasswordArguments arguments;
     _BottomNavigationBarControllerState({Key key, this.arguments});
-
-
-  // _BottomNavigationBarControllerState({Key key}) : arguments = defaultArgs;
-
-  static PasswordArguments get defaultArgs => null;
+   
+ 
 
   List<Widget> pages() => [
     DashboardPage(
@@ -59,6 +59,7 @@ class _BottomNavigationBarControllerState
 
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
       body: PageStorage(
