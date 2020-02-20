@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myCardMCQ.dart';
+import 'package:fillproject/components/myCardYesNo.dart';
 import 'package:fillproject/components/myCashBalance.dart';
 import 'package:fillproject/components/mySAR.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
@@ -14,6 +15,7 @@ bool visible = false;
 DocumentSnapshot snap;
 String id;
 int userLevel;
+
 
 class DashboardPage extends StatefulWidget {
   final PasswordArguments arguments;
@@ -29,12 +31,15 @@ class _DashboardPageState extends State<DashboardPage> {
   final PasswordArguments arguments;
   bool isLoggedIn = false;
 
-  int sar, userLevel;
-  String id, question;
+  int sar;
+  String question, type;
   List<dynamic> choices;
   List<dynamic> snapi = [];
 
+
   _DashboardPageState({this.arguments});
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,7 @@ class _DashboardPageState extends State<DashboardPage> {
       body: WillPopScope(
         onWillPop: _onWillPop,
         child: Center(
-          child: Column(
+          child: ListView(
             children: <Widget>[
               /// [getUsername] - pomocu ove metode uzimamo sve itne odatke od usera
               ///
@@ -51,7 +56,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 future: FirebaseCheck().getUserUsername(arguments.username),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
-                    return ListView.builder(
+                    return ListView.builder (
                         shrinkWrap: true,
                         physics: ClampingScrollPhysics(),
                         itemCount: snapshot.data.length,
@@ -103,16 +108,21 @@ class _DashboardPageState extends State<DashboardPage> {
                                 choices = snapi[index].choices;
                                 sar = snapi[index].sar;
                                 question = snapi[index].title;
+                                type = snapi[index].type;
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       snapi.removeAt(index);
                                     });
                                   },
-                                  child: new MyCardMCQ(
+                                  child: type=='checkbox' ? 
+                                  new MyCardMCQ(
                                       sar: sar,
                                       question: question,
-                                      choices: choices),
+                                      choices: choices) : MyCardYesNo(
+                                        sar: sar,
+                                        question: question
+                                      )
                                 );
                               },
                             );

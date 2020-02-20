@@ -24,7 +24,7 @@ class MyCardMCQ extends StatelessWidget {
     return Container(
       key: UniqueKey(),
     width: ScreenUtil.instance.setWidth(336.0),
-    margin: EdgeInsets.only(bottom: 29.0, right: 15, left: 20, top: 20 ),
+    margin: EdgeInsets.only(bottom: 29, right: 15, left: 15, top: 20 ),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30)),
         color: MyColor().black),
