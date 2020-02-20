@@ -9,7 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MyCardYesNo extends StatelessWidget {
   final String question;
   int sar;
-  MyCardYesNo({this.question, this.sar});
+  final List<dynamic> snapi;
+  final int index;
+  final Function() notifyParent;
+  MyCardYesNo({this.question, this.sar, this.index, this.snapi, @required this.notifyParent});
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +38,8 @@ class MyCardYesNo extends StatelessWidget {
                 start: 41,
                 child: Row(
                   children: <Widget>[
-                    MyYesNoChoice(choice: 'Yes'),
-                    MyYesNoChoice(choice: 'No')
+                    MyYesNoChoice(choice: 'Yes',snapi: snapi, index: index, notifyParent: notifyParent ),
+                    MyYesNoChoice(choice: 'No', snapi: snapi, index: index, notifyParent: notifyParent)
                   ],
                 ))
           ]));
