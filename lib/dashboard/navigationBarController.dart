@@ -10,21 +10,28 @@ class BottomNavigationBarController extends StatefulWidget {
   BottomNavigationBarController({Key key, this.arguments}) : super(key: key);
   @override
   _BottomNavigationBarControllerState createState() =>
-      _BottomNavigationBarControllerState();
+      _BottomNavigationBarControllerState(arguments: arguments);
 }
 
 class _BottomNavigationBarControllerState
     extends State<BottomNavigationBarController> {
+  final PasswordArguments arguments;
+    _BottomNavigationBarControllerState({Key key, this.arguments});
 
-     static PasswordArguments get defaultArgs => PasswordArguments();
 
+  // _BottomNavigationBarControllerState({Key key}) : arguments = defaultArgs;
 
-  final List<Widget> pages = [
+  static PasswordArguments get defaultArgs => null;
+
+  List<Widget> pages() => [
     DashboardPage(
-      key: PageStorageKey('Page1'),
-      arguments:
-          PasswordArguments(email: defaultArgs.email, password: defaultArgs.password, phone: defaultArgs.phone, username: defaultArgs.username,)
-    ),
+        key: PageStorageKey('Page1'),
+        arguments: PasswordArguments(
+          email: arguments.email,
+          password: arguments.password,
+          phone: arguments.phone,
+          username: arguments.username,
+        )),
     Survey(
       key: PageStorageKey('Page2'),
     ),
@@ -55,7 +62,7 @@ class _BottomNavigationBarControllerState
     return Scaffold(
       bottomNavigationBar: _bottomNavigationBar(_selectedIndex),
       body: PageStorage(
-        child: pages[_selectedIndex],
+        child: pages()[_selectedIndex],
         bucket: bucket,
       ),
     );
