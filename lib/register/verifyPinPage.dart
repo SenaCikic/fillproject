@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:fillproject/components/myPinCode.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
@@ -94,17 +95,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 105, bottom: 35),
-              child: Text(
-                MyText().verifyPageHeadline,
-                style: const TextStyle(
-                  color: const Color(0xffffffff),
-                  fontWeight: FontWeight.w700,
-                  fontFamily: "LoewNextArabic",
-                  fontStyle: FontStyle.normal,
-                  fontSize: 23,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              child: MyTextComponent(text: MyText().verifyPageHeadline)
             ),
             Container(
               child: Text(

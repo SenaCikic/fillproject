@@ -4,6 +4,7 @@ import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
+import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/home/homePage.dart';
@@ -12,7 +13,6 @@ import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -124,17 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Center(
                             child: Padding(
                           padding: const EdgeInsets.only(top: 28),
-                          child: Text(
-                            MyText().registerHeadline,
-                            style: const TextStyle(
-                              color: const Color(0xffffffff),
-                              fontWeight: FontWeight.w700,
-                              fontFamily: "LoewNextArabic",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 23,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
+                          child: MyTextComponent(text: MyText().registerHeadline),
                         )),
                         Center(
                             child: Padding(

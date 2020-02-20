@@ -5,6 +5,7 @@ import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myValidation.dart';
+import 'package:fillproject/dashboard/navigationBarController.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -260,9 +261,10 @@ class _LoginPageState extends State<LoginPage> {
       if (_btnCounter == 0) {
         username = usernameController.text;
         password = passwordController.text;
-        Navigator.of(context).pushNamed(Dashboard,
-            arguments: PasswordArguments(
-                username: username, password: password, email: '', phone: ''));
+        Navigator.of(context).pushNamed(NavBar,
+            // arguments: PasswordArguments(
+            //     username: username, password: password, email: '', phone: '')
+                );
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;

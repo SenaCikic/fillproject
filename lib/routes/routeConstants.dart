@@ -7,3 +7,4 @@ const String Login = '/login';
 const String Email = '/email';
 const String EmailReset = '/emailreset';
 const String PasswordReset = '/passwordreset';
+const String NavBar = '/bottomnavbar';

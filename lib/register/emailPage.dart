@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/routes/routeArguments.dart';
@@ -56,15 +57,7 @@ class _EmailPageState extends State<EmailPage> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 28, bottom: 35),
-                    child: Text(MyText().emailHeadline,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                        color: const Color(0xffffffff),
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "LoewNextArabic",
-                        fontStyle: FontStyle.normal,
-                         fontSize: 23, ),
-                        ),
+                    child: MyTextComponent(text: MyText().emailHeadline),
                   ),
                   Text(MyText().fiveSar,
                       textAlign: TextAlign.center,

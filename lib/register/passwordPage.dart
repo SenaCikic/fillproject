@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/routes/routeArguments.dart';
@@ -10,7 +11,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:url_launcher/url_launcher.dart';
 
 String password;
 int _btnCounter = 0;
@@ -49,14 +49,7 @@ class PasswordPage extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 28, bottom: 35),
-                    child: Text(MyText().passwordHeadline,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                        color: const Color(0xffffffff),
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "LoewNextArabic",
-                        fontStyle: FontStyle.normal,
-                         fontSize: 23, ),),
+                    child: MyTextComponent(text: MyText().passwordHeadline),
                   ),
                   Text(MyText().fiveSar,
                       textAlign: TextAlign.center,

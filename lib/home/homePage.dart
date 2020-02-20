@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/dashboard/navigationBarController.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
@@ -79,12 +80,13 @@ class _SignUpState extends State<SignUp> {
                       child: Center(
                           child: FlatButton(
                               onPressed: () => Navigator.of(context).pushNamed(
-                                  Dashboard,
-                                  arguments: PasswordArguments(
-                                      email: '',
-                                      password: '',
-                                      phone: '',
-                                      username: '')),
+                                  NavBar,
+                                  // arguments: PasswordArguments(
+                                  //     email: '',
+                                  //     password: '',
+                                  //     phone: '',
+                                  //     username: '')
+                                      ),
                               child: Text(
                                 MyText().skipThisStep,
                                 style: TextStyle(
