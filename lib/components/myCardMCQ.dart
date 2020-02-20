@@ -22,10 +22,14 @@ class MyCardMCQ extends StatefulWidget {
 class _MyCardMCQState extends State<MyCardMCQ> {
   final List<dynamic> choicesEnd = [];
 
+  @override
+  void initState() { 
+    getChoices(widget.choices);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    getChoices(widget.choices);
     return Container(
     key: UniqueKey(),
     width: ScreenUtil.instance.setWidth(336.0),
