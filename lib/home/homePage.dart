@@ -81,11 +81,11 @@ class _SignUpState extends State<SignUp> {
                           child: FlatButton(
                               onPressed: () => Navigator.of(context).pushNamed(
                                   NavBar,
-                                  // arguments: PasswordArguments(
-                                  //     email: '',
-                                  //     password: '',
-                                  //     phone: '',
-                                  //     username: '')
+                                  arguments: PasswordArguments(
+                                      email: '',
+                                      password: '',
+                                      phone: '',
+                                      username: '')
                                       ),
                               child: Text(
                                 MyText().skipThisStep,

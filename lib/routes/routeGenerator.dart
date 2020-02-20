@@ -37,7 +37,7 @@ class RouteGenerator {
       case PasswordReset: 
         return MaterialPageRoute(builder: (_) => ResetPasswordPage(arguments: args));
       case NavBar: 
-        return MaterialPageRoute(builder: (_) => BottomNavigationBarController());
+        return MaterialPageRoute(builder: (_) => BottomNavigationBarController(arguments: args));
       default:
         return _errorRoute();
     }

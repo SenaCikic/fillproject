@@ -1,19 +1,29 @@
 import 'package:fillproject/dashboard/dashboard.dart';
 import 'package:fillproject/dashboard/profile.dart';
 import 'package:fillproject/dashboard/survey.dart';
+import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigationBarController extends StatefulWidget {
+  final PasswordArguments arguments;
+
+  BottomNavigationBarController({Key key, this.arguments}) : super(key: key);
   @override
   _BottomNavigationBarControllerState createState() =>
-      _BottomNavigationBarControllerState();
+      _BottomNavigationBarControllerState(arguments: arguments);
 }
 
 class _BottomNavigationBarControllerState
     extends State<BottomNavigationBarController> {
+  final PasswordArguments arguments;
+
+  _BottomNavigationBarControllerState({Key key, this.arguments});
+
   final List<Widget> pages = [
     DashboardPage(
       key: PageStorageKey('Page1'),
+      arguments:
+          PasswordArguments(email: '', password: '', phone: '', username: ''),
     ),
     Survey(
       key: PageStorageKey('Page2'),

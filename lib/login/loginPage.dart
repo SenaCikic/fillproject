@@ -262,8 +262,8 @@ class _LoginPageState extends State<LoginPage> {
         username = usernameController.text;
         password = passwordController.text;
         Navigator.of(context).pushNamed(NavBar,
-            // arguments: PasswordArguments(
-            //     username: username, password: password, email: '', phone: '')
+            arguments: PasswordArguments(
+                username: username, password: password, email: '', phone: '')
                 );
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
