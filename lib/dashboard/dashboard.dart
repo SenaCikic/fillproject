@@ -7,6 +7,7 @@ import 'package:fillproject/components/myCardYesNo.dart';
 import 'package:fillproject/components/myCashBalance.dart';
 import 'package:fillproject/components/mySAR.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
+import 'package:fillproject/globals.dart';
 import 'package:fillproject/models/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
@@ -109,21 +110,14 @@ class _DashboardPageState extends State<DashboardPage> {
                                 sar = snapi[index].sar;
                                 question = snapi[index].title;
                                 type = snapi[index].type;
-                                return GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      snapi.removeAt(index);
-                                    });
-                                  },
-                                  child: type=='checkbox' ? 
-                                  new MyCardMCQ(
+                                return type=='checkbox' ? 
+                                new MyCardMCQ(
+                                    sar: sar,
+                                    question: question,
+                                    choices: choices) : MyCardYesNo(
                                       sar: sar,
-                                      question: question,
-                                      choices: choices) : MyCardYesNo(
-                                        sar: sar,
-                                        question: question
-                                      )
-                                );
+                                      question: question
+                                    );
                               },
                             );
                           }

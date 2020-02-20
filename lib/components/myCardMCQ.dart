@@ -10,11 +10,10 @@ class MyCardMCQ extends StatelessWidget {
   final int sar;
   final List<dynamic> choices;
   final List<dynamic> choicesEnd = [];
-  
 
   MyCardMCQ({this.sar, this.question, this.choices});
 
-  dispose(){
+  dispose() {
     getChoices(choices).dispose();
   }
 
@@ -22,39 +21,38 @@ class MyCardMCQ extends StatelessWidget {
   Widget build(BuildContext context) {
     getChoices(choices);
     return Container(
-      key: UniqueKey(),
-    width: ScreenUtil.instance.setWidth(336.0),
-    margin: EdgeInsets.only(bottom: 29, right: 15, left: 15, top: 20 ),
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-        color: MyColor().black),
-    child: Stack(children: <Widget>[
-      PositionedDirectional(
-          top: 98,
-          start: 49,
-          child: MyQuestion(
-            question: question,
-          )),
-      PositionedDirectional(
-          top: 41, start: 41, child: MyQuestionSAR(text: '$sar SAR')),
-      PositionedDirectional(
-          top: 180,
-          start: 41,
-          child: Container(
-            height: ScreenUtil.instance.setHeight(250.0),
-            width: ScreenUtil.instance.setWidth(260.0),
-                            child: ListView(
-                children: choicesEnd
-                    .map((item) => MyMCQChoice(choice: item))
-                    .toList()),
-          ))
-    ]));
+        key: UniqueKey(),
+        width: ScreenUtil.instance.setWidth(336.0),
+        margin: EdgeInsets.only(bottom: 29, right: 15, left: 15, top: 20),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+            color: MyColor().black),
+        child: Stack(children: <Widget>[
+          PositionedDirectional(
+              top: 98,
+              start: 49,
+              child: MyQuestion(
+                question: question,
+              )),
+          PositionedDirectional(
+              top: 41, start: 41, child: MyQuestionSAR(text: '$sar SAR')),
+          PositionedDirectional(
+              top: 180,
+              start: 41,
+              child: Container(
+                height: ScreenUtil.instance.setHeight(250.0),
+                width: ScreenUtil.instance.setWidth(260.0),
+                child: ListView(
+                    children: choicesEnd
+                        .map((item) => MyMCQChoice(choice: item))
+                        .toList()),
+              ))
+        ]));
   }
- 
- getChoices(List<dynamic> choices){
-   for(int i=0; i<choices.length; i++){
-     choicesEnd.add(choices[i]['text']);
-   }
- }
 
+  getChoices(List<dynamic> choices) {
+    for (int i = 0; i < choices.length; i++) {
+      choicesEnd.add(choices[i]['text']);
+    }
+  }
 }
