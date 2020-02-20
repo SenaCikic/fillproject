@@ -14,11 +14,6 @@ class MyCardMCQ extends StatelessWidget {
 
   MyCardMCQ({this.sar, this.question, this.choices});
 
-  @override
-  void initState() { 
-    getChoices(choices);
-  }
-
   dispose(){
     getChoices(choices).dispose();
   }
