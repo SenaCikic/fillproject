@@ -149,7 +149,7 @@ class _DashboardPageState extends State<DashboardPage> {
         //         icon: Icon(Icons.account_circle), title: Text(''))
         //   ],
         // ),
-      );
+      ));
   }
 
   Future<bool> _onWillPop() async {
