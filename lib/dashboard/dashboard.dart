@@ -13,6 +13,9 @@ import 'package:flutter/material.dart';
 
 bool visible = false;
 DocumentSnapshot snap;
+String id;
+int userLevel;
+
 
 class DashboardPage extends StatefulWidget {
   final PasswordArguments arguments;
@@ -28,11 +31,11 @@ class _DashboardPageState extends State<DashboardPage> {
   final PasswordArguments arguments;
   bool isLoggedIn = false;
 
-  int sar, userLevel;
-  String id, question, type;
+  int sar;
+  String question, type;
   List<dynamic> choices;
   List<dynamic> snapi = [];
-  DocumentSnapshot snap;
+
 
   _DashboardPageState({this.arguments});
 
@@ -71,6 +74,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   return EmptyContainer();
                 },
               ),
+
               MyCashBalance(text: 'Your cash\tbalance'),
               MySAR(text: ' 5\tSAR'),
               Row(
@@ -80,11 +84,11 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: SizedBox(
                       height: 500,
                       child: FutureBuilder(
-                        future: FirebaseCheck().getQuestions(userLevel),
+                        future: Future.delayed(Duration(milliseconds: 500)).then((value) => FirebaseCheck().getQuestions(userLevel)),
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           if (snapshot.hasData) {
-                            print('ovdje sam $userLevel');
+                            print(userLevel);
 
                             /// punjenje lokalnog niza
                             ///
