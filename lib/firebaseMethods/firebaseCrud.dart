@@ -16,7 +16,7 @@ class FirebaseCrud {
       'username': username,
       'password': password,
       'phone': phone,
-      'user_id': randomAlphaNumeric(10),
+      'user_id': randomAlphaNumeric(15),
       'level': "1",
     });
   }

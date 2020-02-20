@@ -71,27 +71,39 @@ class FirebaseCheck {
     return qn.documents;
   }
 
-  Future getQuestions(int userlevel) async {
+  Future getQuestions(int userLevel) async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection('Questions').where('level', isEqualTo: userlevel).getDocuments();
+    QuerySnapshot qn = await firestore
+        .collection('Questions')
+        .where('level', isEqualTo: userLevel)
+        .getDocuments();
     return qn.documents;
   }
 
-    Future getLevel(String level) async {
+  Future getLevel(String level) async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection('Users').where('level', isEqualTo: level).getDocuments();
+    QuerySnapshot qn = await firestore
+        .collection('Users')
+        .where('level', isEqualTo: level)
+        .getDocuments();
     return qn.documents;
   }
 
-    Future getSAR(String sar) async {
+  Future getSAR(String sar) async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection('Users').where('SAR', isEqualTo: sar).getDocuments();
+    QuerySnapshot qn = await firestore
+        .collection('Users')
+        .where('SAR', isEqualTo: sar)
+        .getDocuments();
     return qn.documents;
   }
 
-    Future getTarget(String target) async {
+  Future getTarget(String target) async {
     var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection('Users').where('target', isEqualTo: target).getDocuments();
+    QuerySnapshot qn = await firestore
+        .collection('Users')
+        .where('target', isEqualTo: target)
+        .getDocuments();
     return qn.documents;
   }
 }
