@@ -1,4 +1,5 @@
 import 'package:fillproject/dashboard/dashboard.dart';
+import 'package:fillproject/dashboard/navigationBarController.dart';
 import 'package:fillproject/home/homePage.dart';
 import 'package:fillproject/login/loginPage.dart';
 import 'package:fillproject/login/resetPasswordPage.dart';
@@ -35,6 +36,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => EmailResetPage());
       case PasswordReset: 
         return MaterialPageRoute(builder: (_) => ResetPasswordPage(arguments: args));
+      case NavBar: 
+        return MaterialPageRoute(builder: (_) => BottomNavigationBarController(arguments: args));
       default:
         return _errorRoute();
     }

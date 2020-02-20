@@ -6,11 +6,14 @@ import 'package:fillproject/components/myCardMCQ.dart';
 import 'package:fillproject/components/myCardYesNo.dart';
 import 'package:fillproject/components/myCashBalance.dart';
 import 'package:fillproject/components/mySAR.dart';
+import 'package:fillproject/dashboard/profile.dart';
+import 'package:fillproject/dashboard/survey.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/globals.dart';
 import 'package:fillproject/models/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 bool visible = false;
 DocumentSnapshot snap;
@@ -21,7 +24,7 @@ int userLevel;
 class DashboardPage extends StatefulWidget {
   final PasswordArguments arguments;
 
-  DashboardPage({this.arguments});
+  DashboardPage({Key key, this.arguments}) : super(key: key);
 
   @override
   _DashboardPageState createState() =>
@@ -131,23 +134,22 @@ class _DashboardPageState extends State<DashboardPage> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.speaker_notes),
-            title: new Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.view_carousel),
-            title: new Text(''),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle), title: Text(''))
-        ],
-      ),
-    );
+        //BottomNavigationBar(
+        //   currentIndex: 0, // this will be set when a new tab is tapped
+        //   items: [
+        //     BottomNavigationBarItem(
+        //       icon: new Icon(Icons.speaker_notes),
+        //       title: new Text(''),
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: new Icon(Icons.view_carousel),
+        //       title: new Text(''),
+        //     ),
+        //     BottomNavigationBarItem(
+        //         icon: Icon(Icons.account_circle), title: Text(''))
+        //   ],
+        // ),
+      ));
   }
 
   Future<bool> _onWillPop() async {
