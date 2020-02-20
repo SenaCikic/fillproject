@@ -10,20 +10,20 @@ class BottomNavigationBarController extends StatefulWidget {
   BottomNavigationBarController({Key key, this.arguments}) : super(key: key);
   @override
   _BottomNavigationBarControllerState createState() =>
-      _BottomNavigationBarControllerState(arguments: arguments);
+      _BottomNavigationBarControllerState();
 }
 
 class _BottomNavigationBarControllerState
     extends State<BottomNavigationBarController> {
-  final PasswordArguments arguments;
 
-  _BottomNavigationBarControllerState({Key key, this.arguments});
+     static PasswordArguments get defaultArgs => PasswordArguments();
+
 
   final List<Widget> pages = [
     DashboardPage(
       key: PageStorageKey('Page1'),
       arguments:
-          PasswordArguments(email: '', password: '', phone: '', username: ''),
+          PasswordArguments(email: defaultArgs.email, password: defaultArgs.password, phone: defaultArgs.phone, username: defaultArgs.username,)
     ),
     Survey(
       key: PageStorageKey('Page2'),
