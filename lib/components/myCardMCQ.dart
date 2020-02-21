@@ -13,9 +13,10 @@ class MyCardMCQ extends StatefulWidget {
   final int index;
   final List<dynamic> choices;
   final Function() notifyParent;
-  final DocumentSnapshot doc;
+  DocumentSnapshot doc;
+  final ValueKey key;
 
-  MyCardMCQ({this.sar, this.question, this.choices, this.index, this.snapi, @required this.notifyParent, this.target, this.doc, this.username});
+  MyCardMCQ({this.sar, this.key, this.question, this.choices, this.index, this.snapi, @required this.notifyParent, this.target, this.doc, this.username});
 
   @override
   _MyCardMCQState createState() => _MyCardMCQState();
@@ -33,7 +34,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
   @override
   Widget build(BuildContext context) {
     return Container(
-    key: UniqueKey(),
+    key: widget.key,
     width: ScreenUtil.instance.setWidth(336.0),
     margin: EdgeInsets.only(bottom: 29, right: 15, left: 15, top: 20),
     decoration: BoxDecoration(
@@ -56,7 +57,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
             width: ScreenUtil.instance.setWidth(260.0),
             child: ListView(
                 children: choicesEnd
-                    .map((item) => MyMCQChoice(choice: item, snapi: widget.snapi, index: widget.index, notifyParent: widget.notifyParent, target: widget.target, doc: widget.doc, username: widget.username, ))
+                    .map((item) => MyMCQChoice(choice: item, snapi: widget.snapi, index: widget.index, notifyParent: widget.notifyParent, target: widget.target, doc: widget.doc, username: widget.username ))
                     .toList()),
           ))
     ]));

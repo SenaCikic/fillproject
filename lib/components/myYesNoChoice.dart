@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/globals.dart';
+import 'package:fillproject/models/Question/questionSkelet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,9 +14,11 @@ class MyYesNoChoice extends StatefulWidget {
   final Function() notifyParent;
   final List<dynamic> snapi;
   final DocumentSnapshot doc;
+  final ValueKey key;
 
   MyYesNoChoice(
       {this.choice,
+      this.key,
       this.index,
       this.snapi,
       @required this.notifyParent,
@@ -31,6 +34,7 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        key: widget.key,
         width: ScreenUtil.instance.setWidth(115.0),
         height: ScreenUtil.instance.setHeight(59.0),
         alignment: Alignment.center,
@@ -71,14 +75,12 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   onPressed() {
     int counter = widget.target - 1;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
-    FirebaseCrud().updateListOfUsernames(widget.doc, context, widget.username, widget.choice);
-
-
+    FirebaseCrud().updateListOfUsernames(
+        widget.doc, context, widget.username, widget.choice);
     widget.snapi.removeAt(widget.index);
+    widget.snapi.insert(widget.index, QuestionSkelet());
     widget.notifyParent();
 
- 
-      isTapped=false;
-  
+    isTapped = false;
   }
 }

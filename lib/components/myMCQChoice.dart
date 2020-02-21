@@ -2,26 +2,28 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
+import 'package:fillproject/models/Question/questionSkelet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../globals.dart';
 
 class MyMCQChoice extends StatefulWidget {
-  final DocumentSnapshot doc;
+  DocumentSnapshot doc;
   final String choice, username;
-  final int index, target;
+  int index, target;
   final Function() notifyParent;
   final List<dynamic> snapi;
 
-  MyMCQChoice(
-      {this.choice,
-      this.snapi,
-      this.index,
-      this.notifyParent,
-      this.target,
-      this.doc,
-      this.username});
+  MyMCQChoice({
+    this.choice,
+    this.snapi,
+    this.index,
+    this.notifyParent,
+    this.target,
+    this.doc,
+    this.username,
+  });
 
   @override
   _MyMCQChoiceState createState() => _MyMCQChoiceState();
@@ -71,16 +73,12 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   onPressed() {
     int counter = widget.target - 1;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
-    FirebaseCrud().updateListOfUsernames(widget.doc, context, widget.username, widget.choice);
-
+    FirebaseCrud().updateListOfUsernames(
+        widget.doc, context, widget.username, widget.choice);
     widget.snapi.removeAt(widget.index);
+    widget.snapi.insert(widget.index, QuestionSkelet());
     widget.notifyParent();
-
     isTapped = false;
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }
+

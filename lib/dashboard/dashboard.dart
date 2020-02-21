@@ -8,7 +8,7 @@ import 'package:fillproject/components/myCardYesNo.dart';
 import 'package:fillproject/components/myCashBalance.dart';
 import 'package:fillproject/components/mySAR.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
-import 'package:fillproject/models/questionModel.dart';
+import 'package:fillproject/models/Question/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 
@@ -32,15 +32,22 @@ class _DashboardPageState extends State<DashboardPage> {
   bool isLoggedIn = false;
   var io;
   int sar, target;
-  String question, type,username;
+  String question, type, username;
   List<dynamic> choices;
   List<dynamic> snapi = [];
   DocumentSnapshot doc;
+  ValueKey key;
 
   _DashboardPageState({this.arguments});
 
   refresh() {
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    visible = false;
   }
 
   @override
@@ -91,8 +98,6 @@ class _DashboardPageState extends State<DashboardPage> {
                           (value) => FirebaseCheck().getQuestions(userLevel)),
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         if (snapshot.hasData) {
-                          print(userLevel);
-
                           /// punjenje lokalnog niza
                           ///
                           /// nakon sto se jednom napuni nepuni se vise
@@ -103,38 +108,46 @@ class _DashboardPageState extends State<DashboardPage> {
                                 .toList();
                             visible = true;
                           }
+
                           return ListView.builder(
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
                             itemCount: snapi.length,
                             itemBuilder: (BuildContext context, int index) {
                               choices = snapi[index].choices;
+                              key = snapi[index].key;
                               sar = snapi[index].sar;
                               question = snapi[index].title;
                               type = snapi[index].type;
                               target = snapi[index].target;
                               doc = snapshot.data[index];
-                              return type == 'checkbox'
-                                  ? new MyCardMCQ(
-                                      sar: sar,
-                                      question: question,
-                                      choices: choices,
-                                      snapi: snapi,
-                                      index: index,
-                                      notifyParent: refresh,
-                                      target: target,
-                                      doc: doc,
-                                      username: username,
+                              if (snapi[index].title != '') {
+                                return type == 'checkbox'
+                                    ? new MyCardMCQ(
+                                        key: key,
+                                        sar: sar,
+                                        question: question,
+                                        choices: choices,
+                                        snapi: snapi,
+                                        index: index,
+                                        notifyParent: refresh,
+                                        target: target,
+                                        doc: doc,
+                                        username: username,
                                       )
-                                  : MyCardYesNo(
-                                      sar: sar,
-                                      question: question,
-                                      snapi: snapi,
-                                      index: index,
-                                      notifyParent: refresh,
-                                      target: target,
-                                      doc: doc,
-                                      username: username);
+                                    : MyCardYesNo(
+                                        key: key,
+                                        sar: sar,
+                                        question: question,
+                                        snapi: snapi,
+                                        index: index,
+                                        notifyParent: refresh,
+                                        target: target,
+                                        doc: doc,
+                                        username: username);
+                              } else {
+                                return EmptyContainer();
+                              }
                             },
                           );
                         }
