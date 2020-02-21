@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myMCQChoice.dart';
 import 'package:fillproject/components/myQuestion.dart';
@@ -7,13 +8,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCardMCQ extends StatefulWidget {
   final String question;
-  final int sar;
+  final int sar, target;
   final List<dynamic> snapi;
   final int index;
   final List<dynamic> choices;
   final Function() notifyParent;
+  final DocumentSnapshot doc;
 
-  MyCardMCQ({this.sar, this.question, this.choices, this.index, this.snapi, @required this.notifyParent});
+  MyCardMCQ({this.sar, this.question, this.choices, this.index, this.snapi, @required this.notifyParent, this.target, this.doc});
 
   @override
   _MyCardMCQState createState() => _MyCardMCQState();
@@ -54,7 +56,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
             width: ScreenUtil.instance.setWidth(260.0),
             child: ListView(
                 children: choicesEnd
-                    .map((item) => MyMCQChoice(choice: item, snapi: widget.snapi, index: widget.index, notifyParent: widget.notifyParent ))
+                    .map((item) => MyMCQChoice(choice: item, snapi: widget.snapi, index: widget.index, notifyParent: widget.notifyParent, target: widget.target, doc: widget.doc ))
                     .toList()),
           ))
     ]));
