@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyYesNoChoice extends StatefulWidget {
-  final String choice;
+  final String choice, username;
   final int index, target;
   final Function() notifyParent;
   final List<dynamic> snapi;
@@ -20,7 +20,8 @@ class MyYesNoChoice extends StatefulWidget {
       this.snapi,
       @required this.notifyParent,
       this.target,
-      this.doc});
+      this.doc,
+      this.username});
 
   @override
   _MyYesNoChoiceState createState() => _MyYesNoChoiceState();
@@ -70,6 +71,8 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   onPressed() {
     int counter = widget.target - 1;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
+    FirebaseCrud().updateListOfUsernames(widget.doc, context, widget.username, widget.choice);
+
 
     widget.snapi.removeAt(widget.index);
     widget.notifyParent();

@@ -36,4 +36,12 @@ class FirebaseCrud {
         .document(doc.documentID)
         .updateData({'target': target});
   }
+
+    updateListOfUsernames(
+      DocumentSnapshot doc, BuildContext context, String username, String choice) async {
+    await db
+        .collection('Questions')
+        .document(doc.documentID)
+        .updateData({'listOfUsernames': FieldValue.arrayUnion(['$username : $choice'])});
+  }
 }

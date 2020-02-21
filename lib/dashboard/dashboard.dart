@@ -7,14 +7,10 @@ import 'package:fillproject/components/myCardMCQ.dart';
 import 'package:fillproject/components/myCardYesNo.dart';
 import 'package:fillproject/components/myCashBalance.dart';
 import 'package:fillproject/components/mySAR.dart';
-import 'package:fillproject/dashboard/profile.dart';
-import 'package:fillproject/dashboard/survey.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
-import 'package:fillproject/globals.dart';
 import 'package:fillproject/models/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 bool visible = false;
 DocumentSnapshot snap;
@@ -36,7 +32,7 @@ class _DashboardPageState extends State<DashboardPage> {
   bool isLoggedIn = false;
   var io;
   int sar, target;
-  String question, type;
+  String question, type,username;
   List<dynamic> choices;
   List<dynamic> snapi = [];
   DocumentSnapshot doc;
@@ -70,6 +66,7 @@ class _DashboardPageState extends State<DashboardPage> {
                         snap = snapshot.data[index];
                         id = snap.data['user_id'];
                         userLevel = snap.data['level'];
+                        username = snap.data['username'];
                         print('User je: ' +
                             id +
                             " , a level je = " +
@@ -126,7 +123,9 @@ class _DashboardPageState extends State<DashboardPage> {
                                       index: index,
                                       notifyParent: refresh,
                                       target: target,
-                                      doc: doc)
+                                      doc: doc,
+                                      username: username,
+                                      )
                                   : MyCardYesNo(
                                       sar: sar,
                                       question: question,
@@ -134,7 +133,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                       index: index,
                                       notifyParent: refresh,
                                       target: target,
-                                      doc: doc);
+                                      doc: doc,
+                                      username: username);
                             },
                           );
                         }

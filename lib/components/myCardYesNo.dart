@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCardYesNo extends StatelessWidget {
-  final String question;
+  final String question, username;
   final int sar, target;
   final List<dynamic> snapi;
   final int index;
   final Function() notifyParent;
-  DocumentSnapshot doc;
+  final DocumentSnapshot doc;
 
   MyCardYesNo(
       {this.question,
@@ -21,7 +21,9 @@ class MyCardYesNo extends StatelessWidget {
       this.snapi,
       @required this.notifyParent,
       this.target,
-      this.doc});
+      this.doc,
+      this.username
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +54,16 @@ class MyCardYesNo extends StatelessWidget {
                       index: index,
                       notifyParent: notifyParent,
                       target: target,
-                      doc: doc),
+                      doc: doc,
+                      username: username),
                   MyYesNoChoice(
                       choice: 'No',
                       snapi: snapi,
                       index: index,
                       notifyParent: notifyParent,
                       target: target,
-                      doc: doc)
+                      doc: doc,
+                      username: username)
                 ],
               ))
         ]));

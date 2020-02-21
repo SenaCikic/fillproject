@@ -6,9 +6,10 @@ class Question {
   final List<dynamic> choices;
   final String type;
   final int target;
+  final List<dynamic> listOfUsernames;
 
 
-  Question({this.choices, this.sar, this.title, this.type, this.target});
+  Question({this.choices, this.sar, this.title, this.type, this.target, this.listOfUsernames});
 
   factory Question.fromDocument(DocumentSnapshot doc) {
     return Question(
@@ -16,7 +17,8 @@ class Question {
         sar: doc['sar'], 
         title: doc['title'],
         type: doc['type'],
-        target: doc['target']
+        target: doc['target'],
+        listOfUsernames: doc['listOfUsernames']
      );
   }
 }

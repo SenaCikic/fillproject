@@ -12,17 +12,19 @@ import '../globals.dart';
 
 class MyMCQChoice extends StatefulWidget {
   final DocumentSnapshot doc;
-  final String choice;
+  final String choice, username;
   final int index, target;
   final Function() notifyParent;
   final List<dynamic> snapi;
+
   MyMCQChoice(
       {this.choice,
       this.snapi,
       this.index,
       this.notifyParent,
       this.target,
-      this.doc});
+      this.doc,
+      this.username});
 
   @override
   _MyMCQChoiceState createState() => _MyMCQChoiceState();
@@ -70,8 +72,9 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   }
 
   onPressed() {
-    int counter = widget.target - 1;
+    int counter = target - 1;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
+    FirebaseCrud().updateListOfUsernames(widget.doc, context, widget.username, widget.choice);
 
     widget.snapi.removeAt(widget.index);
     widget.notifyParent();
