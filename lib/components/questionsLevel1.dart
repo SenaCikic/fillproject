@@ -53,19 +53,19 @@ class QuestionsLevel1 {
  
      "type": "checkbox",
      "name": "question1",
-     "title": "What is your favorite SENA?",
+     "title": "What is your favorite TV series?",
      "choices": [
       {
        "value": "item1",
-       "text": "ONE"
+       "text": "Game of Thrones"
       },
       {
        "value": "item2",
-       "text": "TWO"
+       "text": "The Big Bang Theory"
       },
       {
        "value": "item3",
-       "text": "THREE"
+       "text": "Two and a Half Men"
       }
      ],"target": 1000,
      "sar": 3,
@@ -76,7 +76,7 @@ class QuestionsLevel1 {
  
      "type": "radiogroup",
      "name": "question1",
-     "title": "What is your favorite SENA?",
+     "title": "Do you love Flutter?",
      "choices": [
       {
        "value": "item1",
@@ -95,7 +95,7 @@ class QuestionsLevel1 {
  
      "type": "radiogroup",
      "name": "question1",
-     "title": "What is your favorite DANIS?",
+     "title": "Is flutter hard?",
      "choices": [
       {
        "value": "item1",
@@ -114,7 +114,7 @@ class QuestionsLevel1 {
  
      "type": "radiogroup",
      "name": "question1",
-     "title": "What is your favorite ADI?",
+     "title": "Do you love chocolate?",
      "choices": [
       {
        "value": "item1",
@@ -133,7 +133,7 @@ class QuestionsLevel1 {
  
      "type": "radiogroup",
      "name": "question1",
-     "title": "What is your favorite JUSUF?",
+     "title": "Do you drink alcohol?",
      "choices": [
       {
        "value": "item1",
@@ -152,7 +152,7 @@ class QuestionsLevel1 {
  
      "type": "radiogroup",
      "name": "question1",
-     "title": "What is your favorite ARSLAN?",
+     "title": "Dou you have any  money?",
      "choices": [
       {
        "value": "item1",

@@ -6,16 +6,18 @@ import 'package:fillproject/components/myYesNoChoice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyCardYesNo extends StatelessWidget {
+class MyCardYesNo extends StatefulWidget {
   final String question, username;
   final int sar, target;
   final List<dynamic> snapi;
   final int index;
   final Function() notifyParent;
   final DocumentSnapshot doc;
+  final ValueKey key;
 
   MyCardYesNo(
       {this.question,
+       this.key,
       this.sar,
       this.index,
       this.snapi,
@@ -26,8 +28,14 @@ class MyCardYesNo extends StatelessWidget {
       });
 
   @override
+  _MyCardYesNoState createState() => _MyCardYesNoState();
+}
+
+class _MyCardYesNoState extends State<MyCardYesNo> {
+  @override
   Widget build(BuildContext context) {
     return Container(
+       key: widget.key,
         width: ScreenUtil.instance.setWidth(336.0),
         height: ScreenUtil.instance.setHeight(320.0),
         margin: EdgeInsets.only(bottom: 29.0, left: 15, right: 15, top: 180),
@@ -39,7 +47,7 @@ class MyCardYesNo extends StatelessWidget {
               top: 98,
               start: 49,
               child: MyQuestion(
-                question: question,
+                question: widget.question,
               )),
           PositionedDirectional(
               top: 41, start: 41, child: MyQuestionSAR(text: '50 SAR')),
@@ -50,20 +58,20 @@ class MyCardYesNo extends StatelessWidget {
                 children: <Widget>[
                   MyYesNoChoice(
                       choice: 'Yes',
-                      snapi: snapi,
-                      index: index,
-                      notifyParent: notifyParent,
-                      target: target,
-                      doc: doc,
-                      username: username),
+                      snapi: widget.snapi,
+                      index: widget.index,
+                      notifyParent: widget.notifyParent,
+                      target: widget.target,
+                      doc: widget.doc,
+                      username: widget.username),
                   MyYesNoChoice(
                       choice: 'No',
-                      snapi: snapi,
-                      index: index,
-                      notifyParent: notifyParent,
-                      target: target,
-                      doc: doc,
-                      username: username)
+                      snapi: widget.snapi,
+                      index: widget.index,
+                      notifyParent: widget.notifyParent,
+                      target: widget.target,
+                      doc: widget.doc,
+                      username: widget.username)
                 ],
               ))
         ]));
