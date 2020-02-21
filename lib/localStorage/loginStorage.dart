@@ -18,7 +18,7 @@ class LoginStorage {
     if (userId != null) {
       isLoggedIn = true;
       name = userId;
-      Navigator.of(context).pushNamed(Dashboard,
+      Navigator.of(context).pushNamed(NavBar,
           arguments: PasswordArguments(
               email: '', password: '', phone: '', username: ''));
       return;
