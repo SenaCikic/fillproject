@@ -9,8 +9,8 @@ class FirebaseCrud {
   /// create function
   ///
   /// upis u firestore collection
-  createUser(String email, String phone, String username,
-      String password) async {
+  createUser(
+      String email, String phone, String username, String password) async {
     await db.collection('Users').add({
       'email': email,
       'username': username,
@@ -22,23 +22,18 @@ class FirebaseCrud {
   }
 
   updatePassword(
-    DocumentSnapshot doc,
-    BuildContext context,
-    String password) async {
-    await db.collection('Users').document(doc.documentID).updateData({
-      'password': '$password'
-    });
-    Navigator.of(context).pushNamed(Login); 
+      DocumentSnapshot doc, BuildContext context, String password) async {
+    await db
+        .collection('Users')
+        .document(doc.documentID)
+        .updateData({'password': '$password'});
+    Navigator.of(context).pushNamed(Login);
   }
 
-  updateTarget(
-    DocumentSnapshot doc,
-    BuildContext context,
-    int target) async {
-    await db.collection('Questions').document(doc.documentID).updateData({
-      'target': target
-    });
-    print('update je uspjesan hehehehhe');
+  updateTarget(DocumentSnapshot doc, BuildContext context, int target) async {
+    await db
+        .collection('Questions')
+        .document(doc.documentID)
+        .updateData({'target': target});
   }
-  
 }
