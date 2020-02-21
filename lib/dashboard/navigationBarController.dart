@@ -17,46 +17,26 @@ class BottomNavigationBarController extends StatefulWidget {
 class _BottomNavigationBarControllerState
     extends State<BottomNavigationBarController> {
   final PasswordArguments arguments;
-    _BottomNavigationBarControllerState({Key key, this.arguments});
- 
+  _BottomNavigationBarControllerState({Key key, this.arguments});
+
   List<Widget> pages() => [
-    DashboardPage(
-        //key: PageStorageKey('Page1'),
-        arguments: PasswordArguments(
+        DashboardPage(
+            arguments: PasswordArguments(
           email: arguments.email,
           password: arguments.password,
           phone: arguments.phone,
           username: arguments.username,
         )),
-    Survey(
-      //key: PageStorageKey('Page2'),
-    ),
-    Profile(
-     // key: PageStorageKey('Page3'),
-    ),
-  ];
-  // final PageStorageBucket bucket = PageStorageBucket();
-  // int _selectedIndex = 0;
-  // Widget _bottomNavigationBar(int selectedIndex) => BottomNavigationBar(
-  //       onTap: (int index) => setState(() => _selectedIndex = index),
-  //       currentIndex: selectedIndex,
-  //       items: const <BottomNavigationBarItem>[
-  //         BottomNavigationBarItem(
-  //             icon: Icon(Icons.add), title: Text('First Page')),
-  //         BottomNavigationBarItem(
-  //             icon: Icon(Icons.list), title: Text('Second Page')),
-  //         BottomNavigationBarItem(
-  //             icon: Icon(Icons.list), title: Text('Second Page'))
-  //       ],
-  //     );
+        Survey(),
+        Profile(),
+      ];
 
   final items = [
     BottomNavigationBarItem(
       icon: Icon(Icons.announcement),
       title: Text(''),
     ),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.view_week), title: Text('')),
+    BottomNavigationBarItem(icon: Icon(Icons.view_week), title: Text('')),
     BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text(''))
   ];
 
@@ -70,22 +50,19 @@ class _BottomNavigationBarControllerState
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
-         bottomNavigationBar: BottomNavigationBar(
-           selectedItemColor: MyColor().black,
-           unselectedItemColor: MyColor().unselectedItemColor,
-           showSelectedLabels: false,
-           showUnselectedLabels: false,
+      bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: MyColor().black,
+          unselectedItemColor: MyColor().unselectedItemColor,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           items: items,
           currentIndex: currentIndex,
-          onTap: onTap
-        ),
-          body: IndexedStack(
-            index: currentIndex,
-            children: pages(),
-          ),
+          onTap: onTap),
+      body: IndexedStack(
+        index: currentIndex,
+        children: pages(),
+      ),
     );
   }
 }
-
