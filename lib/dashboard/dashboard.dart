@@ -35,10 +35,11 @@ class _DashboardPageState extends State<DashboardPage> {
   final PasswordArguments arguments;
   bool isLoggedIn = false;
   var io;
-  int sar;
+  int sar, target;
   String question, type;
   List<dynamic> choices;
   List<dynamic> snapi = [];
+  DocumentSnapshot doc;
 
   _DashboardPageState({this.arguments});
 
@@ -114,6 +115,8 @@ class _DashboardPageState extends State<DashboardPage> {
                               sar = snapi[index].sar;
                               question = snapi[index].title;
                               type = snapi[index].type;
+                              target = snapi[index].target;
+                              doc = snapshot.data[index];
                               return type == 'checkbox'
                                   ? new MyCardMCQ(
                                       sar: sar,
@@ -122,13 +125,15 @@ class _DashboardPageState extends State<DashboardPage> {
                                       snapi: snapi,
                                       index: index,
                                       notifyParent: refresh,
+                                      target: target,
+                                      doc: doc
                                     )
                                   : MyCardYesNo(
                                       sar: sar,
                                       question: question,
                                       snapi: snapi,
                                       index: index,
-                                      notifyParent: refresh,
+                                      notifyParent: refresh
                                     );
                             },
                           );

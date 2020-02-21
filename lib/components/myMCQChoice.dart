@@ -1,31 +1,36 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/dashboard/dashboard.dart';
+import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../globals.dart';
 
+
 class MyMCQChoice extends StatefulWidget {
+  final DocumentSnapshot doc;
   final String choice;
-  final int index;
+  final int index, target;
   final Function() notifyParent;
   final List<dynamic> snapi;
-  MyMCQChoice({this.choice, this.snapi, this.index, this.notifyParent});
+  MyMCQChoice({this.choice, this.snapi, this.index, this.notifyParent, this.target, this.doc});
 
   @override
   _MyMCQChoiceState createState() => _MyMCQChoiceState(
-      choice: choice, snapi: snapi, index: index, notifyParent: notifyParent);
+      choice: choice, snapi: snapi, index: index, notifyParent: notifyParent, target: target, doc: doc);
 }
 
 class _MyMCQChoiceState extends State<MyMCQChoice> {
+  final DocumentSnapshot doc;
   final String choice;
-  final int index;
+  final int index, target;
   final List<dynamic> snapi;
   final Function() notifyParent;
   var o;
   _MyMCQChoiceState(
-      {this.choice, this.index, this.snapi, @required this.notifyParent});
+      {this.choice, this.index, this.snapi, @required this.notifyParent, this.target, this.doc});
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +68,10 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   onPressed() {
     snapi.removeAt(index);
     widget.notifyParent();
+
+    int counter = target -1;
+    FirebaseCrud().updateTarget(doc, context, counter);
+
     setState(() {
       isTapped = !isTapped;
     });

@@ -28,8 +28,17 @@ class FirebaseCrud {
     await db.collection('Users').document(doc.documentID).updateData({
       'password': '$password'
     });
-    print('update je uspjesan hehehehhe');
     Navigator.of(context).pushNamed(Login); 
+  }
+
+  updateTarget(
+    DocumentSnapshot doc,
+    BuildContext context,
+    int target) async {
+    await db.collection('Questions').document(doc.documentID).updateData({
+      'target': target
+    });
+    print('update je uspjesan hehehehhe');
   }
   
 }
