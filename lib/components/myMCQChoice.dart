@@ -70,7 +70,7 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
               setState(() {
                 isTapped = true;
               });
-              Timer(Duration(milliseconds: 500), () {
+              Timer(Duration(milliseconds: 50), () {
                 onPressed();
               });
             },
@@ -90,14 +90,20 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   }
 
   onPressed() {
-    snapi.removeAt(index);
-    widget.notifyParent();
-
     int counter = target - 1;
     FirebaseCrud().updateTarget(doc, context, counter);
 
-    setState(() {
-      isTapped = false;
-    });
+    snapi.removeAt(index);
+    widget.notifyParent();
+
+    
+      isTapped=false;
+ 
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 }
