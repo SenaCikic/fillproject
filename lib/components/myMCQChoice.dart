@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
@@ -8,18 +10,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../globals.dart';
 
-
 class MyMCQChoice extends StatefulWidget {
   final DocumentSnapshot doc;
   final String choice;
   final int index, target;
   final Function() notifyParent;
   final List<dynamic> snapi;
-  MyMCQChoice({this.choice, this.snapi, this.index, this.notifyParent, this.target, this.doc});
+  MyMCQChoice(
+      {this.choice,
+      this.snapi,
+      this.index,
+      this.notifyParent,
+      this.target,
+      this.doc});
 
   @override
   _MyMCQChoiceState createState() => _MyMCQChoiceState(
-      choice: choice, snapi: snapi, index: index, notifyParent: notifyParent, target: target, doc: doc);
+      choice: choice,
+      snapi: snapi,
+      index: index,
+      notifyParent: notifyParent,
+      target: target,
+      doc: doc);
 }
 
 class _MyMCQChoiceState extends State<MyMCQChoice> {
@@ -30,7 +42,12 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   final Function() notifyParent;
   var o;
   _MyMCQChoiceState(
-      {this.choice, this.index, this.snapi, @required this.notifyParent, this.target, this.doc});
+      {this.choice,
+      this.index,
+      this.snapi,
+      @required this.notifyParent,
+      this.target,
+      this.doc});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +66,14 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
             hoverColor: isTapped ? MyColor().white : MyColor().black,
             elevation: 0,
             color: isTapped ? MyColor().white : MyColor().black,
-            onPressed: () => onPressed(),
+            onPressed: () {
+              setState(() {
+                isTapped = true;
+              });
+              Timer(Duration(milliseconds: 500), () {
+                onPressed();
+              });
+            },
             child: Text(widget.choice,
                 style: TextStyle(
                     color: isTapped ? MyColor().black : MyColor().white,
@@ -69,11 +93,11 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
     snapi.removeAt(index);
     widget.notifyParent();
 
-    int counter = target -1;
+    int counter = target - 1;
     FirebaseCrud().updateTarget(doc, context, counter);
 
     setState(() {
-      isTapped = !isTapped;
+      isTapped = false;
     });
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
@@ -42,7 +44,14 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
             hoverColor: isTapped ? MyColor().white : MyColor().black,
             elevation: 0,
             color: isTapped ? MyColor().white : MyColor().black,
-            onPressed: () => onPressed(),
+            onPressed: () {
+              setState(() {
+                isTapped = true;
+              });
+              Timer(Duration(milliseconds: 500), () {
+                onPressed();
+              });
+            },
             child: Text(widget.choice,
                 style: TextStyle(
                     color: isTapped ? MyColor().black : MyColor().white,
@@ -66,7 +75,7 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
     FirebaseCrud().updateTarget(widget.doc, context, counter);
 
     setState(() {
-      isTapped = !isTapped;
+      isTapped = false;
     });
   }
 }
