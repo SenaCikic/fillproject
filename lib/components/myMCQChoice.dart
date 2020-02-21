@@ -1,9 +1,6 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
-import 'package:fillproject/dashboard/dashboard.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -72,7 +69,7 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   }
 
   onPressed() {
-    int counter = target - 1;
+    int counter = widget.target - 1;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
     FirebaseCrud().updateListOfUsernames(widget.doc, context, widget.username, widget.choice);
 
