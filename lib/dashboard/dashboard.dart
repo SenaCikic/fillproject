@@ -126,15 +126,15 @@ class _DashboardPageState extends State<DashboardPage> {
                                       index: index,
                                       notifyParent: refresh,
                                       target: target,
-                                      doc: doc
-                                    )
+                                      doc: doc)
                                   : MyCardYesNo(
                                       sar: sar,
                                       question: question,
                                       snapi: snapi,
                                       index: index,
-                                      notifyParent: refresh
-                                    );
+                                      notifyParent: refresh,
+                                      target: target,
+                                      doc: doc);
                             },
                           );
                         }
