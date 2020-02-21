@@ -27,31 +27,10 @@ class MyMCQChoice extends StatefulWidget {
       this.username});
 
   @override
-  _MyMCQChoiceState createState() => _MyMCQChoiceState(
-      choice: choice,
-      snapi: snapi,
-      index: index,
-      notifyParent: notifyParent,
-      target: target,
-      doc: doc
-      );
+  _MyMCQChoiceState createState() => _MyMCQChoiceState();
 }
 
 class _MyMCQChoiceState extends State<MyMCQChoice> {
-  final DocumentSnapshot doc;
-  final String choice;
-  final int index, target;
-  final List<dynamic> snapi;
-  final Function() notifyParent;
-  var o;
-  _MyMCQChoiceState(
-      {this.choice,
-      this.index,
-      this.snapi,
-      @required this.notifyParent,
-      this.target,
-      this.doc});
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -94,20 +73,17 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
 
   onPressed() {
     int counter = target - 1;
-    FirebaseCrud().updateTarget(doc, context, counter);
-    FirebaseCrud().updateListOfUsernames(doc, context, widget.username, widget.choice);
+    FirebaseCrud().updateTarget(widget.doc, context, counter);
+    FirebaseCrud().updateListOfUsernames(widget.doc, context, widget.username, widget.choice);
 
-    snapi.removeAt(index);
+    widget.snapi.removeAt(widget.index);
     widget.notifyParent();
 
-    
-      isTapped=false;
- 
+    isTapped = false;
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 }

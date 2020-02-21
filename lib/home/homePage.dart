@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
-import 'package:fillproject/dashboard/navigationBarController.dart';
+import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
@@ -20,7 +20,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    // LoginStorage().autoLogIn(context, name, isLoggedIn); //auto login on app kill and close
+    LoginStorage().autoLogIn(context, name, isLoggedIn); //auto login on app kill and close
   }
 
   @override
