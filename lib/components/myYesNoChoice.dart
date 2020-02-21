@@ -48,7 +48,7 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
               setState(() {
                 isTapped = true;
               });
-              Timer(Duration(milliseconds: 500), () {
+              Timer(Duration(milliseconds: 50), () {
                 onPressed();
               });
             },
@@ -68,14 +68,14 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   }
 
   onPressed() {
-    widget.snapi.removeAt(widget.index);
-    widget.notifyParent();
-
     int counter = widget.target - 1;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
 
-    setState(() {
-      isTapped = false;
-    });
+    widget.snapi.removeAt(widget.index);
+    widget.notifyParent();
+
+ 
+      isTapped=false;
+  
   }
 }
