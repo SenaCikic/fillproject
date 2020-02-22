@@ -17,8 +17,8 @@ class FirebaseCrud {
       'password': password,
       'phone': phone,
       'user_id': randomAlphaNumeric(15),
-      'level': "1",
-      'sar': 5
+      'level': 1,
+      'sar': '5'
     });
   }
 
