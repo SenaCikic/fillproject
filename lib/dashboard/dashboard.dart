@@ -35,6 +35,7 @@ class _DashboardPageState extends State<DashboardPage> {
   String question, type, username;
   List<dynamic> choices;
   List<dynamic> snapi = [];
+  List<dynamic> usernameThatAnswers;
   DocumentSnapshot doc;
   ValueKey key;
 
@@ -114,37 +115,44 @@ class _DashboardPageState extends State<DashboardPage> {
                             shrinkWrap: true,
                             itemCount: snapi.length,
                             itemBuilder: (BuildContext context, int index) {
+                              doc = snapshot.data[index];
                               choices = snapi[index].choices;
                               key = snapi[index].key;
                               sar = snapi[index].sar;
                               question = snapi[index].title;
                               type = snapi[index].type;
                               target = snapi[index].target;
-                              doc = snapshot.data[index];
+                              usernameThatAnswers =
+                                  snapi[index].listOfUsernamesThatGaveAnswers;
                               if (snapi[index].title != '') {
-                                return type == 'checkbox'
-                                    ? new MyCardMCQ(
-                                        key: key,
-                                        sar: sar,
-                                        question: question,
-                                        choices: choices,
-                                        snapi: snapi,
-                                        index: index,
-                                        notifyParent: refresh,
-                                        target: target,
-                                        doc: doc,
-                                        username: username,
-                                      )
-                                    : MyCardYesNo(
-                                        key: key,
-                                        sar: sar,
-                                        question: question,
-                                        snapi: snapi,
-                                        index: index,
-                                        notifyParent: refresh,
-                                        target: target,
-                                        doc: doc,
-                                        username: username);
+                                if (usernameThatAnswers.contains(username) ==
+                                    false) {
+                                  return type == 'checkbox'
+                                      ? new MyCardMCQ(
+                                          key: key,
+                                          sar: sar,
+                                          question: question,
+                                          choices: choices,
+                                          snapi: snapi,
+                                          index: index,
+                                          notifyParent: refresh,
+                                          target: target,
+                                          doc: doc,
+                                          username: username,
+                                        )
+                                      : MyCardYesNo(
+                                          key: key,
+                                          sar: sar,
+                                          question: question,
+                                          snapi: snapi,
+                                          index: index,
+                                          notifyParent: refresh,
+                                          target: target,
+                                          doc: doc,
+                                          username: username);
+                                } else {
+                                  return EmptyContainer();
+                                }
                               } else {
                                 return EmptyContainer();
                               }

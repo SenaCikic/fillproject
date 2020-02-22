@@ -8,10 +8,11 @@ class Question {
   final List<dynamic> choices;
   final String type;
   final int target;
-  final List<dynamic> listOfUsernames;
+  final List<dynamic> listOfUsernameAnswers;
+  final List<dynamic> listOfUsernamesThatGaveAnswers;
 
 
-  Question({this.choices, this.sar, this.title, this.type, this.target, this.listOfUsernames, this.key});
+  Question({this.choices, this.sar, this.title, this.type, this.target, this.listOfUsernameAnswers, this.listOfUsernamesThatGaveAnswers, this.key});
 
   factory Question.fromDocument(DocumentSnapshot doc) {
     return Question(
@@ -20,7 +21,8 @@ class Question {
         title: doc['title'],
         type: doc['type'],
         target: doc['target'],
-        listOfUsernames: doc['listOfUsernames'],
+        listOfUsernameAnswers: doc['listOfUsernameAnswers'],
+        listOfUsernamesThatGaveAnswers: doc['listOfUsernamesThatGaveAnswers'],
         key: ValueKey(doc['title']),  
      );
   }

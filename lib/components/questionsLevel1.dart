@@ -23,7 +23,8 @@ class QuestionsLevel1 {
       }
      ],"target": 1000,
      "sar": 3,
-     "listOfUsernames" : [],
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
     },
       {
@@ -46,7 +47,8 @@ class QuestionsLevel1 {
       }
      ],"target": 1000,
      "sar": 3,
-     "listOfUsernames" : [],
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
     },
       {
@@ -69,7 +71,8 @@ class QuestionsLevel1 {
       }
      ],"target": 1000,
      "sar": 3,
-     "listOfUsernames" : [],
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
     },
           {
@@ -88,7 +91,8 @@ class QuestionsLevel1 {
       },
      ],"target": 1000,
      "sar": 3,
-     "listOfUsernames" : [],
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
     },
               {
@@ -107,7 +111,8 @@ class QuestionsLevel1 {
       },
      ],"target": 1000,
      "sar": 3,
-     "listOfUsernames" : [],
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
     },
               {
@@ -126,7 +131,8 @@ class QuestionsLevel1 {
       },
      ],"target": 1000,
      "sar": 3,
-     "listOfUsernames" : [],
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
     },
               {
@@ -145,7 +151,8 @@ class QuestionsLevel1 {
       },
      ],"target": 1000,
      "sar": 3,
-     "listOfUsernames" : [],
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
     },
               {
@@ -164,7 +171,8 @@ class QuestionsLevel1 {
       },
      ],"target": 1000,
      "sar": 3,
-     "listOfUsernames" : [],
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
     },
 

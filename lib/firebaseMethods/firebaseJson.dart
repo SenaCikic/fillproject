@@ -16,7 +16,8 @@ class FirebaseJson {
             'target': element['target'],
             'sar': element['sar'],
             'level': 1,
-            'listOfUsernames' : element['listOfUsernames']
+            'listOfUsernameAnswers' : element['listOfUsernameAnswers'],
+            'listOfUsernamesThatGaveAnswers' : element['listOfUsernamesThatGaveAnswers'],
           })
           .then((value) => {print('unos uspjesan')})
           .catchError((err) {
