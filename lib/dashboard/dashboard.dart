@@ -126,7 +126,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   snapi[index].listOfUsernamesThatGaveAnswers;
                               if (snapi[index].title != '') {
                                 if (usernameThatAnswers.contains(username) ==
-                                    false) {
+                                    false && target>0) {
                                   return type == 'checkbox'
                                       ? new MyCardMCQ(
                                           key: key,
