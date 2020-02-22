@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/firebaseMethods/firebaseJson.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -20,7 +21,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    LoginStorage().autoLogIn(context, name, isLoggedIn); //auto login on app kill and close
+    // LoginStorage().autoLogIn(context, name, isLoggedIn); //auto login on app kill and close
   }
 
   @override
@@ -85,7 +86,9 @@ class _SignUpState extends State<SignUp> {
                       width: ScreenUtil.instance.setWidth(255.0),
                       child: Center(
                           child: FlatButton(
-                              onPressed: () => Navigator.of(context).pushNamed(
+                              onPressed: () => 
+                              // FirebaseJson().importJson(),
+                              Navigator.of(context).pushNamed(
                                   NavBar,
                                   arguments: PasswordArguments(
                                       email: '',

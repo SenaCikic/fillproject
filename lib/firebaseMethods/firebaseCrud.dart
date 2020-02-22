@@ -37,11 +37,22 @@ class FirebaseCrud {
         .updateData({'target': target});
   }
 
-    updateListOfUsernames(
+
+    updateListOfUsernameAnswers(
       DocumentSnapshot doc, BuildContext context, String username, String choice) async {
     await db
         .collection('Questions')
         .document(doc.documentID)
-        .updateData({'listOfUsernames': FieldValue.arrayUnion(['$username : $choice'])});
+        .updateData({'listOfUsernameAnswers': FieldValue.arrayUnion(['$username : $choice'])});
   }
+
+   updateListOfUsernamesThatGaveAnswers(
+      DocumentSnapshot doc, BuildContext context, String username) async {
+    await db
+        .collection('Questions')
+        .document(doc.documentID)
+        .updateData({'listOfUsernamesThatGaveAnswers': FieldValue.arrayUnion(['$username'])});
+  }
+
+
 }

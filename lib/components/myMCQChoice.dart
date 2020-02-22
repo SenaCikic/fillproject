@@ -73,8 +73,9 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   onPressed() {
     int counter = widget.target - 1;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
-    FirebaseCrud().updateListOfUsernames(
+    FirebaseCrud().updateListOfUsernameAnswers(
         widget.doc, context, widget.username, widget.choice);
+    FirebaseCrud().updateListOfUsernamesThatGaveAnswers(widget.doc, context, widget.username);
     widget.snapi.removeAt(widget.index);
     widget.snapi.insert(widget.index, QuestionSkelet());
     widget.notifyParent();
