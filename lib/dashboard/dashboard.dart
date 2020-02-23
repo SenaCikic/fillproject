@@ -30,8 +30,9 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final PasswordArguments arguments;
   bool isLoggedIn = false;
+  bool isSar = false;
   var io;
-  int sar, target;
+  int sar, target, userSar;
   String question, type, username;
   List<dynamic> choices;
   List<dynamic> snapi = [];
@@ -41,15 +42,23 @@ class _DashboardPageState extends State<DashboardPage> {
 
   _DashboardPageState({this.arguments});
 
-  refresh() {
-    setState(() {});
-  }
-
   @override
   void initState() {
     super.initState();
     visible = false;
+    Timer(Duration(milliseconds: 500), () {
+      setState(() {});
+    });
   }
+
+  refresh() {
+    setState(() {
+    });
+    Timer(Duration(milliseconds: 500), () {
+      setState(() {});
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +68,7 @@ class _DashboardPageState extends State<DashboardPage> {
       child: Center(
         child: ListView(
           children: <Widget>[
-            /// [getUsername] - pomocu ove metode uzimamo sve itne odatke od usera
+            /// [getUsername] - pomocu ove metode uzimamo sve bitne odatke od usera
             ///
             /// userID [id] i userov level [userLevel]
             FutureBuilder(
@@ -72,22 +81,26 @@ class _DashboardPageState extends State<DashboardPage> {
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
                         snap = snapshot.data[index];
+                        userSar = snap.data['sar'];
                         id = snap.data['user_id'];
                         userLevel = snap.data['level'];
                         username = snap.data['username'];
+
                         print('User je: ' +
                             id +
                             " , a level je = " +
-                            userLevel.toString());
+                            userLevel.toString() +
+                            ' sar: ' +
+                            userSar.toString());
+
                         return EmptyContainer();
                       });
                 }
                 return EmptyContainer();
               },
             ),
-
             MyCashBalance(text: 'Your cash\tbalance'),
-            MySAR(text: ' 5\tSAR'),
+            MySAR(text: userSar.toString()),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
@@ -126,14 +139,17 @@ class _DashboardPageState extends State<DashboardPage> {
                                   snapi[index].listOfUsernamesThatGaveAnswers;
                               if (snapi[index].title != '') {
                                 if (usernameThatAnswers.contains(username) ==
-                                    false && target>0) {
+                                        false &&
+                                    target > 0) {
                                   return type == 'checkbox'
                                       ? new MyCardMCQ(
                                           key: key,
                                           sar: sar,
+                                          usersSar: userSar,
                                           question: question,
                                           choices: choices,
                                           snapi: snapi,
+                                          snap: snap,
                                           index: index,
                                           notifyParent: refresh,
                                           target: target,
@@ -143,6 +159,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                       : MyCardYesNo(
                                           key: key,
                                           sar: sar,
+                                          usersSar: userSar,
+                                          snap: snap,
                                           question: question,
                                           snapi: snapi,
                                           index: index,

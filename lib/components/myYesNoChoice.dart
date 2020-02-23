@@ -10,15 +10,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyYesNoChoice extends StatefulWidget {
   final String choice, username;
-  final int index, target;
+  final int index, target, usersSars, sar;
   final Function() notifyParent;
   final List<dynamic> snapi;
-  final DocumentSnapshot doc;
+  final DocumentSnapshot doc, snap;
   final ValueKey key;
 
   MyYesNoChoice(
       {this.choice,
+      this.snap, 
+      this.usersSars,
       this.key,
+      this.sar,
       this.index,
       this.snapi,
       @required this.notifyParent,
@@ -73,8 +76,10 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   }
 
   onPressed() {
-    int counter = widget.target - 1;
+     int counter = widget.target - 1;
+    int addSar = widget.usersSars + widget.sar;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
+    FirebaseCrud().updateUsersSars(widget.snap, context, addSar);
     FirebaseCrud().updateListOfUsernameAnswers(
         widget.doc, context, widget.username, widget.choice);
     FirebaseCrud().updateListOfUsernamesThatGaveAnswers(widget.doc, context, widget.username);

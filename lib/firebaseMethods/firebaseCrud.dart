@@ -18,7 +18,7 @@ class FirebaseCrud {
       'phone': phone,
       'user_id': randomAlphaNumeric(15),
       'level': 1,
-      'sar': '5'
+      'sar': 5,
     });
   }
 
@@ -38,22 +38,24 @@ class FirebaseCrud {
         .updateData({'target': target});
   }
 
-
-    updateListOfUsernameAnswers(
-      DocumentSnapshot doc, BuildContext context, String username, String choice) async {
-    await db
-        .collection('Questions')
-        .document(doc.documentID)
-        .updateData({'listOfUsernameAnswers': FieldValue.arrayUnion(['$username : $choice'])});
+  updateListOfUsernameAnswers(DocumentSnapshot doc, BuildContext context,
+      String username, String choice) async {
+    await db.collection('Questions').document(doc.documentID).updateData({
+      'listOfUsernameAnswers': FieldValue.arrayUnion(['$username : $choice'])
+    });
   }
 
-   updateListOfUsernamesThatGaveAnswers(
+  updateListOfUsernamesThatGaveAnswers(
       DocumentSnapshot doc, BuildContext context, String username) async {
-    await db
-        .collection('Questions')
-        .document(doc.documentID)
-        .updateData({'listOfUsernamesThatGaveAnswers': FieldValue.arrayUnion(['$username'])});
+    await db.collection('Questions').document(doc.documentID).updateData({
+      'listOfUsernamesThatGaveAnswers': FieldValue.arrayUnion(['$username'])
+    });
   }
 
-
+  updateUsersSars(DocumentSnapshot doc, BuildContext context, int sar) async {
+    await db
+        .collection('Users')
+        .document(doc.documentID)
+        .updateData({'sar': sar});
+  }
 }
