@@ -17,10 +17,10 @@ class LoginStorage {
     final String userId = prefs.getString('username');
     if (userId != null) {
       isLoggedIn = true;
-      name = userId;
+      // name = userId;
       Navigator.of(context).pushNamed(NavBar,
           arguments: PasswordArguments(
-              email: '', password: '', phone: '', username: ''));
+              email: '', password: '', phone: '', username: name));
       return;
     }
   }
