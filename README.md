@@ -35,11 +35,11 @@ The team successfully coded user story 3. During this period we had some changes
 Very proud on team 2.
 
 **•	V2 – Sprint 2<br/>**
-  	User story 1 - fixing a bug from previous sprint<br/>*
+  	User story 1 - fixing a bug from previous sprint<br/>
 	The bug was on the SIGN UP screen and it was<br/>*
-  	User story 2 - As a USER I want to HAVE FLASH QUESTIONS so that I CAN EASILY EARN SOME MONEY FROM TAB 1 IN FILL APP<br/>*
+  	User story 2 - As a USER I want to HAVE FLASH QUESTIONS so that I CAN EASILY EARN SOME MONEY FROM TAB 1 IN FILL APP<br/>
 	The user story was about to create Tab 1 screen on which flash questions are listed. Here, users are getting questions according to their level and every user can answer a question only once. Also, every question has its own target number which represents the maximum number of answers and a SAR value which is added to users cash balance (implemented as US 3). Questions may be of two types: Yes/No questions and MCQ. After a user answers a question, the answer gets recorder in database. Part of bottom navigation bar is implemented.<br/>*
-	User story 3 - As a USER I want to HAVE MY CASH BALANCE so that I CAN EASILY PREVIEW MONEY FROM TAB 1 IN FILL APP<br/>*
+	User story 3 - As a USER I want to HAVE MY CASH BALANCE so that I CAN EASILY PREVIEW MONEY FROM TAB 1 IN FILL APP<br/>
 	Firstly, when user registers to the app and login for the first time, 5 SAR gets added to his/her cash balance, so every registered user begins with 5 SAR. Every time users answers a question, the question's SAR value is added to users cash balance and it is displayed all the time on Tab 1.<br/>*
-	User story 4 - As a ANONYM USER I want to SKIP SIGN UP IN FILL APP so that I CAN EXPLORE FLASH QUESTION IN APP BEFORE REGISTRATION<br/>*
+	User story 4 - As a ANONYM USER I want to SKIP SIGN UP IN FILL APP so that I CAN EXPLORE FLASH QUESTION IN APP BEFORE REGISTRATION<br/>
 	Anonymus user is authenticated by clicking on SKIP. The user is able to answer questions and collect cash as he/she is a registered user. The difference is that anonymus user will not be able to make cash transfers (will be implemented later).
