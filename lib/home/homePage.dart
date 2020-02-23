@@ -1,13 +1,16 @@
 import 'dart:io';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/firebaseMethods/firebaseJson.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:random_string/random_string.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -16,7 +19,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isLoggedIn = false;
-  String name = '';
+  String name = '', username = randomAlphaNumeric(5);
 
   @override
   void initState() {
@@ -86,15 +89,17 @@ class _SignUpState extends State<SignUp> {
                       width: ScreenUtil.instance.setWidth(255.0),
                       child: Center(
                           child: FlatButton(
-                              onPressed: () => 
+                              onPressed: () {
+                                FirebaseCrud().createUser('', '', username, '', 0);
+                                _signInAnonymously();
+                                Navigator.of(context).pushNamed(NavBar,
+                                    arguments: PasswordArguments(
+                                        email: '',
+                                        password: '',
+                                        phone: '',
+                                        username: username));
+                              },
                               // FirebaseJson().importJson(),
-                              Navigator.of(context).pushNamed(
-                                  NavBar,
-                                  arguments: PasswordArguments(
-                                      email: '',
-                                      password: '',
-                                      phone: '',
-                                      username: '')),
                               child: Text(
                                 MyText().skipThisStep,
                                 style: TextStyle(
@@ -128,5 +133,13 @@ class _SignUpState extends State<SignUp> {
           ),
         ) ??
         true;
+  }
+
+  Future<void> _signInAnonymously() async {
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+    } catch (e) {
+      print(e);
+    }
   }
 }
