@@ -10,7 +10,7 @@ class FirebaseCrud {
   ///
   /// upis u firestore collection
   createUser(
-      String email, String phone, String username, String password) async {
+      String email, String phone, String username, String password, int sar) async {
     await db.collection('Users').add({
       'email': email,
       'username': username,
@@ -18,7 +18,7 @@ class FirebaseCrud {
       'phone': phone,
       'user_id': randomAlphaNumeric(15),
       'level': 1,
-      'sar': 5,
+      'sar': sar,
     });
   }
 

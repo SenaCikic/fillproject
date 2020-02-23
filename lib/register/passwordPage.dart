@@ -171,7 +171,7 @@ class PasswordPage extends StatelessWidget {
     if (_formState.validate()) {
       if (_btnCounter == 0) {
         FirebaseCrud().createUser(arguments.email, arguments.phone,
-            arguments.username, password);
+            arguments.username, password, 5);
         Navigator.of(context).pushNamed(NavBar,
             arguments: PasswordArguments(
                 email: arguments.email,
