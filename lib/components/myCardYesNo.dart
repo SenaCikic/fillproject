@@ -8,19 +8,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCardYesNo extends StatefulWidget {
   final String question, username;
-  final int sar, target;
+  final int sar, target, usersSar;
   final List<dynamic> snapi;
   final int index;
   final Function() notifyParent;
-  final DocumentSnapshot doc;
+  final DocumentSnapshot doc, snap;
   final ValueKey key;
 
   MyCardYesNo(
       {this.question,
        this.key,
       this.sar,
+      this.usersSar,
       this.index,
       this.snapi,
+      this.snap,
       @required this.notifyParent,
       this.target,
       this.doc,
@@ -50,7 +52,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                 question: widget.question,
               )),
           PositionedDirectional(
-              top: 41, start: 41, child: MyQuestionSAR(text: '50 SAR')),
+              top: 41, start: 41, child: MyQuestionSAR(text: widget.sar.toString() + ' SAR')),
           PositionedDirectional(
               top: 200,
               start: 41,
@@ -59,6 +61,9 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                   MyYesNoChoice(
                       choice: 'Yes',
                       snapi: widget.snapi,
+                      usersSars: widget.usersSar,
+                      sar: widget.sar,
+                      snap: widget.snap,
                       index: widget.index,
                       notifyParent: widget.notifyParent,
                       target: widget.target,
@@ -67,6 +72,9 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                   MyYesNoChoice(
                       choice: 'No',
                       snapi: widget.snapi,
+                       usersSars: widget.usersSar,
+                      snap: widget.snap,
+                      sar: widget.sar,
                       index: widget.index,
                       notifyParent: widget.notifyParent,
                       target: widget.target,

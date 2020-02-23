@@ -8,15 +8,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyCardMCQ extends StatefulWidget {
   final String question, username;
-  final int sar, target;
+  final int sar, target, usersSar;
   final List<dynamic> snapi;
   final int index;
   final List<dynamic> choices;
   final Function() notifyParent;
   DocumentSnapshot doc;
+  DocumentSnapshot snap;
   final ValueKey key;
 
-  MyCardMCQ({this.sar, this.key, this.question, this.choices, this.index, this.snapi, @required this.notifyParent, this.target, this.doc, this.username});
+  MyCardMCQ(
+      {this.sar,
+      this.usersSar,
+      this.snap,
+      this.key,
+      this.question,
+      this.choices,
+      this.index,
+      this.snapi,
+      @required this.notifyParent,
+      this.target,
+      this.doc,
+      this.username});
 
   @override
   _MyCardMCQState createState() => _MyCardMCQState();
@@ -26,7 +39,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
   final List<dynamic> choicesEnd = [];
 
   @override
-  void initState() { 
+  void initState() {
     getChoices(widget.choices);
     super.initState();
   }
@@ -34,33 +47,45 @@ class _MyCardMCQState extends State<MyCardMCQ> {
   @override
   Widget build(BuildContext context) {
     return Container(
-    key: widget.key,
-    width: ScreenUtil.instance.setWidth(336.0),
-    margin: EdgeInsets.only(bottom: 29, right: 15, left: 15, top: 20),
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-        color: MyColor().black),
-    child: Stack(children: <Widget>[
-      PositionedDirectional(
-          top: 98,
-          start: 49,
-          child: MyQuestion(
-            question: widget.question,
-          )),
-      PositionedDirectional(
-          top: 41, start: 41, child: MyQuestionSAR(text: '${widget.sar} SAR')),
-      PositionedDirectional(
-          top: 180,
-          start: 41,
-          child: Container(
-            height: ScreenUtil.instance.setHeight(250.0),
-            width: ScreenUtil.instance.setWidth(260.0),
-            child: ListView(
-                children: choicesEnd
-                    .map((item) => MyMCQChoice(choice: item, snapi: widget.snapi, index: widget.index, notifyParent: widget.notifyParent, target: widget.target, doc: widget.doc, username: widget.username ))
-                    .toList()),
-          ))
-    ]));
+        key: widget.key,
+        width: ScreenUtil.instance.setWidth(336.0),
+        margin: EdgeInsets.only(bottom: 29, right: 15, left: 15, top: 20),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+            color: MyColor().black),
+        child: Stack(children: <Widget>[
+          PositionedDirectional(
+              top: 98,
+              start: 49,
+              child: MyQuestion(
+                question: widget.question,
+              )),
+          PositionedDirectional(
+              top: 41,
+              start: 41,
+              child: MyQuestionSAR(text: '${widget.sar} SAR')),
+          PositionedDirectional(
+              top: 180,
+              start: 41,
+              child: Container(
+                height: ScreenUtil.instance.setHeight(250.0),
+                width: ScreenUtil.instance.setWidth(260.0),
+                child: ListView(
+                    children: choicesEnd
+                        .map((item) => MyMCQChoice(
+                            choice: item,
+                            snapi: widget.snapi,
+                            index: widget.index,
+                            notifyParent: widget.notifyParent,
+                            target: widget.target,
+                            doc: widget.doc,
+                            username: widget.username,
+                            sar: widget.sar,
+                            usersSar: widget.usersSar,
+                            snap: widget.snap))
+                        .toList()),
+              ))
+        ]));
   }
 
   getChoices(List<dynamic> choices) {

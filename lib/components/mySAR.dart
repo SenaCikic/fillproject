@@ -2,16 +2,30 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MySAR extends StatelessWidget {
+class MySAR extends StatefulWidget {
   final String text;
   MySAR({this.text});
 
+  @override
+  _MySARState createState() => _MySARState();
+}
+
+
+
+class _MySARState extends State<MySAR> {
+  @override
+void initState() { 
+  super.initState();
+  setState(() {
+    
+  });
+}
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(bottom: 10.0),
         width: ScreenUtil.instance.setWidth(92),
-        child: Text(text,
+        child: Text(widget.text,
             style: TextStyle(
                 color: MyColor().black,
                 fontWeight: FontWeight.w700,
