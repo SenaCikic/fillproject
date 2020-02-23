@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/firebaseMethods/firebaseJson.dart';
+import 'package:fillproject/firebaseMethods/firebaseSignIn.dart';
 import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -24,7 +26,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    // LoginStorage().autoLogIn(context, name, isLoggedIn); //auto login on app kill and close
+    // LoginStorage().autoLogIn(context, username, isLoggedIn); //auto login on app kill and close
   }
 
   @override
@@ -90,14 +92,15 @@ class _SignUpState extends State<SignUp> {
                       child: Center(
                           child: FlatButton(
                               onPressed: () {
-                                FirebaseCrud().createUser('', '', username, '', 0);
-                                _signInAnonymously();
-                                Navigator.of(context).pushNamed(NavBar,
-                                    arguments: PasswordArguments(
-                                        email: '',
-                                        password: '',
-                                        phone: '',
-                                        username: username));
+                                FirebaseSignIn().signInAnonymously(username);
+                                Timer(Duration(milliseconds: 500), () {
+                                  Navigator.of(context).pushNamed(NavBar,
+                                      arguments: PasswordArguments(
+                                          email: '',
+                                          password: '',
+                                          phone: '',
+                                          username: username));
+                                });
                               },
                               // FirebaseJson().importJson(),
                               child: Text(
@@ -133,13 +136,5 @@ class _SignUpState extends State<SignUp> {
           ),
         ) ??
         true;
-  }
-
-  Future<void> _signInAnonymously() async {
-    try {
-      await FirebaseAuth.instance.signInAnonymously();
-    } catch (e) {
-      print(e);
-    }
   }
 }
