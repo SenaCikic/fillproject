@@ -231,13 +231,13 @@ class _LoginPageState extends State<LoginPage> {
                   Column(
                     children: <Widget>[
                       FutureBuilder(
-                        future: FirebaseCheck().doesPassAlreadyExist(password),
+                        future: FirebaseCheck().doesPassAlreadyExist(password, username),
                         builder: (context, AsyncSnapshot<bool> result) {
                           if (!result.hasData) {
                             return EmptyContainer();
                           }
                           if (result.data) {
-                            passwordPostoji = false;
+                            passwordPostoji = false;                            
                             return EmptyContainer();
                           } else {
                             passwordPostoji = true;
