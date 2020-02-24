@@ -19,7 +19,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatefulWidget {
-
   final DidntRecievePinArguments arguments;
   RegisterPage({this.arguments});
 
@@ -33,19 +32,15 @@ class _RegisterPageState extends State<RegisterPage> {
   final DidntRecievePinArguments arguments;
   _RegisterPageState({this.arguments});
   @override
-  void initState() { 
+  void initState() {
     super.initState();
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  bool isLoggedIn = false;
-
-  bool brPostoji = false;
-  bool usernamePostoji = false;
+  bool isLoggedIn = false, brPostoji = false, usernamePostoji = false;
 
   TextEditingController phoneController = new TextEditingController();
-
   TextEditingController usernameController = new TextEditingController();
 
   @override
@@ -124,7 +119,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Center(
                             child: Padding(
                           padding: const EdgeInsets.only(top: 28),
-                          child: MyTextComponent(text: MyText().registerHeadline),
+                          child:
+                              MyTextComponent(text: MyText().registerHeadline),
                         )),
                         Center(
                             child: Padding(
@@ -300,7 +296,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Column(
                           children: <Widget>[
                             FutureBuilder(
-                              future: FirebaseCheck().doesNameAlreadyExist(username),
+                              future: FirebaseCheck()
+                                  .doesNameAlreadyExist(username),
                               builder: (context, AsyncSnapshot<bool> result) {
                                 if (!result.hasData) {
                                   return EmptyContainer();
@@ -332,7 +329,4 @@ class _RegisterPageState extends State<RegisterPage> {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUp()));
     return EmptyContainer() ?? true;
   }
-
-
-
 }

@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myCardMCQ.dart';
 import 'package:fillproject/components/myCardYesNo.dart';
 import 'package:fillproject/components/myCashBalance.dart';
 import 'package:fillproject/components/mySAR.dart';
+import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/models/Question/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
@@ -53,13 +53,11 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 
   refresh() {
-    setState(() {
-    });
+    setState(() {});
     Timer(Duration(milliseconds: 500), () {
       setState(() {});
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -86,19 +84,13 @@ class _DashboardPageState extends State<DashboardPage> {
                         id = snap.data['user_id'];
                         userLevel = snap.data['level'];
                         username = snap.data['username'];
-                        print('User je: ' +
-                            id +
-                            " , a level je = " +
-                            userLevel.toString() +
-                            ' sar: ' +
-                            userSar.toString());
                         return EmptyContainer();
                       });
                 }
                 return EmptyContainer();
               },
             ),
-            MyCashBalance(text: 'Your cash\tbalance'),
+            MyCashBalance(text: MyText().sarText),
             MySAR(text: '$userSar'),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -193,16 +185,16 @@ class _DashboardPageState extends State<DashboardPage> {
     return showDialog(
           context: context,
           builder: (context) => new AlertDialog(
-            title: new Text('Are you sure?'),
-            content: new Text('Do you want to exit the app?'),
+            title: new Text(MyText().willQuestion),
+            content: new Text(MyText().willQuestion1),
             actions: <Widget>[
               new FlatButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('No'),
+                child: new Text(MyText().willNo),
               ),
               new FlatButton(
                 onPressed: () => exit(0),
-                child: new Text('Yes'),
+                child: new Text(MyText().willYes),
               ),
             ],
           ),

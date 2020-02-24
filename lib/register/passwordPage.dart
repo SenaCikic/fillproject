@@ -11,6 +11,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 String password;
 int _btnCounter = 0;
@@ -122,7 +123,7 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: ScreenUtil.instance.setSp(12)),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                // launch('https://google.com');
+                                launch('https://google.com');
                               }),
                         new TextSpan(
                           text: MyText().passwordSubtitle2,
@@ -138,7 +139,7 @@ class PasswordPage extends StatelessWidget {
                                 fontSize: ScreenUtil.instance.setSp(12)),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
-                                // launch('https://google.com');
+                                launch('https://google.com');
                               })
                       ]),
                     ),
@@ -152,7 +153,7 @@ class PasswordPage extends StatelessWidget {
                           ),
                           onPressed: () {
                             onPressed(context);
-                                _save();
+                            _save();
                           },
                           child: Text(MyText().btnPassword,
                               style: TextStyle(
@@ -171,8 +172,8 @@ class PasswordPage extends StatelessWidget {
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       if (_btnCounter == 0) {
-        FirebaseCrud().createUser(arguments.email, arguments.phone,
-            arguments.username, password, 5);
+        FirebaseCrud().createUser(
+            arguments.email, arguments.phone, arguments.username, password, 5);
         Navigator.of(context).pushNamed(NavBar,
             arguments: PasswordArguments(
                 email: arguments.email,
@@ -187,11 +188,11 @@ class PasswordPage extends StatelessWidget {
     }
   }
 
-      _save() async {
-        final prefs = await SharedPreferences.getInstance();
-        final key = 'user_password';
-        final value = password;
-        prefs.setString(key, value);
-        print('saved $value');
-      }
+  _save() async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'user_password';
+    final value = password;
+    prefs.setString(key, value);
+    print('saved $value');
+  }
 }

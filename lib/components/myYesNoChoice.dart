@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
@@ -18,7 +17,7 @@ class MyYesNoChoice extends StatefulWidget {
 
   MyYesNoChoice(
       {this.choice,
-      this.snap, 
+      this.snap,
       this.usersSars,
       this.key,
       this.sar,
@@ -76,13 +75,14 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   }
 
   onPressed() {
-     int counter = widget.target - 1;
+    int counter = widget.target - 1;
     int addSar = widget.usersSars + widget.sar;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
     FirebaseCrud().updateUsersSars(widget.snap, context, addSar);
     FirebaseCrud().updateListOfUsernameAnswers(
         widget.doc, context, widget.username, widget.choice);
-    FirebaseCrud().updateListOfUsernamesThatGaveAnswers(widget.doc, context, widget.username);
+    FirebaseCrud().updateListOfUsernamesThatGaveAnswers(
+        widget.doc, context, widget.username);
     widget.snapi.removeAt(widget.index);
     widget.snapi.insert(widget.index, QuestionSkelet());
     widget.notifyParent();

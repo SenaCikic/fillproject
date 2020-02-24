@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/firebaseMethods/firebaseSignIn.dart';
+import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
@@ -22,7 +23,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    // LoginStorage().autoLogIn(context, username, isLoggedIn); //auto login on app kill and close
+    LoginStorage().autoLogIn(context, username, isLoggedIn); //auto login on app kill and close
   }
 
   @override
@@ -117,8 +118,8 @@ class _SignUpState extends State<SignUp> {
     return showDialog(
           context: context,
           builder: (context) => new AlertDialog(
-            title: new Text('Are you sure?'),
-            content: new Text('Do you want to exit the app?'),
+            title: new Text(MyText().willQuestion),
+            content: new Text(MyText().willQuestion1),
             actions: <Widget>[
               new FlatButton(
                 onPressed: () => Navigator.of(context).pop(false),

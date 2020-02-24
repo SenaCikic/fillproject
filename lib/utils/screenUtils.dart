@@ -7,23 +7,17 @@ double defaultScreenHeight = 810.0;
 double screenWidth = defaultScreenWidth;
 double screenHeight = defaultScreenHeight;
 
-
-
-
-
 class Constant {
-
-
-void responsive(BuildContext context){
-double defaultScreenWidth = 400.0;
-double defaultScreenHeight = 810.0;
+  void responsive(BuildContext context) {
+    double defaultScreenWidth = 400.0;
+    double defaultScreenHeight = 810.0;
     ScreenUtil.instance = ScreenUtil(
       width: defaultScreenWidth,
       height: defaultScreenHeight,
       allowFontScaling: true,
     )..init(context);
+  }
 
-}
   ///Padding & Margin Constants
   static double sizeExtraSmall = 5.0;
   static double sizeDefault = 8.0;

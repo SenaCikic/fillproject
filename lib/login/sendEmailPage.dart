@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myValidation.dart';
@@ -34,10 +33,10 @@ class EmailResetPage extends StatelessWidget {
         ),
       ),
       body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(new FocusNode());
-          },
-              child: ListView(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: ListView(
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(top: 25.0),
@@ -54,7 +53,8 @@ class EmailResetPage extends StatelessWidget {
                       textAlign: TextAlign.center)),
             ),
             Container(
-              margin: EdgeInsets.only(top: 28.0, right: 73.0, left: 72.0,bottom: 163),
+              margin: EdgeInsets.only(
+                  top: 28.0, right: 73.0, left: 72.0, bottom: 163),
               child: SizedBox(
                   width: ScreenUtil.instance.setWidth(269),
                   height: ScreenUtil.instance.setWidth(66),
@@ -113,13 +113,17 @@ class EmailResetPage extends StatelessWidget {
             Container(
                 width: ScreenUtil.instance.setWidth(316.0),
                 height: ScreenUtil.instance.setHeight(67.0),
-                margin: EdgeInsets.only(left: 49.0, right: 49.0,),
+                margin: EdgeInsets.only(
+                  left: 49.0,
+                  right: 49.0,
+                ),
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(33.5),
                   ),
                   onPressed: () => onPressed(context),
-                  child: Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
+                  child:
+                      Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
                 )),
           ],
         ),
@@ -136,7 +140,8 @@ class EmailResetPage extends StatelessWidget {
         print(emailCode);
         ResetPassword().sendEmail(emailController.text, emailCode);
         Navigator.of(context).pushNamed(PasswordReset,
-            arguments: UpdatePasswordArguments(email: emailController.text, emailCode: emailCode));
+            arguments: UpdatePasswordArguments(
+                email: emailController.text, emailCode: emailCode));
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;

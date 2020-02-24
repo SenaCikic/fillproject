@@ -24,7 +24,7 @@ class EmailPage extends StatefulWidget {
 }
 
 class _EmailPageState extends State<EmailPage> {
-  bool emailPostoji  = false;
+  bool emailPostoji = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -49,8 +49,8 @@ class _EmailPageState extends State<EmailPage> {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => GestureDetector(
-                  child: SingleChildScrollView(
-                    child: Center(
+          child: SingleChildScrollView(
+            child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -109,13 +109,13 @@ class _EmailPageState extends State<EmailPage> {
                               ),
                             ),
                             style: TextStyle(color: MyColor().white),
-                            validator: (email) =>
-                                MyValidation().validateEmail(email, _btnCounter, emailPostoji),
-                                 onChanged: (input) {
-                          setState(() {
-                            email = input;
-                          });
-                        },
+                            validator: (email) => MyValidation().validateEmail(
+                                email, _btnCounter, emailPostoji),
+                            onChanged: (input) {
+                              setState(() {
+                                email = input;
+                              });
+                            },
                           ),
                         ),
                       )),
@@ -127,28 +127,28 @@ class _EmailPageState extends State<EmailPage> {
                           borderRadius: new BorderRadius.circular(33.5),
                         ),
                         onPressed: () => onPressed(context),
-                        child:
-                            Text(MyText().btnEmail, style: TextStyle(fontSize: 18)),
+                        child: Text(MyText().btnEmail,
+                            style: TextStyle(fontSize: 18)),
                       )),
-                      Column(
-                  children: <Widget>[
-                    FutureBuilder(
-                      future: FirebaseCheck().doesEmailAlreadyExist(email),
-                      builder: (context, AsyncSnapshot<bool> result) {
-                        if (!result.hasData) {
-                          return EmptyContainer();
-                        }
-                        if (result.data) {
-                          emailPostoji = true;
-                          return EmptyContainer();
-                        } else {
-                          emailPostoji = false;
-                          return EmptyContainer();
-                        }
-                      },
-                    ),
-                  ],
-                ),
+                  Column(
+                    children: <Widget>[
+                      FutureBuilder(
+                        future: FirebaseCheck().doesEmailAlreadyExist(email),
+                        builder: (context, AsyncSnapshot<bool> result) {
+                          if (!result.hasData) {
+                            return EmptyContainer();
+                          }
+                          if (result.data) {
+                            emailPostoji = true;
+                            return EmptyContainer();
+                          } else {
+                            emailPostoji = false;
+                            return EmptyContainer();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

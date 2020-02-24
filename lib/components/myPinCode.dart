@@ -18,8 +18,6 @@ class MyPinCodeTextField extends StatefulWidget {
   /// returns the current typed text in the fields
   final ValueChanged<String> onChanged;
 
-  
-
   /// returns the typed text when all pins are set
   final ValueChanged<String> onCompleted;
 
@@ -136,7 +134,7 @@ class MyPinCodeTextField extends StatefulWidget {
       color: Colors.black,
       fontWeight: FontWeight.bold,
     ),
-    this.keyboardType : TextInputType.number,
+    this.keyboardType: TextInputType.number,
   }) : super(key: key);
 
   @override
@@ -150,7 +148,6 @@ class _PinCodeTextFieldState extends State<MyPinCodeTextField> {
   int _selectedIndex = 0;
   BorderRadius borderRadius;
   TextInputType keyboardType;
-
 
   @override
   void initState() {
@@ -193,7 +190,6 @@ class _PinCodeTextFieldState extends State<MyPinCodeTextField> {
     assert(widget.negavtiveText != null && widget.negavtiveText.isNotEmpty);
     assert(widget.dialogTitle != null && widget.dialogTitle.isNotEmpty);
     assert(widget.dialogContent != null && widget.dialogContent.isNotEmpty);
-
   }
 
   // Assigning the text controller, if empty assiging a new one.

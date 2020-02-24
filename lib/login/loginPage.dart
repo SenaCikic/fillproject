@@ -5,7 +5,6 @@ import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myValidation.dart';
-import 'package:fillproject/dashboard/navigationBarController.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -54,8 +53,8 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    margin:
-                      EdgeInsets.only(bottom: 59, left: 49, right: 49,top: 28),
+                    margin: EdgeInsets.only(
+                        bottom: 59, left: 49, right: 49, top: 28),
                     child: SizedBox(
                         width: 215,
                         height: 60,
@@ -265,8 +264,7 @@ class _LoginPageState extends State<LoginPage> {
         password = passwordController.text;
         Navigator.of(context).pushNamed(NavBar,
             arguments: PasswordArguments(
-                username: username, password: password, email: '', phone: '')
-                );
+                username: username, password: password, email: '', phone: ''));
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;

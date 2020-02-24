@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginStorage {
-  Future<Null> loginUser(
-      TextEditingController usernameController, String name, bool isLoggedIn) async {
+  Future<Null> loginUser(TextEditingController usernameController, String name,
+      bool isLoggedIn) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', usernameController.text);
     name = usernameController.text;
@@ -17,7 +17,6 @@ class LoginStorage {
     final String userId = prefs.getString('username');
     if (userId != null) {
       isLoggedIn = true;
-      // name = userId;
       Navigator.of(context).pushNamed(NavBar,
           arguments: PasswordArguments(
               email: '', password: '', phone: '', username: name));
@@ -28,7 +27,7 @@ class LoginStorage {
   Future<Null> logout(String name, bool isLoggedIn) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', null);
-      name = '';
-      isLoggedIn = false;
+    name = '';
+    isLoggedIn = false;
   }
 }

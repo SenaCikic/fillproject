@@ -76,7 +76,25 @@ class MyText {
   final String btnReset = 'Reset Password';
   final String repeatPassSnack = "Wrong input";
   final String emptyFieldSnack = "This field can't be empty";
+
   // login -> sendEmailPage
   final String emailReset = "Reset password";
   final String emailSub = "If you do not know your current password, you may change it.";
+
+  // will pop 
+  final String willQuestion ='Are you sure?'; 
+  final String willQuestion1 ='Do you want to exit the app?'; 
+  final String willYes ='Are you sure?'; 
+  final String willNo ='Are you sure?'; 
+  
+  // Dashboard 
+  final String sarText = 'Your cash\tbalance';
+
+  // reset email email
+  final String subject =  'Reset Password';
+  final String msgSent = 'Message sent: ' ;
+  final String msgNotSent = 'Message not sent.' ;
+  final String emailMsg =  'You are recieving this e-mail because you requested a password reset for your Fill account.\n \n This is your code for reset password:' ;
+  
+
 }

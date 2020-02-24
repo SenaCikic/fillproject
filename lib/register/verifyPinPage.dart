@@ -24,9 +24,7 @@ class VerifyPinPage extends StatefulWidget {
 }
 
 class _VerifyPinPageState extends State<VerifyPinPage> {
-  bool fieldColor = false;
-
-  bool codeError = false;
+  bool fieldColor = false, codeError = false;
 
   String smsCode, wrongCodeError;
 
@@ -68,8 +66,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
             fieldColor = false;
           });
         });
-      }
-      else {
+      } else {
         setState(() {
           fieldColor = false;
           codeError = false;
@@ -94,9 +91,8 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
             child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 105, bottom: 35),
-              child: MyTextComponent(text: MyText().verifyPageHeadline)
-            ),
+                margin: EdgeInsets.only(top: 105, bottom: 35),
+                child: MyTextComponent(text: MyText().verifyPageHeadline)),
             Container(
               child: Text(
                 MyText().verifyMoney,

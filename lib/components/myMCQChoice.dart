@@ -34,10 +34,8 @@ class MyMCQChoice extends StatefulWidget {
 }
 
 class _MyMCQChoiceState extends State<MyMCQChoice> {
-  
   @override
   Widget build(BuildContext context) {
-    
     return Container(
         width: ScreenUtil.instance.setWidth(257.0),
         height: ScreenUtil.instance.setHeight(53.0),
@@ -83,11 +81,11 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
     FirebaseCrud().updateUsersSars(widget.snap, context, addSar);
     FirebaseCrud().updateListOfUsernameAnswers(
         widget.doc, context, widget.username, widget.choice);
-    FirebaseCrud().updateListOfUsernamesThatGaveAnswers(widget.doc, context, widget.username);
+    FirebaseCrud().updateListOfUsernamesThatGaveAnswers(
+        widget.doc, context, widget.username);
     widget.snapi.removeAt(widget.index);
     widget.snapi.insert(widget.index, QuestionSkelet());
     widget.notifyParent();
     isTapped = false;
   }
 }
-
