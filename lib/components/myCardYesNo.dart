@@ -54,33 +54,36 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
           PositionedDirectional(
               top: 41, start: 41, child: MyQuestionSAR(text: widget.sar.toString() + ' SAR')),
           PositionedDirectional(
-              top: 200,
+              top: 180,
               start: 41,
-              child: Row(
-                children: <Widget>[
-                  MyYesNoChoice(
-                      choice: 'Yes',
-                      snapi: widget.snapi,
-                      usersSars: widget.usersSar,
-                      sar: widget.sar,
-                      snap: widget.snap,
-                      index: widget.index,
-                      notifyParent: widget.notifyParent,
-                      target: widget.target,
-                      doc: widget.doc,
-                      username: widget.username),
-                  MyYesNoChoice(
-                      choice: 'No',
-                      snapi: widget.snapi,
-                       usersSars: widget.usersSar,
-                      snap: widget.snap,
-                      sar: widget.sar,
-                      index: widget.index,
-                      notifyParent: widget.notifyParent,
-                      target: widget.target,
-                      doc: widget.doc,
-                      username: widget.username)
-                ],
+              child: Container(
+                margin: EdgeInsets.only(bottom: 20),
+                child: Row(
+                  children: <Widget>[
+                    MyYesNoChoice(
+                        choice: 'Yes',
+                        snapi: widget.snapi,
+                        usersSars: widget.usersSar,
+                        sar: widget.sar,
+                        snap: widget.snap,
+                        index: widget.index,
+                        notifyParent: widget.notifyParent,
+                        target: widget.target,
+                        doc: widget.doc,
+                        username: widget.username),
+                    MyYesNoChoice(
+                        choice: 'No',
+                        snapi: widget.snapi,
+                         usersSars: widget.usersSar,
+                        snap: widget.snap,
+                        sar: widget.sar,
+                        index: widget.index,
+                        notifyParent: widget.notifyParent,
+                        target: widget.target,
+                        doc: widget.doc,
+                        username: widget.username)
+                  ],
+                ),
               ))
         ]));
   }

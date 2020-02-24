@@ -5,6 +5,9 @@ import 'package:fillproject/dashboard/survey.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 
+bool isTab1Selected = true;
+bool isTab2Selected = false;
+
 class BottomNavigationBarController extends StatefulWidget {
   final PasswordArguments arguments;
 
@@ -33,11 +36,21 @@ class _BottomNavigationBarControllerState
 
   final items = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.announcement),
-      title: Text(''),
+      icon: isTab1Selected
+          ? ImageIcon(AssetImage('assets/images/tab1.png'))
+          : ImageIcon(AssetImage('assets/images/tab1_1.png')),
+      title: Text('_______________'),
     ),
-    BottomNavigationBarItem(icon: Icon(Icons.view_week), title: Text('')),
-    BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text(''))
+    BottomNavigationBarItem(
+      icon: isTab2Selected
+          ? ImageIcon(AssetImage('assets/images/tab2.png'))
+          : ImageIcon(AssetImage('assets/images/tab2_2.png')),
+      title: Text('_______________'),
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.account_circle), 
+      title: Text('_______________')
+    )
   ];
 
   int currentIndex = 0;
@@ -46,6 +59,16 @@ class _BottomNavigationBarControllerState
     setState(() {
       currentIndex = index;
     });
+    if (currentIndex == 0) {
+      isTab1Selected = true;
+      isTab2Selected = false;
+    } else if (currentIndex == 1) {
+      isTab1Selected = false;
+      isTab2Selected = true;
+    } else if (currentIndex == 2) {
+      isTab1Selected = false;
+      isTab2Selected = false;
+    }
   }
 
   @override
