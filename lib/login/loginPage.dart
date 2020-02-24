@@ -73,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: ScreenUtil.instance.setHeight(92.0),
                     margin: EdgeInsets.only(top: 10.0, left: 54.0, right: 55.0),
                     child: TextFormField(
+                      enableSuggestions: false,
                       textCapitalization: TextCapitalization.sentences,
                       controller: usernameController,
                       decoration: InputDecoration(
@@ -125,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: ScreenUtil.instance.setHeight(92.0),
                     margin: EdgeInsets.only(top: 10.0, left: 54.0, right: 55.0),
                     child: TextFormField(
+                      enableSuggestions: false,
                       controller: passwordController,
                       decoration: InputDecoration(
                         // floatingLabelBehavior: FloatingLabelBehavior.never,

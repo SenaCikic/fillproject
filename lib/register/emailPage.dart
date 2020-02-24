@@ -74,6 +74,7 @@ class _EmailPageState extends State<EmailPage> {
                         child: Form(
                           key: _formKey,
                           child: TextFormField(
+                            enableSuggestions: false,
                             controller: emailController,
                             decoration: InputDecoration(
                               // floatingLabelBehavior: FloatingLabelBehavior.never,
