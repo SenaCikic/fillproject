@@ -143,6 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           margin:
                               EdgeInsets.only(bottom: 19, left: 49, right: 49),
                           child: TextFormField(
+                            enableSuggestions: false,
                             textCapitalization: TextCapitalization.sentences,
                             controller: usernameController,
                             decoration: InputDecoration(
@@ -211,6 +212,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: ScreenUtil.instance.setHeight(92.0),
                           margin: EdgeInsets.only(left: 49, right: 49),
                           child: TextFormField(
+                            enableSuggestions: false,
                             keyboardType: TextInputType.number,
                             controller: phoneController,
                             decoration: InputDecoration(

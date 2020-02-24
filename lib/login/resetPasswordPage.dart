@@ -104,6 +104,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           margin: EdgeInsets.only(
                               bottom: 19, top: 105, left: 40, right: 40),
                           child: TextFormField(
+                            enableSuggestions: false,
                             style: TextStyle(color: Colors.white),
                             controller: oldPasswordController,
                             decoration: InputDecoration(
@@ -151,6 +152,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                             right: 40,
                           ),
                           child: TextFormField(
+                            enableSuggestions: false,
                             style: TextStyle(color: MyColor().white),
                             controller: newPasswordController,
                             decoration: InputDecoration(
@@ -196,6 +198,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           margin: EdgeInsets.only(
                               bottom: 28, top: 19, left: 40, right: 40),
                           child: TextFormField(
+                            enableSuggestions: false,
                             style: TextStyle(color: Colors.white),
                             controller: repeatPasswordController,
                             decoration: InputDecoration(
