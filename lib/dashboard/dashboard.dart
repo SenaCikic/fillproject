@@ -99,7 +99,7 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             MyCashBalance(text: 'Your cash\tbalance'),
-            MySAR(text: userSar == null ? '0 SAR' : userSar.toString() + ' SAR'),
+            MySAR(text: '$userSar'),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[

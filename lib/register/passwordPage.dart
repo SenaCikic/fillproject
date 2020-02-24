@@ -64,6 +64,7 @@ class PasswordPage extends StatelessWidget {
                       child: Form(
                         key: _formKey,
                         child: TextFormField(
+                          enableSuggestions: false,
                           controller: passwordController,
                           decoration: InputDecoration(
                             hasFloatingPlaceholder: false,

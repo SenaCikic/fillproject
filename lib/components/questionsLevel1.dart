@@ -70,7 +70,7 @@ class QuestionsLevel1 {
        "text": "Two and a Half Men"
       }
      ],"target": 1000,
-     "sar": 3,
+     "sar":10,
      "listOfUsernameAnswers" : [],
      "listOfUsernamesThatGaveAnswers" : [],
 
@@ -130,7 +130,7 @@ class QuestionsLevel1 {
        "text": "NO"
       },
      ],"target": 1000,
-     "sar": 3,
+     "sar": 12,
      "listOfUsernameAnswers" : [],
      "listOfUsernamesThatGaveAnswers" : [],
 
@@ -150,12 +150,12 @@ class QuestionsLevel1 {
        "text": "NO"
       },
      ],"target": 1000,
-     "sar": 3,
+     "sar": 8,
      "listOfUsernameAnswers" : [],
      "listOfUsernamesThatGaveAnswers" : [],
 
     },
-              {
+    {
  
      "type": "radiogroup",
      "name": "question1",
@@ -170,7 +170,71 @@ class QuestionsLevel1 {
        "text": "NO"
       },
      ],"target": 1000,
+     "sar": 2,
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
+
+    },
+    {
+ 
+     "type": "radiogroup",
+     "name": "question1",
+     "title": "Dou you like yur job?",
+     "choices": [
+      {
+       "value": "item1",
+       "text": "YES"
+      },
+      {
+       "value": "item2",
+       "text": "NO"
+      },
+     ],"target": 1000,
      "sar": 3,
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
+
+    },
+    {
+ 
+     "type": "radiogroup",
+     "name": "question1",
+     "title": "Dou you like star wars?",
+     "choices": [
+      {
+       "value": "item1",
+       "text": "YES"
+      },
+      {
+       "value": "item2",
+       "text": "YES"
+      },
+     ],"target": 1000,
+     "sar": 2,
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
+
+    },
+    {
+ 
+     "type": "checkbox",
+     "name": "question1",
+     "title": "What is the first thing you do in the morning?",
+     "choices": [
+      {
+       "value": "item1",
+       "text": "Go to bathroom"
+      },
+      {
+       "value": "item2",
+       "text": "Open your eyes"
+      },
+      {
+       "value": "item3",
+       "text": "Kick your pet in the head"
+      }
+     ],"target": 1000,
+     "sar": 7,
      "listOfUsernameAnswers" : [],
      "listOfUsernamesThatGaveAnswers" : [],
 
