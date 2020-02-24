@@ -35,8 +35,8 @@ The team successfully coded user story 3. During this period we had some changes
 Very proud on team 2.
 
 **•	V2 – Sprint 2<br/>**
-  	User story 1 - fixing a bug from previous sprint<br/>
-	The bug was on the SIGN UP screen and it was<br/>*
+  	User story 1 - fixing bugs from previous sprint<br/>
+	The bugs were on the SIGN UP screen and they are: Error text, Text repeat and verify PIN.<br/>*
   	User story 2 - As a USER I want to HAVE FLASH QUESTIONS so that I CAN EASILY EARN SOME MONEY FROM TAB 1 IN FILL APP<br/>
 	The user story was about to create Tab 1 screen on which flash questions are listed. Here, users are getting questions according to their level and every user can answer a question only once. Also, every question has its own target number which represents the maximum number of answers and a SAR value which is added to users cash balance (implemented as US 3). Questions may be of two types: Yes/No questions and MCQ. After a user answers a question, the answer gets recorder in database. Part of bottom navigation bar is implemented.<br/>*
 	User story 3 - As a USER I want to HAVE MY CASH BALANCE so that I CAN EASILY PREVIEW MONEY FROM TAB 1 IN FILL APP<br/>
