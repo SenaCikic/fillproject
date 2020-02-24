@@ -88,7 +88,7 @@ class MyText {
   final String willNo ='Are you sure?'; 
   
   // Dashboard 
-  final String sarText = 'Your cash\tbalance';
+  final String sarText = 'Your cash\nbalance';
 
   // reset email email
   final String subject =  'Reset Password';

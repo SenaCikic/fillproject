@@ -49,7 +49,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
     return Container(
         key: widget.key,
         width: ScreenUtil.instance.setWidth(336.0),
-        margin: EdgeInsets.only(bottom: 29, right: 15, left: 15, top: 20),
+        margin: EdgeInsets.only(right: 15, left: 15, top: 20),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
@@ -70,6 +70,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
               child: Container(
                 height: ScreenUtil.instance.setHeight(250.0),
                 width: ScreenUtil.instance.setWidth(260.0),
+                margin: EdgeInsets.only(top: 35.0),
                 child: ListView(
                     children: choicesEnd
                         .map((item) => MyMCQChoice(

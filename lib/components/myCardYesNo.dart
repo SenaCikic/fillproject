@@ -40,7 +40,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
        key: widget.key,
         width: ScreenUtil.instance.setWidth(336.0),
         height: ScreenUtil.instance.setHeight(320.0),
-        margin: EdgeInsets.only(bottom: 29.0, left: 15, right: 15, top: 180),
+        margin: EdgeInsets.only(left: 15, right: 15, top: 180),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
@@ -54,10 +54,9 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
           PositionedDirectional(
               top: 41, start: 41, child: MyQuestionSAR(text: widget.sar.toString() + ' SAR')),
           PositionedDirectional(
-              top: 180,
+              top: 170,
               start: 41,
               child: Container(
-                margin: EdgeInsets.only(bottom: 20),
                 child: Row(
                   children: <Widget>[
                     MyYesNoChoice(

@@ -38,9 +38,9 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
     return Container(
         key: widget.key,
         width: ScreenUtil.instance.setWidth(115.0),
-        height: ScreenUtil.instance.setHeight(59.0),
+        height: ScreenUtil.instance.setHeight(53.0),
         alignment: Alignment.center,
-        margin: EdgeInsets.only(right: 22.0),
+        margin: EdgeInsets.only(right: 22.0, top: 50),
         child: Container(
           width: ScreenUtil.instance.setWidth(257.0),
           height: ScreenUtil.instance.setHeight(53.0),

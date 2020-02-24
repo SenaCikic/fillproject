@@ -159,7 +159,7 @@ class QuestionsLevel1 {
  
      "type": "radiogroup",
      "name": "question1",
-     "title": "Dou you have any  money?",
+     "title": "Do you have any  money?",
      "choices": [
       {
        "value": "item1",
@@ -179,7 +179,7 @@ class QuestionsLevel1 {
  
      "type": "radiogroup",
      "name": "question1",
-     "title": "Dou you like yur job?",
+     "title": "Do you like your job?",
      "choices": [
       {
        "value": "item1",
@@ -199,7 +199,7 @@ class QuestionsLevel1 {
  
      "type": "radiogroup",
      "name": "question1",
-     "title": "Dou you like star wars?",
+     "title": "Do you like star wars?",
      "choices": [
       {
        "value": "item1",

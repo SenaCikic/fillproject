@@ -91,13 +91,14 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             MyCashBalance(text: MyText().sarText),
-            MySAR(text: '$userSar'),
+            MySAR(text: '$userSar\nSAR'),
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              textBaseline: TextBaseline.alphabetic,
               children: <Widget>[
                 Expanded(
                   child: SizedBox(
-                    height: ScreenUtil.instance.setHeight(560.0),
+                    height: ScreenUtil.instance.setHeight(485.0),
                     child: FutureBuilder(
                       future: Future.delayed(Duration(milliseconds: 500)).then(
                           (value) => FirebaseCheck().getQuestions(userLevel)),
@@ -190,11 +191,11 @@ class _DashboardPageState extends State<DashboardPage> {
             actions: <Widget>[
               new FlatButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: new Text(MyText().willNo),
+                child: new Text('No'),
               ),
               new FlatButton(
                 onPressed: () => exit(0),
-                child: new Text(MyText().willYes),
+                child: new Text('Yes'),
               ),
             ],
           ),
