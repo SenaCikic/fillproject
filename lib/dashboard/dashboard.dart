@@ -11,6 +11,7 @@ import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/models/Question/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 bool visible = false;
 DocumentSnapshot snap;
@@ -85,14 +86,12 @@ class _DashboardPageState extends State<DashboardPage> {
                         id = snap.data['user_id'];
                         userLevel = snap.data['level'];
                         username = snap.data['username'];
-
                         print('User je: ' +
                             id +
                             " , a level je = " +
                             userLevel.toString() +
                             ' sar: ' +
                             userSar.toString());
-
                         return EmptyContainer();
                       });
                 }
@@ -106,7 +105,7 @@ class _DashboardPageState extends State<DashboardPage> {
               children: <Widget>[
                 Expanded(
                   child: SizedBox(
-                    height: 500,
+                    height: ScreenUtil.instance.setHeight(560.0),
                     child: FutureBuilder(
                       future: Future.delayed(Duration(milliseconds: 500)).then(
                           (value) => FirebaseCheck().getQuestions(userLevel)),
