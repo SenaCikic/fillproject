@@ -272,6 +272,32 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
 
+                        Container(
+                            width: ScreenUtil.instance.setWidth(316.0),
+                            height: ScreenUtil.instance.setHeight(67.0),
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(33.5),
+                              ),
+                              onPressed: () async {
+                              try {
+                                final result =
+                                    await InternetAddress.lookup('google.com');
+                                if (result.isNotEmpty &&
+                                    result[0].rawAddress.isNotEmpty) {
+                                  onFieldSubmitted(context);
+                                }
+                              } on SocketException catch (_) {
+                                MySnackbar().showSnackbar(
+                                    MyText().checkConnection,
+                                    context,
+                                    MyText().snackUndo);
+                              }
+                            },
+                              child: Text("Send PIN",
+                                  style: TextStyle(fontSize: 18)),
+                            )),
+
                         /// PROVJERA DA LI POSTOJI USERNAME ILI NUMBER
                         Column(
                           children: <Widget>[

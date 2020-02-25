@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/firebaseMethods/firebaseSignIn.dart';
-import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
@@ -19,13 +18,12 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isLoggedIn = false;
-  String name = '', username = randomAlphaNumeric(5);
+  String name = '', username ;
 
   @override
   void initState() {
     super.initState();
     print(username);
-    //LoginStorage().autoLogIn(context, isLoggedIn); //auto login on app kill and close
     autoLogIn(context, isLoggedIn);
   }
 
@@ -92,6 +90,8 @@ class _SignUpState extends State<SignUp> {
                       child: Center(
                           child: FlatButton(
                               onPressed: () {
+                                username = randomAlphaNumeric(5);
+                                loginUser();
                                 FirebaseSignIn().signInAnonymously(username);
                                 Timer(Duration(milliseconds: 500), () {
                                   Navigator.of(context).pushNamed(NavBar,
@@ -141,6 +141,7 @@ class _SignUpState extends State<SignUp> {
    void autoLogIn(BuildContext context, bool isLoggedIn) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String userId = prefs.getString('username');
+    print(username);
     if (userId != null) {
       setState(() {
         isLoggedIn = true;
@@ -152,5 +153,15 @@ class _SignUpState extends State<SignUp> {
               email: '', password: '', phone: '', username: username));
       return;
     }
+  }
+  
+  //duplanje koda i implementacija funckije ovdje zbog setState-a -> NAUCIMO BLoC :)
+  Future<Null> loginUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('username', username);
+    setState(() {
+      username = username;
+      isLoggedIn = true;
+    });
   }
 }

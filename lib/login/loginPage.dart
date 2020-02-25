@@ -265,7 +265,6 @@ class _LoginPageState extends State<LoginPage> {
       if (_btnCounter == 0) {
         username = usernameController.text;
         password = passwordController.text;
-        //LoginStorage().loginUser(username, isLoggedIn);
         loginUser();
         Navigator.of(context).pushNamed(NavBar,
             arguments: PasswordArguments(
@@ -277,7 +276,8 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
   }
-
+ 
+ //duplanje koda i implementacija funckije ovdje zbog setState-a -> NAUCIMO BLoC :)
   Future<Null> loginUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', username);
