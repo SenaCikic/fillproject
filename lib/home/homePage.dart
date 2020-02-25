@@ -27,7 +27,7 @@ class _SignUpState extends State<SignUp> {
 
     print(username);
 
-    autoLogIn(context, isLoggedIn);
+   // autoLogIn(context, isLoggedIn);
 
   }
 

@@ -56,7 +56,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
           PositionedDirectional(
               top: 41, start: 41, child: MyQuestionSAR(text: widget.sar.toString() + ' SAR')),
           PositionedDirectional(
-              top: 170,
+              top: 100,
               start: 41,
               child: Container(
                 child: Row(
