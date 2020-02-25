@@ -16,10 +16,11 @@ class FirebaseCheck {
 
   /// provjera da li password postoji u bazi
   ///
-  Future<bool> doesPassAlreadyExist(String password) async {
+  Future<bool> doesPassAlreadyExist(String password, String username) async {
     final QuerySnapshot result = await Firestore.instance
         .collection('Users')
         .where('password', isEqualTo: password)
+        .where('username', isEqualTo: username)
         .limit(1)
         .getDocuments();
     final List<DocumentSnapshot> documents = result.documents;

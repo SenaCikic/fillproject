@@ -78,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
           codeAutoRetrievalTimeout: autoRetrieve);
     }
 
-    onFieldSubmitted(BuildContext context) {
+    onFieldSubmitted1(BuildContext context) {
       phoneNo = "+" + phoneController.text;
 
       final _formState = _formKey.currentState;
@@ -192,7 +192,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     await InternetAddress.lookup('google.com');
                                 if (result.isNotEmpty &&
                                     result[0].rawAddress.isNotEmpty) {
-                                  onFieldSubmitted(context);
+                                  onFieldSubmitted1(context);
                                 }
                               } on SocketException catch (_) {
                                 MySnackbar().showSnackbar(
@@ -259,7 +259,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     await InternetAddress.lookup('google.com');
                                 if (result.isNotEmpty &&
                                     result[0].rawAddress.isNotEmpty) {
-                                  onFieldSubmitted(context);
+                                  onFieldSubmitted1(context);
                                 }
                               } on SocketException catch (_) {
                                 MySnackbar().showSnackbar(
@@ -280,20 +280,22 @@ class _RegisterPageState extends State<RegisterPage> {
                                 borderRadius: new BorderRadius.circular(33.5),
                               ),
                               onPressed: () async {
-                              try {
-                                final result =
-                                    await InternetAddress.lookup('google.com');
-                                if (result.isNotEmpty &&
-                                    result[0].rawAddress.isNotEmpty) {
-                                  onFieldSubmitted(context);
+                                try {
+                                  final result = await InternetAddress.lookup(
+                                      'google.com');
+                                  if (result.isNotEmpty &&
+                                      result[0].rawAddress.isNotEmpty) {
+                                    onFieldSubmitted1(context);
+                                    print("TU SAM");
+                                  }
+                                } on SocketException catch (_) {
+                                  MySnackbar().showSnackbar(
+                                      MyText().checkConnection,
+                                      context,
+                                      MyText().snackUndo);
+                                  print("ERROR");
                                 }
-                              } on SocketException catch (_) {
-                                MySnackbar().showSnackbar(
-                                    MyText().checkConnection,
-                                    context,
-                                    MyText().snackUndo);
-                              }
-                            },
+                              },
                               child: Text("Send PIN",
                                   style: TextStyle(fontSize: 18)),
                             )),
