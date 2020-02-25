@@ -83,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       final _formState = _formKey.currentState;
       if (_formState.validate()) {
-        LoginStorage().loginUser(usernameController, name, isLoggedIn);
+        LoginStorage().loginUser(username, isLoggedIn);
         verifyPhone();
       }
     }

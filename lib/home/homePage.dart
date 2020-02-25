@@ -10,6 +10,7 @@ import 'package:fillproject/utils/screenUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:random_string/random_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -23,7 +24,8 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    LoginStorage().autoLogIn(context, username, isLoggedIn); //auto login on app kill and close
+    print(username);
+    LoginStorage().autoLogIn(context, isLoggedIn); //auto login on app kill and close
   }
 
   @override
@@ -133,5 +135,20 @@ class _SignUpState extends State<SignUp> {
           ),
         ) ??
         true;
+  }
+
+   void autoLogIn(BuildContext context, bool isLoggedIn) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String userId = prefs.getString('username');
+    if (userId != null) {
+      setState(() {
+        isLoggedIn = true;
+      });
+      
+      Navigator.of(context).pushNamed(NavBar,
+          arguments: PasswordArguments(
+              email: '', password: '', phone: '', username: userId));
+      return;
+    } else return;
   }
 }
