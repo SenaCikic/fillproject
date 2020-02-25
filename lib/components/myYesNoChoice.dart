@@ -14,15 +14,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyYesNoChoice extends StatefulWidget {
   final String choice, username;
-  final int index, target,  sar;
+  final int index, target, sar;
   final Function() notifyParent;
   final List<dynamic> snapi;
   final DocumentSnapshot doc, snap;
   final ValueKey key;
   int usersSars;
+  final bool isSar;
 
   MyYesNoChoice(
       {this.choice,
+      this.isSar,
       this.snap,
       this.usersSars,
       this.key,
@@ -59,18 +61,13 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
             color: isTapped ? MyColor().white : MyColor().black,
             onPressed: () async {
               setState(() {
-                  isTapped = true;
-                });
-              MyInternetCheck().connection.addresses = MyInternetCheck().defaultAddresses;
-              if (await MyInternetCheck().connection.hasConnection) {
+                isTapped = true;
+              });
+           
                 Timer(Duration(milliseconds: 50), () {
                   onPressed();
                 });
-              } else {
-                onPressed();
-                MySnackbar().showSnackbar(
-                    MyText().checkConnection, context, MyText().snackUndo);
-              }
+             
             },
             child: Text(widget.choice,
                 style: TextStyle(
@@ -89,11 +86,19 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
 
   onPressed() {
     int counter = widget.target - 1;
-     widget.usersSars += widget.sar;
-     saroviOffline += widget.sar;
+    widget.usersSars += widget.sar;
+    saroviOffline += widget.sar;
     // int addSar = widget.usersSars + widget.sar;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
-    FirebaseCrud().updateUsersSars(widget.snap, context, saroviOffline);
+    /// update sarova na osnovu da li je app online ili offline 
+    /// 
+    /// online = [widget.usersSar]
+    /// offline = [saroviOffline]
+    if (widget.isSar) {
+      FirebaseCrud().updateUsersSars(widget.snap, context, saroviOffline);
+    } else {
+      FirebaseCrud().updateUsersSars(widget.snap, context, widget.usersSars);
+    }
     FirebaseCrud().updateListOfUsernameAnswers(
         widget.doc, context, widget.username, widget.choice);
     FirebaseCrud().updateListOfUsernamesThatGaveAnswers(

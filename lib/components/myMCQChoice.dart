@@ -18,9 +18,11 @@ class MyMCQChoice extends StatefulWidget {
   int index, target, sar, usersSar;
   final Function() notifyParent;
   final List<dynamic> snapi;
+  final bool isSar;
 
   MyMCQChoice({
     this.choice,
+    this.isSar,
     this.snapi,
     this.index,
     this.notifyParent,
@@ -58,17 +60,11 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
               setState(() {
                 isTapped = true;
               });
-              MyInternetCheck().connection.addresses =
-                  MyInternetCheck().defaultAddresses;
-              if (await MyInternetCheck().connection.hasConnection) {
+           
                 Timer(Duration(milliseconds: 50), () {
                   onPressed();
                 });
-              } else {
-                onPressed();
-                MySnackbar().showSnackbar(
-                    MyText().checkConnection, context, MyText().snackUndo);
-              }
+              
             },
             child: Text(widget.choice,
                 style: TextStyle(
@@ -89,9 +85,18 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
     int counter = widget.target - 1;
     widget.usersSar += widget.sar;
     saroviOffline += widget.sar;
-    // int addSar = widget.usersSar + widget.sar;
     FirebaseCrud().updateTarget(widget.doc, context, counter);
-    FirebaseCrud().updateUsersSars(widget.snap, context, saroviOffline);
+
+    /// update sarova na osnovu da li je app online ili offline
+    ///
+    /// online = [widget.usersSar]
+    /// offline = [saroviOffline]
+    if (widget.isSar) {
+      FirebaseCrud().updateUsersSars(widget.snap, context, saroviOffline);
+    } else {
+      FirebaseCrud().updateUsersSars(widget.snap, context, widget.usersSar);
+    }
+
     FirebaseCrud().updateListOfUsernameAnswers(
         widget.doc, context, widget.username, widget.choice);
     FirebaseCrud().updateListOfUsernamesThatGaveAnswers(

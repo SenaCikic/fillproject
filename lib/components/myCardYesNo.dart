@@ -14,11 +14,13 @@ class MyCardYesNo extends StatefulWidget {
   final Function() notifyParent;
   final DocumentSnapshot doc, snap;
   final ValueKey key;
+  final bool isSar;
 
   MyCardYesNo(
       {this.question,
        this.key,
       this.sar,
+      this.isSar,
       this.usersSar,
       this.index,
       this.snapi,
@@ -64,6 +66,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                         snapi: widget.snapi,
                         usersSars: widget.usersSar,
                         sar: widget.sar,
+                        isSar: widget.isSar,
                         snap: widget.snap,
                         index: widget.index,
                         notifyParent: widget.notifyParent,
@@ -75,6 +78,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                         snapi: widget.snapi,
                          usersSars: widget.usersSar,
                         snap: widget.snap,
+                        isSar: widget.isSar,
                         sar: widget.sar,
                         index: widget.index,
                         notifyParent: widget.notifyParent,
