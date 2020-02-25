@@ -23,8 +23,10 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
+
     print(username);
     autoLogIn(context, isLoggedIn);
+
   }
 
   @override
