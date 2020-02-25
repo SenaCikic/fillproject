@@ -91,7 +91,7 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             MyCashBalance(text: MyText().sarText),
-            MySAR(text: '$userSar\nSAR'),
+            MySAR(text: '$userSar\nSAR $username'),
             Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
