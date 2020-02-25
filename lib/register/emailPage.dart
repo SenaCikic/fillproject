@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
@@ -126,7 +128,19 @@ class _EmailPageState extends State<EmailPage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(33.5),
                         ),
-                        onPressed: () => onPressed(context),
+                        onPressed: () async {
+                          try {
+                            final result =
+                                await InternetAddress.lookup('google.com');
+                            if (result.isNotEmpty &&
+                                result[0].rawAddress.isNotEmpty) {
+                              onPressed(context);
+                            }
+                          } on SocketException catch (_) {
+                            MySnackbar().showSnackbar(MyText().checkConnection,
+                                context, MyText().snackUndo);
+                          }
+                        },
                         child: Text(MyText().btnEmail,
                             style: TextStyle(fontSize: 18)),
                       )),

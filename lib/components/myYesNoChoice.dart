@@ -1,6 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/myInternetCheck.dart';
+import 'package:fillproject/components/mySnackbar.dart';
+import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/globals.dart';
 import 'package:fillproject/models/Question/questionSkelet.dart';
@@ -34,6 +39,27 @@ class MyYesNoChoice extends StatefulWidget {
 }
 
 class _MyYesNoChoiceState extends State<MyYesNoChoice> {
+  static const Duration DEFAULT_TIMEOUT = Duration(seconds: 20);
+  static const int DEFAULT_PORT = 53;
+
+  static final List<AddressCheckOptions> defaultAddresses = List.unmodifiable([
+    AddressCheckOptions(
+      InternetAddress('1.1.1.1'),
+      port: DEFAULT_PORT,
+      timeout: DEFAULT_TIMEOUT,
+    ),
+    AddressCheckOptions(
+      InternetAddress('8.8.4.4'),
+      port: DEFAULT_PORT,
+      timeout: DEFAULT_TIMEOUT,
+    ),
+    AddressCheckOptions(
+      InternetAddress('208.67.222.222'),
+      port: DEFAULT_PORT,
+      timeout: DEFAULT_TIMEOUT,
+    ),
+  ]);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,13 +78,20 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
             hoverColor: isTapped ? MyColor().white : MyColor().black,
             elevation: 0,
             color: isTapped ? MyColor().white : MyColor().black,
-            onPressed: () {
+            onPressed: () async {
               setState(() {
-                isTapped = true;
-              });
-              Timer(Duration(milliseconds: 50), () {
+                  isTapped = true;
+                });
+              MyInternetCheck().connection.addresses = MyInternetCheck().defaultAddresses;
+              if (await MyInternetCheck().connection.hasConnection) {
+                Timer(Duration(milliseconds: 50), () {
+                  onPressed();
+                });
+              } else {
                 onPressed();
-              });
+                MySnackbar().showSnackbar(
+                    MyText().checkConnection, context, MyText().snackUndo);
+              }
             },
             child: Text(widget.choice,
                 style: TextStyle(

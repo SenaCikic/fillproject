@@ -30,6 +30,7 @@ dependencies:
   splashscreen: ^1.2.0
   mailer: ^3.0.3
   random_string: ^2.0.1
+  data_connection_checker: ^0.3.4
 
   
 

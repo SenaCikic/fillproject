@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:fillproject/components/myPinCode.dart';
+import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextComponent.dart';
@@ -161,7 +163,17 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(33.5),
                 ),
-                onPressed: () => onPressed(context),
+                onPressed: () async {
+                  try {
+                    final result = await InternetAddress.lookup('google.com');
+                    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+                      onPressed(context);
+                    }
+                  } on SocketException catch (_) {
+                    MySnackbar().showSnackbar(
+                        MyText().checkConnection, context, MyText().snackUndo);
+                  }
+                },
                 child: Text(MyText().btnVerify, style: TextStyle(fontSize: 18)),
               ),
             ),

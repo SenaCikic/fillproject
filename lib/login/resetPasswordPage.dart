@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/MyText.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
@@ -250,7 +252,19 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(33.5),
                       ),
-                      onPressed: () => onPressed(context),
+                      onPressed: () async {
+                        try {
+                          final result =
+                              await InternetAddress.lookup('google.com');
+                          if (result.isNotEmpty &&
+                              result[0].rawAddress.isNotEmpty) {
+                            onPressed(context);
+                          }
+                        } on SocketException catch (_) {
+                          MySnackbar().showSnackbar(MyText().checkConnection,
+                              context, MyText().snackUndo);
+                        }
+                      },
                       child: Text(MyText().btnReset)),
                 ),
 
@@ -288,7 +302,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       if (_btnCounter == 0) {
-         FirebaseCrud().updatePassword(snap, context, newPassword);
+        FirebaseCrud().updatePassword(snap, context, newPassword);
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
           _btnCounter = 0;
