@@ -10,6 +10,7 @@ import 'package:fillproject/utils/screenUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:random_string/random_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -18,13 +19,16 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isLoggedIn = false;
-  String name = '', username = randomAlphaNumeric(5);
+  String name = '', username ;
 
   @override
   void initState() {
     super.initState();
-    // LoginStorage().autoLogIn(
-    //     context, username, isLoggedIn); //auto login on app kill and close
+
+
+    print(username);
+    autoLogIn(context, isLoggedIn);
+
   }
 
   @override
@@ -32,6 +36,7 @@ class _SignUpState extends State<SignUp> {
     Constant().responsive(context);
     return Scaffold(
       backgroundColor: MyColor().black,
+
       body: Builder(
         builder: (context) => WillPopScope(
           onWillPop: _onWillPop,
@@ -96,6 +101,8 @@ class _SignUpState extends State<SignUp> {
                                         'google.com');
                                     if (result.isNotEmpty &&
                                         result[0].rawAddress.isNotEmpty) {
+                                       username = randomAlphaNumeric(5);
+                                      loginUser();
                                       FirebaseSignIn()
                                           .signInAnonymously(username);
                                       Timer(Duration(milliseconds: 500), () {
@@ -122,7 +129,8 @@ class _SignUpState extends State<SignUp> {
                                 ))))
                   ],
                 ),
-              ),
+                
+               
             ),
           ),
         ),
@@ -149,5 +157,32 @@ class _SignUpState extends State<SignUp> {
           ),
         ) ??
         true;
+  }
+
+   void autoLogIn(BuildContext context, bool isLoggedIn) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String userId = prefs.getString('username');
+    print(username);
+    if (userId != null) {
+      setState(() {
+        isLoggedIn = true;
+        username = userId;
+      });
+      
+      Navigator.of(context).pushNamed(NavBar,
+          arguments: PasswordArguments(
+              email: '', password: '', phone: '', username: username));
+      return;
+    }
+  }
+  
+  //duplanje koda i implementacija funckije ovdje zbog setState-a -> NAUCIMO BLoC :)
+  Future<Null> loginUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('username', username);
+    setState(() {
+      username = username;
+      isLoggedIn = true;
+    });
   }
 }
