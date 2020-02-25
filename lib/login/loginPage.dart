@@ -6,11 +6,13 @@ import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
+import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -22,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   String username, password;
   bool usernamePostoji = false;
   bool passwordPostoji = false;
+  bool isLoggedIn = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController usernameController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
@@ -262,6 +265,7 @@ class _LoginPageState extends State<LoginPage> {
       if (_btnCounter == 0) {
         username = usernameController.text;
         password = passwordController.text;
+        loginUser();
         Navigator.of(context).pushNamed(NavBar,
             arguments: PasswordArguments(
                 username: username, password: password, email: '', phone: ''));
@@ -271,5 +275,16 @@ class _LoginPageState extends State<LoginPage> {
         });
       }
     }
+  }
+ 
+ //duplanje koda i implementacija funckije ovdje zbog setState-a -> NAUCIMO BLoC :)
+  Future<Null> loginUser() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('username', username);
+    // name = usernameController.text;
+    setState(() {
+      username = usernameController.text;
+      isLoggedIn = true;
+    });
   }
 }

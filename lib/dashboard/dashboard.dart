@@ -98,6 +98,7 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             MyCashBalance(text: MyText().sarText),
+
             MySAR(text: isSar ? saroviOffline.toString() :  '$userSar\nSAR'),
             Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
