@@ -41,27 +41,6 @@ class MyYesNoChoice extends StatefulWidget {
 }
 
 class _MyYesNoChoiceState extends State<MyYesNoChoice> {
-  static const Duration DEFAULT_TIMEOUT = Duration(seconds: 20);
-  static const int DEFAULT_PORT = 53;
-
-  static final List<AddressCheckOptions> defaultAddresses = List.unmodifiable([
-    AddressCheckOptions(
-      InternetAddress('1.1.1.1'),
-      port: DEFAULT_PORT,
-      timeout: DEFAULT_TIMEOUT,
-    ),
-    AddressCheckOptions(
-      InternetAddress('8.8.4.4'),
-      port: DEFAULT_PORT,
-      timeout: DEFAULT_TIMEOUT,
-    ),
-    AddressCheckOptions(
-      InternetAddress('208.67.222.222'),
-      port: DEFAULT_PORT,
-      timeout: DEFAULT_TIMEOUT,
-    ),
-  ]);
-
   @override
   Widget build(BuildContext context) {
     return Container(

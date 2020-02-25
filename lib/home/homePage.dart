@@ -26,7 +26,9 @@ class _SignUpState extends State<SignUp> {
     super.initState();
 
     print(username);
-    // autoLogIn(context, isLoggedIn);
+
+    autoLogIn(context, isLoggedIn);
+
   }
 
   @override
