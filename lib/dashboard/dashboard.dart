@@ -8,6 +8,7 @@ import 'package:fillproject/components/myCashBalance.dart';
 import 'package:fillproject/components/mySAR.dart';
 import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
+import 'package:fillproject/globals.dart';
 import 'package:fillproject/models/Question/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _DashboardPageState extends State<DashboardPage> {
   final PasswordArguments arguments;
   bool isLoggedIn = false;
   bool isSar = false;
-  var io;
+  int counter = 0;
   int sar, target, userSar;
   String question, type, username;
   List<dynamic> choices;
@@ -50,6 +51,7 @@ class _DashboardPageState extends State<DashboardPage> {
     Timer(Duration(milliseconds: 500), () {
       setState(() {});
     });
+    
   }
 
   refresh() {
@@ -57,6 +59,7 @@ class _DashboardPageState extends State<DashboardPage> {
     Timer(Duration(milliseconds: 500), () {
       setState(() {});
     });
+    checkForInternet();
   }
 
   @override
@@ -81,6 +84,10 @@ class _DashboardPageState extends State<DashboardPage> {
                       itemBuilder: (context, index) {
                         snap = snapshot.data[index];
                         userSar = snap.data['sar'];
+                        if(counter == 0) {
+                          saroviOffline = userSar;
+                          counter = 1;
+                        }
                         id = snap.data['user_id'];
                         userLevel = snap.data['level'];
                         username = snap.data['username'];
@@ -91,7 +98,7 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
             MyCashBalance(text: MyText().sarText),
-            MySAR(text: '$userSar\nSAR'),
+            MySAR(text: isSar ? saroviOffline.toString() :  '$userSar\nSAR'),
             Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
@@ -201,5 +208,18 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ) ??
         true;
+  }
+
+  checkForInternet() async {
+    try {
+                                final result =
+                                    await InternetAddress.lookup('google.com');
+                                if (result.isNotEmpty &&
+                                    result[0].rawAddress.isNotEmpty) {
+                                    isSar = false;
+                                }
+                              } on SocketException catch (_) {
+                                isSar = true;
+                              }
   }
 }

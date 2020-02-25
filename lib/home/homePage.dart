@@ -23,7 +23,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-    LoginStorage().autoLogIn(context, username, isLoggedIn); //auto login on app kill and close
+    // LoginStorage().autoLogIn(context, username, isLoggedIn); //auto login on app kill and close
   }
 
   @override
