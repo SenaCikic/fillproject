@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/myInternetCheck.dart';
+import 'package:fillproject/components/mySnackbar.dart';
+import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/models/Question/questionSkelet.dart';
 import 'package:flutter/material.dart';
@@ -51,13 +54,21 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
             hoverColor: isTapped ? MyColor().white : MyColor().black,
             elevation: 0,
             color: isTapped ? MyColor().white : MyColor().black,
-            onPressed: () {
+            onPressed: () async {
               setState(() {
                 isTapped = true;
               });
-              Timer(Duration(milliseconds: 50), () {
+              MyInternetCheck().connection.addresses =
+                  MyInternetCheck().defaultAddresses;
+              if (await MyInternetCheck().connection.hasConnection) {
+                Timer(Duration(milliseconds: 50), () {
+                  onPressed();
+                });
+              } else {
                 onPressed();
-              });
+                MySnackbar().showSnackbar(
+                    MyText().checkConnection, context, MyText().snackUndo);
+              }
             },
             child: Text(widget.choice,
                 style: TextStyle(
