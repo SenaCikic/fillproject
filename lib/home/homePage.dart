@@ -19,16 +19,14 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isLoggedIn = false;
-  String name = '', username ;
+  String name = '', username;
 
   @override
   void initState() {
     super.initState();
 
-
     print(username);
     autoLogIn(context, isLoggedIn);
-
   }
 
   @override
@@ -36,102 +34,99 @@ class _SignUpState extends State<SignUp> {
     Constant().responsive(context);
     return Scaffold(
       backgroundColor: MyColor().black,
-
       body: Builder(
         builder: (context) => WillPopScope(
           onWillPop: _onWillPop,
           child: SingleChildScrollView(
             child: Center(
-              child: Container(
-                margin: EdgeInsets.only(top: 245.0),
-                child: Column(
-                  children: <Widget>[
-                    Center(
-                        child: Text(
-                      MyText().headline,
-                      style: TextStyle(
-                          fontSize: ScreenUtil.instance.setSp(70.0),
-                          color: MyColor().white,
-                          fontFamily: 'RobotoMono'),
-                    )),
-                    Padding(
-                        padding: EdgeInsets.only(top: 120),
-                        child: Text(
-                          MyText().subtitle,
-                          style: TextStyle(
-                              fontSize: ScreenUtil.instance.setSp(23.0),
-                              color: MyColor().white),
-                          textAlign: TextAlign.center,
-                        )),
-                    Container(
-                      width: ScreenUtil.instance.setWidth(316.0),
-                      height: ScreenUtil.instance.setHeight(67.0),
-                      margin: EdgeInsets.only(
-                          top: 27.0, bottom: 15, left: 49, right: 49),
-                      child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(33.5),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pushNamed(Register);
-                          },
-                          child: Text(MyText().btnSU)),
-                    ),
-                    Container(
-                      width: ScreenUtil.instance.setWidth(316.0),
-                      height: ScreenUtil.instance.setHeight(67.0),
-                      margin: EdgeInsets.only(bottom: 33, left: 49, right: 49),
-                      child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(33.5),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pushNamed(Login); // go to Login Page
-                          },
-                          child: Text(MyText().btnSI)),
-                    ),
-                    Container(
-                        width: ScreenUtil.instance.setWidth(255.0),
-                        child: Center(
-                            child: FlatButton(
-                                onPressed: () async {
-                                  try {
-                                    final result = await InternetAddress.lookup(
-                                        'google.com');
-                                    if (result.isNotEmpty &&
-                                        result[0].rawAddress.isNotEmpty) {
-                                       username = randomAlphaNumeric(5);
-                                      loginUser();
-                                      FirebaseSignIn()
-                                          .signInAnonymously(username);
-                                      Timer(Duration(milliseconds: 500), () {
-                                        Navigator.of(context).pushNamed(NavBar,
-                                            arguments: PasswordArguments(
-                                                email: '',
-                                                password: '',
-                                                phone: '',
-                                                username: username));
-                                      });
-                                    }
-                                  } on SocketException catch (_) {
-                                    MySnackbar().showSnackbar(
-                                        MyText().checkConnection,
-                                        context,
-                                        MyText().snackUndo);
+                child: Container(
+              margin: EdgeInsets.only(top: 245.0),
+              child: Column(
+                children: <Widget>[
+                  Center(
+                      child: Text(
+                    MyText().headline,
+                    style: TextStyle(
+                        fontSize: ScreenUtil.instance.setSp(70.0),
+                        color: MyColor().white,
+                        fontFamily: 'RobotoMono'),
+                  )),
+                  Padding(
+                      padding: EdgeInsets.only(top: 120),
+                      child: Text(
+                        MyText().subtitle,
+                        style: TextStyle(
+                            fontSize: ScreenUtil.instance.setSp(23.0),
+                            color: MyColor().white),
+                        textAlign: TextAlign.center,
+                      )),
+                  Container(
+                    width: ScreenUtil.instance.setWidth(316.0),
+                    height: ScreenUtil.instance.setHeight(67.0),
+                    margin: EdgeInsets.only(
+                        top: 27.0, bottom: 15, left: 49, right: 49),
+                    child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(33.5),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(Register);
+                        },
+                        child: Text(MyText().btnSU)),
+                  ),
+                  Container(
+                    width: ScreenUtil.instance.setWidth(316.0),
+                    height: ScreenUtil.instance.setHeight(67.0),
+                    margin: EdgeInsets.only(bottom: 33, left: 49, right: 49),
+                    child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(33.5),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushNamed(Login); // go to Login Page
+                        },
+                        child: Text(MyText().btnSI)),
+                  ),
+                  Container(
+                      width: ScreenUtil.instance.setWidth(255.0),
+                      child: Center(
+                          child: FlatButton(
+                              onPressed: () async {
+                                try {
+                                  final result = await InternetAddress.lookup(
+                                      'google.com');
+                                  if (result.isNotEmpty &&
+                                      result[0].rawAddress.isNotEmpty) {
+                                    username = randomAlphaNumeric(5);
+                                    loginUser();
+                                    FirebaseSignIn()
+                                        .signInAnonymously(username);
+                                    Timer(Duration(milliseconds: 500), () {
+                                      Navigator.of(context).pushNamed(NavBar,
+                                          arguments: PasswordArguments(
+                                              email: '',
+                                              password: '',
+                                              phone: '',
+                                              username: username));
+                                    });
                                   }
-                                },
-                                // FirebaseJson().importJson(),
-                                child: Text(
-                                  MyText().skipThisStep,
-                                  style: TextStyle(
-                                      color: MyColor().white, fontSize: 23.0),
-                                ))))
-                  ],
-                ),
-                
-               
-            ),
+                                } on SocketException catch (_) {
+                                  MySnackbar().showSnackbar(
+                                      MyText().checkConnection,
+                                      context,
+                                      MyText().snackUndo);
+                                }
+                              },
+                              // FirebaseJson().importJson(),
+                              child: Text(
+                                MyText().skipThisStep,
+                                style: TextStyle(
+                                    color: MyColor().white, fontSize: 23.0),
+                              ))))
+                ],
+              ),
+            )),
           ),
         ),
       ),
@@ -159,7 +154,7 @@ class _SignUpState extends State<SignUp> {
         true;
   }
 
-   void autoLogIn(BuildContext context, bool isLoggedIn) async {
+  void autoLogIn(BuildContext context, bool isLoggedIn) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String userId = prefs.getString('username');
     print(username);
@@ -168,14 +163,14 @@ class _SignUpState extends State<SignUp> {
         isLoggedIn = true;
         username = userId;
       });
-      
+
       Navigator.of(context).pushNamed(NavBar,
           arguments: PasswordArguments(
               email: '', password: '', phone: '', username: username));
       return;
     }
   }
-  
+
   //duplanje koda i implementacija funckije ovdje zbog setState-a -> NAUCIMO BLoC :)
   Future<Null> loginUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
