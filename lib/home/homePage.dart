@@ -25,7 +25,8 @@ class _SignUpState extends State<SignUp> {
   void initState() {
     super.initState();
     print(username);
-    LoginStorage().autoLogIn(context, isLoggedIn); //auto login on app kill and close
+    //LoginStorage().autoLogIn(context, isLoggedIn); //auto login on app kill and close
+    autoLogIn(context, isLoggedIn);
   }
 
   @override
@@ -149,6 +150,6 @@ class _SignUpState extends State<SignUp> {
           arguments: PasswordArguments(
               email: '', password: '', phone: '', username: userId));
       return;
-    } else return;
+    }
   }
 }
