@@ -144,11 +144,12 @@ class _SignUpState extends State<SignUp> {
     if (userId != null) {
       setState(() {
         isLoggedIn = true;
+        username = userId;
       });
       
       Navigator.of(context).pushNamed(NavBar,
           arguments: PasswordArguments(
-              email: '', password: '', phone: '', username: userId));
+              email: '', password: '', phone: '', username: username));
       return;
     }
   }
