@@ -3,7 +3,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 
 class MyInternetCheck extends StatelessWidget {
-  static const Duration DEFAULT_TIMEOUT = Duration(seconds: 3);
+  static const Duration DEFAULT_TIMEOUT = Duration(seconds: 1);
   static const int DEFAULT_PORT = 53;
 
   final List<AddressCheckOptions> defaultAddresses = List.unmodifiable([

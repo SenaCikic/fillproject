@@ -51,7 +51,6 @@ class _DashboardPageState extends State<DashboardPage> {
     Timer(Duration(milliseconds: 500), () {
       setState(() {});
     });
-    
   }
 
   refresh() {
@@ -84,7 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       itemBuilder: (context, index) {
                         snap = snapshot.data[index];
                         userSar = snap.data['sar'];
-                        if(counter == 0) {
+                        if (counter == 0) {
                           saroviOffline = userSar;
                           counter = 1;
                         }
@@ -99,7 +98,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             MyCashBalance(text: MyText().sarText),
 
-            MySAR(text: isSar ? saroviOffline.toString() :  '$userSar\nSAR'),
+            MySAR(text: isSar ? saroviOffline.toString() : '$userSar\nSAR'),
             Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
@@ -145,6 +144,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       ? new MyCardMCQ(
                                           key: key,
                                           sar: sar,
+                                          isSar: isSar,
                                           usersSar: userSar,
                                           question: question,
                                           choices: choices,
@@ -159,6 +159,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                       : MyCardYesNo(
                                           key: key,
                                           sar: sar,
+                                          isSar: isSar,
                                           usersSar: userSar,
                                           snap: snap,
                                           question: question,
@@ -213,14 +214,12 @@ class _DashboardPageState extends State<DashboardPage> {
 
   checkForInternet() async {
     try {
-                                final result =
-                                    await InternetAddress.lookup('google.com');
-                                if (result.isNotEmpty &&
-                                    result[0].rawAddress.isNotEmpty) {
-                                    isSar = false;
-                                }
-                              } on SocketException catch (_) {
-                                isSar = true;
-                              }
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        isSar = false;
+      }
+    } on SocketException catch (_) {
+      isSar = true;
+    }
   }
 }

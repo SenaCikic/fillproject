@@ -19,16 +19,14 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isLoggedIn = false;
-  String name = '', username ;
+  String name = '', username;
 
   @override
   void initState() {
     super.initState();
 
-
     print(username);
-    autoLogIn(context, isLoggedIn);
-
+    // autoLogIn(context, isLoggedIn);
   }
 
   @override
@@ -36,7 +34,6 @@ class _SignUpState extends State<SignUp> {
     Constant().responsive(context);
     return Scaffold(
       backgroundColor: MyColor().black,
-
       body: Builder(
         builder: (context) => WillPopScope(
           onWillPop: _onWillPop,
@@ -101,7 +98,7 @@ class _SignUpState extends State<SignUp> {
                                         'google.com');
                                     if (result.isNotEmpty &&
                                         result[0].rawAddress.isNotEmpty) {
-                                       username = randomAlphaNumeric(5);
+                                      username = randomAlphaNumeric(5);
                                       loginUser();
                                       FirebaseSignIn()
                                           .signInAnonymously(username);
@@ -129,8 +126,7 @@ class _SignUpState extends State<SignUp> {
                                 ))))
                   ],
                 ),
-                
-               
+              ),
             ),
           ),
         ),
@@ -159,7 +155,7 @@ class _SignUpState extends State<SignUp> {
         true;
   }
 
-   void autoLogIn(BuildContext context, bool isLoggedIn) async {
+  void autoLogIn(BuildContext context, bool isLoggedIn) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String userId = prefs.getString('username');
     print(username);
@@ -168,14 +164,14 @@ class _SignUpState extends State<SignUp> {
         isLoggedIn = true;
         username = userId;
       });
-      
+
       Navigator.of(context).pushNamed(NavBar,
           arguments: PasswordArguments(
               email: '', password: '', phone: '', username: username));
       return;
     }
   }
-  
+
   //duplanje koda i implementacija funckije ovdje zbog setState-a -> NAUCIMO BLoC :)
   Future<Null> loginUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -16,9 +16,11 @@ class MyCardMCQ extends StatefulWidget {
   DocumentSnapshot doc;
   DocumentSnapshot snap;
   final ValueKey key;
+  final bool isSar;
 
   MyCardMCQ(
       {this.sar,
+      this.isSar,
       this.usersSar,
       this.snap,
       this.key,
@@ -75,6 +77,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
                     children: choicesEnd
                         .map((item) => MyMCQChoice(
                             choice: item,
+                            isSar: widget.isSar,
                             snapi: widget.snapi,
                             index: widget.index,
                             notifyParent: widget.notifyParent,
