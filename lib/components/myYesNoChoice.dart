@@ -1,11 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:fillproject/components/myColor.dart';
-import 'package:fillproject/components/myInternetCheck.dart';
-import 'package:fillproject/components/mySnackbar.dart';
-import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/globals.dart';
 import 'package:fillproject/models/Question/questionSkelet.dart';

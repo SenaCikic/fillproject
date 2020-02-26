@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/myColor.dart';
-import 'package:fillproject/components/myInternetCheck.dart';
-import 'package:fillproject/components/mySnackbar.dart';
-import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/models/Question/questionSkelet.dart';
 import 'package:flutter/material.dart';

@@ -8,7 +8,6 @@ import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
 import 'package:fillproject/home/homePage.dart';
-import 'package:fillproject/localStorage/loginStorage.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:fillproject/utils/screenUtils.dart';
