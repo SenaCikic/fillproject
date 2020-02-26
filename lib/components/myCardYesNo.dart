@@ -89,47 +89,6 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                   ],
                 ),
               )
-          // PositionedDirectional(
-          //     top: 98,
-          //     start: 49,
-          //     child: MyQuestion(
-          //       question: widget.question,
-          //     )),
-          // PositionedDirectional(
-          //     top: 41, start: 41, child: MyQuestionSAR(text: widget.sar.toString() + ' SAR')),
-          // PositionedDirectional(
-          //     top: 170,
-          //     start: 41,
-          //     child: Container(
-          //       child: Row(
-          //         children: <Widget>[
-          //           MyYesNoChoice(
-          //               choice: 'Yes',
-          //               snapi: widget.snapi,
-          //               usersSars: widget.usersSar,
-          //               sar: widget.sar,
-          //               isSar: widget.isSar,
-          //               snap: widget.snap,
-          //               index: widget.index,
-          //               notifyParent: widget.notifyParent,
-          //               target: widget.target,
-          //               doc: widget.doc,
-          //               username: widget.username),
-          //           MyYesNoChoice(
-          //               choice: 'No',
-          //               snapi: widget.snapi,
-          //                usersSars: widget.usersSar,
-          //               snap: widget.snap,
-          //               isSar: widget.isSar,
-          //               sar: widget.sar,
-          //               index: widget.index,
-          //               notifyParent: widget.notifyParent,
-          //               target: widget.target,
-          //               doc: widget.doc,
-          //               username: widget.username)
-          //         ],
-          //       ),
-          //     ))
         ]));
   }
 }
