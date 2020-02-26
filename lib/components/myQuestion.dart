@@ -10,7 +10,7 @@ class MyQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: ScreenUtil.instance.setWidth(245.0),
-        height: ScreenUtil.instance.setHeight(100.0),
+        height: ScreenUtil.instance.setHeight(70.0),
         child: Text(question,
             style: TextStyle(
                 color: MyColor().white,

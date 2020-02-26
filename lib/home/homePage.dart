@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
+import 'package:fillproject/firebaseMethods/firebaseJson.dart';
 import 'package:fillproject/firebaseMethods/firebaseSignIn.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -24,11 +25,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-
-    print(username);
-
    // autoLogIn(context, isLoggedIn);
-
   }
 
   @override
@@ -95,6 +92,7 @@ class _SignUpState extends State<SignUp> {
                         child: Center(
                             child: FlatButton(
                                 onPressed: () async {
+                                  //FirebaseJson().importJson();
                                   try {
                                     final result = await InternetAddress.lookup(
                                         'google.com');
@@ -120,7 +118,7 @@ class _SignUpState extends State<SignUp> {
                                         MyText().snackUndo);
                                   }
                                 },
-                                // FirebaseJson().importJson(),
+                                
                                 child: Text(
                                   MyText().skipThisStep,
                                   style: TextStyle(

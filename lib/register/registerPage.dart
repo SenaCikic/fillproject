@@ -31,9 +31,16 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final DidntRecievePinArguments arguments;
   _RegisterPageState({this.arguments});
+
+  populateReg() async  {
+    usernameController.text = widget.arguments.username;
+    phoneController.text = widget.arguments.phone;
+    }
+
   @override
   void initState() {
     super.initState();
+    populateReg();
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -80,10 +87,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
     onFieldSubmitted1(BuildContext context) {
       phoneNo = "+" + phoneController.text;
-
       final _formState = _formKey.currentState;
       if (_formState.validate()) {
-        LoginStorage().loginUser(username, isLoggedIn);
+        //LoginStorage().loginUser(username, isLoggedIn);
         verifyPhone();
       }
     }
@@ -97,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.white,
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUp()));
           },
         ),
       ),
@@ -305,7 +311,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: <Widget>[
                             FutureBuilder(
                               future: FirebaseCheck()
-                                  .doesNumberAlreadyExist(phoneNo),
+                                  .doesNumberAlreadyExist(phoneController.text),
                               builder: (context, AsyncSnapshot<bool> result) {
                                 if (!result.hasData) {
                                   return EmptyContainer();
@@ -325,7 +331,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: <Widget>[
                             FutureBuilder(
                               future: FirebaseCheck()
-                                  .doesNameAlreadyExist(username),
+                                  .doesNameAlreadyExist(usernameController.text),
                               builder: (context, AsyncSnapshot<bool> result) {
                                 if (!result.hasData) {
                                   return EmptyContainer();

@@ -9,7 +9,7 @@ class MyCashBalance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
+        margin: EdgeInsets.only(top: 40.0, bottom: 5.0),
         width: ScreenUtil.instance.setWidth(120),
         child: Text(text,
             style: TextStyle(

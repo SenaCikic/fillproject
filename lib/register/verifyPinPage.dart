@@ -12,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 String verificationCode;
 int _btnCounter = 0;
@@ -38,7 +39,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
     signIn(String smsCode) {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: widget.arguments.verId, smsCode: smsCode);
-      FirebaseAuth.instance.signInWithCredential(credential).then((user) {
+      FirebaseAuth.instance.signInWithCredential(credential).then((user) async {
         Navigator.of(context).pushNamed(Email,
             arguments: RegisterArguments(
                 username: widget.arguments.username,
@@ -189,7 +190,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                           fontWeight: FontWeight.w300),
                       recognizer: new TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.of(context).pushNamed(Register);
+                          Navigator.of(context).pushNamed(Register, arguments: DidntRecievePinArguments(phone:widget.arguments.phone , username: widget.arguments.username));
                         })
                 ]))),
           ],

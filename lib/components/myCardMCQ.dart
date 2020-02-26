@@ -51,29 +51,28 @@ class _MyCardMCQState extends State<MyCardMCQ> {
     return Container(
         key: widget.key,
         width: ScreenUtil.instance.setWidth(336.0),
-        margin: EdgeInsets.only(right: 15, left: 15, top: 20),
+        height: ScreenUtil.instance.setHeight(405.0),
+        margin: EdgeInsets.only(left: 10, top: 10, right: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
-        child: Stack(children: <Widget>[
-          PositionedDirectional(
-              top: 98,
-              start: 49,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 25.0, left: 20),
+              child: MyQuestionSAR(text: '${widget.sar} SAR'),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20, left: 40, right: 20),
               child: MyQuestion(
-                question: widget.question,
-              )),
-          PositionedDirectional(
-              top: 41,
-              start: 41,
-              child: MyQuestionSAR(text: '${widget.sar} SAR')),
-          PositionedDirectional(
-              top: 180,
-              start: 41,
-              child: Container(
-                height: ScreenUtil.instance.setHeight(250.0),
-                width: ScreenUtil.instance.setWidth(260.0),
-                margin: EdgeInsets.only(top: 35.0),
-                child: ListView(
+                question: widget.question),
+            ),
+            Container(
+              height: ScreenUtil.instance.setHeight(230.0),
+              width: ScreenUtil.instance.setWidth(260.0),
+              margin: EdgeInsets.only(top: 20, left: 20),
+              child: ListView(
                     children: choicesEnd
                         .map((item) => MyMCQChoice(
                             choice: item,
@@ -88,7 +87,40 @@ class _MyCardMCQState extends State<MyCardMCQ> {
                             usersSar: widget.usersSar,
                             snap: widget.snap))
                         .toList()),
-              ))
+            ),
+          // PositionedDirectional(
+          //     top: 98,
+          //     start: 49,
+          //     child: MyQuestion(
+          //       question: widget.question,
+          //     )),
+          // PositionedDirectional(
+          //     top: 41,
+          //     start: 41,
+          //     child: MyQuestionSAR(text: '${widget.sar} SAR')),
+          // PositionedDirectional(
+          //     top: 180,
+          //     start: 41,
+          //     child: Container(
+          //       height: ScreenUtil.instance.setHeight(250.0),
+          //       width: ScreenUtil.instance.setWidth(260.0),
+          //       margin: EdgeInsets.only(top: 35.0),
+          //       child: ListView(
+          //           children: choicesEnd
+          //               .map((item) => MyMCQChoice(
+          //                   choice: item,
+          //                   isSar: widget.isSar,
+          //                   snapi: widget.snapi,
+          //                   index: widget.index,
+          //                   notifyParent: widget.notifyParent,
+          //                   target: widget.target,
+          //                   doc: widget.doc,
+          //                   username: widget.username,
+          //                   sar: widget.sar,
+          //                   usersSar: widget.usersSar,
+          //                   snap: widget.snap))
+          //               .toList()),
+          //     ))
         ]));
   }
 
