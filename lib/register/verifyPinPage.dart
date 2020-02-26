@@ -40,9 +40,6 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: widget.arguments.verId, smsCode: smsCode);
       FirebaseAuth.instance.signInWithCredential(credential).then((user) async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('usernameReg', '');
-        prefs.setString('phoneReg', '');
         Navigator.of(context).pushNamed(Email,
             arguments: RegisterArguments(
                 username: widget.arguments.username,
@@ -193,7 +190,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                           fontWeight: FontWeight.w300),
                       recognizer: new TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.of(context).pushNamed(Register);
+                          Navigator.of(context).pushNamed(Register, arguments: DidntRecievePinArguments(phone:widget.arguments.phone , username: widget.arguments.username));
                         })
                 ]))),
           ],
