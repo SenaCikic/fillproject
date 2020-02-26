@@ -12,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 String verificationCode;
 int _btnCounter = 0;
@@ -38,7 +39,10 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
     signIn(String smsCode) {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: widget.arguments.verId, smsCode: smsCode);
-      FirebaseAuth.instance.signInWithCredential(credential).then((user) {
+      FirebaseAuth.instance.signInWithCredential(credential).then((user) async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setString('usernameReg', '');
+        prefs.setString('phoneReg', '');
         Navigator.of(context).pushNamed(Email,
             arguments: RegisterArguments(
                 username: widget.arguments.username,

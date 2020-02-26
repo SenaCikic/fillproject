@@ -23,7 +23,7 @@ void initState() {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(bottom: 10.0),
+        margin: EdgeInsets.only(bottom: 5.0),
         width: ScreenUtil.instance.setWidth(92),
         child: Text(widget.text,
             style: TextStyle(

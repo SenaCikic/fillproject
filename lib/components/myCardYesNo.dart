@@ -42,23 +42,24 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
        key: widget.key,
         width: ScreenUtil.instance.setWidth(336.0),
         height: ScreenUtil.instance.setHeight(320.0),
-        margin: EdgeInsets.only(left: 15, right: 15, top: 180),
+        margin: EdgeInsets.only(left: 30, top: 180, right: 30),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
-        child: Stack(children: <Widget>[
-          PositionedDirectional(
-              top: 98,
-              start: 49,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+          Container(
+              margin: EdgeInsets.only(top: 25.0, left: 40),
+              child: MyQuestionSAR(text: widget.sar.toString() + ' SAR'),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20, left: 40, right: 45),
               child: MyQuestion(
-                question: widget.question,
-              )),
-          PositionedDirectional(
-              top: 41, start: 41, child: MyQuestionSAR(text: widget.sar.toString() + ' SAR')),
-          PositionedDirectional(
-              top: 170,
-              start: 41,
-              child: Container(
+                question: widget.question),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 0, left: 40),
                 child: Row(
                   children: <Widget>[
                     MyYesNoChoice(
@@ -87,7 +88,48 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                         username: widget.username)
                   ],
                 ),
-              ))
+              )
+          // PositionedDirectional(
+          //     top: 98,
+          //     start: 49,
+          //     child: MyQuestion(
+          //       question: widget.question,
+          //     )),
+          // PositionedDirectional(
+          //     top: 41, start: 41, child: MyQuestionSAR(text: widget.sar.toString() + ' SAR')),
+          // PositionedDirectional(
+          //     top: 170,
+          //     start: 41,
+          //     child: Container(
+          //       child: Row(
+          //         children: <Widget>[
+          //           MyYesNoChoice(
+          //               choice: 'Yes',
+          //               snapi: widget.snapi,
+          //               usersSars: widget.usersSar,
+          //               sar: widget.sar,
+          //               isSar: widget.isSar,
+          //               snap: widget.snap,
+          //               index: widget.index,
+          //               notifyParent: widget.notifyParent,
+          //               target: widget.target,
+          //               doc: widget.doc,
+          //               username: widget.username),
+          //           MyYesNoChoice(
+          //               choice: 'No',
+          //               snapi: widget.snapi,
+          //                usersSars: widget.usersSar,
+          //               snap: widget.snap,
+          //               isSar: widget.isSar,
+          //               sar: widget.sar,
+          //               index: widget.index,
+          //               notifyParent: widget.notifyParent,
+          //               target: widget.target,
+          //               doc: widget.doc,
+          //               username: widget.username)
+          //         ],
+          //       ),
+          //     ))
         ]));
   }
 }

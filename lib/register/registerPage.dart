@@ -16,6 +16,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../components/myColor.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -28,11 +29,23 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   String phoneNo, smsCode, verificationId, username, name;
+  String usernameInit, phoneInit;
+  SharedPreferences prefs;
 
   final DidntRecievePinArguments arguments;
   _RegisterPageState({this.arguments});
+
+  populateReg() async  {
+      prefs = await SharedPreferences.getInstance();
+    usernameInit = prefs.getString('usernameReg');
+    phoneInit = prefs.getString('phoneReg');
+    usernameController.text = usernameInit;
+    phoneController.text = phoneInit;  
+    }
+
   @override
   void initState() {
+    populateReg();
     super.initState();
   }
 
@@ -192,7 +205,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     await InternetAddress.lookup('google.com');
                                 if (result.isNotEmpty &&
                                     result[0].rawAddress.isNotEmpty) {
-                                  onFieldSubmitted1(context);
+                                  //onFieldSubmitted1(context);
+                                  Navigator.of(context).pushNamed(VerifyPin);
                                 }
                               } on SocketException catch (_) {
                                 MySnackbar().showSnackbar(
@@ -259,7 +273,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     await InternetAddress.lookup('google.com');
                                 if (result.isNotEmpty &&
                                     result[0].rawAddress.isNotEmpty) {
-                                  onFieldSubmitted1(context);
+                                  //onFieldSubmitted1(context);
+                                  Navigator.of(context).pushNamed(VerifyPin);
                                 }
                               } on SocketException catch (_) {
                                 MySnackbar().showSnackbar(
@@ -280,12 +295,15 @@ class _RegisterPageState extends State<RegisterPage> {
                                 borderRadius: new BorderRadius.circular(33.5),
                               ),
                               onPressed: () async {
+                                prefs.setString('usernameReg', usernameController.text);
+                                prefs.setString('phoneReg', phoneController.text);
                                 try {
                                   final result = await InternetAddress.lookup(
                                       'google.com');
                                   if (result.isNotEmpty &&
                                       result[0].rawAddress.isNotEmpty) {
-                                    onFieldSubmitted1(context);
+                                    //onFieldSubmitted1(context);
+                                    Navigator.of(context).pushNamed(VerifyPin);
                                     print("TU SAM");
                                   }
                                 } on SocketException catch (_) {
