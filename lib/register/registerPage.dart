@@ -93,7 +93,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
     onFieldSubmitted1(BuildContext context) {
       phoneNo = "+" + phoneController.text;
-
       final _formState = _formKey.currentState;
       if (_formState.validate()) {
         LoginStorage().loginUser(username, isLoggedIn);
@@ -205,8 +204,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     await InternetAddress.lookup('google.com');
                                 if (result.isNotEmpty &&
                                     result[0].rawAddress.isNotEmpty) {
-                                  //onFieldSubmitted1(context);
-                                  Navigator.of(context).pushNamed(VerifyPin);
+                                  onFieldSubmitted1(context);
+                                  //Navigator.of(context).pushNamed(VerifyPin);
                                 }
                               } on SocketException catch (_) {
                                 MySnackbar().showSnackbar(
@@ -273,8 +272,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     await InternetAddress.lookup('google.com');
                                 if (result.isNotEmpty &&
                                     result[0].rawAddress.isNotEmpty) {
-                                  //onFieldSubmitted1(context);
-                                  Navigator.of(context).pushNamed(VerifyPin);
+                                  onFieldSubmitted1(context);
+                                  //Navigator.of(context).pushNamed(VerifyPin);
                                 }
                               } on SocketException catch (_) {
                                 MySnackbar().showSnackbar(
@@ -302,8 +301,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                       'google.com');
                                   if (result.isNotEmpty &&
                                       result[0].rawAddress.isNotEmpty) {
-                                    //onFieldSubmitted1(context);
-                                    Navigator.of(context).pushNamed(VerifyPin);
+                                    onFieldSubmitted1(context);
+                                    //Navigator.of(context).pushNamed(VerifyPin);
                                     print("TU SAM");
                                   }
                                 } on SocketException catch (_) {
