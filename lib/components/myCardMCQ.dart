@@ -60,18 +60,18 @@ class _MyCardMCQState extends State<MyCardMCQ> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 25.0, left: 20),
+              margin: EdgeInsets.only(top: 25.0, left: 30),
               child: MyQuestionSAR(text: '${widget.sar} SAR'),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20, left: 40, right: 20),
+              margin: EdgeInsets.only(top: 20, left: 30, right: 20),
               child: MyQuestion(
                 question: widget.question),
             ),
             Container(
               height: ScreenUtil.instance.setHeight(230.0),
               width: ScreenUtil.instance.setWidth(260.0),
-              margin: EdgeInsets.only(top: 20, left: 20),
+              margin: EdgeInsets.only(top: 20, left: 30),
               child: ListView(
                     children: choicesEnd
                         .map((item) => MyMCQChoice(

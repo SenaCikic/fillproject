@@ -50,16 +50,16 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
           Container(
-              margin: EdgeInsets.only(top: 25.0, left: 20),
+              margin: EdgeInsets.only(top: 25.0, left: 30),
               child: MyQuestionSAR(text: widget.sar.toString() + ' SAR'),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+              margin: EdgeInsets.only(top: 20, left: 30, right: 20),
               child: MyQuestion(
                 question: widget.question),
             ),
             Container(
-              margin: EdgeInsets.only(top: 0, left: 20),
+              margin: EdgeInsets.only(top: 0, left: 30),
                 child: Row(
                   children: <Widget>[
                     MyYesNoChoice(
