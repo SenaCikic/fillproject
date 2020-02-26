@@ -103,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.white,
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUp()));
           },
         ),
       ),

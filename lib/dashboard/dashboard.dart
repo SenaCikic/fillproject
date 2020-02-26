@@ -13,6 +13,7 @@ import 'package:fillproject/models/Question/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 bool visible = false;
 DocumentSnapshot snap;
@@ -122,7 +123,9 @@ class _DashboardPageState extends State<DashboardPage> {
                             visible = true;
                           }
 
-                          return PageView.builder(
+                          return Swiper(
+                            loop: false,
+                            viewportFraction: 0.85,
                             scrollDirection: Axis.horizontal,
                             //shrinkWrap: true,
                             itemCount: snapi.length,
@@ -141,7 +144,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                         false &&
                                     target > 0) {
                                   return type == 'checkbox'
-                                      ? new MyCardMCQ(
+                                      ?  MyCardMCQ(
                                           key: key,
                                           sar: sar,
                                           isSar: isSar,
