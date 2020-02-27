@@ -42,7 +42,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
        key: widget.key,
         width: ScreenUtil.instance.setWidth(336.0),
         height: ScreenUtil.instance.setHeight(320.0),
-        margin: EdgeInsets.only(left: 10, top: 180, right: 10),
+    margin: EdgeInsets.only(left: 10, top: 180, right: 10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),

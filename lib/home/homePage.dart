@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
+import 'package:fillproject/firebaseMethods/firebaseJson.dart';
 import 'package:fillproject/firebaseMethods/firebaseSignIn.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -91,31 +92,31 @@ class _SignUpState extends State<SignUp> {
                         child: Center(
                             child: FlatButton(
                                 onPressed: () async {
-                                  //FirebaseJson().importJson();
-                                  try {
-                                    final result = await InternetAddress.lookup(
-                                        'google.com');
-                                    if (result.isNotEmpty &&
-                                        result[0].rawAddress.isNotEmpty) {
-                                      username = randomAlphaNumeric(5);
-                                      loginUser();
-                                      FirebaseSignIn()
-                                          .signInAnonymously(username);
-                                      Timer(Duration(milliseconds: 500), () {
-                                        Navigator.of(context).pushNamed(NavBar,
-                                            arguments: PasswordArguments(
-                                                email: '',
-                                                password: '',
-                                                phone: '',
-                                                username: username));
-                                      });
-                                    }
-                                  } on SocketException catch (_) {
-                                    MySnackbar().showSnackbar(
-                                        MyText().checkConnection,
-                                        context,
-                                        MyText().snackUndo);
-                                  }
+                                  FirebaseJson().importJson();
+                                  // try {
+                                  //   final result = await InternetAddress.lookup(
+                                  //       'google.com');
+                                  //   if (result.isNotEmpty &&
+                                  //       result[0].rawAddress.isNotEmpty) {
+                                  //     username = randomAlphaNumeric(5);
+                                  //     loginUser();
+                                  //     FirebaseSignIn()
+                                  //         .signInAnonymously(username);
+                                  //     Timer(Duration(milliseconds: 500), () {
+                                  //       Navigator.of(context).pushNamed(NavBar,
+                                  //           arguments: PasswordArguments(
+                                  //               email: '',
+                                  //               password: '',
+                                  //               phone: '',
+                                  //               username: username));
+                                  //     });
+                                  //   }
+                                  // } on SocketException catch (_) {
+                                  //   MySnackbar().showSnackbar(
+                                  //       MyText().checkConnection,
+                                  //       context,
+                                  //       MyText().snackUndo);
+                                  // }
                                 },
                                 
                                 child: Text(
