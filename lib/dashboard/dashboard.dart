@@ -123,11 +123,10 @@ class _DashboardPageState extends State<DashboardPage> {
                             visible = true;
                           }
 
-                          return Swiper(
-                            loop: false,
-                            viewportFraction: 0.85,
+                          return ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            //shrinkWrap: true,
+                            shrinkWrap: true,
+                            physics: PageScrollPhysics(),
                             itemCount: snapi.length,
                             itemBuilder: (BuildContext context, int index) {
                               doc = snapshot.data[index];
