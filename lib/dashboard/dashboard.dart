@@ -141,10 +141,9 @@ class _DashboardPageState extends State<DashboardPage> {
                           }
 
                           return ListView.builder(
-                            
                             controller: _controller,
                             scrollDirection: Axis.horizontal,
-                            // shrinkWrap: true,
+                            shrinkWrap: true,
                             physics: _physics,
                             itemCount: snapi.length,
                             itemBuilder: (BuildContext context, int index) {
