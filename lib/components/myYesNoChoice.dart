@@ -72,7 +72,7 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
                     fontWeight: FontWeight.w400,
                     fontFamily: "LoewNextArabic",
                     fontStyle: FontStyle.normal,
-                    fontSize: ScreenUtil.instance.setSp(18.0))),
+                    fontSize: ScreenUtil.instance.setSp(15.0))),
           ),
         ),
         decoration: BoxDecoration(

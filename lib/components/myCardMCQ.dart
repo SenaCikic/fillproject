@@ -57,7 +57,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
         child: Padding(
-          padding: const EdgeInsets.only(left: 40, right: 40, top: 20),
+          padding: const EdgeInsets.only(left: 40, right: 38, top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -65,15 +65,16 @@ class _MyCardMCQState extends State<MyCardMCQ> {
                 child: MyQuestionSAR(text: '${widget.sar} SAR'),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 15),
                 child: MyQuestion(
-                  question: widget.question),
+                  question: widget.question,
+                  containerHeight: 110.0),
               ),
               Container(
-                height: ScreenUtil.instance.setHeight(230.0),
+                height: ScreenUtil.instance.setHeight(246.0),
                 width: ScreenUtil.instance.setWidth(260.0),
                 margin: EdgeInsets.only(top: 20),
-                child: ListView(
+                child: Column(
                       children: choicesEnd
                           .map((item) => MyMCQChoice(
                               choice: item,

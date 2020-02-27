@@ -16,6 +16,7 @@ class MyMCQChoice extends StatefulWidget {
   final Function() notifyParent;
   final List<dynamic> snapi;
   final bool isSar;
+  final bottomMargin;
 
   MyMCQChoice({
     this.choice,
@@ -29,6 +30,7 @@ class MyMCQChoice extends StatefulWidget {
     this.sar,
     this.snap,
     this.usersSar,
+    this.bottomMargin
   });
 
   @override
@@ -40,8 +42,8 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   Widget build(BuildContext context) {
     return Container(
         width: ScreenUtil.instance.setWidth(257.0),
-        height: ScreenUtil.instance.setHeight(53.0),
-        margin: EdgeInsets.only(bottom: 26.0),
+        height: ScreenUtil.instance.setHeight(60.0),
+        margin: EdgeInsets.only(bottom: 15.0),
         alignment: Alignment.center,
         child: Container(
           width: ScreenUtil.instance.setWidth(257.0),
@@ -69,7 +71,7 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
                     fontWeight: FontWeight.w400,
                     fontFamily: "LoewNextArabic",
                     fontStyle: FontStyle.normal,
-                    fontSize: ScreenUtil.instance.setSp(18.0))),
+                    fontSize: ScreenUtil.instance.setSp(15.0))),
           ),
         ),
         decoration: BoxDecoration(

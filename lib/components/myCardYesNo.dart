@@ -47,7 +47,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
         child: Padding(
-            padding: const EdgeInsets.only(left: 42.5, right: 40, top: 20, bottom: 10),          
+            padding: const EdgeInsets.only(left: 42.5, right: 38, top: 20, bottom: 10),          
             child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -57,7 +57,8 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
               Container(
                 margin: EdgeInsets.only(top: 20),
                 child: MyQuestion(
-                  question: widget.question),
+                  question: widget.question,
+                  containerHeight: 90.0),
               ),
               Container(
                 margin: EdgeInsets.only(top: 5),
