@@ -92,31 +92,31 @@ class _SignUpState extends State<SignUp> {
                         child: Center(
                             child: FlatButton(
                                 onPressed: () async {
-                                  FirebaseJson().importJson();
-                                  // try {
-                                  //   final result = await InternetAddress.lookup(
-                                  //       'google.com');
-                                  //   if (result.isNotEmpty &&
-                                  //       result[0].rawAddress.isNotEmpty) {
-                                  //     username = randomAlphaNumeric(5);
-                                  //     loginUser();
-                                  //     FirebaseSignIn()
-                                  //         .signInAnonymously(username);
-                                  //     Timer(Duration(milliseconds: 500), () {
-                                  //       Navigator.of(context).pushNamed(NavBar,
-                                  //           arguments: PasswordArguments(
-                                  //               email: '',
-                                  //               password: '',
-                                  //               phone: '',
-                                  //               username: username));
-                                  //     });
-                                  //   }
-                                  // } on SocketException catch (_) {
-                                  //   MySnackbar().showSnackbar(
-                                  //       MyText().checkConnection,
-                                  //       context,
-                                  //       MyText().snackUndo);
-                                  // }
+                                  //  FirebaseJson().importJson();
+                                  try {
+                                    final result = await InternetAddress.lookup(
+                                        'google.com');
+                                    if (result.isNotEmpty &&
+                                        result[0].rawAddress.isNotEmpty) {
+                                      username = randomAlphaNumeric(5);
+                                      loginUser();
+                                      FirebaseSignIn()
+                                          .signInAnonymously(username);
+                                      Timer(Duration(milliseconds: 500), () {
+                                        Navigator.of(context).pushNamed(NavBar,
+                                            arguments: PasswordArguments(
+                                                email: '',
+                                                password: '',
+                                                phone: '',
+                                                username: username));
+                                      });
+                                    }
+                                  } on SocketException catch (_) {
+                                    MySnackbar().showSnackbar(
+                                        MyText().checkConnection,
+                                        context,
+                                        MyText().snackUndo);
+                                  }
                                 },
                                 
                                 child: Text(
