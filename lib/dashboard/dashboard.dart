@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fillproject/components/customScroll.dart';
 import 'package:fillproject/components/emptyCont.dart';
 import 'package:fillproject/components/myCardMCQ.dart';
 import 'package:fillproject/components/myCardYesNo.dart';
@@ -43,6 +44,11 @@ class _DashboardPageState extends State<DashboardPage> {
   DocumentSnapshot doc;
   ValueKey key;
 
+  ScrollController _controller = new ScrollController();
+  ScrollPhysics _physics;
+
+  // List<dynamic> questions = List.generate(snapi.length, (index) => index);
+
   _DashboardPageState({this.arguments});
 
   @override
@@ -52,12 +58,22 @@ class _DashboardPageState extends State<DashboardPage> {
     Timer(Duration(milliseconds: 500), () {
       setState(() {});
     });
+    _controller.addListener(() {
+         if(_controller.position.haveDimensions && _physics == null) {
+               setState(() {
+                   var dimension = _controller.position.maxScrollExtent / (snapi.length - 1);
+                   _physics = CustomScrollPhysics(itemDimension: dimension);
+               });
+         }
+    });
   }
 
   refresh() {
     setState(() {});
     Timer(Duration(milliseconds: 500), () {
-      setState(() {});
+      setState(() {
+
+      });
     });
     checkForInternet();
   }
@@ -124,9 +140,11 @@ class _DashboardPageState extends State<DashboardPage> {
                           }
 
                           return ListView.builder(
+                            
+                            controller: _controller,
                             scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            physics: PageScrollPhysics(),
+                            // shrinkWrap: true,
+                            physics: _physics,
                             itemCount: snapi.length,
                             itemBuilder: (BuildContext context, int index) {
                               doc = snapshot.data[index];
@@ -177,7 +195,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               } else {
                                 return EmptyContainer();
                               }
-                            },
+                            }, 
                           );
                         }
                         return CircularProgressIndicator();
