@@ -88,39 +88,7 @@ class _MyCardMCQState extends State<MyCardMCQ> {
                             snap: widget.snap))
                         .toList()),
             ),
-          // PositionedDirectional(
-          //     top: 98,
-          //     start: 49,
-          //     child: MyQuestion(
-          //       question: widget.question,
-          //     )),
-          // PositionedDirectional(
-          //     top: 41,
-          //     start: 41,
-          //     child: MyQuestionSAR(text: '${widget.sar} SAR')),
-          // PositionedDirectional(
-          //     top: 180,
-          //     start: 41,
-          //     child: Container(
-          //       height: ScreenUtil.instance.setHeight(250.0),
-          //       width: ScreenUtil.instance.setWidth(260.0),
-          //       margin: EdgeInsets.only(top: 35.0),
-          //       child: ListView(
-          //           children: choicesEnd
-          //               .map((item) => MyMCQChoice(
-          //                   choice: item,
-          //                   isSar: widget.isSar,
-          //                   snapi: widget.snapi,
-          //                   index: widget.index,
-          //                   notifyParent: widget.notifyParent,
-          //                   target: widget.target,
-          //                   doc: widget.doc,
-          //                   username: widget.username,
-          //                   sar: widget.sar,
-          //                   usersSar: widget.usersSar,
-          //                   snap: widget.snap))
-          //               .toList()),
-          //     ))
+
         ]));
   }
 

@@ -239,6 +239,54 @@ class QuestionsLevel1 {
      "listOfUsernamesThatGaveAnswers" : [],
 
     },
+    {
+ 
+     "type": "checkbox",
+     "name": "question1",
+     "title": "What is your favorite sport?",
+     "choices": [
+      {
+       "value": "item1",
+       "text": "Basketball"
+      },
+      {
+       "value": "item2",
+       "text": "Soccer"
+      },
+      {
+       "value": "item3",
+       "text": "Volleyball"
+      }
+     ],"target": 1000,
+     "sar": 3,
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
 
+    },
+      {
+ 
+     "type": "checkbox",
+     "name": "question1",
+     "title": "What is your favorite food?",
+     "choices": [
+      {
+       "value": "item1",
+       "text": "Fish"
+      },
+      {
+       "value": "item2",
+       "text": "Meat"
+      },
+      {
+       "value": "item3",
+       "text": "Veggies"
+      }
+     ],"target": 1000,
+     "sar": 3,
+     "listOfUsernameAnswers" : [],
+     "listOfUsernamesThatGaveAnswers" : [],
+
+    },
+  
   ];
 }
