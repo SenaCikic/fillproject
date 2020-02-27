@@ -20,6 +20,7 @@ bool visible = false;
 DocumentSnapshot snap;
 String id;
 int userLevel;
+bool isEmptyCard = false;
 
 class DashboardPage extends StatefulWidget {
   final PasswordArguments arguments;
@@ -134,16 +135,15 @@ class _DashboardPageState extends State<DashboardPage> {
                           /// visible se seta na true
                           if (!visible) {
                             snapi = snapshot.data
-                                .map((doc) => Question.fromDocument(doc))
-                                .toList();
+                              .map((doc) => Question.fromDocument(doc))
+                              .toList();
                             visible = true;
                           }
 
                           return ListView.builder(
-                            
                             controller: _controller,
                             scrollDirection: Axis.horizontal,
-                            // shrinkWrap: true,
+                            shrinkWrap: true,
                             physics: _physics,
                             itemCount: snapi.length,
                             itemBuilder: (BuildContext context, int index) {
@@ -156,31 +156,37 @@ class _DashboardPageState extends State<DashboardPage> {
                               target = snapi[index].target;
                               usernameThatAnswers =
                                   snapi[index].listOfUsernamesThatGaveAnswers;
+                                if(snapi[index].title == '') {
+                                  isEmptyCard = true;
+                                }
                               if (snapi[index].title != '') {
+                                isEmptyCard = false;
                                 if (usernameThatAnswers.contains(username) ==
                                         false &&
                                     target > 0) {
                                   return type == 'checkbox'
-                                      ?  MyCardMCQ(
+                                      ? (isEmptyCard ? EmptyContainer() :                                      
+                                      MyCardMCQ(
+                                        key: key,
+                                        sar: sar,
+                                        isSar: isSar,
+                                        usersSar: userSar,
+                                        question: question,
+                                        choices: choices,
+                                        snapi: snapi,
+                                        snap: snap,
+                                        index: index,
+                                        notifyParent: refresh,
+                                        target: target,
+                                        doc: doc,
+                                        username: username,
+                                      ))
+                                      : (isEmptyCard ? EmptyContainer() :
+                                      MyCardYesNo(
                                           key: key,
                                           sar: sar,
                                           isSar: isSar,
                                           usersSar: userSar,
-                                          question: question,
-                                          choices: choices,
-                                          snapi: snapi,
-                                          snap: snap,
-                                          index: index,
-                                          notifyParent: refresh,
-                                          target: target,
-                                          doc: doc,
-                                          username: username,
-                                        )
-                                      : MyCardYesNo(
-                                          key: key,
-                                          sar: sar,
-                                          isSar: isSar,
-                                          usersSar: userSar,
                                           snap: snap,
                                           question: question,
                                           snapi: snapi,
@@ -188,7 +194,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                           notifyParent: refresh,
                                           target: target,
                                           doc: doc,
-                                          username: username);
+                                          username: username));
                                 } else {
                                   return EmptyContainer();
                                 }

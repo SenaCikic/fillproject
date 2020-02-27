@@ -16,6 +16,7 @@ class MyYesNoChoice extends StatefulWidget {
   final ValueKey key;
   int usersSars;
   final bool isSar;
+  double marginRight;
 
   MyYesNoChoice(
       {this.choice,
@@ -29,7 +30,8 @@ class MyYesNoChoice extends StatefulWidget {
       @required this.notifyParent,
       this.target,
       this.doc,
-      this.username});
+      this.username,
+      this.marginRight});
 
   @override
   _MyYesNoChoiceState createState() => _MyYesNoChoiceState();
@@ -43,7 +45,7 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
         width: ScreenUtil.instance.setWidth(115.0),
         height: ScreenUtil.instance.setHeight(53.0),
         alignment: Alignment.center,
-        margin: EdgeInsets.only(right: 22.0),
+        margin: EdgeInsets.only(right: widget.marginRight),
         child: Container(
           width: ScreenUtil.instance.setWidth(257.0),
           height: ScreenUtil.instance.setHeight(53.0),

@@ -46,49 +46,53 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-          Container(
-              margin: EdgeInsets.only(top: 25.0, left: 20),
-              child: MyQuestionSAR(text: widget.sar.toString() + ' SAR'),
-            ),
+        child: Padding(
+            padding: const EdgeInsets.only(left: 42.5, right: 40, top: 20, bottom: 10),          
+            child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-              child: MyQuestion(
-                question: widget.question),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 0, left: 20),
-                child: Row(
-                  children: <Widget>[
-                    MyYesNoChoice(
-                        choice: 'Yes',
-                        snapi: widget.snapi,
-                        usersSars: widget.usersSar,
-                        sar: widget.sar,
-                        isSar: widget.isSar,
-                        snap: widget.snap,
-                        index: widget.index,
-                        notifyParent: widget.notifyParent,
-                        target: widget.target,
-                        doc: widget.doc,
-                        username: widget.username),
-                    MyYesNoChoice(
-                        choice: 'No',
-                        snapi: widget.snapi,
-                         usersSars: widget.usersSar,
-                        snap: widget.snap,
-                        isSar: widget.isSar,
-                        sar: widget.sar,
-                        index: widget.index,
-                        notifyParent: widget.notifyParent,
-                        target: widget.target,
-                        doc: widget.doc,
-                        username: widget.username)
-                  ],
-                ),
-              )
-        ]));
+                child: MyQuestionSAR(text: widget.sar.toString() + ' SAR'),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: MyQuestion(
+                  question: widget.question),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 5),
+                  child: Row(
+                    children: <Widget>[
+                      MyYesNoChoice(
+                          choice: 'Yes',
+                          snapi: widget.snapi,
+                          usersSars: widget.usersSar,
+                          sar: widget.sar,
+                          isSar: widget.isSar,
+                          snap: widget.snap,
+                          index: widget.index,
+                          notifyParent: widget.notifyParent,
+                          target: widget.target,
+                          doc: widget.doc,
+                          marginRight: 22.0,
+                          username: widget.username),
+                      MyYesNoChoice(
+                          choice: 'No',
+                          snapi: widget.snapi,
+                           usersSars: widget.usersSar,
+                          snap: widget.snap,
+                          isSar: widget.isSar,
+                          sar: widget.sar,
+                          index: widget.index,
+                          notifyParent: widget.notifyParent,
+                          target: widget.target,
+                          doc: widget.doc,
+                          marginRight: 0.0,
+                          username: widget.username)
+                    ],
+                  ),
+                )
+          ]),
+        ));
   }
 }
