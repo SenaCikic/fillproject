@@ -37,7 +37,7 @@ class _DashboardPageState extends State<DashboardPage> {
   bool isLoggedIn = false;
   bool isSar = false;
   int counter = 0;
-  int sar, target, userSar;
+  int sar, target, userSar = 0;
   String question, type, username;
   List<dynamic> choices;
   List<dynamic> snapi = [];
