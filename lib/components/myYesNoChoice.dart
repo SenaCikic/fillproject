@@ -82,11 +82,8 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   }
 
   onPressed() {
-    int counter = widget.target - 1;
     widget.usersSars += widget.sar;
     saroviOffline += widget.sar;
-    // int addSar = widget.usersSars + widget.sar;
-    FirebaseCrud().updateTarget(widget.doc, context, counter);
     /// update sarova na osnovu da li je app online ili offline 
     /// 
     /// online = [widget.usersSar]

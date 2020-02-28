@@ -163,7 +163,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 isEmptyCard = false;
                                 if (usernameThatAnswers.contains(username) ==
                                         false &&
-                                    target > 0) {
+                                    target > usernameThatAnswers.length) {
                                   return type == 'checkbox'
                                       ? (isEmptyCard ? EmptyContainer() :                                      
                                       MyCardMCQ(

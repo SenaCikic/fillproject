@@ -31,12 +31,12 @@ class FirebaseCrud {
     Navigator.of(context).pushNamed(Login);
   }
 
-  updateTarget(DocumentSnapshot doc, BuildContext context, int target) async {
-    await db
-        .collection('Questions')
-        .document(doc.documentID)
-        .updateData({'target': target});
-  }
+  // updateTarget(DocumentSnapshot doc, BuildContext context, int target) async {
+  //   await db
+  //       .collection('Questions')
+  //       .document(doc.documentID)
+  //       .updateData({'target': target});
+  // }
 
   updateListOfUsernameAnswers(DocumentSnapshot doc, BuildContext context,
       String username, String choice) async {
