@@ -114,7 +114,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             MyCashBalance(text: MyText().sarText),
 
-            MySAR(text: isSar ? saroviOffline.toString() : '$userSar\nSAR'),
+            MySAR(text: isSar ? saroviOffline.toString()+'\nSAR' : '$userSar\nSAR'),
             Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
@@ -163,9 +163,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                         false &&
                                     target > usernameThatAnswers.length) {
                                   return type == 'checkbox'
-                                      ? (isEmptyCard
-                                          ? EmptyContainer()
-                                          : MyCardMCQ(
+                                      ? MyCardMCQ(
                                               key: key,
                                               sar: sar,
                                               isSar: isSar,
@@ -179,10 +177,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                               target: target,
                                               doc: doc,
                                               username: username,
-                                            ))
-                                      : (isEmptyCard
-                                          ? EmptyContainer()
-                                          : MyCardYesNo(
+                                            )
+                                      : MyCardYesNo(
                                               key: key,
                                               sar: sar,
                                               isSar: isSar,
@@ -194,7 +190,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                               notifyParent: refresh,
                                               target: target,
                                               doc: doc,
-                                              username: username));
+                                              username: username);
                                 } else {
                                   return EmptyContainer();
                                 }
