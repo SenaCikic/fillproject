@@ -47,7 +47,7 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
         alignment: Alignment.center,
         child: Container(
           width: ScreenUtil.instance.setWidth(257.0),
-          height: ScreenUtil.instance.setHeight(60.0),
+          height: ScreenUtil.instance.setHeight(55.0),
           child: RaisedButton(
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(28.0),
