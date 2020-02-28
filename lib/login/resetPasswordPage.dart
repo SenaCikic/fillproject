@@ -88,10 +88,10 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         MyText().resetHeadline,
                         style: const TextStyle(
                             color: const Color(0xffffffff),
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w700,
                             fontFamily: "LoewNextArabic",
                             fontStyle: FontStyle.normal,
-                            fontSize: 18.0),
+                            fontSize: 23.0),
                       ),
                     ),
                   ),
