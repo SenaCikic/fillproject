@@ -42,12 +42,12 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   Widget build(BuildContext context) {
     return Container(
         key: widget.key,
-        width: ScreenUtil.instance.setWidth(115.0),
+        width: ScreenUtil.instance.setWidth(110.0),
         height: ScreenUtil.instance.setHeight(60.0),
         alignment: Alignment.center,
         margin: EdgeInsets.only(right: widget.marginRight),
         child: Container(
-          width: ScreenUtil.instance.setWidth(257.0),
+          width: ScreenUtil.instance.setWidth(113.0),
           height: ScreenUtil.instance.setHeight(60.0),
           child: RaisedButton(
             shape: RoundedRectangleBorder(

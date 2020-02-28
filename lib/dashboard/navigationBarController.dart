@@ -53,7 +53,7 @@ class _BottomNavigationBarControllerState
     )
   ];
 
-  int currentIndex = 0;
+  int currentIndex = 1;
 
   void onTap(int index) {
     setState(() {

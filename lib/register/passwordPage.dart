@@ -15,15 +15,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-String password;
+String password, username="";
 int _btnCounter = 0;
+bool isLoggedIn=false;
 
-class PasswordPage extends StatelessWidget {
+class PasswordPage extends StatefulWidget {
   final RegisterArguments arguments;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController passwordController = new TextEditingController();
 
   PasswordPage({this.arguments});
+
+  @override
+  _PasswordPageState createState() => _PasswordPageState();
+}
+
+class _PasswordPageState extends State<PasswordPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController passwordController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -186,13 +194,14 @@ class PasswordPage extends StatelessWidget {
     final _formState = _formKey.currentState;
     if (_formState.validate()) {
       if (_btnCounter == 0) {
+        loginUser(widget.arguments.username, isLoggedIn);
         FirebaseCrud().createUser(
-            arguments.email, arguments.phone, arguments.username, password, 5);
+            widget.arguments.email, widget.arguments.phone, widget.arguments.username, password, 5);
         Navigator.of(context).pushNamed(NavBar,
             arguments: PasswordArguments(
-                email: arguments.email,
-                phone: arguments.phone,
-                username: arguments.username,
+                email: widget.arguments.email,
+                phone: widget.arguments.phone,
+                username: widget.arguments.username,
                 password: password));
         _btnCounter = 1;
         Timer(Duration(seconds: 2), () {
@@ -208,5 +217,15 @@ class PasswordPage extends StatelessWidget {
     final value = password;
     prefs.setString(key, value);
     print('saved $value');
+  }
+
+  Future<Null> loginUser(String username, bool isLoggedIn) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('username', username);
+    // name = usernameController.text;
+    setState(() {
+      username = username;
+      isLoggedIn = true;
+    });
   }
 }

@@ -276,7 +276,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
  
- //duplanje koda i implementacija funckije ovdje zbog setState-a -> NAUCIMO BLoC :)
+ //duplanje koda i implementacija funckije ovdje zbog setState-a 
   Future<Null> loginUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', username);
