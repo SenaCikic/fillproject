@@ -15,9 +15,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-String password, username="";
+String password, username = "";
 int _btnCounter = 0;
-bool isLoggedIn=false;
+bool isLoggedIn = false;
 
 class PasswordPage extends StatefulWidget {
   final RegisterArguments arguments;
@@ -133,6 +133,8 @@ class _PasswordPageState extends State<PasswordPage> {
                                 fontSize: ScreenUtil.instance.setSp(12)),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
+                                _save();
+
                                 launch('https://google.com');
                               }),
                         new TextSpan(
@@ -149,6 +151,8 @@ class _PasswordPageState extends State<PasswordPage> {
                                 fontSize: ScreenUtil.instance.setSp(12)),
                             recognizer: new TapGestureRecognizer()
                               ..onTap = () {
+                                _save();
+
                                 launch('https://google.com');
                               })
                       ]),
@@ -195,8 +199,8 @@ class _PasswordPageState extends State<PasswordPage> {
     if (_formState.validate()) {
       if (_btnCounter == 0) {
         loginUser(widget.arguments.username, isLoggedIn);
-        FirebaseCrud().createUser(
-            widget.arguments.email, widget.arguments.phone, widget.arguments.username, password, 5);
+        FirebaseCrud().createUser(widget.arguments.email,
+            widget.arguments.phone, widget.arguments.username, password, 5);
         Navigator.of(context).pushNamed(NavBar,
             arguments: PasswordArguments(
                 email: widget.arguments.email,

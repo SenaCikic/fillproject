@@ -189,7 +189,10 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                           fontWeight: FontWeight.w300),
                       recognizer: new TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.of(context).pushNamed(Register, arguments: DidntRecievePinArguments(phone:widget.arguments.phone , username: widget.arguments.username));
+                          Navigator.of(context).pushNamed(Register,
+                              arguments: DidntRecievePinArguments(
+                                  phone: widget.arguments.phone,
+                                  username: widget.arguments.username));
                         })
                 ]))),
           ],

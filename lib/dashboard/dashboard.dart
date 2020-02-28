@@ -14,7 +14,6 @@ import 'package:fillproject/models/Question/questionModel.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 bool visible = false;
 DocumentSnapshot snap;
@@ -60,21 +59,20 @@ class _DashboardPageState extends State<DashboardPage> {
       setState(() {});
     });
     _controller.addListener(() {
-         if(_controller.position.haveDimensions && _physics == null) {
-               setState(() {
-                   var dimension = _controller.position.maxScrollExtent / (snapi.length - 1);
-                   _physics = CustomScrollPhysics(itemDimension: dimension);
-               });
-         }
+      if (_controller.position.haveDimensions && _physics == null) {
+        setState(() {
+          var dimension =
+              _controller.position.maxScrollExtent / (snapi.length - 1);
+          _physics = CustomScrollPhysics(itemDimension: dimension);
+        });
+      }
     });
   }
 
   refresh() {
     setState(() {});
     Timer(Duration(milliseconds: 500), () {
-      setState(() {
-
-      });
+      setState(() {});
     });
     checkForInternet();
   }
@@ -135,8 +133,8 @@ class _DashboardPageState extends State<DashboardPage> {
                           /// visible se seta na true
                           if (!visible) {
                             snapi = snapshot.data
-                              .map((doc) => Question.fromDocument(doc))
-                              .toList();
+                                .map((doc) => Question.fromDocument(doc))
+                                .toList();
                             visible = true;
                           }
 
@@ -156,52 +154,54 @@ class _DashboardPageState extends State<DashboardPage> {
                               target = snapi[index].target;
                               usernameThatAnswers =
                                   snapi[index].listOfUsernamesThatGaveAnswers;
-                                if(snapi[index].title == '') {
-                                  isEmptyCard = true;
-                                }
+                              if (snapi[index].title == '') {
+                                isEmptyCard = true;
+                              }
                               if (snapi[index].title != '') {
                                 isEmptyCard = false;
                                 if (usernameThatAnswers.contains(username) ==
                                         false &&
                                     target > usernameThatAnswers.length) {
                                   return type == 'checkbox'
-                                      ? (isEmptyCard ? EmptyContainer() :                                      
-                                      MyCardMCQ(
-                                        key: key,
-                                        sar: sar,
-                                        isSar: isSar,
-                                        usersSar: userSar,
-                                        question: question,
-                                        choices: choices,
-                                        snapi: snapi,
-                                        snap: snap,
-                                        index: index,
-                                        notifyParent: refresh,
-                                        target: target,
-                                        doc: doc,
-                                        username: username,
-                                      ))
-                                      : (isEmptyCard ? EmptyContainer() :
-                                      MyCardYesNo(
-                                          key: key,
-                                          sar: sar,
-                                          isSar: isSar,
-                                          usersSar: userSar,
-                                          snap: snap,
-                                          question: question,
-                                          snapi: snapi,
-                                          index: index,
-                                          notifyParent: refresh,
-                                          target: target,
-                                          doc: doc,
-                                          username: username));
+                                      ? (isEmptyCard
+                                          ? EmptyContainer()
+                                          : MyCardMCQ(
+                                              key: key,
+                                              sar: sar,
+                                              isSar: isSar,
+                                              usersSar: userSar,
+                                              question: question,
+                                              choices: choices,
+                                              snapi: snapi,
+                                              snap: snap,
+                                              index: index,
+                                              notifyParent: refresh,
+                                              target: target,
+                                              doc: doc,
+                                              username: username,
+                                            ))
+                                      : (isEmptyCard
+                                          ? EmptyContainer()
+                                          : MyCardYesNo(
+                                              key: key,
+                                              sar: sar,
+                                              isSar: isSar,
+                                              usersSar: userSar,
+                                              snap: snap,
+                                              question: question,
+                                              snapi: snapi,
+                                              index: index,
+                                              notifyParent: refresh,
+                                              target: target,
+                                              doc: doc,
+                                              username: username));
                                 } else {
                                   return EmptyContainer();
                                 }
                               } else {
                                 return EmptyContainer();
                               }
-                            }, 
+                            },
                           );
                         }
                         return CircularProgressIndicator();

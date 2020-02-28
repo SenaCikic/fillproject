@@ -31,10 +31,10 @@ class _RegisterPageState extends State<RegisterPage> {
   final DidntRecievePinArguments arguments;
   _RegisterPageState({this.arguments});
 
-  populateReg() async  {
+  populateReg() async {
     usernameController.text = widget.arguments.username;
     phoneController.text = widget.arguments.phone;
-    }
+  }
 
   @override
   void initState() {
@@ -102,7 +102,8 @@ class _RegisterPageState extends State<RegisterPage> {
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.white,
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => SignUp()));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => SignUp()));
           },
         ),
       ),
@@ -329,8 +330,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         Column(
                           children: <Widget>[
                             FutureBuilder(
-                              future: FirebaseCheck()
-                                  .doesNameAlreadyExist(usernameController.text),
+                              future: FirebaseCheck().doesNameAlreadyExist(
+                                  usernameController.text),
                               builder: (context, AsyncSnapshot<bool> result) {
                                 if (!result.hasData) {
                                   return EmptyContainer();

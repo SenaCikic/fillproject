@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myText.dart';
-import 'package:fillproject/firebaseMethods/firebaseJson.dart';
 import 'package:fillproject/firebaseMethods/firebaseSignIn.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -25,7 +24,7 @@ class _SignUpState extends State<SignUp> {
   @override
   void initState() {
     super.initState();
-   autoLogIn(context, isLoggedIn);
+    autoLogIn(context, isLoggedIn);
   }
 
   @override
@@ -118,7 +117,6 @@ class _SignUpState extends State<SignUp> {
                                         MyText().snackUndo);
                                   }
                                 },
-                                
                                 child: Text(
                                   MyText().skipThisStep,
                                   style: TextStyle(
