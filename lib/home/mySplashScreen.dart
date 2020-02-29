@@ -1,3 +1,4 @@
+import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/home/homePage.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
       seconds: 2,
       navigateAfterSeconds: new SignUp(),
       title: new Text(
-        'fill',
+        MyText().fill,
         style: new TextStyle(
             fontSize: 70.0, color: Colors.white, fontFamily: 'RobotoMono'),
       ),
@@ -23,7 +24,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
       onClick: () => new SignUp(),
       loaderColor: Colors.black,
       loadingText: new Text(
-        'Built by Makena',
+        MyText().builtBy,
         style: new TextStyle(
             fontSize: 23, color: Colors.white, fontFamily: 'RobotoMono'),
       ),

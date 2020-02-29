@@ -84,8 +84,8 @@ class MyText {
   // will pop 
   final String willQuestion ='Are you sure?'; 
   final String willQuestion1 ='Do you want to exit the app?'; 
-  final String willYes ='Are you sure?'; 
-  final String willNo ='Are you sure?'; 
+  final String willYes ='Yes'; 
+  final String willNo ='No'; 
   
   // Dashboard 
   final String sarText = 'Your cash\nbalance';
@@ -96,5 +96,8 @@ class MyText {
   final String msgNotSent = 'Message not sent.' ;
   final String emailMsg =  'You are recieving this e-mail because you requested a password reset for your Fill account.\n \n This is your code for reset password:' ;
   
+  // mySplash 
+  final String fill = 'fill';
+  final String builtBy = 'Built by Makena';
 
 }
