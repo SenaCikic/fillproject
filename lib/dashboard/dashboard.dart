@@ -46,6 +46,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   ScrollController _controller = new ScrollController();
   ScrollPhysics _physics;
+  var dimension = 361.7809523809524;
 
   // List<dynamic> questions = List.generate(snapi.length, (index) => index);
 
@@ -54,18 +55,10 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
+    addPhysicsListenerController();
     visible = false;
     Timer(Duration(milliseconds: 500), () {
       setState(() {});
-    });
-    _controller.addListener(() {
-      if (_controller.position.haveDimensions && _physics == null) {
-        setState(() {
-          var dimension =
-              _controller.position.maxScrollExtent / (snapi.length - 1);
-          _physics = CustomScrollPhysics(itemDimension: dimension);
-        });
-      }
     });
   }
 
@@ -114,7 +107,10 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             MyCashBalance(text: MyText().sarText),
 
-            MySAR(text: isSar ? saroviOffline.toString()+'\nSAR' : '$userSar\nSAR'),
+            MySAR(
+                text: isSar
+                    ? saroviOffline.toString() + '\nSAR'
+                    : '$userSar\nSAR'),
             Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
@@ -164,33 +160,33 @@ class _DashboardPageState extends State<DashboardPage> {
                                     target > usernameThatAnswers.length) {
                                   return type == 'checkbox'
                                       ? MyCardMCQ(
-                                              key: key,
-                                              sar: sar,
-                                              isSar: isSar,
-                                              usersSar: userSar,
-                                              question: question,
-                                              choices: choices,
-                                              snapi: snapi,
-                                              snap: snap,
-                                              index: index,
-                                              notifyParent: refresh,
-                                              target: target,
-                                              doc: doc,
-                                              username: username,
-                                            )
+                                          key: key,
+                                          sar: sar,
+                                          isSar: isSar,
+                                          usersSar: userSar,
+                                          question: question,
+                                          choices: choices,
+                                          snapi: snapi,
+                                          snap: snap,
+                                          index: index,
+                                          notifyParent: refresh,
+                                          target: target,
+                                          doc: doc,
+                                          username: username,
+                                        )
                                       : MyCardYesNo(
-                                              key: key,
-                                              sar: sar,
-                                              isSar: isSar,
-                                              usersSar: userSar,
-                                              snap: snap,
-                                              question: question,
-                                              snapi: snapi,
-                                              index: index,
-                                              notifyParent: refresh,
-                                              target: target,
-                                              doc: doc,
-                                              username: username);
+                                          key: key,
+                                          sar: sar,
+                                          isSar: isSar,
+                                          usersSar: userSar,
+                                          snap: snap,
+                                          question: question,
+                                          snapi: snapi,
+                                          index: index,
+                                          notifyParent: refresh,
+                                          target: target,
+                                          doc: doc,
+                                          username: username);
                                 } else {
                                   return EmptyContainer();
                                 }
@@ -243,5 +239,16 @@ class _DashboardPageState extends State<DashboardPage> {
     } on SocketException catch (_) {
       isSar = true;
     }
+  }
+
+  addPhysicsListenerController() {
+    _controller.addListener(() {
+      if (_controller.position.haveDimensions && _physics == null) {
+        setState(() {
+          _physics = CustomScrollPhysics(itemDimension: dimension);
+          print(dimension);
+        });
+      }
+    });
   }
 }
