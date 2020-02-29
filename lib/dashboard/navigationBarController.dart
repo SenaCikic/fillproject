@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/dashboard/dashboard.dart';
 import 'package:fillproject/dashboard/profile.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/material.dart';
 
 bool isTab1Selected = true;
 bool isTab2Selected = false;
+bool isLoading = true;
 
 class BottomNavigationBarController extends StatefulWidget {
   final PasswordArguments arguments;
@@ -82,10 +85,26 @@ class _BottomNavigationBarControllerState
           items: items,
           currentIndex: currentIndex,
           onTap: onTap),
-      body: IndexedStack(
+      body: isLoading ? Center(child: isLoadingCircular(),)  :
+       IndexedStack(
         index: currentIndex,
         children: pages(),
       ),
     );
   }
+
+
+  /// function for loader 
+  /// 
+  /// this function returns [CircularProgressIndicator] 
+  /// and after 1 second the variable that controls indicator is set to false
+    isLoadingCircular() {
+     Timer(Duration(seconds: 1), () {
+          setState(() {
+            isLoading = false;
+          });
+        });
+      return CircularProgressIndicator(backgroundColor: MyColor().black,); 
+  }
+
 }
