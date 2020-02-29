@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fillproject/components/imageConstants.dart';
 import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/dashboard/dashboard.dart';
 import 'package:fillproject/dashboard/profile.dart';
@@ -40,14 +41,14 @@ class _BottomNavigationBarControllerState
   final items = [
     BottomNavigationBarItem(
       icon: isTab1Selected
-          ? ImageIcon(AssetImage('assets/images/tab1.png'))
-          : ImageIcon(AssetImage('assets/images/tab1_1.png')),
+          ? ImageIcon(AssetImage(imageTab1))
+          : ImageIcon(AssetImage(imageTab1)),
       title: Text('_______________'),
     ),
     BottomNavigationBarItem(
       icon: isTab2Selected
-          ? ImageIcon(AssetImage('assets/images/tab2.png'))
-          : ImageIcon(AssetImage('assets/images/tab2_2.png')),
+          ? ImageIcon(AssetImage(imageTab2))
+          : ImageIcon(AssetImage(imageTab2)),
       title: Text('_______________'),
     ),
     BottomNavigationBarItem(

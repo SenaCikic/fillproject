@@ -29,9 +29,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   _ResetPasswordPageState({this.arguments});
 
   DocumentSnapshot snap;
-
-  final String codeFromEmail = 'asdfgh';
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController oldPasswordController =

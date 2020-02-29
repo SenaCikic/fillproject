@@ -141,11 +141,11 @@ class _SignUpState extends State<SignUp> {
             actions: <Widget>[
               new FlatButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: new Text('No'),
+                child: new Text(MyText().willNo),
               ),
               new FlatButton(
                 onPressed: () => exit(0),
-                child: new Text('Yes'),
+                child: new Text(MyText().willYes),
               ),
             ],
           ),
