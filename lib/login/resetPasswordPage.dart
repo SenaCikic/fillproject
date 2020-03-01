@@ -88,7 +88,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                             fontWeight: FontWeight.w500,
                             fontFamily: 'LoewNextArabic',
                             fontStyle: FontStyle.normal,
-                            fontSize: 18.0),
+                            fontSize: 23.0),
                       ),
                     ),
                   ),
