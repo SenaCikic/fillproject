@@ -1,4 +1,6 @@
-import 'package:fillproject/components/MyText.dart';
+
+
+import 'package:fillproject/components/constants/myText.dart';
 
 class MyValidation {
   int snackCounter = 0;

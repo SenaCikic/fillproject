@@ -1,4 +1,4 @@
-import 'package:fillproject/components/myText.dart';
+import 'package:fillproject/components/constants/myText.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 

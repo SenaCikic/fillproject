@@ -1,4 +1,4 @@
-import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/constants/myColor.dart';
 import 'package:flutter/material.dart';
 
 class MySnackbar {

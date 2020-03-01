@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:fillproject/components/MyText.dart';
-import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/constants/MyText.dart';
+import 'package:fillproject/components/constants/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/components/myValidation.dart';

@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/constants/MyText.dart';
+import 'package:fillproject/components/constants/fontsConstants.dart';
+import 'package:fillproject/components/constants/myColor.dart';
 import 'package:fillproject/components/emptyCont.dart';
-import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
@@ -68,9 +69,10 @@ class _LoginPageState extends State<LoginPage> {
                               style: const TextStyle(
                                   color: const Color(0xffffffff),
                                   fontWeight: FontWeight.w700,
-                                  fontFamily: "LoewNextArabic",
                                   fontStyle: FontStyle.normal,
-                                  fontSize: 23.0),
+                                  fontFamily: 'LoewNextArabic',
+                                  fontSize: 23.0
+                                  ),
                               textAlign: TextAlign.center)),
                     ),
                     Container(
@@ -94,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                           labelStyle: TextStyle(
                             color: MyColor().white,
                             fontSize: 18,
-                            fontFamily: "LoewNextArabic",
+                            fontFamily: arabic,
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
@@ -147,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                           labelText: MyText().labelPassword,
                           labelStyle: TextStyle(
                               color: MyColor().white,
-                              fontFamily: "LoewNextArabic",
+                              fontFamily: arabic,
                               fontSize: 18.0),
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
