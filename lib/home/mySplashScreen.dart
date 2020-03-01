@@ -1,4 +1,5 @@
-import 'package:fillproject/components/myText.dart';
+import 'package:fillproject/components/constants/fontsConstants.dart';
+import 'package:fillproject/components/constants/myText.dart';
 import 'package:fillproject/home/homePage.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
       title: new Text(
         MyText().fill,
         style: new TextStyle(
-            fontSize: 70.0, color: Colors.white, fontFamily: 'RobotoMono'),
+            fontSize: 70.0, color: Colors.white, fontFamily: roboto),
       ),
       backgroundColor: Colors.black,
       styleTextUnderTheLoader: new TextStyle(),
@@ -26,7 +27,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
       loadingText: new Text(
         MyText().builtBy,
         style: new TextStyle(
-            fontSize: 23, color: Colors.white, fontFamily: 'RobotoMono'),
+            fontSize: 23, color: Colors.white, fontFamily: roboto),
       ),
     );
   }

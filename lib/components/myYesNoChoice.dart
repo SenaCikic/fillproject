@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/constants/fontsConstants.dart';
+import 'package:fillproject/components/constants/myColor.dart';
 import 'package:fillproject/firebaseMethods/firebaseCrud.dart';
 import 'package:fillproject/globals.dart';
 import 'package:fillproject/models/Question/questionSkelet.dart';
@@ -60,17 +61,16 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
               setState(() {
                 isTapped = true;
               });
-           
-                Timer(Duration(milliseconds: 50), () {
-                  onPressed();
-                });
-             
+
+              Timer(Duration(milliseconds: 50), () {
+                onPressed();
+              });
             },
             child: Text(widget.choice,
                 style: TextStyle(
                     color: isTapped ? MyColor().black : MyColor().white,
                     fontWeight: FontWeight.w400,
-                    fontFamily: "LoewNextArabic",
+                    fontFamily: arabic,
                     fontStyle: FontStyle.normal,
                     fontSize: ScreenUtil.instance.setSp(15.0))),
           ),
@@ -84,8 +84,9 @@ class _MyYesNoChoiceState extends State<MyYesNoChoice> {
   onPressed() {
     widget.usersSars += widget.sar;
     saroviOffline += widget.sar;
-    /// update sarova na osnovu da li je app online ili offline 
-    /// 
+
+    /// update sarova na osnovu da li je app online ili offline
+    ///
     /// online = [widget.usersSar]
     /// offline = [saroviOffline]
     if (widget.isSar) {

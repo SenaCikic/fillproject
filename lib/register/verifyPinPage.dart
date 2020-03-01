@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:fillproject/components/constants/myColor.dart';
+import 'package:fillproject/components/constants/myText.dart';
 import 'package:fillproject/components/myPinCode.dart';
 import 'package:fillproject/components/mySnackbar.dart';
-import 'package:fillproject/components/myText.dart';
-import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';

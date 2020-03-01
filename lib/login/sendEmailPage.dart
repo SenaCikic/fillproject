@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/constants/myColor.dart';
+import 'package:fillproject/components/constants/myText.dart';
 import 'package:fillproject/components/mySnackbar.dart';
-import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/resetPassword.dart';
 import 'package:fillproject/routes/routeArguments.dart';
@@ -50,7 +50,7 @@ class EmailResetPage extends StatelessWidget {
                         style: const TextStyle(
                             color: const Color(0xffffffff),
                             fontWeight: FontWeight.bold,
-                            fontFamily: "LoewNextArabic",
+                            fontFamily: 'LoewNextArabic',
                             fontStyle: FontStyle.normal,
                             fontSize: 23.0),
                         textAlign: TextAlign.center)),
@@ -65,7 +65,7 @@ class EmailResetPage extends StatelessWidget {
                         style: const TextStyle(
                             color: const Color(0xffffffff),
                             fontWeight: FontWeight.w500,
-                            fontFamily: "LoewNextArabic",
+                            fontFamily: 'LoewNextArabic',
                             fontStyle: FontStyle.normal,
                             fontSize: 16),
                         textAlign: TextAlign.center)),

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:fillproject/components/constants/myColor.dart';
+import 'package:fillproject/components/constants/myText.dart';
 import 'package:fillproject/components/emptyCont.dart';
-import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
-import 'package:fillproject/components/myText.dart';
 import 'package:fillproject/components/myTextComponent.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
@@ -15,7 +15,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../components/myColor.dart';
 
 class RegisterPage extends StatefulWidget {
   final DidntRecievePinArguments arguments;
@@ -88,7 +87,6 @@ class _RegisterPageState extends State<RegisterPage> {
       phoneNo = "+" + phoneController.text;
       final _formState = _formKey.currentState;
       if (_formState.validate()) {
-        //LoginStorage().loginUser(username, isLoggedIn);
         verifyPhone();
       }
     }
@@ -292,14 +290,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                   if (result.isNotEmpty &&
                                       result[0].rawAddress.isNotEmpty) {
                                     onFieldSubmitted1(context);
-                                    print("TU SAM");
                                   }
                                 } on SocketException catch (_) {
                                   MySnackbar().showSnackbar(
                                       MyText().checkConnection,
                                       context,
                                       MyText().snackUndo);
-                                  print("ERROR");
                                 }
                               },
                               child: Text("Send PIN",

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fillproject/components/MyText.dart';
+import 'package:fillproject/components/constants/MyText.dart';
+import 'package:fillproject/components/constants/myColor.dart';
 import 'package:fillproject/components/emptyCont.dart';
-import 'package:fillproject/components/myColor.dart';
 import 'package:fillproject/components/mySnackbar.dart';
 import 'package:fillproject/components/myValidation.dart';
 import 'package:fillproject/firebaseMethods/firebaseCheck.dart';
@@ -86,7 +86,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         style: const TextStyle(
                             color: const Color(0xffffffff),
                             fontWeight: FontWeight.w500,
-                            fontFamily: "LoewNextArabic",
+                            fontFamily: 'LoewNextArabic',
                             fontStyle: FontStyle.normal,
                             fontSize: 18.0),
                       ),

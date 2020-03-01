@@ -1,8 +1,8 @@
-import 'package:fillproject/components/myColor.dart';
+import 'package:fillproject/components/constants/fontsConstants.dart';
+import 'package:fillproject/components/constants/myColor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'myColor.dart';
 
 class MyQuestionSAR extends StatelessWidget {
   final String text;
@@ -21,7 +21,7 @@ class MyQuestionSAR extends StatelessWidget {
           style: TextStyle(
               color: MyColor().black,
               fontWeight: FontWeight.w700,
-              fontFamily: "LoewNextArabic",
+              fontFamily: arabic,
               fontStyle: FontStyle.normal,
               fontSize: ScreenUtil.instance.setSp(22.0)),
           textAlign: TextAlign.center),

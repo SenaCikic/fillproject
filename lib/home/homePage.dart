@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:fillproject/components/myColor.dart';
+
+import 'package:fillproject/components/constants/fontsConstants.dart';
+import 'package:fillproject/components/constants/myColor.dart';
+import 'package:fillproject/components/constants/myText.dart';
 import 'package:fillproject/components/mySnackbar.dart';
-import 'package:fillproject/components/myText.dart';
+import 'package:fillproject/firebaseMethods/firebaseJson.dart';
 import 'package:fillproject/firebaseMethods/firebaseSignIn.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -47,7 +50,7 @@ class _SignUpState extends State<SignUp> {
                       style: TextStyle(
                           fontSize: ScreenUtil.instance.setSp(70.0),
                           color: MyColor().white,
-                          fontFamily: 'RobotoMono'),
+                          fontFamily: roboto),
                     )),
                     Padding(
                         padding: EdgeInsets.only(top: 120),
