@@ -51,6 +51,9 @@ class _EmailPageState extends State<EmailPage> {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => GestureDetector(
+           onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
           child: SingleChildScrollView(
             child: Center(
               child: Column(

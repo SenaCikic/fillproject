@@ -52,6 +52,9 @@ class _PasswordPageState extends State<PasswordPage> {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => new GestureDetector(
+           onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
           child: SingleChildScrollView(
             child: Center(
               child: Column(
