@@ -1,3 +1,14 @@
+/// Splash Screen class
+///
+/// This class contains layout for SplashScreen page.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'package:fillproject/components/constants/fontsConstants.dart';
 import 'package:fillproject/components/constants/myText.dart';
 import 'package:fillproject/home/homePage.dart';

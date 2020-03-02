@@ -1,3 +1,17 @@
+/// Email class
+///
+/// This class contains methods and layout for email page.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   ScreenUtil class for respnsive desing
+///   Routes
+///   Database connections
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:async';
 import 'dart:io';
 import 'package:fillproject/components/constants/MyText.dart';
@@ -51,6 +65,9 @@ class _EmailPageState extends State<EmailPage> {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
           child: SingleChildScrollView(
             child: Center(
               child: Column(

@@ -1,3 +1,18 @@
+/// Reset Password page class
+///
+/// This class contains methods and layout for resetPassword page.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   Cloud_firestore for connection to the firebase
+///   ScreenUtil class for respnsive desing
+///   Routes
+///   Database connections
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';

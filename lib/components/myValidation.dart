@@ -1,4 +1,13 @@
-
+/// Validation class
+///
+/// This class contains methods for all validation in the app.
+///
+/// Imports:
+///   MyText for validation text
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
 
 import 'package:fillproject/components/constants/myText.dart';
 

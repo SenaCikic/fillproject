@@ -1,3 +1,9 @@
+/// Colors class
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 

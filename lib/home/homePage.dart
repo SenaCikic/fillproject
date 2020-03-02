@@ -1,3 +1,18 @@
+/// Home Page class
+///
+/// This class contains methods and layout for Home page.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   Cloud_firestore for connection to the firebase
+///   ScreenUtil class for respnsive desing
+///   Routes
+///   Database connections
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:async';
 import 'dart:io';
 
@@ -5,7 +20,6 @@ import 'package:fillproject/components/constants/fontsConstants.dart';
 import 'package:fillproject/components/constants/myColor.dart';
 import 'package:fillproject/components/constants/myText.dart';
 import 'package:fillproject/components/mySnackbar.dart';
-import 'package:fillproject/firebaseMethods/firebaseJson.dart';
 import 'package:fillproject/firebaseMethods/firebaseSignIn.dart';
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
@@ -173,7 +187,7 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
-  //duplanje koda i implementacija funckije ovdje zbog setState-a -> NAUCIMO BLoC :)
+  //duplanje koda i implementacija funckije ovdje zbog setState-a
   Future<Null> loginUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', username);

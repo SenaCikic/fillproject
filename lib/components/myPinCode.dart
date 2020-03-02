@@ -1,7 +1,19 @@
+/// Pin Code class
+///
+/// This package taken and modified from https://pub.dev/packages/pin_code_fields#-example-tab-
+///
+/// Imports:
+///   Library for pin code files which is custom class for circles on VerifyPinPage
+///   ScreenUtil class for respnsive desing
+///   Dart:IO for running URI
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 library pin_code_fields;
 
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

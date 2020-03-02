@@ -1,3 +1,14 @@
+/// Route Generator class
+///
+/// This class contains all routes for the app
+///
+/// Imports:
+///   Navigation Bar Controller
+///   Routes
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
 import 'package:fillproject/dashboard/dashboard.dart';
 import 'package:fillproject/dashboard/navigationBarController.dart';
 import 'package:fillproject/home/homePage.dart';
@@ -14,7 +25,6 @@ import 'package:flutter/material.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    
     final args = settings.arguments;
 
     switch (settings.name) {
@@ -23,21 +33,25 @@ class RouteGenerator {
       case Register:
         return MaterialPageRoute(builder: (_) => RegisterPage(arguments: args));
       case VerifyPin:
-        return MaterialPageRoute(builder: (_) => VerifyPinPage(arguments: args));
+        return MaterialPageRoute(
+            builder: (_) => VerifyPinPage(arguments: args));
       case Password:
         return MaterialPageRoute(builder: (_) => PasswordPage(arguments: args));
       case Dashboard:
-        return MaterialPageRoute(builder: (_) => DashboardPage(arguments: args));
+        return MaterialPageRoute(
+            builder: (_) => DashboardPage(arguments: args));
       case Login:
         return MaterialPageRoute(builder: (_) => LoginPage());
-      case Email: 
+      case Email:
         return MaterialPageRoute(builder: (_) => EmailPage(arguments: args));
-      case EmailReset: 
+      case EmailReset:
         return MaterialPageRoute(builder: (_) => EmailResetPage());
-      case PasswordReset: 
-        return MaterialPageRoute(builder: (_) => ResetPasswordPage(arguments: args));
-      case NavBar: 
-        return MaterialPageRoute(builder: (_) => BottomNavigationBarController(arguments: args));
+      case PasswordReset:
+        return MaterialPageRoute(
+            builder: (_) => ResetPasswordPage(arguments: args));
+      case NavBar:
+        return MaterialPageRoute(
+            builder: (_) => BottomNavigationBarController(arguments: args));
       default:
         return _errorRoute();
     }
