@@ -1,3 +1,16 @@
+/// Multiple Choice Question  class
+///
+/// This class contains model for flash muliple choice question card.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   Cloud_firestore for connection to the firebase
+///   ScreenUtil class for respnsive desing
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/constants/myColor.dart';
 import 'package:fillproject/components/myMCQChoice.dart';
@@ -59,22 +72,21 @@ class _MyCardMCQState extends State<MyCardMCQ> {
         child: Padding(
           padding: const EdgeInsets.only(left: 40, right: 38, top: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                child: MyQuestionSAR(text: '${widget.sar} SAR'),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 15),
-                child: MyQuestion(
-                  question: widget.question,
-                  containerHeight: 110.0),
-              ),
-              Container(
-                height: ScreenUtil.instance.setHeight(246.0),
-                width: ScreenUtil.instance.setWidth(260.0),
-                margin: EdgeInsets.only(top: 20),
-                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  child: MyQuestionSAR(text: '${widget.sar} SAR'),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 15),
+                  child: MyQuestion(
+                      question: widget.question, containerHeight: 110.0),
+                ),
+                Container(
+                  height: ScreenUtil.instance.setHeight(246.0),
+                  width: ScreenUtil.instance.setWidth(260.0),
+                  margin: EdgeInsets.only(top: 20),
+                  child: Column(
                       children: choicesEnd
                           .map((item) => MyMCQChoice(
                               choice: item,
@@ -89,9 +101,8 @@ class _MyCardMCQState extends State<MyCardMCQ> {
                               usersSar: widget.usersSar,
                               snap: widget.snap))
                           .toList()),
-              ),
-
-          ]),
+                ),
+              ]),
         ));
   }
 

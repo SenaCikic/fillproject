@@ -1,3 +1,17 @@
+/// Password class
+///
+/// This class contains methods and layout for dashboard page.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   ScreenUtil class for respnsive desing
+///   Routes
+///   Database methods class
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:async';
 import 'dart:io';
 import 'package:fillproject/components/constants/MyText.dart';
@@ -52,7 +66,7 @@ class _PasswordPageState extends State<PasswordPage> {
       backgroundColor: MyColor().black,
       body: Builder(
         builder: (context) => new GestureDetector(
-           onTap: () {
+          onTap: () {
             FocusScope.of(context).requestFocus(new FocusNode());
           },
           child: SingleChildScrollView(

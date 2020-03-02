@@ -1,3 +1,14 @@
+/// SAR class
+///
+/// This class contains layout for SAR.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   ScreenUtil class for respnsive desing
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
 
 import 'package:fillproject/components/constants/fontsConstants.dart';
 import 'package:fillproject/components/constants/myColor.dart';
@@ -12,16 +23,13 @@ class MySAR extends StatefulWidget {
   _MySARState createState() => _MySARState();
 }
 
-
-
 class _MySARState extends State<MySAR> {
   @override
-void initState() { 
-  super.initState();
-  setState(() {
-    
-  });
-}
+  void initState() {
+    super.initState();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

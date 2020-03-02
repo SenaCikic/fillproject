@@ -1,3 +1,11 @@
+/// Custom Scroll class
+///
+/// This class contains scrolling physics for flash questions on dashboard
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'package:flutter/material.dart';
 
 class CustomScrollPhysics extends ScrollPhysics {

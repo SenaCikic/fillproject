@@ -1,3 +1,18 @@
+/// Send Email  class
+///
+/// This class contains methods and layout for dashboard page.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   Cloud_firestore for connection to the firebase
+///   ScreenUtil class for respnsive desing
+///   Routes
+///   Database methods
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:async';
 import 'dart:io';
 import 'package:fillproject/components/constants/myColor.dart';

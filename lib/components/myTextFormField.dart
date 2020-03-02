@@ -1,4 +1,13 @@
-
+/// Text Form Field class
+///
+/// This class contains layout of text form field.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
 import 'package:fillproject/components/constants/myColor.dart';
 import 'package:flutter/material.dart';
 

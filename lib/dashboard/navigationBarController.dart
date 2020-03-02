@@ -1,6 +1,18 @@
+/// Navigation Bar Controller class
+///
+/// This class contains Layout for navigation bar.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   ScreenUtil class for respnsive desing
+///   Routes
+///   Other pages like Dashboard, Profile and Survey
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:async';
-
-
 import 'package:fillproject/components/constants/imageConstants.dart';
 import 'package:fillproject/components/constants/myColor.dart';
 import 'package:fillproject/dashboard/dashboard.dart';
@@ -53,9 +65,7 @@ class _BottomNavigationBarControllerState
       title: Text('_______________'),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.account_circle), 
-      title: Text('_______________')
-    )
+        icon: Icon(Icons.account_circle), title: Text('_______________'))
   ];
 
   int currentIndex = 1;
@@ -87,26 +97,29 @@ class _BottomNavigationBarControllerState
           items: items,
           currentIndex: currentIndex,
           onTap: onTap),
-      body: isLoading ? Center(child: isLoadingCircular(),)  :
-       IndexedStack(
-        index: currentIndex,
-        children: pages(),
-      ),
+      body: isLoading
+          ? Center(
+              child: isLoadingCircular(),
+            )
+          : IndexedStack(
+              index: currentIndex,
+              children: pages(),
+            ),
     );
   }
 
-
-  /// function for loader 
-  /// 
-  /// this function returns [CircularProgressIndicator] 
+  /// function for loader
+  ///
+  /// this function returns [CircularProgressIndicator]
   /// and after 1 second the variable that controls indicator is set to false
-    isLoadingCircular() {
-     Timer(Duration(seconds: 1), () {
-          setState(() {
-            isLoading = false;
-          });
-        });
-      return CircularProgressIndicator(backgroundColor: MyColor().black,); 
+  isLoadingCircular() {
+    Timer(Duration(seconds: 1), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+    return CircularProgressIndicator(
+      backgroundColor: MyColor().black,
+    );
   }
-
 }

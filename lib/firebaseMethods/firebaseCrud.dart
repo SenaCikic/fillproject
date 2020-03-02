@@ -1,3 +1,16 @@
+/// Firebase CRUD  class
+///
+/// This class contains methods (CRUD) for the app.
+///
+/// Imports:
+///   Cloud_firestore for connection to the firebase
+///   Routes
+///   Random String class for generating String which is used for custom username for anonymous users
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +22,8 @@ class FirebaseCrud {
   /// create function
   ///
   /// upis u firestore collection
-  createUser(
-      String email, String phone, String username, String password, int sar) async {
+  createUser(String email, String phone, String username, String password,
+      int sar) async {
     await db.collection('Users').add({
       'email': email,
       'username': username,

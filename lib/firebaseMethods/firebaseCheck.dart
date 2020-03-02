@@ -1,3 +1,13 @@
+/// Firebase Check class
+///
+/// This class contains methods for checking if data exits in firebase
+///
+/// Imports:
+///   Cloud_firestore for connection to the firebase
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
