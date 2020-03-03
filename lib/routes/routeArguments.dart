@@ -1,3 +1,11 @@
+/// Register Arguments class
+///
+/// This file contains classes for each route .
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 class RegisterArguments {
   final String email;
   final String phone;

@@ -1,3 +1,17 @@
+/// Verify Pin  class
+///
+/// This class contains methods and layout for Verify Pin page.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   ScreenUtil class for respnsive desing
+///   Routes
+///   Database connections
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:async';
 import 'dart:io';
 import 'package:fillproject/components/constants/myColor.dart';

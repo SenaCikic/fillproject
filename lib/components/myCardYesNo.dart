@@ -1,3 +1,16 @@
+/// Yes No Card class
+///
+/// This class contains model for flash yes and no question card.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   Cloud_firestore for connection to the firebase
+///   ScreenUtil class for respnsive desing
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/constants/myColor.dart';
 import 'package:fillproject/components/myQuestion.dart';
@@ -18,7 +31,7 @@ class MyCardYesNo extends StatefulWidget {
 
   MyCardYesNo(
       {this.question,
-       this.key,
+      this.key,
       this.sar,
       this.isSar,
       this.usersSar,
@@ -28,8 +41,7 @@ class MyCardYesNo extends StatefulWidget {
       @required this.notifyParent,
       this.target,
       this.doc,
-      this.username
-      });
+      this.username});
 
   @override
   _MyCardYesNoState createState() => _MyCardYesNoState();
@@ -82,7 +94,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                       MyYesNoChoice(
                           choice: 'No',
                           snapi: widget.snapi,
-                           usersSars: widget.usersSar,
+                          usersSars: widget.usersSar,
                           snap: widget.snap,
                           isSar: widget.isSar,
                           sar: widget.sar,
@@ -95,7 +107,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                     ],
                   ),
                 )
-          ]),
+              ]),
         ));
   }
 }

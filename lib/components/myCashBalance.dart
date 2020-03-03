@@ -1,3 +1,14 @@
+/// Cash Balance class
+///
+/// This class contains layout for cash balance.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   ScreenUtil class for respnsive desing
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
 
 import 'package:fillproject/components/constants/myColor.dart';
 import 'package:flutter/material.dart';

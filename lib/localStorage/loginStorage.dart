@@ -1,3 +1,15 @@
+/// Login Storage class
+///
+/// This class contains methods Login, autologin and logout.
+///
+/// Imports:
+///   SharedPeferences for saving data to local storage.
+///   Routes
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'package:fillproject/routes/routeArguments.dart';
 import 'package:fillproject/routes/routeConstants.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +19,7 @@ class LoginStorage {
   Future<Null> loginUser(String username, bool isLoggedIn) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('username', username);
-  // name = usernameController.text;
+    // name = usernameController.text;
     isLoggedIn = true;
   }
 

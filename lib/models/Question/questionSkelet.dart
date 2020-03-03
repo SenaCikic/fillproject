@@ -1,3 +1,10 @@
+/// Question Skelet class
+///
+/// This class contains final variables
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
 import 'package:flutter/material.dart';
 
 class QuestionSkelet {

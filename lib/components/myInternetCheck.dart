@@ -1,3 +1,14 @@
+/// Internet Check class
+///
+/// This class contains methods for checking interent connection.
+///
+/// Imports:
+///   DataConnectionChecker for checking interent connection
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:io';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';

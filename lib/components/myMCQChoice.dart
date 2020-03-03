@@ -1,3 +1,17 @@
+/// Multiple Choice Question  class
+///
+/// This class contains methods that updates users choice.
+///
+/// Imports:
+///   MyColor constant class with all colors
+///   Cloud_firestore for connection to the firebase
+///   ScreenUtil class for respnsive desing
+///   QuestionSkelet model class for questions.
+///
+/// Authors: Sena Cikic, Danis Preldzic, Adi Cengic, Jusuf Elfarahati
+/// Tech387 - T2
+/// Feb, 2020
+
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fillproject/components/constants/myColor.dart';
@@ -84,6 +98,7 @@ class _MyMCQChoiceState extends State<MyMCQChoice> {
   onPressed() {
     widget.usersSar += widget.sar;
     saroviOffline += widget.sar;
+
     /// update sarova na osnovu da li je app online ili offline
     ///
     /// online = [widget.usersSar]
