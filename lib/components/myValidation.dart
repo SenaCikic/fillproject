@@ -108,6 +108,9 @@ class MyValidation {
     } else if (regexSpace.hasMatch(input) == true) {
       counter = 0;
       return MyText().validEmail;
+    } else if (regexEmail.hasMatch(input) == false) {
+      counter = 0;
+      return MyText().validEmail;
     }
     return null;
   }
