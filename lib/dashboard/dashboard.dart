@@ -261,7 +261,7 @@ class _DashboardPageState extends State<DashboardPage> {
     _controller.addListener(() {
       if (_controller.position.haveDimensions && _physics == null) {
         setState(() {
-          _physics = CustomScrollPhysics(itemDimension: dimension);
+          _physics = CustomScrollPhysics(itemDimension: ScreenUtil.instance.setWidth(dimension),);
           print(dimension);
         });
       }
