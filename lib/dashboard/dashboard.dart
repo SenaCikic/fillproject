@@ -117,7 +117,7 @@ class _DashboardPageState extends State<DashboardPage> {
               children: <Widget>[
                 Expanded(
                   child: SizedBox(
-                    height: ScreenUtil.instance.setHeight(475.0),
+                    height: ScreenUtil.instance.setHeight(420.0),
                     child: FutureBuilder(
                       future: Future.delayed(Duration(milliseconds: 500)).then(
                           (value) => FirebaseCheck().getQuestions(userLevel)),

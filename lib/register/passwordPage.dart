@@ -36,6 +36,7 @@ class _PasswordPageState extends State<PasswordPage> {
   @override
   Widget build(BuildContext context) {
     Constant().responsive(context);
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(
       appBar: new AppBar(
         title: new Text(""),
@@ -59,7 +60,7 @@ class _PasswordPageState extends State<PasswordPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 28, bottom: 35),
+                    padding: EdgeInsets.only(top: 28 / pixelRatio, bottom: 35 / pixelRatio),
                     child: MyTextComponent(text: MyText().passwordHeadline),
                   ),
                   Text(MyText().fiveSar,
@@ -71,7 +72,7 @@ class _PasswordPageState extends State<PasswordPage> {
                   Container(
                       width: ScreenUtil.instance.setWidth(316.0),
                       height: ScreenUtil.instance.setHeight(92.0),
-                      margin: EdgeInsets.only(bottom: 19, top: 28),
+                      margin: EdgeInsets.only(bottom: 19 / pixelRatio, top: 28 / pixelRatio),
                       child: Form(
                         key: _formKey,
                         child: TextFormField(
@@ -80,7 +81,7 @@ class _PasswordPageState extends State<PasswordPage> {
                           decoration: InputDecoration(
                             hasFloatingPlaceholder: false,
                             contentPadding: new EdgeInsets.symmetric(
-                                vertical: 25.0, horizontal: 35.0),
+                                vertical: 25.0 / pixelRatio, horizontal: 35.0 / pixelRatio),
                             labelText: MyText().labelPassword,
                             labelStyle: TextStyle(color: MyColor().white),
                             enabledBorder: OutlineInputBorder(
@@ -115,7 +116,7 @@ class _PasswordPageState extends State<PasswordPage> {
                         ),
                       )),
                   Container(
-                    margin: EdgeInsets.only(bottom: 21, left: 43, right: 43),
+                    margin: EdgeInsets.only(bottom: 21 / pixelRatio, left: 43 / pixelRatio, right: 43 / pixelRatio),
                     width: ScreenUtil.instance.setWidth(316.0),
                     child: RichText(
                       text: new TextSpan(children: [

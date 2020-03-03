@@ -35,6 +35,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
   @override
   Widget build(BuildContext context) {
     Constant().responsive(context);
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     signIn(String smsCode) {
       final AuthCredential credential = PhoneAuthProvider.getCredential(
           verificationId: widget.arguments.verId, smsCode: smsCode);
@@ -93,7 +94,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
             child: Column(
           children: <Widget>[
             Container(
-                margin: EdgeInsets.only(top: 105, bottom: 35),
+                margin: EdgeInsets.only(top: 105, bottom: 35 / pixelRatio),
                 child: MyTextComponent(text: MyText().verifyPageHeadline)),
             Container(
               child: Text(
@@ -105,7 +106,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 23),
+              margin: EdgeInsets.only(top: 23 / pixelRatio),
               child: Text(MyText().verifyEnterPin,
                   style: TextStyle(
                       color: MyColor().white,
@@ -121,9 +122,9 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                   animationType: AnimationType.fade,
                   shape: PinCodeFieldShape.circle,
                   animationDuration: Duration(milliseconds: 400),
-                  fieldHeight: 60,
-                  fieldWidth: 50,
-                  textStyle: TextStyle(color: MyColor().white, fontSize: 28),
+                  fieldHeight: ScreenUtil.instance.setHeight(60),
+                  fieldWidth: ScreenUtil.instance.setWidth(50),
+                  textStyle: TextStyle(color: MyColor().white, fontSize: ScreenUtil.instance.setSp(28)),
                   activeColor: fieldColor || codeError
                       ? MyColor().error
                       : MyColor().white,
@@ -134,7 +135,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                       ? MyColor().error
                       : MyColor().white,
                   backgroundColor: MyColor().black,
-                  borderWidth: 1.0,
+                  borderWidth: ScreenUtil.instance.setWidth(1),
                   controller: codeController,
                   onChanged: (value) => {
                     setState(() {
@@ -156,7 +157,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                       : Text(''),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20.0),
+              margin: EdgeInsets.only(top: 20.0 / pixelRatio),
               width: ScreenUtil.instance.setWidth(316.0),
               height: ScreenUtil.instance.setHeight(67.0),
               child: RaisedButton(
@@ -174,11 +175,11 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                         MyText().checkConnection, context, MyText().snackUndo);
                   }
                 },
-                child: Text(MyText().btnVerify, style: TextStyle(fontSize: 18)),
+                child: Text(MyText().btnVerify, style: TextStyle(fontSize: ScreenUtil.instance.setSp(18))),
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 20.0),
+                margin: EdgeInsets.only(top: 20.0 / pixelRatio),
                 child: RichText(
                     text: new TextSpan(children: [
                   new TextSpan(

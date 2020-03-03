@@ -40,10 +40,11 @@ class MyMCQChoice extends StatefulWidget {
 class _MyMCQChoiceState extends State<MyMCQChoice> {
   @override
   Widget build(BuildContext context) {
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Container(
         width: ScreenUtil.instance.setWidth(257.0),
         height: ScreenUtil.instance.setHeight(60.0),
-        margin: EdgeInsets.only(bottom: 15.0),
+        margin: EdgeInsets.only(top: 15.0 / pixelRatio),
         alignment: Alignment.center,
         child: Container(
           width: ScreenUtil.instance.setWidth(257.0),

@@ -9,8 +9,9 @@ class MyCashBalance extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Container(
-        margin: EdgeInsets.only(top: 40.0, bottom: 5.0),
+        margin: EdgeInsets.only(top: 40.0, bottom: 5.0 / pixelRatio),
         width: ScreenUtil.instance.setWidth(120),
         child: Text(text,
             style: TextStyle(

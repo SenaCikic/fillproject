@@ -38,30 +38,32 @@ class MyCardYesNo extends StatefulWidget {
 class _MyCardYesNoState extends State<MyCardYesNo> {
   @override
   Widget build(BuildContext context) {
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Container(
        key: widget.key,
-        width: ScreenUtil.instance.setWidth(336.0),
+        width: ScreenUtil.instance.setWidth(340.0),
         height: ScreenUtil.instance.setHeight(320.0),
-    margin: EdgeInsets.only(left: 10, top: 180, right: 10),
+    margin: EdgeInsets.only(left: 40 / pixelRatio, top: 400 / pixelRatio, right: 25 / pixelRatio),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
         child: Padding(
-            padding: const EdgeInsets.only(left: 42.5, right: 38, top: 20, bottom: 10),          
+            padding: EdgeInsets.only(left: 120 / pixelRatio, right: 70 / pixelRatio, top: 30 / pixelRatio),          
             child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
             Container(
+              margin: EdgeInsets.only(top: 20 / pixelRatio),
                 child: MyQuestionSAR(text: widget.sar.toString() + ' SAR'),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 20 / pixelRatio),
                 child: MyQuestion(
                   question: widget.question,
-                  containerHeight: 90.0),
+                  containerHeight: ScreenUtil.instance.setHeight(90.0)),
               ),
               Container(
-                margin: EdgeInsets.only(top: 5),
+                margin: EdgeInsets.only(top: 40 / pixelRatio),
                   child: Row(
                     children: <Widget>[
                       MyYesNoChoice(
@@ -75,7 +77,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                           notifyParent: widget.notifyParent,
                           target: widget.target,
                           doc: widget.doc,
-                          marginRight: 22.0,
+                          marginRight: 0,
                           username: widget.username),
                       MyYesNoChoice(
                           choice: 'No',
@@ -88,7 +90,7 @@ class _MyCardYesNoState extends State<MyCardYesNo> {
                           notifyParent: widget.notifyParent,
                           target: widget.target,
                           doc: widget.doc,
-                          marginRight: 0.0,
+                          marginRight: 100 / pixelRatio,
                           username: widget.username)
                     ],
                   ),
