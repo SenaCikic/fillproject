@@ -32,8 +32,9 @@ class _MySARState extends State<MySAR> {
 
   @override
   Widget build(BuildContext context) {
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Container(
-        margin: EdgeInsets.only(bottom: 5.0),
+        margin: EdgeInsets.only(bottom: 200.0 / pixelRatio),
         width: ScreenUtil.instance.setWidth(92),
         child: Text(widget.text,
             style: TextStyle(

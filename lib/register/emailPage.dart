@@ -49,6 +49,7 @@ class _EmailPageState extends State<EmailPage> {
   @override
   Widget build(BuildContext context) {
     Constant().responsive(context);
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Scaffold(
       appBar: new AppBar(
         title: new Text(""),
@@ -75,7 +76,7 @@ class _EmailPageState extends State<EmailPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 28, bottom: 35),
+                    padding: EdgeInsets.only(top: 28 / pixelRatio, bottom: 35 / pixelRatio),
                     child: MyTextComponent(text: MyText().emailHeadline),
                   ),
                   Text(MyText().fiveSar,
@@ -85,11 +86,11 @@ class _EmailPageState extends State<EmailPage> {
                         color: MyColor().white,
                       )),
                   Container(
-                      margin: EdgeInsets.only(bottom: 20, top: 20),
+                      margin: EdgeInsets.only(bottom: 20 / pixelRatio, top: 20 / pixelRatio),
                       child: Container(
                         width: ScreenUtil.instance.setWidth(316.0),
                         height: ScreenUtil.instance.setHeight(92.0),
-                        margin: EdgeInsets.only(top: 20.0),
+                        margin: EdgeInsets.only(top: 20.0 / pixelRatio),
                         child: Form(
                           key: _formKey,
                           child: TextFormField(
@@ -99,7 +100,7 @@ class _EmailPageState extends State<EmailPage> {
                               // floatingLabelBehavior: FloatingLabelBehavior.never,
                               hasFloatingPlaceholder: false,
                               contentPadding: new EdgeInsets.symmetric(
-                                  vertical: 25.0, horizontal: 35.0),
+                                  vertical: 25.0 / pixelRatio, horizontal: 35.0 / pixelRatio),
                               labelText: MyText().labelEmail,
                               labelStyle: TextStyle(color: MyColor().white),
                               enabledBorder: OutlineInputBorder(
@@ -159,7 +160,7 @@ class _EmailPageState extends State<EmailPage> {
                           }
                         },
                         child: Text(MyText().btnEmail,
-                            style: TextStyle(fontSize: 18)),
+                            style: TextStyle(fontSize: ScreenUtil.instance.setSp(18))),
                       )),
                   Column(
                     children: <Widget>[

@@ -66,6 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     Constant().responsive(context);
+    double pixelRatio = MediaQuery.of(context).devicePixelRatio;
 
     Future<void> verifyPhone() async {
       final PhoneCodeAutoRetrievalTimeout autoRetrieve = (String verId) {
@@ -137,13 +138,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: <Widget>[
                         Center(
                             child: Padding(
-                          padding: const EdgeInsets.only(top: 28),
+                          padding: EdgeInsets.only(top: 28.0/pixelRatio),
                           child:
                               MyTextComponent(text: MyText().registerHeadline),
                         )),
                         Center(
                             child: Padding(
-                          padding: EdgeInsets.only(top: 61.0, bottom: 59),
+                          padding: EdgeInsets.only(top: 61.0 / pixelRatio, bottom: 59 / pixelRatio),
                           child: Text(
                             MyText().registerSubtitle,
                             style: TextStyle(
@@ -156,7 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           width: ScreenUtil.instance.setWidth(316.0),
                           height: ScreenUtil.instance.setHeight(92.0),
                           margin:
-                              EdgeInsets.only(bottom: 19, left: 49, right: 49),
+                              EdgeInsets.only(bottom: 19 / pixelRatio, left: 49 / pixelRatio, right: 49 / pixelRatio),
                           child: TextFormField(
                             enableSuggestions: false,
                             textCapitalization: TextCapitalization.sentences,
@@ -168,10 +169,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                   inherit: true,
                                   textBaseline: TextBaseline.ideographic),
                               contentPadding: new EdgeInsets.symmetric(
-                                  vertical: 25.0, horizontal: 35.0),
+                                  vertical: 25.0 / pixelRatio, horizontal: 35.0 / pixelRatio),
                               labelText: MyText().labelUsername,
                               labelStyle: TextStyle(
-                                  color: MyColor().white, fontSize: 18),
+                                  color: MyColor().white, fontSize: ScreenUtil.instance.setSp(18)),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(33.5)),
@@ -225,7 +226,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Container(
                           width: ScreenUtil.instance.setWidth(316.0),
                           height: ScreenUtil.instance.setHeight(92.0),
-                          margin: EdgeInsets.only(left: 49, right: 49),
+                          margin: EdgeInsets.only(left: 49 / pixelRatio, right: 49 / pixelRatio, bottom: 19 / pixelRatio),
                           child: TextFormField(
                             enableSuggestions: false,
                             keyboardType: TextInputType.number,
@@ -233,7 +234,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             decoration: InputDecoration(
                               hasFloatingPlaceholder: false,
                               contentPadding: new EdgeInsets.symmetric(
-                                  vertical: 25.0, horizontal: 35.0),
+                                  vertical: 25.0 / pixelRatio, horizontal: 35.0 / pixelRatio),
                               prefix: Text(
                                 "+966",
                                 style: TextStyle(color: MyColor().white),
@@ -314,7 +315,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 }
                               },
                               child: Text("Send PIN",
-                                  style: TextStyle(fontSize: 18)),
+                                  style: TextStyle(fontSize: ScreenUtil.instance.setSp(18))),
                             )),
 
                         /// PROVJERA DA LI POSTOJI USERNAME ILI NUMBER

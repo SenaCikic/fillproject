@@ -61,32 +61,35 @@ class _MyCardMCQState extends State<MyCardMCQ> {
 
   @override
   Widget build(BuildContext context) {
+        double pixelRatio = MediaQuery.of(context).devicePixelRatio;
     return Container(
         key: widget.key,
-        width: ScreenUtil.instance.setWidth(336.0),
+        width: ScreenUtil.instance.setWidth(340.0),
         height: ScreenUtil.instance.setHeight(405.0),
-        margin: EdgeInsets.only(left: 10, top: 10, right: 10),
+        margin: EdgeInsets.only(left: 40 / pixelRatio, top: 10 / pixelRatio, right: 25 / pixelRatio),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             color: MyColor().black),
         child: Padding(
-          padding: const EdgeInsets.only(left: 40, right: 38, top: 20),
+          padding: EdgeInsets.only(left: 140 / pixelRatio, right: 140 / pixelRatio, top: 30 / pixelRatio),
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  child: MyQuestionSAR(text: '${widget.sar} SAR'),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 15),
-                  child: MyQuestion(
-                      question: widget.question, containerHeight: 110.0),
-                ),
-                Container(
-                  height: ScreenUtil.instance.setHeight(246.0),
-                  width: ScreenUtil.instance.setWidth(260.0),
-                  margin: EdgeInsets.only(top: 20),
-                  child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 10 / pixelRatio),
+                child: MyQuestionSAR(text: '${widget.sar} SAR'),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10 / pixelRatio),
+                child: MyQuestion(
+                  question: widget.question,
+                  containerHeight: ScreenUtil.instance.setHeight(110.0)),
+              ),
+              Container(
+                height: ScreenUtil.instance.setHeight(220.0),
+                width: ScreenUtil.instance.setWidth(260.0),
+                margin: EdgeInsets.only(top: 5 / pixelRatio),
+                child: Column(
                       children: choicesEnd
                           .map((item) => MyMCQChoice(
                               choice: item,
